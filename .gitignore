@@ -1,0 +1,20 @@
+.env
+__pycache__/
+*.pyc
+.venv/
+venv/
+data/raw/
+data/processed/*
+# keep the persistent pipeline state (needed by the daily job + to rebuild the site)
+!data/processed/corpus.jsonl
+!data/processed/tournament_log.jsonl
+*.log
+_*.txt
+.DS_Store
+
+.claude/
+
+# scratch logs from ad-hoc runs
+mpc_ingest*.log
+tournament.log
+classify*.log

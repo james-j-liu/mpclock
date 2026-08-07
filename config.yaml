@@ -1,0 +1,50 @@
+# MPCLock pipeline configuration
+
+corpus:
+  sitemap_url: "https://www.bankofengland.co.uk/_api/sitemap/getsitemap"
+  start_year: 1997        # BoE gained independence + MPC created May 1997.
+  end_year: 2026
+  # Each Monetary Policy / Inflation Report is one judged document, holding the
+  # whole PDF — chapters, In focus boxes and annexes included. Set true to score
+  # every section, box and annex as its own document instead (~6x the documents,
+  # ~6x the pairwise cost).
+  split_report_sections: false
+
+judge:
+  provider: openrouter
+  model: "google/gemini-2.5-flash-lite"   # cheaper (~$0.10/$0.40 vs 3.1-lite's $0.25/$1.50)
+  validator_model: "anthropic/claude-haiku-4.5"  # cross-model check on a subset
+  max_excerpt_chars: 9000   # truncate long speeches to control token cost
+  temperature: 0.0
+  concurrency: 8
+
+tournament:
+  initial_mu: 50.0
+  initial_sigma: 8.333
+  target_appearances_per_speech: 30   # FedLock parity (=> ~15*N comparisons)
+  sigma_convergence: 2.0
+  pairing:
+    swiss_fraction: 0.6
+    uncertainty_fraction: 0.3
+    random_fraction: 0.1
+
+era_adjustment:
+  recenter_to: 50.0
+  period: quarter
+
+timeline:
+  gaussian_sigma_days: 45
+  sample_freq: weekly
+
+macro:
+  # UK analogues of FedLock's Core PCE / unemployment / GDP / VIX.
+  # Keys are "{ons_topic}|{cdid}|{dataset}" for the ONS timeseries endpoint.
+  series:
+    core_cpi: "economy/inflationandpriceindices|dko8|mm23"   # CPI excl energy/food/alc/tobacco, YoY %
+    unemployment: "employmentandlabourmarket/peoplenotinwork/unemployment|mgsx|lms"  # rate 16+, %
+    gdp_growth: "economy/grossdomesticproductgdp|ihyr|qna"   # real GDP, YoY %
+    vix: null   # optional equity-vol analogue; unset by default
+
+proof_of_concept:
+  n_speeches: 50
+  appearances_per_speech: 15

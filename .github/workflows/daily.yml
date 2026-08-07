@@ -1,0 +1,57 @@
+name: Daily update & deploy
+
+on:
+  schedule:
+    - cron: "30 6 * * *"        # 06:30 UTC daily
+  workflow_dispatch: {}          # allow manual runs from the Actions tab
+
+permissions:
+  contents: write                # commit refreshed corpus/log/data back to the repo
+  pages: write                   # publish to GitHub Pages
+  id-token: write
+
+concurrency:
+  group: daily-update
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+      - name: Ingest new speeches and score them
+        # a BoE 403 or an OpenRouter outage must not block the deploy: the site is
+        # still redeployed from the data already in the repo, and the day's new
+        # documents are picked up by the next run
+        continue-on-error: true
+        env:
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+          JUDGE_MODEL: google/gemini-2.5-flash-lite
+        run: python -u scripts/daily_update.py
+      - name: Commit updated state and data
+        run: |
+          git config user.name "mpclock-bot"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/processed/corpus.jsonl data/processed/tournament_log.jsonl site/data.json site/macro.json
+          git commit -m "daily update $(date -u +%F)" || echo "no changes to commit"
+          git push
+      - name: Upload site for Pages
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+  deploy:
+    needs: update
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

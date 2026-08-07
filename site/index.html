@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>MPCLock: Bank of England Hawkishness</title>
+<script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+<style>
+  :root { --bg:#0e1116; --panel:#161b22; --ink:#e6edf3; --mut:#8b949e;
+          --hawk:#e05d44; --dove:#4477aa; --line:#21262d; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--ink);
+         font-family:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace; }
+  header { padding:28px 24px 8px; border-bottom:1px solid var(--line); }
+  h1 { margin:0; font-size:22px; letter-spacing:.5px; }
+  .sub { color:var(--mut); font-size:13px; margin-top:6px; max-width:760px; line-height:1.5; }
+  nav { display:flex; gap:4px; padding:0 16px; border-bottom:1px solid var(--line); }
+  nav button { background:none; border:none; color:var(--mut); padding:12px 16px;
+               font:inherit; cursor:pointer; border-bottom:2px solid transparent; }
+  nav button.active { color:var(--ink); border-bottom-color:var(--hawk); }
+  .wrap { padding:18px 24px; }
+  .controls { display:flex; gap:18px; align-items:center; flex-wrap:wrap;
+              color:var(--mut); font-size:13px; margin-bottom:10px; }
+  select { background:var(--panel); color:var(--ink); border:1px solid var(--line);
+           padding:5px 8px; font:inherit; border-radius:4px; }
+  .plot { width:100%; height:600px; }
+  .stat { display:inline-block; margin-right:28px; }
+  .stat b { font-size:20px; color:var(--ink); }
+  .methodology { max-width:820px; line-height:1.7; font-size:14px; }
+  .methodology h3 { color:var(--hawk); margin-top:28px; }
+  .hidden { display:none; }
+  .overlays { display:flex; gap:12px; align-items:center; flex-wrap:wrap; font-size:12px; }
+  .overlays label { display:flex; align-items:center; gap:4px; cursor:pointer; }
+  .overlays input { accent-color:#f2c744; }
+  .btn { background:var(--panel); color:var(--ink); border:1px solid var(--line);
+         padding:5px 12px; font:inherit; border-radius:4px; cursor:pointer; }
+  .btn:hover { border-color:var(--dove); }
+  #dt-wrap { overflow:auto; max-height:74vh; border:1px solid var(--line); border-radius:4px; }
+  #dt-table { border-collapse:collapse; font-size:12px; width:100%; white-space:nowrap; }
+  #dt-table th, #dt-table td { padding:4px 8px; border-bottom:1px solid var(--line); text-align:right; }
+  #dt-table th { position:sticky; top:0; background:#1b2128; color:var(--ink); z-index:1; text-align:right; }
+  #dt-table td:nth-child(2), #dt-table td:last-child,
+  #dt-table th:nth-child(2), #dt-table th:last-child { text-align:left; }
+  #dt-table tbody tr:hover { background:#1b2128; }
+  #dt-table td.num { color:var(--ink); }
+  a { color:var(--dove); }
+</style>
+</head>
+<body>
+<header>
+  <h1>MPCLock — Bank of England MPC Hawkishness</h1>
+  <div class="sub">An LLM pairwise tournament scoring UK monetary-policy
+  communication on a hawkish–dovish spectrum: MPC members' monetary-policy speeches
+  alongside the Committee's own minutes, Monetary Policy Reports (full text, annexes
+  included) and press conferences. 0 = neutral; positive = more hawkish (tighter),
+  negative = more dovish. Method adapted from
+  <a href="https://jnathan9.github.io/fedlock/">FedLock</a>.
+  Scores reflect LLM judgment, not official characterizations.</div>
+  <div class="sub" id="hdrstats"></div>
+</header>
+<nav>
+  <button data-tab="timeline" class="active">Timeline</button>
+  <button data-tab="rankings">Rankings</button>
+  <button data-tab="speaker">Speaker Detail</button>
+  <button data-tab="data">Data</button>
+  <button data-tab="methodology">Methodology</button>
+  <div style="margin-left:auto;display:flex;align-items:center;gap:16px;padding:6px 12px;">
+    <label style="color:var(--mut);font-size:12px;display:flex;align-items:center;gap:5px;cursor:pointer;"
+      title="Attribute the monetary-policy press conference (statement &amp; Q&amp;A) to the Governor in office (King / Carney / Bailey) instead of the BoE MPC composite">
+      <input type="checkbox" id="attr-pc"> Press conf → Governor</label>
+    <label style="color:var(--mut);font-size:13px;">Method
+      <select id="method"><option value="pairwise" selected>Pairwise tournament</option>
+      <option value="direct">Direct (per-speech)</option></select></label>
+
+  </div>
+</nav>
+
+<div class="wrap">
+  <section id="timeline">
+    <div class="controls">
+      <label>Y-Axis
+        <select id="tl-y"><option value="adj">Era-Adjusted</option>
+        <option value="raw" selected>Raw</option></select></label>
+      <label>Speaker
+        <select id="tl-speaker"><option value="">All</option></select></label>
+      <label>Documents
+        <select id="tl-docs"><option value="all" selected>All</option>
+        <option value="mpc">MPC output only (minutes, Report, press conf.)</option>
+
+        <option value="speeches">Member speeches only</option></select></label>
+      <span class="overlays" id="tl-overlays">Overlay:
+        <label><input type="checkbox" class="ov" value="bank_rate"> Bank Rate</label>
+        <label><input type="checkbox" class="ov" value="cpi_headline"> Headline CPI</label>
+        <label><input type="checkbox" class="ov" value="cpi_core"> Core CPI</label>
+        <label><input type="checkbox" class="ov" value="gilt_10y"> 10Y gilt</label>
+      </span>
+    </div>
+    <div id="tl-plot" class="plot"></div>
+  </section>
+
+  <section id="rankings" class="hidden">
+    <div class="controls">
+      <label>Score
+        <select id="rk-score"><option value="adj" selected>Era-Adjusted</option>
+        <option value="raw">Raw</option></select></label>
+      <label>Members
+        <select id="rk-members"><option value="current" selected>Current MPC only</option>
+        <option value="gc">All MPC members (1997–2026)</option></select></label>
+      <label>Min. speeches
+        <select id="rk-min"><option selected>1</option><option>5</option><option>10</option>
+        <option>20</option><option>50</option></select></label>
+    </div>
+    <div id="rk-plot" class="plot"></div>
+  </section>
+
+  <section id="speaker" class="hidden">
+    <div class="controls">
+      <label>Speaker <select id="sp-speaker"></select></label>
+      <label id="sp-type-wrap" class="hidden">Event type <select id="sp-type"></select></label>
+    </div>
+    <div id="sp-plot" class="plot"></div>
+  </section>
+
+  <section id="data" class="hidden">
+    <div class="controls">
+      <label>Table
+        <select id="dt-set"><option value="speeches">All speeches (per document)</option>
+        <option value="speakers">Speaker averages (rankings)</option></select></label>
+      <button id="dt-copy" class="btn">Copy (TSV)</button>
+      <button id="dt-csv" class="btn">Download CSV</button>
+      <span id="dt-info"></span>
+    </div>
+    <div id="dt-wrap"><table id="dt-table"></table></div>
+  </section>
+
+  <section id="methodology" class="hidden">
+    <div class="methodology" id="meth"></div>
+  </section>
+</div>
+
+<script>
+const HAWK="#e05d44", DOVE="#4477aa", INK="#e6edf3", MUT="#8b949e", GRID="#21262d";
+// Return a FRESH layout each render. Plotly.react mutates the layout (and its
+// nested axis objects) in place, so sharing one object leaks axis state between
+// tabs - e.g. the Rankings linear x-axis leaking onto the Timeline date axis,
+// which turns the dated series into an upward-sloping index line.
+function baseLayout(){return {paper_bgcolor:"#0e1116",plot_bgcolor:"#0e1116",
+  font:{color:INK,family:"JetBrains Mono,monospace",size:12},
+  margin:{l:55,r:25,t:20,b:45},
+  xaxis:{gridcolor:GRID,zerolinecolor:GRID},yaxis:{gridcolor:GRID,zerolinecolor:GRID}};}
+let DATA=[], META={}, MACRO={};
+const OVERLAY_COLORS={bank_rate:"#f2c744", cpi_headline:"#e377c2", cpi_core:"#17becf", gilt_10y:"#9467bd"};
+
+// Score-key resolution by method. Pairwise: raw=m, adj=ma. Direct: raw=ds, adj=dsa.
+function method(){ return document.getElementById("method").value; }
+function rawKey(){ return method()==="direct"?"ds":"m"; }
+function adjKey(){ return method()==="direct"?"dsa":"ma"; }
+function methodLabel(){ return method()==="direct"?"Direct 0–100":"Pairwise"; }
+function has(d,k){ return d[k]!==null && d[k]!==undefined; }
+
+// Scores are stored 0-100 (50 = neutral). Display them on a -10..+10 scale
+// (0 = neutral, + = more hawkish, - = more dovish).
+function norm(v){ return v==null?null:(v-50)/5; }
+function fmtScore(v){ const n=norm(v); return (n>=0?"+":"")+n.toFixed(1); }
+
+// ---- MPC roster (editable) ----------------------------------------------
+// The corpus is scraped from every BoE speech, which sweeps in many officials who
+// never vote on Bank Rate — prudential-regulation (PRA), financial-stability (FPC)
+// and markets staff. These sets restrict the speaker dropdowns and the Rankings
+// "Members" filter to actual Monetary Policy Committee members.
+// These are defaults; if data.json carries meta.roster (emitted by the pipeline)
+// they are replaced at load time so the site and the scoring filter never drift.
+// CURRENT = MPC members in office as of 2026.
+let GC_CURRENT=new Set([
+  "Andrew Bailey","Clare Lombardelli","Sarah Breeden","Dave Ramsden","Huw Pill",
+  "Catherine Mann","Swati Dhingra","Megan Greene","Alan Taylor"]);
+// FORMER = people who served on the MPC during 1997-2026 but are not current.
+let GC_FORMER=new Set([
+  "Edward George","Mervyn King","Mark Carney","Rachel Lomax","Charles Bean","Ben Broadbent",
+  "John Gieve","Paul Tucker","Jon Cunliffe","Nemat Shafik","Spencer Dale","Andrew Haldane",
+  "Sushil Wadhwani","DeAnne Julius","Christopher Allsopp","Stephen Nickell","Kate Barker",
+  "Marian Bell","David Walton","David Blanchflower","Tim Besley","Andrew Sentance","Adam Posen",
+  "Paul Fisher","Martin Weale","David Miles","Ian McCafferty","Kristin Forbes","Gertjan Vlieghe",
+  "Michael Saunders","Silvana Tenreyro","Jonathan Haskel","Ian Plenderleith","Willem Buiter",
+  "John Vickers","Charles Goodhart"]);
+// Normalise spelling variants that split one person across records.
+let ALIASES={"Eddie George":"Edward George","Andy Haldane":"Andrew Haldane",
+  "Charlie Bean":"Charles Bean","Minouche Shafik":"Nemat Shafik"};
+function applyRoster(r){ // overwrite defaults from data.json meta.roster
+  if(!r) return;
+  if(r.current) GC_CURRENT=new Set(r.current);
+  if(r.former)  GC_FORMER=new Set(r.former);
+  if(r.aliases) ALIASES=r.aliases;
+}
+const COUNCIL="BoE MPC";
+function canon(n){ return ALIASES[n]||n; }
+function isCurrentGC(n){ n=canon(n); return n===COUNCIL||GC_CURRENT.has(n); }
+function isGC(n){ n=canon(n); return n===COUNCIL||GC_CURRENT.has(n)||GC_FORMER.has(n); }
+function passMembership(n,mode){ return mode==="all"?true:mode==="current"?isCurrentGC(n):isGC(n); }
+
+// Document/event types (the "BoE MPC" composite spans several).
+const SOURCE_LABELS={mp_account:"MPC minutes", mp_statement:"Monetary Policy Summary / opening remarks",
+  mp_report:"Monetary Policy Report", mp_qa:"Press conference transcript",
+  speech:"Speech", interview:"Interview"};
+const TYPE_ORDER=["mp_account","mp_statement","mp_report","mp_qa","speech","interview"];
+// distinct marker glyphs so the Committee's own output stands out from ordinary
+// member speeches: minutes = triangle, summary = square, report section =
+// hexagon, press conference = diamond.
+const SYMBOL_FOR={mp_account:"triangle-up", mp_statement:"square", mp_report:"hexagon",
+  mp_qa:"diamond", speech:"circle", interview:"circle"};
+const MP_TYPES=new Set(["mp_account","mp_statement","mp_report","mp_qa"]);
+// Timeline "Documents" filter: the whole corpus, the Committee's own output, or
+// only the speeches and interviews of individual members.
+function docFilter(){ const el=document.getElementById("tl-docs"); return el?el.value:"all"; }
+function passDocs(d){
+  const v=docFilter();
+  return v==="all" ? true : v==="mpc" ? MP_TYPES.has(d.st) : !MP_TYPES.has(d.st);
+}
+function fillSpeakerTypes(){
+  const spk=document.getElementById("sp-speaker").value;
+  const present=[...new Set(DATA.filter(d=>dispName(d)===spk).map(d=>d.st))];
+  const opts=[["all","All events"]];
+  for(const st of TYPE_ORDER) if(present.includes(st)) opts.push([st, SOURCE_LABELS[st]||st]);
+  // a press conference is the Governor's opening remarks + the transcript together
+  if(present.includes("mp_statement")&&present.includes("mp_qa")){
+    const i=opts.findIndex(o=>o[0]==="mp_qa");
+    opts.splice(i+1,0,["pc","Press conference (opening remarks + transcript)"]);
+  }
+  document.getElementById("sp-type").innerHTML=
+    opts.map(([v,l])=>`<option value="${v}">${l}</option>`).join("");
+  // only offer the filter when the speaker actually has more than one event type
+  document.getElementById("sp-type-wrap").classList.toggle("hidden", present.length<2);
+}
+function speakerTypeRows(rows){
+  const v=document.getElementById("sp-type").value||"all";
+  if(v==="all") return rows;
+  if(v==="pc") return rows.filter(d=>d.st==="mp_statement"||d.st==="mp_qa");
+  return rows.filter(d=>d.st===v);
+}
+
+// BoE Governors (front the monetary-policy press conference: statement + Q&A).
+// Ordered; `until` is each Governor's last day in office.
+const PRESIDENTS=[
+  {name:"Edward George", until:"2003-06-30"},
+  {name:"Mervyn King",   until:"2013-06-30"},
+  {name:"Mark Carney",   until:"2020-03-15"},
+  {name:"Andrew Bailey", until:"9999-12-31"},
+];
+function presidentOn(date){
+  for(const p of PRESIDENTS) if(date<=p.until) return p.name;
+  return PRESIDENTS[PRESIDENTS.length-1].name;
+}
+function attrPC(){ const el=document.getElementById("attr-pc"); return el&&el.checked; }
+// Display/aggregation name for a record: when the toggle is on, the press-conference
+// statement & Q&A are attributed to the Governor of the day instead of the
+// "BoE MPC" composite (minutes stay with the committee).
+function dispName(d){
+  if(attrPC() && (d.st==="mp_statement"||d.st==="mp_qa")) return presidentOn(d.d);
+  return canon(d.a);
+}
+
+function colorFor(v){ // 0..100 -> dove..hawk
+  const t=Math.max(0,Math.min(1,(v-30)/40));
+  const c1=[68,119,170], c2=[224,93,68];
+  return `rgb(${c1.map((x,i)=>Math.round(x+(c2[i]-x)*t)).join(",")})`;
+}
+
+function gaussianTrend(points, sigmaDays=45){
+  // points: [{x:Date, y:number}] sorted; sample weekly
+  if(!points.length) return {x:[],y:[]};
+  const t0=points[0].x.getTime(), t1=points[points.length-1].x.getTime();
+  const week=7*864e5, xs=[], ys=[];
+  for(let t=t0;t<=t1;t+=week){
+    let sw=0, swy=0;
+    for(const p of points){
+      const dd=(p.x.getTime()-t)/864e5;
+      const w=Math.exp(-(dd*dd)/(2*sigmaDays*sigmaDays));
+      sw+=w; swy+=w*p.y;
+    }
+    if(sw>0){ xs.push(new Date(t)); ys.push(swy/sw); }
+  }
+  return {x:xs,y:ys};
+}
+
+function renderTimeline(){
+  const adjusted=document.getElementById("tl-y").value==="adj";
+  const ykey=adjusted?adjKey():rawKey();
+  const spk=document.getElementById("tl-speaker").value;
+  const rows=DATA.filter(d=>(!spk||dispName(d)===spk)&&passDocs(d)&&has(d,ykey));
+  const trace={x:rows.map(d=>d.d),y:rows.map(d=>norm(d[ykey])),mode:"markers",type:"scatter",
+    marker:{size:rows.map(d=>MP_TYPES.has(d.st)?9:6),
+      symbol:rows.map(d=>SYMBOL_FOR[d.st]||"circle"),
+      color:rows.map(d=>colorFor(d[ykey])),opacity:.6,
+      line:{color:"#fff",width:rows.map(d=>MP_TYPES.has(d.st)?1:0)}},
+    text:rows.map(d=>`${dispName(d)}<br>${d.d}<br>${SOURCE_LABELS[d.st]||d.st}<br>${d.tt}<br>score ${fmtScore(d[ykey])}`),hoverinfo:"text",name:"speeches"};
+  const pts=rows.map(d=>({x:new Date(d.d),y:norm(d[ykey])})).sort((a,b)=>a.x-b.x);
+  const tr=gaussianTrend(pts);
+  const trend={x:tr.x,y:tr.y,mode:"lines",type:"scatter",line:{color:"#fff",width:2},name:"Hawkishness trend"};
+  const traces=[trace,trend];
+
+  // macro / market overlays on a secondary (right) axis
+  const checked=[...document.querySelectorAll("#tl-overlays .ov:checked")].map(c=>c.value);
+  for(const key of checked){
+    const s=MACRO[key]; if(!s||!s.data) continue;
+    traces.push({x:s.data.map(p=>p[0]), y:s.data.map(p=>p[1]),
+      mode:"lines", type:"scatter", yaxis:"y2",
+      line:{color:OVERLAY_COLORS[key]||"#aaa", width:1.8,
+            shape:s.shape==="step"?"hv":"linear"},
+      name:s.label, hovertemplate:`%{x|%b %Y}<br>${s.label}: %{y}${s.unit||""}<extra></extra>`});
+  }
+
+  // symmetric y-range that fits the data (direct spans wider than pairwise)
+  const yabs=Math.max(6,...rows.map(d=>Math.abs(norm(d[ykey]))||0));
+  const Y=Math.ceil(yabs);
+  const showOverlay=checked.length>0;
+  const lay=baseLayout();
+  lay.showlegend=showOverlay;
+  lay.legend={orientation:"h",y:1.08,x:0,font:{size:11},bgcolor:"rgba(0,0,0,0)"};
+  lay.xaxis={...lay.xaxis,type:"date"};
+  lay.yaxis={...lay.yaxis,title:`${methodLabel()} · ${adjusted?"era-adjusted":"raw"} (− dovish · + hawkish)`,
+             type:"linear",range:[-Y,Y],zeroline:true,zerolinecolor:"#3a4250"};
+  lay.yaxis2={overlaying:"y",side:"right",title:"% / rate",showgrid:false,
+              zeroline:false,range:[-1,11],color:MUT};
+  Plotly.react("tl-plot",traces,lay,{displayModeBar:false});
+}
+
+function monthsBefore(d,n){ const t=new Date(d); t.setMonth(t.getMonth()-n); return t.toISOString().slice(0,10); }
+function speakerAgg(scoreKey,membership,recentCutoff){
+  const m={}, rec={};
+  for(const d of DATA){
+    if(!has(d,scoreKey)) continue;
+    const name=dispName(d);
+    if(!passMembership(name,membership)) continue;
+    (m[name]=m[name]||[]).push(d[scoreKey]);
+    // recent = a member's own speeches & interviews in the trailing window
+    if(recentCutoff && (d.st==="speech"||d.st==="interview") && d.d>=recentCutoff)
+      (rec[name]=rec[name]||[]).push(d[scoreKey]);
+  }
+  const avg=a=>a.reduce((s,x)=>s+x,0)/a.length;
+  return Object.entries(m).map(([a,v])=>({a,n:v.length,mean:avg(v),
+    recentN:(rec[a]||[]).length, recentMean:rec[a]?avg(rec[a]):null}));
+}
+
+function renderRankings(){
+  const key=document.getElementById("rk-score").value==="adj"?adjKey():rawKey();
+  const min=+document.getElementById("rk-min").value;
+  const membership=document.getElementById("rk-members").value;
+  // trailing 3-month window from the most recent date in the data
+  const maxD=META.date_max||DATA.reduce((mx,d)=>d.d>mx?d.d:mx,"");
+  const cutoff=maxD?monthsBefore(maxD,3):null;
+  // include a speaker if they clear the all-period minimum OR they have any
+  // speeches/interviews in the last 3 months (the recent bar ignores the minimum)
+  let agg=speakerAgg(key,membership,cutoff).filter(d=>d.n>=min||d.recentN>0).sort((a,b)=>a.mean-b.mean);
+  const names=agg.map(d=>d.a);
+  // full-period bar, coloured by hawkishness
+  const overall={type:"bar",orientation:"h",name:"All-period",y:names,base:0,
+    x:agg.map(d=>norm(d.mean)),marker:{color:agg.map(d=>colorFor(d.mean))},
+    customdata:agg.map(d=>d.n),
+    hovertemplate:"%{y}<br>all-period %{x:+.1f}  (n=%{customdata})<extra></extra>"};
+  // last-3-months bar, drawn thinner and in a distinct gold colour, overlaid in the same row
+  const recent={type:"bar",orientation:"h",name:`Last 3 months (to ${maxD})`,y:names,base:0,width:0.4,
+    x:agg.map(d=>d.recentMean!=null?norm(d.recentMean):null),
+    marker:{color:"#f5c518",line:{color:"#7a6200",width:0.5}},
+    customdata:agg.map(d=>d.recentN),
+    hovertemplate:"%{y}<br>last 3 months %{x:+.1f}  (n=%{customdata})<extra></extra>"};
+  // symmetric range about 0 (include recent values so they aren't clipped)
+  const absv=agg.map(d=>Math.abs(norm(d.mean)))
+    .concat(agg.filter(d=>d.recentMean!=null).map(d=>Math.abs(norm(d.recentMean))));
+  const m=Math.max(2,...absv)+0.5;
+  const lay=baseLayout();
+  lay.height=Math.max(400,agg.length*28);
+  lay.margin={l:200,r:25,t:30,b:45};
+  lay.barmode="overlay";
+  lay.showlegend=true;
+  lay.legend={orientation:"h",y:1.03,x:0,font:{size:11},bgcolor:"rgba(0,0,0,0)"};
+  lay.xaxis={...lay.xaxis,title:"Hawkishness (− dovish · + hawkish)",type:"linear",
+             range:[-m,m],autorange:false,tickformat:"+.0f",zeroline:true,zerolinecolor:"#5a6472"};
+  lay.yaxis={...lay.yaxis,type:"category",automargin:true};
+  Plotly.react("rk-plot",[overall,recent],lay,{displayModeBar:false});
+}
+
+function renderSpeaker(){
+  const spk=document.getElementById("sp-speaker").value;
+  const ak=adjKey(), rk=rawKey();
+  const rows=speakerTypeRows(DATA.filter(d=>dispName(d)===spk&&has(d,ak)))
+    .sort((a,b)=>a.d<b.d?-1:1);
+  const tip=d=>method()==="direct"
+    ? `${d.d}<br>${SOURCE_LABELS[d.st]||d.st}<br>${d.tt}<br>adj ${fmtScore(d[ak])} (raw ${fmtScore(d[rk])})`
+    : `${d.d}<br>${SOURCE_LABELS[d.st]||d.st}<br>${d.tt}<br>adj ${fmtScore(d[ak])} (raw ${fmtScore(d[rk])}, n=${d.n})`;
+  const trace={x:rows.map(d=>d.d),y:rows.map(d=>norm(d[ak])),mode:"markers+lines",type:"scatter",
+    marker:{size:rows.map(d=>MP_TYPES.has(d.st)?10:7),
+      symbol:rows.map(d=>SYMBOL_FOR[d.st]||"circle"),
+      color:rows.map(d=>colorFor(d[ak])),
+      line:{color:"#fff",width:rows.map(d=>MP_TYPES.has(d.st)?1:0)}},
+    line:{color:MUT,width:1},
+    text:rows.map(tip),hoverinfo:"text"};
+  const Y=Math.ceil(Math.max(6,...rows.map(d=>Math.abs(norm(d[ak]))||0)));
+  const lay=baseLayout();
+  lay.showlegend=false;
+  lay.xaxis={...lay.xaxis,type:"date"};
+  lay.yaxis={...lay.yaxis,title:`${methodLabel()} · era-adjusted (− dovish · + hawkish)`,
+             type:"linear",range:[-Y,Y],zeroline:true,zerolinecolor:"#3a4250"};
+  Plotly.react("sp-plot",[trace],lay,{displayModeBar:false});
+}
+
+// ---- Data tab: copyable / downloadable table of all underlying data ----
+function numNorm(v){ return v==null?"":((v-50)/5).toFixed(2); }
+function buildDataTable(){
+  const set=document.getElementById("dt-set").value;
+  if(set==="speakers"){
+    const maxD=META.date_max||DATA.reduce((mx,d)=>d.d>mx?d.d:mx,"");
+    const cutoff=maxD?monthsBefore(maxD,3):null;
+    const g={};
+    for(const d of DATA){
+      const name=dispName(d);
+      const o=g[name]||(g[name]={n:0,m:[],ma:[],ds:[],dsa:[],rec:[],inst:d.inst});
+      o.n++; if(d.m!=null)o.m.push(d.m); if(d.ma!=null)o.ma.push(d.ma);
+      if(d.ds!=null)o.ds.push(d.ds); if(d.dsa!=null)o.dsa.push(d.dsa);
+      if(cutoff&&(d.st==="speech"||d.st==="interview")&&d.d>=cutoff&&d.m!=null)o.rec.push(d.m);
+    }
+    const mean=a=>a.length?a.reduce((x,y)=>x+y,0)/a.length:null;
+    const header=["Speaker","Institution","Speeches","Pairwise raw","Pairwise adj","Direct raw","Direct adj","Pairwise last 3m"];
+    const rows=Object.entries(g).map(([k,o])=>[k,o.inst,o.n,numNorm(mean(o.m)),numNorm(mean(o.ma)),
+        numNorm(mean(o.ds)),numNorm(mean(o.dsa)),numNorm(mean(o.rec))])
+      .sort((a,b)=>(parseFloat(b[4])||-99)-(parseFloat(a[4])||-99));
+    return {header,rows};
+  }
+  const header=["Date","Speaker","Institution","Type","Pairwise raw","Pairwise adj","Direct raw","Direct adj","Sigma","N comparisons","Words","Title"];
+  const rows=DATA.slice().sort((a,b)=>a.d<b.d?-1:1).map(d=>[
+    d.d, dispName(d), d.inst, SOURCE_LABELS[d.st]||d.st,
+    numNorm(d.m), numNorm(d.ma), numNorm(d.ds), numNorm(d.dsa),
+    d.s==null?"":d.s, d.n==null?"":d.n, d.wc==null?"":d.wc, d.tt]);
+  return {header,rows};
+}
+function renderData(){
+  const t=buildDataTable(); window._dt=t;
+  const esc=s=>String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"&lt;");
+  const numCols=t.header.map(h=>/raw|adj|3m|Sigma|comparisons|Words|Speeches/.test(h));
+  let h="<thead><tr>"+t.header.map(x=>"<th>"+esc(x)+"</th>").join("")+"</tr></thead><tbody>";
+  h+=t.rows.map(r=>"<tr>"+r.map((c,i)=>"<td"+(numCols[i]?" class=num":"")+">"+esc(c)+"</td>").join("")+"</tr>").join("");
+  document.getElementById("dt-table").innerHTML=h+"</tbody>";
+  document.getElementById("dt-info").textContent=t.rows.length+" rows · scores on the −10…+10 scale";
+}
+function dtText(sep){
+  const t=window._dt||buildDataTable();
+  const q=v=>{v=String(v==null?"":v); return sep===","&&/[",\n]/.test(v)?'"'+v.replace(/"/g,'""')+'"':v;};
+  return [t.header.join(sep)].concat(t.rows.map(r=>r.map(q).join(sep))).join("\n");
+}
+
+const METH=`<h3>What this measures</h3>
+<p>Each point is one Bank of England monetary-policy document scored on a hawkish–dovish
+spectrum, shown on a −10 to +10 scale where 0 is neutral, positive is more hawkish
+(a preference for tighter policy) and negative is more dovish. Scores come from a
+<b>pairwise tournament</b>: an LLM judge reads two anonymized excerpts side by side, with
+the macro conditions of each, and decides which is more hawkish <i>relative to those
+conditions</i>. A TrueSkill rating engine turns ~30 comparisons per document into a
+continuous score.</p>
+<h3>Why pairwise?</h3>
+<p>Asking a model to score each speech 1–100 directly collapses into round-number clusters
+with little discriminating power. Forced binary comparison is an easier, more reliable
+judgment, and TrueSkill aggregates the binary outcomes into a smooth scale.</p>
+<h3>The Method toggle — Pairwise vs. Direct</h3>
+<p>Every tab has a <b>Method</b> selector in the top-right. <b>Pairwise tournament</b> is the
+primary measure described above (~30 comparisons per document). <b>Direct 0–100</b> is
+FedLock's cheaper baseline: the same LLM, the same anonymized excerpt and macro context, but
+asked to rate each document on a 0–100 hawkish–dovish scale in a single call (N calls instead
+of ~15·N). It runs at a fraction of the cost but discriminates less finely and tends to
+cluster on round numbers — which is exactly the limitation the tournament exists to overcome.
+Both are shown so you can compare the two methods on the identical corpus.</p>
+<p>Direct LLM scores are inherently <b>quantised</b>: the model emits round-number tokens
+rather than a true continuous scalar (verified across Gemini, Claude and GPT). To halve the
+clustering, the direct method is scored on a wider <b>−100 to +100</b> scale — the model still
+snaps to round numbers, but those round numbers are now twice as fine relative to the range —
+and then rescaled into the same units as the pairwise score. This roughly doubles the
+resolution (≈25 levels at half-integer steps) but is still discrete. This residual coarseness
+is exactly why the <b>pairwise</b> method exists: it is genuinely continuous, so for fine
+distinctions between speakers or speeches, prefer the pairwise score.</p>
+<h3>Anonymization</h3>
+<p>A five-layer pipeline strips names, titles, and speaker labels before judging, so the
+model reads the text on its merits rather than recognising who is speaking.</p>
+<h3>Macro-relative calibration</h3>
+<p>Each excerpt is shown with UK conditions at the time — core CPI inflation (excluding
+energy, food, alcohol &amp; tobacco), the unemployment rate, and GDP growth — the UK analogues
+of the US series FedLock used. Vigilance on inflation at 2% CPI is hawkish; the same words at
+10% are not.</p>
+<h3>Speakers and the "BoE MPC"</h3>
+<p>Individual MPC members (the Governor, Deputy Governors, Chief Economist and external
+members) are scored per speech. Everything the Committee publishes <i>as a committee</i> is
+aggregated into a single composite speaker, <b>"BoE MPC"</b>:</p>
+<ul>
+<li><b>MPC minutes</b> — every meeting from 1997, and since August 2015 the Monetary Policy
+Summary and minutes published together on decision day.</li>
+<li><b>Monetary Policy Report</b> (the Inflation Report before 2019) — one document per quarterly
+forecast round, holding the <b>full report PDF</b>: the Monetary Policy Summary, the Overview,
+every chapter, every In focus box and every annex. The pipeline can also split a round into
+those parts and score each separately (<code>corpus.split_report_sections</code> in
+config.yaml); the published site scores each round whole.</li>
+<li><b>Press conference</b> — the transcript of the Governor's post-Report press conference and
+the opening remarks that precede it.</li>
+</ul>
+<p>On the Timeline these carry distinct marker shapes — minutes ▲, Summary/opening remarks ■,
+Monetary Policy Report ⬢, press conference ◆ — and the <b>Documents</b> filter isolates the
+Committee's own output from members' speeches. On the Speaker Detail tab, selecting "BoE MPC"
+reveals an <b>Event type</b> filter over the same document types. The <b>"Press conf →
+Governor"</b> toggle (top right) re-attributes the press conference and opening remarks to the
+Governor in office at the time — George, King, Carney or Bailey — folding them into that
+person's record across all tabs, while the minutes and the Report stay with the committee.</p>
+<h3>Who counts as an MPC member</h3>
+<p>The Monetary Policy Committee has nine members — the Governor, the Deputy Governors, the
+Chief Economist and four external members — and only they vote on Bank Rate, so only they are
+scored. The Bank of England also publishes many speeches by prudential-regulation (PRA),
+financial-stability (FPC) and markets officials who never sit on the MPC. <b>Those speeches
+are excluded from the scoring system entirely</b>, not merely hidden, because including them
+would distort the pairwise ratings and the era (quarterly-mean) adjustment. The Rankings
+<b>Members</b> filter then switches between <i>All MPC members</i> over 1997–2026 and
+<i>Current MPC only</i> (those in office as of 2026).</p>
+<h3>Market overlays (Timeline)</h3>
+<p>The Timeline tab can overlay UK policy and market series on a right-hand axis, to read the
+hawkish–dovish signal against actual conditions: the <b>Bank of England Bank Rate</b>,
+<b>CPI headline</b> and <b>CPI core</b> (ex energy, food, alcohol &amp; tobacco) annual
+inflation, and the <b>10-year gilt yield</b>. Bank Rate and gilt yields come from the Bank of
+England's database; CPI comes from the ONS.</p>
+<h3>Era adjustment</h3>
+<p>Rankings use an era-adjusted score, which separates a speaker's disposition from the era
+they served in: each document's raw score is re-centred on its calendar-quarter mean
+(<code>adjusted = raw − quarterly mean</code>), so 0 means "neutral relative to
+contemporaries". The Timeline tab defaults to raw scores to preserve the visible dynamics of
+hawkish and dovish eras. All scores are displayed on a −10 to +10 scale (0 = neutral).</p>
+<h3>Rankings: recent vs. all-period</h3>
+<p>On the Rankings tab each speaker's main (colour-coded) bar is their all-period average. The
+overlaid <b>gold bar</b> is the same speaker scored over just the <b>last three months</b> of
+their own speeches and interviews, so you can see who has shifted hawkish or dovish lately
+relative to their longer record. It only appears for members who have spoken in that window.</p>
+<h3>Corpus &amp; coverage</h3>
+<p>The primary source is the Bank of England's own archive
+(<a href="https://www.bankofengland.co.uk/news/speeches">bankofengland.co.uk/news/speeches</a>,
+1997–present), enumerated from the site's sitemap, with the full text of each speech taken from
+its PDF rather than the short web summary. The Committee's own output — minutes, Monetary
+Policy Reports and press conferences — is pulled from the same site.</p>
+<p>The scrape is <b>cross-checked against the BIS central bankers' speeches archive</b>, an
+independent transcription of the same speeches. The Bank's site is the more complete of the
+two in every year from 1998 on; where BIS holds a speech the site no longer publishes (mostly
+1996–98), that record is backfilled from BIS and marked as such. Speeches are kept only if a
+two-stage LLM classifier judges them to be genuine monetary-policy communication; the
+Committee's own documents bypass the classifier. Only MPC members are scored. The "Members"
+filter knows the full committee, but the rankings only show speakers with at least the chosen
+minimum number of scored documents; short-serving external members with few monetary-policy
+speeches may fall below the threshold.</p>`;
+
+function setHeader(){
+  const mpc=DATA.filter(d=>MP_TYPES.has(d.st)).length;
+  document.getElementById("hdrstats").innerHTML =
+    `<span class="stat"><b>${META.n_speeches||DATA.length}</b> documents rated</span>`+
+    `<span class="stat"><b>${mpc}</b> MPC minutes / Report / press conf.</span>`+
+    `<span class="stat"><b>${META.n_speakers||0}</b> speakers</span>`+
+    `<span class="stat"><b>${META.date_min||""}–${META.date_max||""}</b></span>`;
+}
+function fillSpeakers(){
+  // dropdowns list MPC members (current + former) and the BoE MPC composite,
+  // not the PRA / FPC / markets officials the corpus also contains.
+  const names=[...new Set(DATA.map(dispName).filter(isGC))]
+    .sort((a,b)=> a===COUNCIL?-1:b===COUNCIL?1:a.localeCompare(b));
+  for(const sel of ["tl-speaker","sp-speaker"]){
+    const el=document.getElementById(sel);
+    for(const n of names){const o=document.createElement("option");o.value=o.textContent=n;el.appendChild(o);}
+  }
+}
+
+document.querySelectorAll("nav button").forEach(b=>b.onclick=()=>{
+  document.querySelectorAll("nav button").forEach(x=>x.classList.remove("active"));
+  b.classList.add("active");
+  const tab=b.dataset.tab;
+  for(const s of ["timeline","rankings","speaker","data","methodology"])
+    document.getElementById(s).classList.toggle("hidden",s!==tab);
+  if(tab==="timeline")renderTimeline();
+  if(tab==="rankings")renderRankings();
+  if(tab==="speaker")renderSpeaker();
+  if(tab==="data")renderData();
+});
+document.getElementById("dt-set").onchange=renderData;
+document.getElementById("dt-copy").onclick=()=>navigator.clipboard.writeText(dtText("\t")).then(()=>{
+  const b=document.getElementById("dt-copy"); b.textContent="Copied!"; setTimeout(()=>b.textContent="Copy (TSV)",1200);});
+document.getElementById("dt-csv").onclick=()=>{
+  const blob=new Blob([dtText(",")],{type:"text/csv"}); const a=document.createElement("a");
+  a.href=URL.createObjectURL(blob); a.download="mpclock_"+document.getElementById("dt-set").value+".csv"; a.click();
+  setTimeout(()=>URL.revokeObjectURL(a.href),1000);};
+["tl-y","tl-speaker","tl-docs"].forEach(id=>document.getElementById(id).onchange=renderTimeline);
+document.querySelectorAll("#tl-overlays .ov").forEach(c=>c.onchange=renderTimeline);
+["rk-score","rk-min","rk-members"].forEach(id=>document.getElementById(id).onchange=renderRankings);
+document.getElementById("sp-speaker").onchange=()=>{ fillSpeakerTypes(); renderSpeaker(); };
+document.getElementById("sp-type").onchange=renderSpeaker;
+function rerenderActive(){
+  const tab=document.querySelector("nav button.active").dataset.tab;
+  if(tab==="timeline")renderTimeline();
+  if(tab==="rankings")renderRankings();
+  if(tab==="speaker")renderSpeaker();
+  if(tab==="data")renderData();
+}
+document.getElementById("method").onchange=rerenderActive;
+document.getElementById("attr-pc").onchange=()=>{ fillSpeakerTypes(); rerenderActive(); };
+
+Promise.all([
+  fetch("data.json",{cache:"no-store"}).then(r=>r.json()),
+  fetch("macro.json",{cache:"no-store"}).then(r=>r.ok?r.json():{series:{}}).catch(()=>({series:{}}))
+]).then(([j,m])=>{
+  DATA=j.speeches||j; META=j.meta||{}; MACRO=(m&&m.series)||{};
+  applyRoster(META.roster);
+  document.getElementById("meth").innerHTML=METH;
+  setHeader(); fillSpeakers(); fillSpeakerTypes(); renderTimeline();
+}).catch(e=>{document.getElementById("hdrstats").textContent="Could not load data.json: "+e;});
+</script>
+</body>
+</html>
