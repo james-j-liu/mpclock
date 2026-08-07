@@ -4,6 +4,10 @@ on:
   schedule:
     - cron: "30 6 * * *"        # 06:30 UTC daily
   workflow_dispatch: {}          # allow manual runs from the Actions tab
+  push:
+    branches: [main]             # redeploy the site on every code/data change
+                                 # (the job's own commit uses GITHUB_TOKEN, which
+                                 # by design does not re-trigger workflows)
 
 permissions:
   contents: write                # commit refreshed corpus/log/data back to the repo
@@ -35,6 +39,9 @@ jobs:
           JUDGE_MODEL: google/gemini-2.5-flash-lite
         run: python -u scripts/daily_update.py
       - name: Commit updated state and data
+        # a rejected commit (e.g. corpus.jsonl outgrowing GitHub's file limit) is
+        # a state problem, not a reason to stop publishing the site
+        continue-on-error: true
         run: |
           git config user.name "mpclock-bot"
           git config user.email "github-actions[bot]@users.noreply.github.com"

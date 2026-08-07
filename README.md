@@ -64,9 +64,14 @@ deploys the site to GitHub Pages.
 
 ## State in the repo
 
-`data/processed/corpus.jsonl` (full text + classifier verdicts + ratings) and
+`data/processed/corpus.jsonl` (text + classifier verdicts + ratings) and
 `data/processed/tournament_log.jsonl` (every comparison ever paid for) are committed
 deliberately: they are the pipeline's memory, they make the daily run incremental,
-and the log means a re-run never re-pays for a comparison. The corpus file is large
-(~90 MB) and GitHub rejects single files over 100 MB — if it approaches that, drop
-the oldest raw text rather than the ratings.
+and the log means a re-run never re-pays for a comparison.
+
+GitHub rejects any single file over 100 MB, so the corpus keeps full text only where
+it can still be needed — every scored document and every record that could still
+become one (`schema.keeps_text`). Speeches the classifier has already rejected, and
+speeches by officials outside the MPC, keep their metadata and `source_url` but not
+their body text, and the anonymised copy of a text is never stored at all since it is
+derived. That holds the file at ~54 MB with all 919 scored documents complete.

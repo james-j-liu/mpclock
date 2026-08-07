@@ -76,12 +76,34 @@ class Speech:
         return self.speaker == ECB_COUNCIL or self.source_type in COUNCIL_TYPES
 
 
+def keeps_text(s: "Speech") -> bool:
+    """Whether a record's full text has to survive a save.
+
+    The corpus lives in git (it is what makes the daily run incremental), and
+    GitHub rejects any file over 100 MB, so text is kept only where it can still
+    be needed: every record that is or could become a scored document. A speech
+    the classifier has already rejected, or one by an official who is not on the
+    MPC, is never judged again — its metadata stays, and its text can be
+    re-scraped from source_url if the scope ever widens.
+    """
+    from .roster_mpc import is_mpc
+    return s.is_policy is not False and is_mpc(s.speaker)
+
+
+def _record(s: Speech) -> dict:
+    d = asdict(s)
+    d["text_anon"] = ""          # derived: recomputed per run, never stored
+    if not keeps_text(s):
+        d["text"] = ""
+    return d
+
+
 def save_corpus(speeches: list[Speech], path: str | Path) -> None:
     path = Path(path)
     path.parent.mkdir(parents=True, exist_ok=True)
     with path.open("w", encoding="utf-8") as f:
         for s in speeches:
-            f.write(json.dumps(asdict(s), ensure_ascii=False) + "\n")
+            f.write(json.dumps(_record(s), ensure_ascii=False) + "\n")
 
 
 def load_corpus(path: str | Path) -> list[Speech]:
