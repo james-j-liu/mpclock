@@ -92,6 +92,7 @@
         <label><input type="checkbox" class="ov" value="bank_rate"> Bank Rate</label>
         <label><input type="checkbox" class="ov" value="cpi_headline"> Headline CPI</label>
         <label><input type="checkbox" class="ov" value="cpi_core"> Core CPI</label>
+        <label><input type="checkbox" class="ov" value="rpi"> RPI</label>
         <label><input type="checkbox" class="ov" value="gilt_10y"> 10Y gilt</label>
       </span>
     </div>
@@ -149,7 +150,8 @@ function baseLayout(){return {paper_bgcolor:"#0e1116",plot_bgcolor:"#0e1116",
   margin:{l:55,r:25,t:20,b:45},
   xaxis:{gridcolor:GRID,zerolinecolor:GRID},yaxis:{gridcolor:GRID,zerolinecolor:GRID}};}
 let DATA=[], META={}, MACRO={};
-const OVERLAY_COLORS={bank_rate:"#f2c744", cpi_headline:"#e377c2", cpi_core:"#17becf", gilt_10y:"#9467bd"};
+const OVERLAY_COLORS={bank_rate:"#f2c744", cpi_headline:"#e377c2", cpi_core:"#17becf",
+  rpi:"#5cb85c", gilt_10y:"#9467bd"};
 
 // Score-key resolution by method. Pairwise: raw=m, adj=ma. Direct: raw=ds, adj=dsa.
 function method(){ return document.getElementById("method").value; }
@@ -300,8 +302,10 @@ function renderTimeline(){
 
   // macro / market overlays on a secondary (right) axis
   const checked=[...document.querySelectorAll("#tl-overlays .ov:checked")].map(c=>c.value);
+  let ovMin=0, ovMax=0;
   for(const key of checked){
     const s=MACRO[key]; if(!s||!s.data) continue;
+    for(const p of s.data){ if(p[1]<ovMin)ovMin=p[1]; if(p[1]>ovMax)ovMax=p[1]; }
     traces.push({x:s.data.map(p=>p[0]), y:s.data.map(p=>p[1]),
       mode:"lines", type:"scatter", yaxis:"y2",
       line:{color:OVERLAY_COLORS[key]||"#aaa", width:1.8,
@@ -319,8 +323,10 @@ function renderTimeline(){
   lay.xaxis={...lay.xaxis,type:"date"};
   lay.yaxis={...lay.yaxis,title:`${methodLabel()} · ${adjusted?"era-adjusted":"raw"} (− dovish · + hawkish)`,
              type:"linear",range:[-Y,Y],zeroline:true,zerolinecolor:"#3a4250"};
-  lay.yaxis2={overlaying:"y",side:"right",title:"% / rate",showgrid:false,
-              zeroline:false,range:[-1,11],color:MUT};
+  // the right-hand axis fits whatever is overlaid: RPI ran to 14% in 2022 and CPI
+  // to 11%, both of which a fixed 11% ceiling would clip
+  lay.yaxis2={overlaying:"y",side:"right",title:"% / rate",showgrid:false,zeroline:false,
+              range:[Math.min(-1,Math.floor(ovMin)),Math.max(11,Math.ceil(ovMax)+1)],color:MUT};
   Plotly.react("tl-plot",traces,lay,{displayModeBar:false});
 }
 
@@ -518,8 +524,10 @@ would distort the pairwise ratings and the era (quarterly-mean) adjustment. The 
 <p>The Timeline tab can overlay UK policy and market series on a right-hand axis, to read the
 hawkish–dovish signal against actual conditions: the <b>Bank of England Bank Rate</b>,
 <b>CPI headline</b> and <b>CPI core</b> (ex energy, food, alcohol &amp; tobacco) annual
-inflation, and the <b>10-year gilt yield</b>. Bank Rate and gilt yields come from the Bank of
-England's database; CPI comes from the ONS.</p>
+inflation, <b>RPI</b> annual inflation, and the <b>10-year gilt yield</b>. RPI is worth
+watching over the early years in particular: the MPC's target was RPIX — RPI excluding
+mortgage interest payments — at 2.5% until December 2003, when it switched to CPI at 2%. Bank
+Rate and gilt yields come from the Bank of England's database; CPI and RPI come from the ONS.</p>
 <h3>Era adjustment</h3>
 <p>Rankings use an era-adjusted score, which separates a speaker's disposition from the era
 they served in: each document's raw score is re-centred on its calendar-quarter mean

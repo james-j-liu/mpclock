@@ -4,7 +4,12 @@ Series (UK analogues of the FedLock overlay):
   bank_rate     Bank of England official Bank Rate (%)   BoE IADB IUDBEDR (daily -> step)
   cpi_headline  CPI all-items, annual % change           ONS D7G7 / MM23 (monthly)
   cpi_core      CPI ex energy/food/alcohol/tobacco, YoY   ONS DKO8 / MM23 (monthly)
+  rpi           RPI all-items, annual % change           ONS CZBH / MM23 (monthly)
   gilt_10y      10-year nominal gilt (par) yield (%)      BoE IADB IUDMNPY (daily -> monthly)
+
+RPI matters historically as well as for comparison: the MPC's target was RPIX
+(RPI excluding mortgage interest) at 2.5% until December 2003, when it moved to
+CPI at 2%. RPI also still sets index-linked gilts and many regulated prices.
 
 Bank Rate and gilt yields come from the Bank of England's Interactive Database
 (IADB) CSV export; CPI comes from the ONS open-data timeseries endpoint.
@@ -40,6 +45,8 @@ SPEC = {
                      "CPI headline (YoY)", "%", "line", False),
     "cpi_core":     ("ons", "economy/inflationandpriceindices|dko8|mm23",
                      "CPI core, ex energy/food/alcohol/tobacco (YoY)", "%", "line", False),
+    "rpi":          ("ons", "economy/inflationandpriceindices|czbh|mm23",
+                     "RPI all items (YoY)", "%", "line", False),
     "gilt_10y":     ("iadb", "IUDMNPY",
                      "10Y gilt (par) yield", "%", "line", False),
 }
