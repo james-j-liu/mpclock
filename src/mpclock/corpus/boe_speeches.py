@@ -146,11 +146,26 @@ def _og(html: str, prop: str) -> str:
     return (m.group(1) if m else "").strip()
 
 
+def _valid(date: str) -> str:
+    """Return the date if it is a real calendar date, else "".
+
+    Speech PDFs contain stray numbers next to month names ("… 90 October 2024" out
+    of a footnote or a chart label), which would otherwise become the record's date.
+    """
+    try:
+        import datetime
+        datetime.date.fromisoformat(date)
+        return date
+    except (ValueError, TypeError):
+        return ""
+
+
 def _pick_date(url: str, traf_date: str, body: str) -> str:
     # 1) the delivery date printed at the top of the speech PDF/page
-    m = _DATE_TEXT_RE.search(body[:1500])
-    if m:
-        return f"{m.group(3)}-{_MONTH_IDX[m.group(2).lower()]:02d}-{int(m.group(1)):02d}"
+    for m in _DATE_TEXT_RE.finditer(body[:1500]):
+        cand = _valid(f"{m.group(3)}-{_MONTH_IDX[m.group(2).lower()]:02d}-{int(m.group(1)):02d}")
+        if cand:
+            return cand
     # 2) trafilatura's parsed metadata date, if it agrees with the URL year
     um = re.search(r"/speech/(\d{4})/([a-z]+)/", url)
     if re.match(r"\d{4}-\d{2}-\d{2}", traf_date or ""):

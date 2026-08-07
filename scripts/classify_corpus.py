@@ -21,6 +21,11 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
+try:  # speech titles carry en-dashes and minus signs the Windows console can't encode
+    sys.stdout.reconfigure(encoding="utf-8")
+    sys.stderr.reconfigure(encoding="utf-8")
+except Exception:
+    pass
 
 from mpclock.config import PROCESSED
 from mpclock.process.classify import Classifier
@@ -41,6 +46,9 @@ def main():
                     help="only classify MPC-roster speakers (the scoring pool)")
     ap.add_argument("--since", default=None,
                     help="only classify records with date >= this ISO date")
+    ap.add_argument("--recheck", action="store_true",
+                    help="re-classify records that already carry a verdict "
+                         "(use after changing the classifier)")
     ap.add_argument("--path", default=str(CORPUS))
     args = ap.parse_args()
 
@@ -58,15 +66,30 @@ def main():
     clf = Classifier(model=args.model)
     print(f"Classifier model: {clf.model}")
 
-    # resume: only classify records without a verdict yet; checkpoint per chunk
-    todo = [s for s in window if s.is_policy is None]
-    print(f"To classify: {len(todo)} (skipping {len(window)-len(todo)} already done)")
+    # resume: only classify records without a verdict yet; checkpoint per chunk.
+    # --recheck re-judges everything that still has text to judge.
+    if args.recheck:
+        before = {s.id: s.is_policy for s in window}
+        todo = [s for s in window if s.text]
+    else:
+        before = {}
+        todo = [s for s in window if s.is_policy is None]
+    print(f"To classify: {len(todo)} (skipping {len(window)-len(todo)})")
     for i in range(0, len(todo), args.chunk):
         clf.classify_all(todo[i:i + args.chunk], concurrency=args.concurrency)
         save_corpus(corpus, args.path)   # checkpoint so a kill never loses progress
         print(f"  checkpoint: {min(i+args.chunk, len(todo))}/{len(todo)} classified & saved")
 
     save_corpus(corpus, args.path)
+
+    if before:
+        flipped_in = [s for s in window if before.get(s.id) is False and s.is_policy]
+        flipped_out = [s for s in window if before.get(s.id) is True and not s.is_policy]
+        print(f"\nRecheck: {len(flipped_in)} newly kept, {len(flipped_out)} newly dropped")
+        for s in flipped_in[:15]:
+            print(f"  + {s.date} {s.speaker[:20]:20} {s.title[:60]}")
+        for s in flipped_out[:15]:
+            print(f"  - {s.date} {s.speaker[:20]:20} {s.title[:60]}")
 
     policy = [s for s in window if s.is_policy]
     council = [s for s in window if s.source_type in COUNCIL_TYPES]

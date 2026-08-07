@@ -549,8 +549,15 @@ Policy Reports and press conferences — is pulled from the same site.</p>
 independent transcription of the same speeches. The Bank's site is the more complete of the
 two in every year from 1998 on; where BIS holds a speech the site no longer publishes (mostly
 1996–98), that record is backfilled from BIS and marked as such. Speeches are kept only if a
-two-stage LLM classifier judges them to be genuine monetary-policy communication; the
-Committee's own documents bypass the classifier. Only MPC members are scored. The "Members"
+two-stage LLM classifier judges monetary policy or the economy to be their subject; the
+Committee's own documents bypass the classifier. The classifier reads three windows sampled
+across each speech rather than its opening — a Bank of England speech begins with a title
+page, thanks to the host and several paragraphs of scene-setting, so judging it on the first
+few thousand characters discards speeches whose argument has not started yet. Speeches that
+analyse the outlook, the forecast, the transmission mechanism or the policy framework are
+kept even where they state no explicit hawkish or dovish preference; talks on regulation,
+resolution, payments, market infrastructure and financial stability are dropped.
+Only MPC members are scored. The "Members"
 filter knows the full committee, but the rankings only show speakers with at least the chosen
 minimum number of scored documents; short-serving external members with few monetary-policy
 speeches may fall below the threshold.</p>`;

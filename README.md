@@ -52,6 +52,7 @@ pip install -r requirements.txt
 python -m mpclock.corpus.assemble          # build the corpus (speeches + MPC + BIS)
 python scripts/add_sources.py              # or: add MPC/BIS to an existing corpus
 python scripts/classify_corpus.py --mpc-only
+python scripts/classify_corpus.py --mpc-only --recheck   # after a classifier change
 python scripts/build_macro.py
 python scripts/run_full.py --appearances 30 --concurrency 20
 python -m http.server 8231 --directory site
@@ -69,9 +70,11 @@ deploys the site to GitHub Pages.
 deliberately: they are the pipeline's memory, they make the daily run incremental,
 and the log means a re-run never re-pays for a comparison.
 
-GitHub rejects any single file over 100 MB, so the corpus keeps full text only where
-it can still be needed — every scored document and every record that could still
-become one (`schema.keeps_text`). Speeches the classifier has already rejected, and
-speeches by officials outside the MPC, keep their metadata and `source_url` but not
-their body text, and the anonymised copy of a text is never stored at all since it is
-derived. That holds the file at ~54 MB with all 919 scored documents complete.
+GitHub rejects any single file over 100 MB, so the corpus keeps text where it can
+still be needed and drops it where it cannot (`schema.keeps_text`): everything by an
+MPC member or the Committee keeps its text whatever the classifier decided, because a
+change to the classifier has to be able to re-judge a speech it once rejected;
+speeches by officials who never sit on the MPC keep metadata and `source_url` only,
+and `scripts/refetch_text.py` can re-scrape them if the roster ever widens. The
+anonymised copy of a text is never stored, being derived. That holds the file at
+~76 MB.

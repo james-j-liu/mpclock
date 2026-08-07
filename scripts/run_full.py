@@ -36,7 +36,7 @@ from mpclock.output.build_data import era_adjust, write_data_json
 from mpclock.process.anonymize import Anonymizer
 from mpclock.process.roster import build_roster
 from mpclock.roster_mpc import is_mpc
-from mpclock.schema import load_corpus
+from mpclock.schema import load_corpus, save_corpus
 from mpclock.tournament.runner import run_tournament
 
 CORPUS = PROCESSED / "corpus.jsonl"
@@ -77,6 +77,8 @@ def main():
     ap.add_argument("--no-pairwise", action="store_true", help="skip the tournament")
     ap.add_argument("--no-direct", action="store_true", help="skip direct 0-100 scoring")
     ap.add_argument("--direct-concurrency", type=int, default=8)
+    ap.add_argument("--redo-direct", action="store_true",
+                    help="re-score documents that already have a direct score")
     ap.add_argument("--include-non-mpc", action="store_true",
                     help="keep non-GC speakers (NCB deputies etc.); default excludes them")
     ap.add_argument("--resume", action="store_true",
@@ -147,9 +149,17 @@ def main():
             from mpclock.judge.direct import DirectScorer
             scorer = DirectScorer(model=args.model)
             print(f"Direct scorer model: {scorer.model}")
-        scorer.score_all(pool, macro, concurrency=args.direct_concurrency)
+        # only score what has no direct score yet, so re-runs after a corpus change
+        # don't re-pay for (and jitter) documents that already carry one
+        todo = [s for s in pool if s.direct_score is None] if not args.redo_direct else pool
+        print(f"Direct scoring {len(todo)} of {len(pool)} documents")
+        if todo:
+            scorer.score_all(todo, macro, concurrency=args.direct_concurrency)
 
     era_adjust(pool)
+    # pool records are the same objects as in `corpus`, so this persists the new
+    # ratings and direct scores for the next incremental run
+    save_corpus(corpus, args.path)
     meta = write_data_json(pool, args.out)
     print(f"Wrote {args.out}: {meta['n_speeches']} speeches, {meta['n_speakers']} speakers, "
           f"pairwise={meta['n_pairwise']} direct={meta['n_direct']} "

@@ -77,33 +77,35 @@ class Speech:
 
 
 def keeps_text(s: "Speech") -> bool:
-    """Whether a record's full text has to survive a save.
+    """Whether a record's body text has to survive a save.
 
-    The corpus lives in git (it is what makes the daily run incremental), and
-    GitHub rejects any file over 100 MB, so text is kept only where it can still
-    be needed: every record that is or could become a scored document. A speech
-    the classifier has already rejected, or one by an official who is not on the
-    MPC, is never judged again — its metadata stays, and its text can be
-    re-scraped from source_url if the scope ever widens.
+    The corpus lives in git (that is what makes the daily run incremental) and
+    GitHub rejects any file over 100 MB, so text is kept where it can still be
+    needed and dropped where it cannot. Everything by an MPC member or the
+    Committee keeps its text whatever the classifier said, because a change to
+    the classifier has to be able to re-judge a speech it previously rejected.
+    Speeches by officials who never sit on the MPC keep their metadata and
+    source_url only — a roster change can re-scrape them.
     """
     from .roster_mpc import is_mpc
-    return s.is_policy is not False and is_mpc(s.speaker)
+    return is_mpc(s.speaker)
 
 
-def _record(s: Speech) -> dict:
+def _record(s: Speech, keep_all_text: bool = False) -> dict:
     d = asdict(s)
     d["text_anon"] = ""          # derived: recomputed per run, never stored
-    if not keeps_text(s):
+    if not (keep_all_text or keeps_text(s)):
         d["text"] = ""
     return d
 
 
-def save_corpus(speeches: list[Speech], path: str | Path) -> None:
+def save_corpus(speeches: list[Speech], path: str | Path,
+                keep_all_text: bool = False) -> None:
     path = Path(path)
     path.parent.mkdir(parents=True, exist_ok=True)
     with path.open("w", encoding="utf-8") as f:
         for s in speeches:
-            f.write(json.dumps(_record(s), ensure_ascii=False) + "\n")
+            f.write(json.dumps(_record(s, keep_all_text), ensure_ascii=False) + "\n")
 
 
 def load_corpus(path: str | Path) -> list[Speech]:

@@ -1,11 +1,17 @@
 """Two-stage LLM policy-relevance classifier (FedLock approach).
 
-Stage 1 (broad): is this primarily about monetary policy / the economic outlook
-                 / inflation / interest rates, vs. an off-topic talk (payments,
-                 supervision, fintech, market plumbing, ceremonial)?
-Stage 2 (strict): of the stage-1 survivors, is the PRIMARY PURPOSE to communicate
-                  a monetary-policy *view/stance* (hawkish/dovish signal), rather
-                  than describe operations or institutions neutrally?
+Stage 1 (broad): does this speech deal with monetary policy / the economic outlook
+                 / inflation / interest rates at all, vs. an off-topic talk
+                 (payments, supervision, fintech, market plumbing, ceremonial)?
+Stage 2 (subject): of the stage-1 survivors, is monetary policy and the economy the
+                  speech's SUBJECT, rather than an aside in a talk that is really
+                  about regulation, financial stability or market infrastructure?
+
+Both stages read a sample drawn from across the speech, not its opening. A Bank of
+England speech PDF opens with a title page, thanks to the host and several
+paragraphs of scene-setting — judging relevance on the first few thousand
+characters threw away genuine monetary-policy speeches whose argument had not
+started yet.
 
 Only documents passing both stages get is_policy=True and enter the tournament.
 The Committee's own output (Monetary Policy Summary, press conference, minutes) is
@@ -27,6 +33,18 @@ from ..schema import COUNCIL_TYPES, ST_REPORT, Speech
 API_URL = "https://openrouter.ai/api/v1/chat/completions"
 
 _SENTENCE_RE = re.compile(r"[a-z]{3}[^.!?\n]{50,}[.!?]")
+# academic speeches close with pages of citations; sampling the end of the file
+# would otherwise hand the classifier a bibliography instead of the conclusion
+_REFERENCES_RE = re.compile(r"^\s*(references|bibliography)\s*$", re.I | re.M)
+
+
+def _body(text: str) -> str:
+    m = None
+    for m in _REFERENCES_RE.finditer(text):
+        pass                       # the last such heading is the real one
+    if m and m.start() > 0.6 * len(text):
+        return text[:m.start()]
+    return text
 
 
 def is_prose(text: str, sample_chars: int = 6000) -> bool:
@@ -38,27 +56,50 @@ def is_prose(text: str, sample_chars: int = 6000) -> bool:
         return False
     return len(_SENTENCE_RE.findall(sample)) >= 3
 
-STAGE1 = """You classify central-bank speeches. Decide if the excerpt is PRIMARILY about
-monetary policy or the macroeconomic outlook: inflation, interest rates, the policy stance,
-growth, employment, the economy. Talks whose main subject is payment systems, market
-infrastructure, bank supervision/regulation, fintech, digital currency design, statistics,
-ceremony, or institutional history are NOT policy-relevant.
+STAGE1 = """You classify central-bank speeches. The excerpt is sampled from across one
+speech (opening, middle, end), so judge the speech as a whole, not the passage in front of
+you. Decide if it engages with monetary policy or the macroeconomic outlook: inflation,
+interest rates, the policy stance or its transmission, growth, the labour market, the
+forecast, or the monetary-policy framework. Answer true even when the argument is
+analytical, historical or methodological, as long as it bears on monetary policy or the
+economy. Answer false for talks whose subject is payment systems, market infrastructure,
+bank supervision or regulation, resolution, fintech, digital currency design, cyber risk,
+statistics, ceremony, or institutional history.
 Respond ONLY with JSON: {"policy": true|false}."""
 
-STAGE2 = """You are a strict editor building a corpus of monetary-policy SIGNALS. The excerpt
-already mentions the economy. Decide if its PRIMARY PURPOSE is to communicate a view or
-stance on monetary policy (e.g. arguing for/against tightening or easing, assessing whether
-policy is appropriately calibrated, signalling concern about inflation or growth) — as
-opposed to neutrally describing mechanics, institutions, data, or history without taking a
-stance. Keep only genuine stance-bearing policy communication.
+STAGE2 = """You are building a corpus of monetary-policy communication and are checking the
+previous filter. The excerpt is sampled from across one speech. Decide whether monetary
+policy, inflation, or the economic outlook is the SUBJECT of this speech, rather than a
+passing reference in a speech that is really about something else (financial stability,
+prudential regulation, payments, market operations, climate, an institution or a career).
+Keep every speech whose substance is the economy or monetary policy, INCLUDING ones that
+analyse the outlook, the forecast, the transmission mechanism, the policy framework or the
+policy trade-offs without stating an explicit hawkish or dovish preference — a reasoned
+analysis of inflation or the rate path belongs in the corpus.
 Respond ONLY with JSON: {"policy": true|false}."""
 
 
 class Classifier:
-    def __init__(self, model: str | None = None, max_chars: int = 4000):
+    def __init__(self, model: str | None = None, max_chars: int = 7500):
         self.model = model or judge_model()
         self.max_chars = max_chars
         self._key = openrouter_key()
+
+    def excerpt(self, speech: Speech) -> str:
+        """Title plus three windows — opening, middle, close — of the speech.
+
+        Sampling beats truncation here: the opening is host thanks and framing, the
+        argument sits in the middle, and the policy conclusion sits at the end.
+        """
+        text = _body(speech.text)
+        head = f"TITLE: {speech.title}\n\n"
+        if len(text) <= self.max_chars:
+            return head + text
+        w = self.max_chars // 3
+        mid = (len(text) - w) // 2
+        return (head + text[:w]
+                + "\n\n[…]\n\n" + text[mid:mid + w]
+                + "\n\n[…]\n\n" + text[-w:])
 
     @retry(stop=stop_after_attempt(4), wait=wait_exponential(multiplier=1, min=2, max=30))
     def _ask(self, system: str, content: str) -> bool:
@@ -85,7 +126,7 @@ class Classifier:
             return is_prose(speech.text)
         if speech.source_type in COUNCIL_TYPES:
             return True
-        excerpt = f"TITLE: {speech.title}\n\n{speech.text[:self.max_chars]}"
+        excerpt = self.excerpt(speech)
         if not self._ask(STAGE1, excerpt):
             return False
         return self._ask(STAGE2, excerpt)
