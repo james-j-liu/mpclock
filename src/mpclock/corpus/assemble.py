@@ -13,6 +13,9 @@ via its sitemap, so the Bank's own website is the primary source throughout:
   bis_boe      -> the BIS central bankers' speeches archive, used to cross-check
                   the scrape year by year and to backfill the handful of speeches
                   (mostly 1996-98) that the Bank's site no longer publishes.
+  tsc_evidence -> Treasury Committee evidence sessions on the Monetary Policy
+                  Report, split into one document per MPC member: their own
+                  answers plus the questions they were answering.
 
 Everything is already English, so there is no translation step. Records are
 de-duplicated by Speech.id and written as JSONL to data/processed/corpus.jsonl.
@@ -35,7 +38,7 @@ def load_all(use_cache: bool = True, skip: tuple = (),
     site: list[Speech] = []
 
     if "speeches" not in skip:
-        print("[1/3] Bank of England speeches...")
+        print("[1/4] Bank of England speeches...")
         try:
             site = boe_speeches.load(use_cache=use_cache, start_year=start_year,
                                      end_year=end_year, concurrency=concurrency)
@@ -44,15 +47,24 @@ def load_all(use_cache: bool = True, skip: tuple = (),
             print(f"    [warn] BoE speeches failed: {type(e).__name__}: {e}")
 
     if "mpc" not in skip:
-        print("[2/3] BoE MPC composite (minutes / reports / press conferences)...")
+        print("[2/4] BoE MPC composite (minutes / reports / press conferences)...")
         try:
             speeches += boe_mpc.load(use_cache=use_cache, start_year=start_year or 1997,
                                      end_year=end_year, concurrency=max(4, concurrency // 2))
         except Exception as e:  # noqa: BLE001
             print(f"    [warn] MPC composite failed: {type(e).__name__}: {e}")
 
+    if "tsc" not in skip:
+        print("[3/4] Treasury Committee evidence (per MPC member)...")
+        try:
+            from . import tsc_evidence
+            speeches += tsc_evidence.load(use_cache=use_cache, start_year=start_year,
+                                          end_year=end_year)
+        except Exception as e:  # noqa: BLE001
+            print(f"    [warn] Treasury Committee evidence failed: {type(e).__name__}: {e}")
+
     if "bis" not in skip:
-        print("[3/3] BIS cross-check...")
+        print("[4/4] BIS cross-check...")
         try:
             from . import bis_boe
             bis = bis_boe.load(use_cache=use_cache, start_year=start_year,

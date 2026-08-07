@@ -86,7 +86,7 @@
       <label>Documents
         <select id="tl-docs"><option value="all" selected>All</option>
         <option value="mpc">MPC output only (minutes, Report, press conf.)</option>
-
+        <option value="testimony">Treasury Committee evidence only</option>
         <option value="speeches">Member speeches only</option></select></label>
       <span class="overlays" id="tl-overlays">Overlay:
         <label><input type="checkbox" class="ov" value="bank_rate"> Bank Rate</label>
@@ -203,20 +203,27 @@ function passMembership(n,mode){ return mode==="all"?true:mode==="current"?isCur
 // Document/event types (the "BoE MPC" composite spans several).
 const SOURCE_LABELS={mp_account:"MPC minutes", mp_statement:"Monetary Policy Summary / opening remarks",
   mp_report:"Monetary Policy Report", mp_qa:"Press conference transcript",
-  speech:"Speech", interview:"Interview"};
-const TYPE_ORDER=["mp_account","mp_statement","mp_report","mp_qa","speech","interview"];
+  speech:"Speech", interview:"Interview", testimony:"Treasury Committee evidence"};
+const TYPE_ORDER=["mp_account","mp_statement","mp_report","mp_qa","speech","interview","testimony"];
 // distinct marker glyphs so the Committee's own output stands out from ordinary
 // member speeches: minutes = triangle, summary = square, report section =
 // hexagon, press conference = diamond.
 const SYMBOL_FOR={mp_account:"triangle-up", mp_statement:"square", mp_report:"hexagon",
-  mp_qa:"diamond", speech:"circle", interview:"circle"};
+  mp_qa:"diamond", speech:"circle", interview:"circle", testimony:"star"};
 const MP_TYPES=new Set(["mp_account","mp_statement","mp_report","mp_qa"]);
+// Treasury Committee evidence is an individual member's, not the Committee's, but
+// it is unscripted cross-examination rather than a speech, so it gets its own glyph
+// and its own filter option.
+const TESTIMONY="testimony";
 // Timeline "Documents" filter: the whole corpus, the Committee's own output, or
 // only the speeches and interviews of individual members.
 function docFilter(){ const el=document.getElementById("tl-docs"); return el?el.value:"all"; }
 function passDocs(d){
   const v=docFilter();
-  return v==="all" ? true : v==="mpc" ? MP_TYPES.has(d.st) : !MP_TYPES.has(d.st);
+  if(v==="all") return true;
+  if(v==="mpc") return MP_TYPES.has(d.st);
+  if(v==="testimony") return d.st===TESTIMONY;
+  return !MP_TYPES.has(d.st) && d.st!==TESTIMONY;
 }
 function fillSpeakerTypes(){
   const spk=document.getElementById("sp-speaker").value;
@@ -511,6 +518,16 @@ reveals an <b>Event type</b> filter over the same document types. The <b>"Press 
 Governor"</b> toggle (top right) re-attributes the press conference and opening remarks to the
 Governor in office at the time — George, King, Carney or Bailey — folding them into that
 person's record across all tabs, while the minutes and the Report stay with the committee.</p>
+<h3>Treasury Committee evidence</h3>
+<p>Every few months the MPC appears before the House of Commons Treasury Committee to be
+questioned on the Monetary Policy Report (the Inflation Report before the 2019 rename). Four
+or five members sit together for two hours, so a transcript is not one speech but several
+interleaved ones. Each session is therefore <b>split by witness</b>: one document per MPC
+member, containing their own answers together with the committee questions they were
+answering. Two members from the same session share some question text but no answer text.
+These carry a ★ marker and their own <b>Documents</b> filter option. They are the only
+unscripted, adversarial material in the corpus — a member defending a vote under
+cross-examination, rather than a speech they wrote in advance.</p>
 <h3>Who counts as an MPC member</h3>
 <p>The Monetary Policy Committee has nine members — the Governor, the Deputy Governors, the
 Chief Economist and four external members — and only they vote on Bank Rate, so only they are

@@ -28,7 +28,7 @@ except Exception:
     pass
 
 from mpclock.config import PROCESSED
-from mpclock.corpus import boe_mpc, boe_sitemap, boe_speeches
+from mpclock.corpus import boe_mpc, boe_sitemap, boe_speeches, tsc_evidence
 from mpclock.macro.uk_macro import MacroContext
 from mpclock.output.build_data import era_adjust, write_data_json
 from mpclock.process.anonymize import Anonymizer
@@ -68,6 +68,14 @@ def main():
         have_ids = {s.id for s in existing}
         new += [s for s in new_mpc if s.id not in have_ids]
         print(f"MPC composite: {len(new_mpc)} documents from new rounds")
+
+        # Treasury Committee sessions are a handful a year; re-parsing the recent
+        # ones is cheap and the id check keeps only genuinely new member-documents
+        tsc = tsc_evidence.load(use_cache=False, start_year=datetime.date.today().year - 1,
+                                verbose=False)
+        fresh = [s for s in tsc if s.id not in have_ids]
+        new += fresh
+        print(f"Treasury Committee: {len(fresh)} new member-documents")
     except Exception as e:  # noqa: BLE001 - a blocked scrape must not stop the deploy
         print(f"[warn] ingest failed: {type(e).__name__}: {e}; scoring what we have")
 

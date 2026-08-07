@@ -28,7 +28,7 @@ import requests
 from tenacity import retry, stop_after_attempt, wait_exponential
 
 from ..config import judge_model, openrouter_key
-from ..schema import COUNCIL_TYPES, ST_REPORT, Speech
+from ..schema import COUNCIL_TYPES, ST_REPORT, ST_TESTIMONY, Speech
 
 API_URL = "https://openrouter.ai/api/v1/chat/completions"
 
@@ -124,7 +124,9 @@ class Classifier:
     def classify(self, speech: Speech) -> bool:
         if speech.source_type == ST_REPORT:
             return is_prose(speech.text)
-        if speech.source_type in COUNCIL_TYPES:
+        if speech.source_type in COUNCIL_TYPES or speech.source_type == ST_TESTIMONY:
+            # Treasury Committee evidence is ingested only for the Monetary Policy
+            # Report sessions, so the subject is settled before the text is read
             return True
         excerpt = self.excerpt(speech)
         if not self._ask(STAGE1, excerpt):

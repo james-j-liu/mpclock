@@ -24,7 +24,7 @@ except Exception:
     pass
 
 from mpclock.config import PROCESSED
-from mpclock.corpus import assemble, bis_boe, boe_mpc
+from mpclock.corpus import assemble, bis_boe, boe_mpc, tsc_evidence
 from mpclock.roster_mpc import canon, is_mpc
 from mpclock.schema import COUNCIL_TYPES, ST_REPORT, load_corpus, save_corpus
 
@@ -33,7 +33,7 @@ CORPUS = PROCESSED / "corpus.jsonl"
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--only", default="", help="mpc | bis (default: both)")
+    ap.add_argument("--only", default="", help="mpc | tsc | bis (default: all three)")
     ap.add_argument("--split", action="store_true",
                     help="score every report section/box/annex separately "
                          "(default follows config.yaml corpus.split_report_sections)")
@@ -59,6 +59,10 @@ def main():
         incoming += boe_mpc.load(use_cache=not args.no_cache, start_year=1997,
                                  concurrency=args.concurrency,
                                  split_sections_=args.split or None)
+
+    if args.only in ("", "tsc"):
+        print("\nTreasury Committee evidence (per MPC member)...")
+        incoming += tsc_evidence.load(use_cache=not args.no_cache)
 
     if args.only in ("", "bis"):
         print("\nBIS cross-check...")
