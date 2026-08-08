@@ -38,7 +38,7 @@ import pandas as pd
 
 # what the Committee itself publishes — excluded from the index for its own meeting
 COMMITTEE_TYPES = {"mp_account", "mp_report", "mp_statement", "mp_qa", "member_view"}
-VOTE_SERIES = ["vote_decision", "vote_mean", "vote_dissent"]
+VOTE_SERIES = ["vote_score"]
 
 
 def load_panel(window: int, min_docs: int, individual: bool) -> pd.DataFrame:

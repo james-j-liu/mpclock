@@ -21,6 +21,8 @@ from __future__ import annotations
 
 import re
 
+COMMITTEE_SIZE = 9      # the MPC has had nine members since 1997
+
 _NUMBER_WORDS = {"no": 0, "none": 0, "one": 1, "two": 2, "three": 3, "four": 4,
                  "five": 5, "six": 6, "seven": 7, "eight": 8, "nine": 9, "ten": 10,
                  "all": None}   # "all members" resolved from the member count
@@ -117,16 +119,26 @@ def _level(raw: str | None) -> float | None:
         return None
 
 
+# where the vote is recorded, wherever in the document that falls: before 2005 the
+# minutes append a long staff annex, so the vote sits mid-document, not at the end
+_ANCHOR_RE = re.compile(
+    r"(?:invited\s+(?:the\s+Committee|members)[^.]{0,120}?to\s+vote"
+    r"|voted\s+by\s+a\s+majority|voted\s+unanimously|MPC\s+voted)", re.I)
+
+
 def parse_votes(text: str) -> dict | None:
     """{'decision_bp', 'n_members', 'prefs_bp': [...]} or None if unreadable.
 
-    Since 2015 the same vote is stated twice — once in the Monetary Policy Summary
-    at the top and once in the minutes at the end — so the two regions are read
-    separately and the first complete, self-consistent reading wins. Reading them
-    together counted every dissent twice.
+    Each place the vote is recorded is read on its own. Since 2015 the same vote
+    appears twice — in the Monetary Policy Summary and again in the minutes — and
+    reading both together counted every dissent twice; the first complete,
+    self-consistent reading wins.
     """
     present = _members_present(text)
-    for region in (text[:4500], text[-9000:]):
+    regions = [text[max(0, m.start() - 400):m.start() + 2600]
+               for m in _ANCHOR_RE.finditer(text)]
+    regions.append(text[:4500])          # the Summary, if the anchors missed it
+    for region in regions:
         got = _parse_region(region, present)
         if got:
             return got
@@ -173,10 +185,14 @@ def _parse_region(head: str, present: int) -> dict | None:
         n = _count(m.group(1))
         if n and not (split and n == split[0]):   # that count is the majority, not a dissent
             dissents.append((n, preferred_bp(m.group(2), m.group(3), m.group(4), m.group(5))))
-    for m in _NAMED_LIST_DISSENT_RE.finditer(head):
-        n = _count_names(m.group(1))
-        if n:
-            dissents.append((n, preferred_bp(m.group(2), m.group(3), m.group(4), m.group(5))))
+    if not dissents:
+        # only when the dissenters were named rather than counted — the same
+        # sentence often carries both ("Four members … (Lomax, Large and Tucker)
+        # voted against"), and counting it twice was inventing dissenters
+        for m in _NAMED_LIST_DISSENT_RE.finditer(head):
+            n = _count_names(m.group(1))
+            if n:
+                dissents.append((n, preferred_bp(m.group(2), m.group(3), m.group(4), m.group(5))))
     if not dissents:
         for m in _NAMED_DISSENT_RE.finditer(head):
             dissents.append((1, preferred_bp(m.group(2), m.group(3), m.group(4), m.group(5))))
@@ -192,9 +208,11 @@ def _parse_region(head: str, present: int) -> dict | None:
             return None       # a stated minority whose preference we failed to read
     if _UNANIMOUS_RE.search(head) and not dissents and not split:
         n_dissent = 0
-        in_favour = in_favour or present
+        # the MPC is nine; a members-present list that reads higher has swept in
+        # someone who does not vote (the Treasury representative, an observer)
+        in_favour = in_favour or min(present, 9)
     n_members = (in_favour or 0) + n_dissent
-    n_members = n_members or present
+    n_members = n_members or min(present, 9)
     if not 5 <= n_members <= 12:      # the MPC is nine; anything else is a misparse
         return None
 
@@ -202,11 +220,31 @@ def _parse_region(head: str, present: int) -> dict | None:
     prefs = [decision] * majority + [bp for n, bp in dissents for _ in range(n)]
     if len(prefs) != n_members:                   # counts do not add up: don't guess
         return None
-    return {"decision_bp": decision, "n_members": n_members, "prefs_bp": prefs}
+    observed = n_members
+    # The MPC is nine. Where the wording leaves a member unaccounted for — almost
+    # always one of the majority, since dissents are stated prominently — they are
+    # counted with the majority rather than left out, which would otherwise give
+    # the dissenters more weight in the average than they had in the room.
+    if n_members < COMMITTEE_SIZE:
+        prefs += [decision] * (COMMITTEE_SIZE - n_members)
+        n_members = COMMITTEE_SIZE
+    return {"decision_bp": decision, "n_members": n_members,
+            "observed_members": observed, "prefs_bp": prefs}
+
+
+def vote_score(parsed: dict) -> float:
+    """The Committee's vote as one number, in 25bp units.
+
+    Every member's own vote for change, averaged: a unanimous hold is 0, a
+    unanimous 25bp hike is +1, and a 7-2 hold where two wanted a cut is -0.22. It
+    is the decision and the dissent in a single figure — the size of the move, the
+    direction, and how much of the Committee was pulling the other way.
+    """
+    return sum(parsed["prefs_bp"]) / len(parsed["prefs_bp"]) / 25.0
 
 
 def scores(parsed: dict) -> dict:
-    """The three vote scores, in 25bp units."""
+    """The vote read three ways, in 25bp units (the site shows `mean_vote`)."""
     unit = 25.0
     prefs = parsed["prefs_bp"]
     decision = parsed["decision_bp"]

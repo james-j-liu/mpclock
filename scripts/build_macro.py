@@ -80,7 +80,7 @@ def vote_series(bank_rate: list[list] | None) -> dict:
     complete even where the member-level ones are not.
     """
     from mpclock.config import PROCESSED
-    from mpclock.macro.mpc_votes import parse_votes, scores
+    from mpclock.macro.mpc_votes import parse_votes, vote_score
     from mpclock.schema import ST_ACCOUNT, load_corpus
 
     minutes = sorted((s for s in load_corpus(PROCESSED / "corpus.jsonl")
@@ -98,32 +98,32 @@ def vote_series(bank_rate: list[list] | None) -> dict:
             return None
         return int(round((after[-1] - before[-1]) * 100))
 
-    rows, mismatches, parsed = [], 0, 0
+    rows, mismatches, parsed, fallback = [], 0, 0, 0
     for s in minutes:
         got = parse_votes(s.text)
         actual = rate_change_bp(s.date)
-        sc = scores(got) if got else None
-        if sc and actual is not None and abs(sc["decision"] * 25 - actual) > 1:
+        if got and actual is not None and abs(got["decision_bp"] - actual) > 1:
             mismatches += 1          # parse disagrees with what the rate did
-            sc = None
-        if sc:
+            got = None
+        if got:
             parsed += 1
-        decision = sc["decision"] if sc else (actual / 25.0 if actual is not None else None)
-        rows.append((s.date, decision,
-                     sc["mean_vote"] if sc else None,
-                     sc["dissent"] if sc else None))
+            rows.append((s.date, vote_score(got)))
+        elif actual is not None:
+            # the vote could not be read (mostly 1997-98, whose wording predates
+            # the modern formula): fall back to the decision every member is
+            # recorded as having taken part in, i.e. the rate change itself
+            fallback += 1
+            rows.append((s.date, actual / 25.0))
 
-    print(f"[votes] {len(minutes)} meetings | {parsed} member-level parses "
-          f"| {mismatches} dropped for disagreeing with the rate series")
-    out = {}
-    for key, idx, label in [("vote_decision", 1, "MPC decision (25bp units)"),
-                            ("vote_mean", 2, "MPC mean member vote (25bp units)"),
-                            ("vote_dissent", 3, "MPC net dissent (share of members)")]:
-        data = [[r[0], round(r[idx], 3)] for r in rows if r[idx] is not None]
-        if data:
-            out[key] = {"label": label, "unit": "", "shape": "marker", "data": data}
-            print(f"[ok]   {key}: {len(data)} meetings, {data[0][0]}..{data[-1][0]}")
-    return out
+    print(f"[votes] {len(minutes)} meetings | {parsed} read member-by-member "
+          f"| {fallback} from the rate change alone | {mismatches} dropped for "
+          f"disagreeing with the rate series")
+    if not rows:
+        return {}
+    data = [[d, round(v, 3)] for d, v in rows]
+    print(f"[ok]   vote_score: {len(data)} meetings, {data[0][0]}..{data[-1][0]}")
+    return {"vote_score": {"label": "MPC vote score (25bp units)", "unit": "",
+                           "shape": "marker", "data": data}}
 
 
 def main():

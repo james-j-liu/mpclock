@@ -98,9 +98,7 @@
         <label><input type="checkbox" class="ov" value="cpi_core"> Core CPI</label>
         <label><input type="checkbox" class="ov" value="rpi"> RPI</label>
         <label><input type="checkbox" class="ov" value="gilt_10y"> 10Y gilt</label>
-        <label title="What the Committee did: the Bank Rate change at each meeting in 25bp units (hold 0, +25bp +1, −50bp −2)"><input type="checkbox" class="ov" value="vote_decision"> Vote: decision</label>
-        <label title="What the average member wanted: every member's preferred change in the same units, averaged — so a 7–2 hold with two members wanting a cut scores −0.22"><input type="checkbox" class="ov" value="vote_mean"> Vote: mean member</label>
-        <label title="Which way the dissenters pushed, regardless of the outcome: (members wanting tighter − members wanting looser) ÷ members"><input type="checkbox" class="ov" value="vote_dissent"> Vote: net dissent</label>
+        <label title="Every MPC member's own vote for change at each meeting, averaged, in 25bp units: a unanimous hold is 0, a unanimous 25bp hike is +1, and a 7–2 hold where two members wanted a cut is −0.22"><input type="checkbox" class="ov" value="vote_score"> MPC vote score</label>
       </span>
     </div>
     <div id="tl-plot" class="plot"></div>
@@ -161,8 +159,7 @@ function baseLayout(){return {paper_bgcolor:"#0e1116",plot_bgcolor:"#0e1116",
 // toggle without each one having to know about it.
 let ALL=[], DATA=[], META={}, MACRO={};
 const OVERLAY_COLORS={bank_rate:"#f2c744", cpi_headline:"#e377c2", cpi_core:"#17becf",
-  rpi:"#5cb85c", gilt_10y:"#9467bd",
-  vote_decision:"#ff7f0e", vote_mean:"#d62728", vote_dissent:"#8c9eff"};
+  rpi:"#5cb85c", gilt_10y:"#9467bd", vote_score:"#ff7f0e"};
 
 // Score-key resolution by method. Pairwise: raw=m, adj=ma. Direct: raw=ds, adj=dsa.
 function method(){ return document.getElementById("method").value; }
@@ -599,6 +596,21 @@ are excluded from the scoring system entirely</b>, not merely hidden, because in
 would distort the pairwise ratings and the era (quarterly-mean) adjustment. The Rankings
 <b>Members</b> filter then switches between <i>All MPC members</i> over 1997–2026 and
 <i>Current MPC only</i> (those in office as of 2026).</p>
+<h3>The MPC vote score</h3>
+<p>The Timeline can overlay the Committee's own votes as a single number per meeting, in
+<b>25bp units</b>: every member's vote for change, averaged. A unanimous hold is 0, a unanimous
+25bp hike is +1, and a 7–2 hold where two members wanted a cut is −0.22 — so the score carries
+the size of the move, its direction, and how much of the Committee was pulling the other way,
+in one figure. The scale runs from −6.0 (November 2008, a 150bp cut) to +1.9 (August 2022,
+eight members for 50bp and one for 25bp).</p>
+<p>The Bank publishes no machine-readable voting history, so the votes are read out of the
+minutes themselves, whose wording has changed repeatedly since 1997 — the policy rate was "the
+Bank's repo rate" before 2006, dissenters are sometimes counted and sometimes named, and their
+preference is sometimes a change and sometimes a level. 279 of 310 meetings are read
+member-by-member; the remaining 31 (mostly 1997–98) fall back to the rate change itself, which
+is what every member is recorded as having voted for when no dissent can be read. Every parsed
+decision is checked against the actual Bank Rate move, and a parse that disagrees is discarded
+— none currently do.</p>
 <h3>Market overlays (Timeline)</h3>
 <p>The Timeline tab can overlay UK policy and market series on a right-hand axis, to read the
 hawkish–dovish signal against actual conditions: the <b>Bank of England Bank Rate</b>,
