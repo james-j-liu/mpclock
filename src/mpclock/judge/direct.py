@@ -17,7 +17,7 @@ from __future__ import annotations
 import json
 import re
 
-from ..config import judge_model, openrouter_key
+from ..config import cfg, judge_model, openrouter_key
 from ..schema import Speech
 from .openrouter import chat_completion
 
@@ -56,10 +56,11 @@ def build_prompt(text: str, macro: str) -> str:
 
 class DirectScorer:
     def __init__(self, model: str | None = None, temperature: float = 0.0,
-                 max_excerpt_chars: int = 9000):
+                 max_excerpt_chars: int | None = None):
         self.model = model or judge_model()
         self.temperature = temperature
-        self.max_excerpt_chars = max_excerpt_chars
+        self.max_excerpt_chars = max_excerpt_chars or cfg()["judge"].get(
+            "max_excerpt_chars", 9000)
         self._key = openrouter_key()
 
     def _excerpt(self, text: str) -> str:

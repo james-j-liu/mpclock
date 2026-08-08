@@ -14,7 +14,7 @@ import time
 
 import requests
 
-from ..config import judge_model, openrouter_key
+from ..config import cfg, judge_model, openrouter_key
 from . import prompts
 
 API_URL = "https://openrouter.ai/api/v1/chat/completions"
@@ -60,10 +60,13 @@ def chat_completion(key: str, model: str, system: str, user: str, *,
 
 class Judge:
     def __init__(self, model: str | None = None, temperature: float = 0.0,
-                 max_excerpt_chars: int = 9000):
+                 max_excerpt_chars: int | None = None):
         self.model = model or judge_model()
         self.temperature = temperature
-        self.max_excerpt_chars = max_excerpt_chars
+        # config.yaml judge.max_excerpt_chars is the knob; it sets the token bill,
+        # since every comparison sends two excerpts and the run makes 15 per document
+        self.max_excerpt_chars = max_excerpt_chars or cfg()["judge"].get(
+            "max_excerpt_chars", 9000)
         self._key = openrouter_key()
 
     def _excerpt(self, text: str) -> str:
