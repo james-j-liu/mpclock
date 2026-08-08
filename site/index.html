@@ -69,7 +69,7 @@
       title="Include each MPC member's evidence to the Treasury Committee. Unlike speeches these are unscripted answers under cross-examination, and they carry the committee's questions with them — untick to score members on their own written communication alone">
       <input type="checkbox" id="inc-tsc" checked> Treasury Cttee evidence</label>
     <label style="color:var(--mut);font-size:12px;display:flex;align-items:center;gap:5px;cursor:pointer;"
-      title="Attribute the monetary-policy press conference (statement &amp; Q&amp;A) to the Governor in office (King / Carney / Bailey) instead of the BoE MPC composite">
+      title="Attribute the press conference — the Governor's opening remarks and the transcript of the Q&amp;A — to the Governor in office at the time (Carney / Bailey) instead of the BoE MPC composite. The minutes and the Monetary Policy Report always stay with BoE MPC.">
       <input type="checkbox" id="attr-pc"> Press conf → Governor</label>
     <label style="color:var(--mut);font-size:13px;">Method
       <select id="method"><option value="pairwise" selected>Pairwise tournament</option>
@@ -98,6 +98,9 @@
         <label><input type="checkbox" class="ov" value="cpi_core"> Core CPI</label>
         <label><input type="checkbox" class="ov" value="rpi"> RPI</label>
         <label><input type="checkbox" class="ov" value="gilt_10y"> 10Y gilt</label>
+        <label title="What the Committee did: the Bank Rate change at each meeting in 25bp units (hold 0, +25bp +1, −50bp −2)"><input type="checkbox" class="ov" value="vote_decision"> Vote: decision</label>
+        <label title="What the average member wanted: every member's preferred change in the same units, averaged — so a 7–2 hold with two members wanting a cut scores −0.22"><input type="checkbox" class="ov" value="vote_mean"> Vote: mean member</label>
+        <label title="Which way the dissenters pushed, regardless of the outcome: (members wanting tighter − members wanting looser) ÷ members"><input type="checkbox" class="ov" value="vote_dissent"> Vote: net dissent</label>
       </span>
     </div>
     <div id="tl-plot" class="plot"></div>
@@ -158,7 +161,8 @@ function baseLayout(){return {paper_bgcolor:"#0e1116",plot_bgcolor:"#0e1116",
 // toggle without each one having to know about it.
 let ALL=[], DATA=[], META={}, MACRO={};
 const OVERLAY_COLORS={bank_rate:"#f2c744", cpi_headline:"#e377c2", cpi_core:"#17becf",
-  rpi:"#5cb85c", gilt_10y:"#9467bd"};
+  rpi:"#5cb85c", gilt_10y:"#9467bd",
+  vote_decision:"#ff7f0e", vote_mean:"#d62728", vote_dissent:"#8c9eff"};
 
 // Score-key resolution by method. Pairwise: raw=m, adj=ma. Direct: raw=ds, adj=dsa.
 function method(){ return document.getElementById("method").value; }
@@ -285,11 +289,13 @@ function presidentOn(date){
   return PRESIDENTS[PRESIDENTS.length-1].name;
 }
 function attrPC(){ const el=document.getElementById("attr-pc"); return el&&el.checked; }
-// Display/aggregation name for a record: when the toggle is on, the press-conference
-// statement & Q&A are attributed to the Governor of the day instead of the
-// "BoE MPC" composite (minutes stay with the committee).
+// The press conference is the Governor's: the opening remarks they deliver and the
+// transcript of the questions they take. Those are the only documents the toggle
+// moves. The minutes and the Monetary Policy Report are the Committee's own
+// documents and stay with "BoE MPC" in every case, ticked or not.
+const PC_TYPES=new Set(["mp_statement","mp_qa"]);
 function dispName(d){
-  if(attrPC() && (d.st==="mp_statement"||d.st==="mp_qa")) return presidentOn(d.d);
+  if(attrPC() && PC_TYPES.has(d.st)) return presidentOn(d.d);
   return canon(d.a);
 }
 
@@ -338,11 +344,15 @@ function renderTimeline(){
   for(const key of checked){
     const s=MACRO[key]; if(!s||!s.data) continue;
     for(const p of s.data){ if(p[1]<ovMin)ovMin=p[1]; if(p[1]>ovMax)ovMax=p[1]; }
-    traces.push({x:s.data.map(p=>p[0]), y:s.data.map(p=>p[1]),
-      mode:"lines", type:"scatter", yaxis:"y2",
-      line:{color:OVERLAY_COLORS[key]||"#aaa", width:1.8,
-            shape:s.shape==="step"?"hv":"linear"},
-      name:s.label, hovertemplate:`%{x|%b %Y}<br>${s.label}: %{y}${s.unit||""}<extra></extra>`});
+    // a vote series is one point per meeting, not a continuous line. Plotly rejects
+    // keys set to undefined, so marker/line are attached rather than nulled out.
+    const colour=OVERLAY_COLORS[key]||"#aaa", isMarker=s.shape==="marker";
+    const tr={x:s.data.map(p=>p[0]), y:s.data.map(p=>p[1]),
+      mode:isMarker?"markers":"lines", type:"scatter", yaxis:"y2", name:s.label,
+      hovertemplate:`%{x|%b %Y}<br>${s.label}: %{y}${s.unit||""}<extra></extra>`};
+    if(isMarker) tr.marker={color:colour, size:6, symbol:"square"};
+    else tr.line={color:colour, width:1.8, shape:s.shape==="step"?"hv":"linear"};
+    traces.push(tr);
   }
 
   // symmetric y-range that fits the data (direct spans wider than pairwise)
@@ -355,10 +365,14 @@ function renderTimeline(){
   lay.xaxis={...lay.xaxis,type:"date"};
   lay.yaxis={...lay.yaxis,title:`${methodLabel()} · ${adjusted?"era-adjusted":"raw"} (− dovish · + hawkish)`,
              type:"linear",range:[-Y,Y],zeroline:true,zerolinecolor:"#3a4250"};
-  // the right-hand axis fits whatever is overlaid: RPI ran to 14% in 2022 and CPI
-  // to 11%, both of which a fixed 11% ceiling would clip
-  lay.yaxis2={overlaying:"y",side:"right",title:"% / rate",showgrid:false,zeroline:false,
-              range:[Math.min(-1,Math.floor(ovMin)),Math.max(11,Math.ceil(ovMax)+1)],color:MUT};
+  // the right-hand axis fits whatever is overlaid: RPI ran to 14% in 2022, and a
+  // vote score only spans about -2..+2, so neither a fixed ceiling nor a fixed
+  // floor would do
+  const anyPct=checked.some(k=>MACRO[k]&&MACRO[k].unit==="%");
+  lay.yaxis2={overlaying:"y",side:"right",showgrid:false,zeroline:false,color:MUT,
+              title:anyPct?"% / rate":"vote score (25bp units)",
+              range:[Math.min(-1,Math.floor(ovMin)),
+                     Math.ceil(ovMax)+(anyPct?1:0.5)]};
   Plotly.react("tl-plot",traces,lay,{displayModeBar:false});
 }
 
@@ -513,6 +527,16 @@ and then rescaled into the same units as the pairwise score. This roughly double
 resolution (≈25 levels at half-integer steps) but is still discrete. This residual coarseness
 is exactly why the <b>pairwise</b> method exists: it is genuinely continuous, so for fine
 distinctions between speakers or speeches, prefer the pairwise score.</p>
+<h3>How much of each document the judge reads</h3>
+<p>Every comparison sends the model two documents and the tournament makes ~15 per document,
+so the excerpt length is essentially the whole cost of the exercise. The <b>MPC minutes</b> and
+each <b>Monetary Policy Report with its annexes</b> are passed <b>whole, however long</b> —
+these are the documents the corpus exists to read closely, and a Report runs to ~200,000
+characters. Everything else is read up to <b>20,000 characters</b>; beyond that a document is
+<b>sampled from three places</b> — 40% from the opening, 20% from the middle, 40% from the
+close — rather than simply cut off. Sampling matters because a Bank of England speech opens
+with thanks to the host and several paragraphs of framing, so a document judged on its first
+few thousand characters can be judged on none of its argument.</p>
 <h3>Anonymization</h3>
 <p>A five-layer pipeline strips names, titles, and speaker labels before judging, so the
 model reads the text on its merits rather than recognising who is speaking.</p>
@@ -545,9 +569,13 @@ the opening remarks that precede it.</li>
 Monetary Policy Report ⬢, press conference ◆ — and the <b>Documents</b> filter isolates the
 Committee's own output from members' speeches. On the Speaker Detail tab, selecting "BoE MPC"
 reveals an <b>Event type</b> filter over the same document types. The <b>"Press conf →
-Governor"</b> toggle (top right) re-attributes the press conference and opening remarks to the
-Governor in office at the time — George, King, Carney or Bailey — folding them into that
-person's record across all tabs, while the minutes and the Report stay with the committee.</p>
+Governor"</b> toggle (top right) re-attributes <i>the press conference only</i> — the
+Governor's opening remarks and the transcript of the questions they take — to the Governor in
+office at the time (Carney for rounds up to March 2020, Bailey since), folding those documents
+into that person's record across every tab. The <b>minutes</b> and the <b>Monetary Policy
+Report</b> are the Committee's own documents and remain "BoE MPC" whether the box is ticked or
+not. The transcript is the full press conference, so it also carries the questions put by
+journalists and answers given by the other MPC members on the platform.</p>
 <h3>Treasury Committee evidence</h3>
 <p>Every few months the MPC appears before the House of Commons Treasury Committee to be
 questioned on the Monetary Policy Report (the Inflation Report before the 2019 rename). Four

@@ -69,6 +69,63 @@ def iadb_series(code: str) -> pd.Series | None:
     return s[~s.index.isna()].dropna().sort_index()
 
 
+def vote_series(bank_rate: list[list] | None) -> dict:
+    """The MPC's own votes, scored in 25bp units, from the minutes in the corpus.
+
+    Three readings of "the vote" (see macro.mpc_votes): what the Committee did,
+    what the average member wanted, and which way the dissenters pushed. The
+    decision is cross-checked against the actual Bank Rate series — where the
+    minutes cannot be parsed (mostly 1997-2004, whose wording predates the modern
+    formula) the decision is taken from the rate change itself, so that series is
+    complete even where the member-level ones are not.
+    """
+    from mpclock.config import PROCESSED
+    from mpclock.macro.mpc_votes import parse_votes, scores
+    from mpclock.schema import ST_ACCOUNT, load_corpus
+
+    minutes = sorted((s for s in load_corpus(PROCESSED / "corpus.jsonl")
+                      if s.source_type == ST_ACCOUNT), key=lambda s: s.date)
+    rate = [(pd.Timestamp(d), v) for d, v in (bank_rate or [])]
+
+    def rate_change_bp(day: str) -> int | None:
+        """Bank Rate on the decision day minus the rate going into the meeting."""
+        if not rate:
+            return None
+        t = pd.Timestamp(day)
+        before = [v for d, v in rate if d < t]
+        after = [v for d, v in rate if d <= t + pd.Timedelta(days=10)]
+        if not before or not after:
+            return None
+        return int(round((after[-1] - before[-1]) * 100))
+
+    rows, mismatches, parsed = [], 0, 0
+    for s in minutes:
+        got = parse_votes(s.text)
+        actual = rate_change_bp(s.date)
+        sc = scores(got) if got else None
+        if sc and actual is not None and abs(sc["decision"] * 25 - actual) > 1:
+            mismatches += 1          # parse disagrees with what the rate did
+            sc = None
+        if sc:
+            parsed += 1
+        decision = sc["decision"] if sc else (actual / 25.0 if actual is not None else None)
+        rows.append((s.date, decision,
+                     sc["mean_vote"] if sc else None,
+                     sc["dissent"] if sc else None))
+
+    print(f"[votes] {len(minutes)} meetings | {parsed} member-level parses "
+          f"| {mismatches} dropped for disagreeing with the rate series")
+    out = {}
+    for key, idx, label in [("vote_decision", 1, "MPC decision (25bp units)"),
+                            ("vote_mean", 2, "MPC mean member vote (25bp units)"),
+                            ("vote_dissent", 3, "MPC net dissent (share of members)")]:
+        data = [[r[0], round(r[idx], 3)] for r in rows if r[idx] is not None]
+        if data:
+            out[key] = {"label": label, "unit": "", "shape": "marker", "data": data}
+            print(f"[ok]   {key}: {len(data)} meetings, {data[0][0]}..{data[-1][0]}")
+    return out
+
+
 def main():
     series_out = {}
     for name, (source, key, label, unit, shape, extend) in SPEC.items():
@@ -99,6 +156,12 @@ def main():
         series_out[name] = {"label": label, "unit": unit, "shape": shape, "data": data}
         print(f"[ok]   {name}: {len(data)} points, {data[0][0]}..{data[-1][0]}, "
               f"last={data[-1][1]} (src={source})")
+
+    try:
+        br = series_out.get("bank_rate", {}).get("data")
+        series_out.update(vote_series(br))
+    except Exception as e:  # noqa: BLE001 - the corpus-derived series is a bonus
+        print(f"[warn] vote series failed: {type(e).__name__}: {e}")
 
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(json.dumps({"series": series_out}, ensure_ascii=False), encoding="utf-8")

@@ -44,6 +44,12 @@ site/         static Plotly site (Timeline · Rankings · Speaker · Data · Met
 Judge model: `google/gemini-2.5-flash-lite` via OpenRouter (set `OPENROUTER_API_KEY`
 in `.env`; `JUDGE_MODEL` overrides the model).
 
+`judge.max_excerpt_chars` in config.yaml is the cost dial: every comparison sends
+two excerpts and the run makes ~15 per document, so it sets the token bill. Over
+the cap a document is sampled 40/20/40 from its opening, middle and close rather
+than truncated. `judge.uncapped_types` lists the types passed whole however long
+they run — the minutes and the Monetary Policy Report with its annexes.
+
 ## Running it
 
 ```bash

@@ -27,7 +27,7 @@ from mpclock.config import PROCESSED
 from mpclock.corpus import assemble, bis_boe, boe_mpc, tsc_evidence
 from mpclock.roster_mpc import canon, is_mpc
 from mpclock.schema import (COUNCIL_TYPES, ST_ACCOUNT, ST_MEMBER_VIEW, ST_REPORT,
-                            load_corpus, save_corpus)
+                            ST_STATEMENT, load_corpus, save_corpus)
 
 CORPUS = PROCESSED / "corpus.jsonl"
 
@@ -61,7 +61,13 @@ def main():
 
     if args.refresh_reports:
         before = len(corpus)
-        corpus = [s for s in corpus if s.source_type != ST_REPORT]
+        # a Report round can also have left behind its Monetary Policy Summary as a
+        # separate statement record (from section-split mode); that text lives inside
+        # the whole-round document now, so it goes with the Report records
+        corpus = [s for s in corpus
+                  if not (s.source_type == ST_REPORT
+                          or (s.source_type == ST_STATEMENT
+                              and "Monetary Policy Summary" in s.title and " — " in s.title))]
         print(f"Dropped {before - len(corpus)} existing Report records")
 
     if args.refresh_minutes:

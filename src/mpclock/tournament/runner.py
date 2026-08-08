@@ -91,9 +91,11 @@ def run_tournament(
             a_id, b_id = i, j
         else:
             a_id, b_id = j, i
+        a, b = by_id[a_id], by_id[b_id]
         res = judge.compare(
-            by_id[a_id].text_anon or by_id[a_id].text, macro_str[a_id],
-            by_id[b_id].text_anon or by_id[b_id].text, macro_str[b_id],
+            a.text_anon or a.text, macro_str[a_id],
+            b.text_anon or b.text, macro_str[b_id],
+            a_type=a.source_type, b_type=b.source_type,
         )
         return a_id, b_id, res
 

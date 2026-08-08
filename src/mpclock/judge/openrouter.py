@@ -19,6 +19,32 @@ from . import prompts
 
 API_URL = "https://openrouter.ai/api/v1/chat/completions"
 
+# Where a long document gets sampled from, when it has to be sampled at all.
+# Head and tail carry the framing and the conclusion; the middle window is what
+# stops a 30,000-word speech being judged on its introduction and its thanks.
+_HEAD, _MIDDLE, _TAIL = 0.40, 0.20, 0.40
+_ELLIPSIS = "\n[...]\n"
+
+
+def excerpt(text: str, max_chars: int, source_type: str = "",
+            uncapped_types: set[str] | frozenset[str] = frozenset()) -> str:
+    """The text the model actually reads.
+
+    Documents of an uncapped type are passed whole. Anything else longer than
+    max_chars is sampled from three places rather than truncated, because a Bank
+    of England speech opens with thanks to the host and a Monetary Policy Report
+    opens with its own table of contents.
+    """
+    if source_type in uncapped_types or len(text) <= max_chars:
+        return text
+    head = int(max_chars * _HEAD)
+    mid_len = int(max_chars * _MIDDLE)
+    tail = max_chars - head - mid_len
+    mid_start = (len(text) - mid_len) // 2
+    return (text[:head] + _ELLIPSIS
+            + text[mid_start:mid_start + mid_len] + _ELLIPSIS
+            + text[-tail:])
+
 
 def chat_completion(key: str, model: str, system: str, user: str, *,
                     temperature: float = 0.0, timeout: int = 90,
@@ -67,24 +93,26 @@ class Judge:
         # since every comparison sends two excerpts and the run makes 15 per document
         self.max_excerpt_chars = max_excerpt_chars or cfg()["judge"].get(
             "max_excerpt_chars", 9000)
+        # document types judged whole, however long: the minutes and the Monetary
+        # Policy Report with its annexes are the documents the corpus exists to
+        # read closely, and sampling them throws away the detail that separates
+        # one round from the next
+        self.uncapped_types = set(cfg()["judge"].get("uncapped_types") or ())
         self._key = openrouter_key()
 
-    def _excerpt(self, text: str) -> str:
-        if len(text) <= self.max_excerpt_chars:
-            return text
-        # keep head + tail (intro framing + conclusions often carry the stance)
-        head = self.max_excerpt_chars * 2 // 3
-        tail = self.max_excerpt_chars - head
-        return text[:head] + "\n[...]\n" + text[-tail:]
+    def _excerpt(self, text: str, source_type: str = "") -> str:
+        return excerpt(text, self.max_excerpt_chars, source_type, self.uncapped_types)
 
     def _call(self, system: str, user: str) -> str:
         return chat_completion(self._key, self.model, system, user,
                                temperature=self.temperature)
 
-    def compare(self, a_text: str, a_macro: str, b_text: str, b_macro: str) -> dict:
+    def compare(self, a_text: str, a_macro: str, b_text: str, b_macro: str,
+                a_type: str = "", b_type: str = "") -> dict:
         """Return {'winner': 'A'|'B', 'confidence': float}."""
         user = prompts.build_user_prompt(
-            self._excerpt(a_text), a_macro, self._excerpt(b_text), b_macro
+            self._excerpt(a_text, a_type), a_macro,
+            self._excerpt(b_text, b_type), b_macro
         )
         raw = self._call(prompts.SYSTEM, user)
         return self._parse(raw)

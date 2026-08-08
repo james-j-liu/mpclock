@@ -18,3 +18,6 @@ _*.txt
 mpc_ingest*.log
 tournament.log
 classify*.log
+
+# the retired 9k-cap comparison log, kept for provenance
+!data/processed/tournament_log_9k_cap.jsonl

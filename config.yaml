@@ -14,7 +14,13 @@ judge:
   provider: openrouter
   model: "google/gemini-2.5-flash-lite"   # cheaper (~$0.10/$0.40 vs 3.1-lite's $0.25/$1.50)
   validator_model: "anthropic/claude-haiku-4.5"  # cross-model check on a subset
-  max_excerpt_chars: 9000   # truncate long speeches to control token cost
+  # How much of a document the model reads. Every comparison sends two excerpts
+  # and the run makes ~15 per document, so this setting is the token bill.
+  # Over the cap a document is sampled head/middle/tail rather than truncated.
+  max_excerpt_chars: 20000
+  # …except these, which are judged whole however long they run: the Committee's
+  # own minutes, and each Monetary Policy Report with its annexes.
+  uncapped_types: [mp_account, mp_report]
   temperature: 0.0
   concurrency: 8
 

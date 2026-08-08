@@ -40,7 +40,7 @@ class MockJudge:
         tl = t.lower()
         return sum(tl.count(w) for w in self.HAWK) - sum(tl.count(w) for w in self.DOVE)
 
-    def compare(self, a_text, a_macro, b_text, b_macro):
+    def compare(self, a_text, a_macro, b_text, b_macro, a_type="", b_type=""):
         sa, sb = self._score(a_text), self._score(b_text)
         if sa == sb:
             w = random.choice(["A", "B"])

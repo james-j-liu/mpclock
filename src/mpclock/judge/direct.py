@@ -19,7 +19,7 @@ import re
 
 from ..config import cfg, judge_model, openrouter_key
 from ..schema import Speech
-from .openrouter import chat_completion
+from .openrouter import chat_completion, excerpt
 
 # Scored on a signed -100..+100 scale (wider range -> finer resolution than 0-100,
 # which halves the LLM's round-number clustering). The score is then mapped back to
@@ -61,23 +61,20 @@ class DirectScorer:
         self.temperature = temperature
         self.max_excerpt_chars = max_excerpt_chars or cfg()["judge"].get(
             "max_excerpt_chars", 9000)
+        self.uncapped_types = set(cfg()["judge"].get("uncapped_types") or ())
         self._key = openrouter_key()
 
-    def _excerpt(self, text: str) -> str:
-        if len(text) <= self.max_excerpt_chars:
-            return text
-        head = self.max_excerpt_chars * 2 // 3
-        tail = self.max_excerpt_chars - head
-        return text[:head] + "\n[...]\n" + text[-tail:]
+    def _excerpt(self, text: str, source_type: str = "") -> str:
+        return excerpt(text, self.max_excerpt_chars, source_type, self.uncapped_types)
 
     def _call(self, user: str) -> str:
         return chat_completion(self._key, self.model, SYSTEM, user,
                                temperature=self.temperature)
 
-    def score(self, text: str, macro: str) -> float | None:
+    def score(self, text: str, macro: str, source_type: str = "") -> float | None:
         """Return the score on the 0-100 internal scale (same units as pairwise)."""
         try:
-            raw = self._call(build_prompt(self._excerpt(text), macro))
+            raw = self._call(build_prompt(self._excerpt(text, source_type), macro))
         except Exception:
             return None  # exhausted retries -> skip this one, don't kill the run
         signed = self._parse(raw)
@@ -109,7 +106,7 @@ class DirectScorer:
         from tqdm import tqdm
 
         def work(s: Speech):
-            val = self.score(s.text_anon or s.text, macro.string(s.date))
+            val = self.score(s.text_anon or s.text, macro.string(s.date), s.source_type)
             if val is not None:
                 s.direct_score = round(val, 2)
             return s
