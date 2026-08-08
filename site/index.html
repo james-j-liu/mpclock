@@ -66,6 +66,9 @@
   <button data-tab="methodology">Methodology</button>
   <div style="margin-left:auto;display:flex;align-items:center;gap:16px;padding:6px 12px;">
     <label style="color:var(--mut);font-size:12px;display:flex;align-items:center;gap:5px;cursor:pointer;"
+      title="Include each MPC member's evidence to the Treasury Committee. Unlike speeches these are unscripted answers under cross-examination, and they carry the committee's questions with them — untick to score members on their own written communication alone">
+      <input type="checkbox" id="inc-tsc" checked> Treasury Cttee evidence</label>
+    <label style="color:var(--mut);font-size:12px;display:flex;align-items:center;gap:5px;cursor:pointer;"
       title="Attribute the monetary-policy press conference (statement &amp; Q&amp;A) to the Governor in office (King / Carney / Bailey) instead of the BoE MPC composite">
       <input type="checkbox" id="attr-pc"> Press conf → Governor</label>
     <label style="color:var(--mut);font-size:13px;">Method
@@ -149,7 +152,10 @@ function baseLayout(){return {paper_bgcolor:"#0e1116",plot_bgcolor:"#0e1116",
   font:{color:INK,family:"JetBrains Mono,monospace",size:12},
   margin:{l:55,r:25,t:20,b:45},
   xaxis:{gridcolor:GRID,zerolinecolor:GRID},yaxis:{gridcolor:GRID,zerolinecolor:GRID}};}
-let DATA=[], META={}, MACRO={};
+// ALL is every scored document; DATA is the current view of it. The Treasury
+// Committee toggle rebuilds DATA, so every tab, ranking and average follows the
+// toggle without each one having to know about it.
+let ALL=[], DATA=[], META={}, MACRO={};
 const OVERLAY_COLORS={bank_rate:"#f2c744", cpi_headline:"#e377c2", cpi_core:"#17becf",
   rpi:"#5cb85c", gilt_10y:"#9467bd"};
 
@@ -215,6 +221,16 @@ const MP_TYPES=new Set(["mp_account","mp_statement","mp_report","mp_qa"]);
 // it is unscripted cross-examination rather than a speech, so it gets its own glyph
 // and its own filter option.
 const TESTIMONY="testimony";
+function includeTestimony(){ const el=document.getElementById("inc-tsc"); return !el||el.checked; }
+function applyView(){
+  DATA = includeTestimony() ? ALL : ALL.filter(d=>d.st!==TESTIMONY);
+  // the Timeline's "evidence only" option would plot an empty chart when excluded
+  const opt=document.querySelector('#tl-docs option[value="testimony"]');
+  if(opt){
+    opt.disabled=!includeTestimony();
+    if(opt.disabled && docFilter()==="testimony") document.getElementById("tl-docs").value="all";
+  }
+}
 // Timeline "Documents" filter: the whole corpus, the Committee's own output, or
 // only the speeches and interviews of individual members.
 function docFilter(){ const el=document.getElementById("tl-docs"); return el?el.value:"all"; }
@@ -525,9 +541,13 @@ or five members sit together for two hours, so a transcript is not one speech bu
 interleaved ones. Each session is therefore <b>split by witness</b>: one document per MPC
 member, containing their own answers together with the committee questions they were
 answering. Two members from the same session share some question text but no answer text.
-These carry a ★ marker and their own <b>Documents</b> filter option. They are the only
-unscripted, adversarial material in the corpus — a member defending a vote under
-cross-examination, rather than a speech they wrote in advance.</p>
+These carry a ★ marker and their own <b>Documents</b> filter option on the Timeline.</p>
+<p>Because evidence is a different kind of text — unscripted answers under cross-examination,
+carrying the committee's questions with them — the <b>Treasury Cttee evidence</b> checkbox in
+the top right takes it out of everything at once: the timeline, the rankings, the speaker
+averages and the data table. Untick it to score members on their prepared communication
+alone, and compare. Across the corpus evidence reads somewhat more hawkish on average than
+speeches do, though for individual members the two usually agree closely.</p>
 <h3>Who counts as an MPC member</h3>
 <p>The Monetary Policy Committee has nine members — the Governor, the Deputy Governors, the
 Chief Economist and four external members — and only they vote on Bank Rate, so only they are
@@ -582,19 +602,23 @@ speeches may fall below the threshold.</p>`;
 function setHeader(){
   const mpc=DATA.filter(d=>MP_TYPES.has(d.st)).length;
   document.getElementById("hdrstats").innerHTML =
-    `<span class="stat"><b>${META.n_speeches||DATA.length}</b> documents rated</span>`+
+    `<span class="stat"><b>${DATA.length}</b> documents rated</span>`+
     `<span class="stat"><b>${mpc}</b> MPC minutes / Report / press conf.</span>`+
-    `<span class="stat"><b>${META.n_speakers||0}</b> speakers</span>`+
+    `<span class="stat"><b>${new Set(DATA.map(d=>canon(d.a))).size}</b> speakers</span>`+
     `<span class="stat"><b>${META.date_min||""}–${META.date_max||""}</b></span>`;
 }
 function fillSpeakers(){
   // dropdowns list MPC members (current + former) and the BoE MPC composite,
-  // not the PRA / FPC / markets officials the corpus also contains.
+  // not the PRA / FPC / markets officials the corpus also contains. Rebuilt
+  // whenever the view changes (a member seen only in evidence drops out), so it
+  // clears first and keeps the current selection where it still exists.
   const names=[...new Set(DATA.map(dispName).filter(isGC))]
     .sort((a,b)=> a===COUNCIL?-1:b===COUNCIL?1:a.localeCompare(b));
   for(const sel of ["tl-speaker","sp-speaker"]){
-    const el=document.getElementById(sel);
+    const el=document.getElementById(sel), prev=el.value;
+    el.innerHTML = sel==="tl-speaker" ? '<option value="">All</option>' : "";
     for(const n of names){const o=document.createElement("option");o.value=o.textContent=n;el.appendChild(o);}
+    if(prev && names.includes(prev)) el.value=prev;
   }
 }
 
@@ -630,13 +654,16 @@ function rerenderActive(){
 }
 document.getElementById("method").onchange=rerenderActive;
 document.getElementById("attr-pc").onchange=()=>{ fillSpeakerTypes(); rerenderActive(); };
+document.getElementById("inc-tsc").onchange=()=>{
+  applyView(); setHeader(); fillSpeakers(); fillSpeakerTypes(); rerenderActive();
+};
 
 Promise.all([
   fetch("data.json",{cache:"no-store"}).then(r=>r.json()),
   fetch("macro.json",{cache:"no-store"}).then(r=>r.ok?r.json():{series:{}}).catch(()=>({series:{}}))
 ]).then(([j,m])=>{
-  DATA=j.speeches||j; META=j.meta||{}; MACRO=(m&&m.series)||{};
-  applyRoster(META.roster);
+  ALL=j.speeches||j; META=j.meta||{}; MACRO=(m&&m.series)||{};
+  applyRoster(META.roster); applyView();
   document.getElementById("meth").innerHTML=METH;
   setHeader(); fillSpeakers(); fillSpeakerTypes(); renderTimeline();
 }).catch(e=>{document.getElementById("hdrstats").textContent="Could not load data.json: "+e;});
