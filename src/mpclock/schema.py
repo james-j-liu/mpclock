@@ -28,6 +28,7 @@ ST_QA = "mp_qa"                 # Governor's monetary-policy press conference Q&
 ST_ACCOUNT = "mp_account"       # MPC minutes
 ST_REPORT = "mp_report"         # Monetary Policy / Inflation Report section, box or annex
 ST_TESTIMONY = "testimony"      # one MPC member's evidence to the Treasury Committee
+ST_MEMBER_VIEW = "member_view"  # one member's vote rationale from the minutes (Nov 2025-)
 
 COUNCIL_TYPES = {ST_STATEMENT, ST_QA, ST_ACCOUNT, ST_REPORT}
 MPC_TYPES = COUNCIL_TYPES

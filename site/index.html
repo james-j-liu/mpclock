@@ -90,6 +90,7 @@
         <select id="tl-docs"><option value="all" selected>All</option>
         <option value="mpc">MPC output only (minutes, Report, press conf.)</option>
         <option value="testimony">Treasury Committee evidence only</option>
+        <option value="member_view">Vote rationales only (from the minutes)</option>
         <option value="speeches">Member speeches only</option></select></label>
       <span class="overlays" id="tl-overlays">Overlay:
         <label><input type="checkbox" class="ov" value="bank_rate"> Bank Rate</label>
@@ -209,18 +210,25 @@ function passMembership(n,mode){ return mode==="all"?true:mode==="current"?isCur
 // Document/event types (the "BoE MPC" composite spans several).
 const SOURCE_LABELS={mp_account:"MPC minutes", mp_statement:"Monetary Policy Summary / opening remarks",
   mp_report:"Monetary Policy Report", mp_qa:"Press conference transcript",
-  speech:"Speech", interview:"Interview", testimony:"Treasury Committee evidence"};
-const TYPE_ORDER=["mp_account","mp_statement","mp_report","mp_qa","speech","interview","testimony"];
+  speech:"Speech", interview:"Interview", testimony:"Treasury Committee evidence",
+  member_view:"Vote rationale (minutes)"};
+const TYPE_ORDER=["mp_account","mp_statement","mp_report","mp_qa","member_view",
+  "speech","interview","testimony"];
 // distinct marker glyphs so the Committee's own output stands out from ordinary
 // member speeches: minutes = triangle, summary = square, report section =
 // hexagon, press conference = diamond.
 const SYMBOL_FOR={mp_account:"triangle-up", mp_statement:"square", mp_report:"hexagon",
-  mp_qa:"diamond", speech:"circle", interview:"circle", testimony:"star"};
+  mp_qa:"diamond", speech:"circle", interview:"circle", testimony:"star",
+  member_view:"pentagon"};
 const MP_TYPES=new Set(["mp_account","mp_statement","mp_report","mp_qa"]);
 // Treasury Committee evidence is an individual member's, not the Committee's, but
 // it is unscripted cross-examination rather than a speech, so it gets its own glyph
 // and its own filter option.
 const TESTIMONY="testimony";
+// From the November 2025 meeting the minutes carry a paragraph per member setting
+// out the reasoning behind their own vote. That paragraph is cut out of the
+// minutes and scored as the member's own, so it is individual, not committee, output.
+const MEMBER_VIEW="member_view";
 function includeTestimony(){ const el=document.getElementById("inc-tsc"); return !el||el.checked; }
 function applyView(){
   DATA = includeTestimony() ? ALL : ALL.filter(d=>d.st!==TESTIMONY);
@@ -239,7 +247,8 @@ function passDocs(d){
   if(v==="all") return true;
   if(v==="mpc") return MP_TYPES.has(d.st);
   if(v==="testimony") return d.st===TESTIMONY;
-  return !MP_TYPES.has(d.st) && d.st!==TESTIMONY;
+  if(v==="member_view") return d.st===MEMBER_VIEW;
+  return !MP_TYPES.has(d.st) && d.st!==TESTIMONY && d.st!==MEMBER_VIEW;
 }
 function fillSpeakerTypes(){
   const spk=document.getElementById("sp-speaker").value;
@@ -518,7 +527,12 @@ members) are scored per speech. Everything the Committee publishes <i>as a commi
 aggregated into a single composite speaker, <b>"BoE MPC"</b>:</p>
 <ul>
 <li><b>MPC minutes</b> — every meeting from 1997, and since August 2015 the Monetary Policy
-Summary and minutes published together on decision day.</li>
+Summary and minutes published together on decision day. From the <b>November 2025</b> meeting
+the minutes end with an <i>MPC members' views</i> section in which each member sets out, in
+their own paragraph, the reasoning behind their own vote. That section is <b>cut out of the
+minutes</b> and each paragraph scored as that member's own document (⬟ marker, grouped under
+the vote it explains) — so the committee's record is judged on the committee's own text, and
+nine individual votes get their own reading each meeting.</li>
 <li><b>Monetary Policy Report</b> (the Inflation Report before 2019) — one document per quarterly
 forecast round, holding the <b>full report PDF</b>: the Monetary Policy Summary, the Overview,
 every chapter, every In focus box and every annex. The pipeline can also split a round into

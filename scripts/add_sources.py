@@ -26,7 +26,8 @@ except Exception:
 from mpclock.config import PROCESSED
 from mpclock.corpus import assemble, bis_boe, boe_mpc, tsc_evidence
 from mpclock.roster_mpc import canon, is_mpc
-from mpclock.schema import COUNCIL_TYPES, ST_REPORT, load_corpus, save_corpus
+from mpclock.schema import (COUNCIL_TYPES, ST_ACCOUNT, ST_MEMBER_VIEW, ST_REPORT,
+                            load_corpus, save_corpus)
 
 CORPUS = PROCESSED / "corpus.jsonl"
 
@@ -40,6 +41,9 @@ def main():
     ap.add_argument("--refresh-reports", action="store_true",
                     help="delete every existing Report record first, so a change in "
                          "how a round is cut (sections vs. whole + annexes) takes effect")
+    ap.add_argument("--refresh-minutes", action="store_true",
+                    help="delete every existing minutes / member-view record first, so a "
+                         "change in how the minutes are cut takes effect")
     ap.add_argument("--no-cache", action="store_true")
     ap.add_argument("--concurrency", type=int, default=8)
     ap.add_argument("--path", default=str(CORPUS))
@@ -49,10 +53,22 @@ def main():
     print(f"Existing corpus: {len(corpus)} records")
     incoming = []
 
+    # A refresh rebuilds records from source, so any scores they carry would be
+    # lost. Ratings are keyed on the record id (date, speaker, title, url), which
+    # a re-cut of the same document keeps, so they are stashed and put back.
+    scores = {s.id: (s.mu, s.mu_adj, s.sigma, s.n_comparisons,
+                     s.direct_score, s.direct_adj, s.is_policy) for s in corpus}
+
     if args.refresh_reports:
         before = len(corpus)
         corpus = [s for s in corpus if s.source_type != ST_REPORT]
         print(f"Dropped {before - len(corpus)} existing Report records")
+
+    if args.refresh_minutes:
+        before = len(corpus)
+        corpus = [s for s in corpus
+                  if s.source_type not in (ST_ACCOUNT, ST_MEMBER_VIEW)]
+        print(f"Dropped {before - len(corpus)} existing minutes / member-view records")
 
     if args.only in ("", "mpc"):
         print("\nBoE MPC composite (minutes / reports / press conferences)...")
@@ -71,6 +87,14 @@ def main():
         incoming += bis_boe.crosscheck(site, bis)
 
     merged = assemble.merge(corpus, incoming)
+    restored = 0
+    for s in merged:
+        if s.mu is None and s.id in scores:
+            (s.mu, s.mu_adj, s.sigma, s.n_comparisons,
+             s.direct_score, s.direct_adj, s.is_policy) = scores[s.id]
+            restored += 1
+    if restored:
+        print(f"Restored scores for {restored} refreshed records")
     save_corpus(merged, args.path)
 
     by_type = collections.Counter(s.source_type for s in merged)

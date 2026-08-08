@@ -35,7 +35,9 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 import requests
 
 from ..config import RAW
-from ..schema import ST_ACCOUNT, ST_QA, ST_REPORT, ST_STATEMENT, BOE_MPC, Speech
+from ..roster_mpc import canon, is_mpc
+from ..schema import (ST_ACCOUNT, ST_MEMBER_VIEW, ST_QA, ST_REPORT, ST_STATEMENT,
+                      BOE_MPC, Speech)
 from . import boe_sitemap
 from .boe_speeches import UA, _abs, _clean_pdf_text, fetch
 
@@ -44,6 +46,7 @@ CACHE = RAW / "mpc_cache"
 
 MONTHS = ("january february march april may june july august september "
           "october november december").split()
+_MONTHS_TITLE = [m.capitalize() for m in MONTHS]
 MONTH_IDX = {m: i + 1 for i, m in enumerate(MONTHS)}
 _MON = "|".join(MONTHS)
 # some report PDFs are filed under just an abbreviated month ("nov.pdf")
@@ -309,34 +312,100 @@ def _minutes_date(url: str, text: str, title: str) -> str:
     return ""
 
 
-def _minutes_record(url: str, use_cache: bool = True) -> Speech | None:
+# --- "MPC members' views" (minutes from November 2025 on) -------------------
+# Since the November 2025 meeting the minutes close with a section in which each
+# member sets out, in their own paragraph, the reasoning behind their own vote.
+# That is individual communication sitting inside a committee document, so it is
+# cut out of the minutes and scored per member.
+_VIEWS_HEAD_RE = re.compile(r"^\s*MPC members[’'’]?\s*views\s*$", re.I | re.M)
+_NUMBERED_RE = re.compile(r"^\s*\d+\.\s", re.M)
+_VOTE_GROUP_RE = re.compile(r"^\s*Votes? to [^\n]{3,80}$", re.I | re.M)
+# "Andrew Bailey:", "Catherine L Mann:" — the middle token can be a bare initial
+_MEMBER_PARA_RE = re.compile(r"^([A-Z][A-Za-z.'’-]*(?:\s+[A-Z][A-Za-z.'’-]*){1,3})\s*:\s+(?=[A-Z“\"])",
+                             re.M)
+
+
+def split_member_views(text: str) -> tuple[str, list[tuple[str, str, str]]]:
+    """Split "MPC members' views" out of the minutes.
+
+    Returns the minutes without that section, and one (member, vote group,
+    paragraph) triple per MPC member who set out a rationale.
+    """
+    head = _VIEWS_HEAD_RE.search(text)
+    if not head:
+        return text, []
+    body_start = head.end()
+    # the section runs to the next numbered paragraph after its own numbered
+    # preamble ("20. Members set out the rationale …" … "21. On 5 November …")
+    nums = [m.start() for m in _NUMBERED_RE.finditer(text, body_start)]
+    end = nums[1] if len(nums) > 1 else (nums[0] if nums else len(text))
+    section = text[body_start:end]
+
+    views: list[tuple[str, str, str]] = []
+    group = ""
+    marks = sorted([(m.start(), m.end(), "group", m.group(0).strip())
+                    for m in _VOTE_GROUP_RE.finditer(section)]
+                   + [(m.start(), m.end(), "member", m.group(1).strip())
+                      for m in _MEMBER_PARA_RE.finditer(section)])
+    for i, (start, stop, kind, label) in enumerate(marks):
+        if kind == "group":
+            group = label
+            continue
+        person = canon(label)
+        if not is_mpc(person) or person == BOE_MPC:
+            continue
+        nxt = marks[i + 1][0] if i + 1 < len(marks) else len(section)
+        para = section[stop:nxt].strip()
+        if len(para.split()) >= 60:      # a real rationale, not a stray line
+            views.append((person, group, para))
+
+    if not views:
+        return text, []
+    # drop the whole section, heading included, from the committee's own record
+    cleaned = (text[:head.start()].rstrip() + "\n\n" + text[end:].lstrip()).strip()
+    return cleaned, views
+
+
+def _minutes_record(url: str, use_cache: bool = True) -> list[Speech]:
+    """The minutes, plus one record per member view where the minutes carry them."""
     if url.lower().endswith(".pdf"):
         page_url, pdf_url, title = url, url, ""
     else:
         html = fetch(url)
         if not html:
-            return None
+            return []
         m = re.search(r"<title>(.*?)</title>", html, re.S | re.I)
         title = re.sub(r"\s*\|\s*Bank of England\s*$", "", (m.group(1) if m else "")).strip()
         if not title or title.lower().startswith("page not found"):
-            return None
+            return []
         pdfs = [_abs(h) for h in _PDF_HREF_RE.findall(html)
                 if "/-/media/boe/files/" in h and not _SKIP_MEDIA_RE.search(h.rsplit("/", 1)[-1])]
         if not pdfs:
-            return None
+            return []
         page_url, pdf_url = url, pdfs[0]
 
     text = pdf_text(pdf_url, use_cache=use_cache)
     if len(text) < 2000:
-        return None
+        return []
     date = _minutes_date(url, text, title)
     if not re.match(r"\d{4}-\d{2}-\d{2}", date):
-        return None
+        return []
     if not title:
         title = f"Minutes of the Monetary Policy Committee meeting, {date}"
-    return Speech(date=date, speaker=BOE_MPC, title=title[:220], text=text,
+
+    text, views = split_member_views(text)
+    month = f"{_MONTHS_TITLE[int(date[5:7]) - 1]} {date[:4]}"
+    out = [Speech(date=date, speaker=BOE_MPC, title=title[:220], text=text,
                   source_type=ST_ACCOUNT, institution="Bank of England",
-                  source_url=page_url, orig_language="en")
+                  source_url=page_url, orig_language="en")]
+    for person, group, para in views:
+        out.append(Speech(
+            date=date, speaker=person,
+            title=f"MPC minutes, individual vote rationale — {month}"[:220],
+            text=(group + "\n\n" + para).strip() if group else para,
+            source_type=ST_MEMBER_VIEW, institution="Bank of England",
+            source_url=page_url, orig_language="en"))
+    return out
 
 
 # --- Monetary Policy Report / Inflation Report ------------------------------
