@@ -160,6 +160,10 @@ function baseLayout(){return {paper_bgcolor:"#0e1116",plot_bgcolor:"#0e1116",
 let ALL=[], DATA=[], META={}, MACRO={};
 const OVERLAY_COLORS={bank_rate:"#f2c744", cpi_headline:"#e377c2", cpi_core:"#17becf",
   rpi:"#5cb85c", gilt_10y:"#9467bd", vote_score:"#ff7f0e"};
+// The MPC's target is 2% CPI, so 2% — not 0% — is the neutral reading for an
+// inflation series, and that is what should line up with neutral hawkishness.
+const INFLATION_TARGET=2;
+const TARGET_RELATIVE=new Set(["cpi_headline","cpi_core","rpi"]);
 
 // Score-key resolution by method. Pairwise: raw=m, adj=ma. Direct: raw=ds, adj=dsa.
 function method(){ return document.getElementById("method").value; }
@@ -337,16 +341,26 @@ function renderTimeline(){
 
   // macro / market overlays on a secondary (right) axis
   const checked=[...document.querySelectorAll("#tl-overlays .ov:checked")].map(c=>c.value);
-  let ovMin=0, ovMax=0;
+  let ovAbs=0;
   for(const key of checked){
     const s=MACRO[key]; if(!s||!s.data) continue;
-    for(const p of s.data){ if(p[1]<ovMin)ovMin=p[1]; if(p[1]>ovMax)ovMax=p[1]; }
+    // Overlays are plotted against their own neutral point, so that the right
+    // axis's zero lines up with neutral hawkishness on the left: inflation is
+    // shown as its distance from the 2% target, the vote score as it is (0 is
+    // already "no change"). Levels — Bank Rate, the gilt yield — have no neutral
+    // value and are plotted raw.
+    const rel=TARGET_RELATIVE.has(key);
+    const ys=s.data.map(p=>rel?+(p[1]-INFLATION_TARGET).toFixed(3):p[1]);
+    for(const y of ys) ovAbs=Math.max(ovAbs,Math.abs(y));
     // a vote series is one point per meeting, not a continuous line. Plotly rejects
     // keys set to undefined, so marker/line are attached rather than nulled out.
     const colour=OVERLAY_COLORS[key]||"#aaa", isMarker=s.shape==="marker";
-    const tr={x:s.data.map(p=>p[0]), y:s.data.map(p=>p[1]),
-      mode:isMarker?"markers":"lines", type:"scatter", yaxis:"y2", name:s.label,
-      hovertemplate:`%{x|%b %Y}<br>${s.label}: %{y}${s.unit||""}<extra></extra>`};
+    const tr={x:s.data.map(p=>p[0]), y:ys, customdata:s.data.map(p=>p[1]),
+      mode:isMarker?"markers":"lines", type:"scatter", yaxis:"y2",
+      name:rel?`${s.label} vs target`:s.label,
+      hovertemplate:rel
+        ? `%{x|%b %Y}<br>${s.label}: %{customdata}%<br>%{y:+.1f} pp vs the 2% target<extra></extra>`
+        : `%{x|%b %Y}<br>${s.label}: %{y}${s.unit||""}<extra></extra>`};
     if(isMarker) tr.marker={color:colour, size:6, symbol:"square"};
     else tr.line={color:colour, width:1.8, shape:s.shape==="step"?"hv":"linear"};
     traces.push(tr);
@@ -362,14 +376,16 @@ function renderTimeline(){
   lay.xaxis={...lay.xaxis,type:"date"};
   lay.yaxis={...lay.yaxis,title:`${methodLabel()} · ${adjusted?"era-adjusted":"raw"} (− dovish · + hawkish)`,
              type:"linear",range:[-Y,Y],zeroline:true,zerolinecolor:"#3a4250"};
-  // the right-hand axis fits whatever is overlaid: RPI ran to 14% in 2022, and a
-  // vote score only spans about -2..+2, so neither a fixed ceiling nor a fixed
-  // floor would do
-  const anyPct=checked.some(k=>MACRO[k]&&MACRO[k].unit==="%");
+  // The right axis is kept symmetric about zero, exactly as the left one is, so
+  // the two zeros are the same line on the chart: neutral hawkishness sits level
+  // with inflation at target and with a no-change vote.
+  const R=Math.max(1,Math.ceil(ovAbs*1.05));
+  const titles=[];
+  if(checked.some(k=>TARGET_RELATIVE.has(k))) titles.push("pp vs 2% target");
+  if(checked.includes("vote_score")) titles.push("vote score (25bp)");
+  if(checked.some(k=>k==="bank_rate"||k==="gilt_10y")) titles.push("% level");
   lay.yaxis2={overlaying:"y",side:"right",showgrid:false,zeroline:false,color:MUT,
-              title:anyPct?"% / rate":"vote score (25bp units)",
-              range:[Math.min(-1,Math.floor(ovMin)),
-                     Math.ceil(ovMax)+(anyPct?1:0.5)]};
+              title:titles.join(" · "),range:[-R,R]};
   Plotly.react("tl-plot",traces,lay,{displayModeBar:false});
 }
 
@@ -612,6 +628,12 @@ is what every member is recorded as having voted for when no dissent can be read
 decision is checked against the actual Bank Rate move, and a parse that disagrees is discarded
 — none currently do.</p>
 <h3>Market overlays (Timeline)</h3>
+<p>The right-hand axis is kept <b>symmetric about zero, level with the left one</b>, so the two
+zeros are the same line on the chart. An overlay is therefore plotted against <i>its own</i>
+neutral point rather than against 0%: <b>CPI and RPI are shown as their distance from the 2%
+target</b> (inflation at target sits level with neutral hawkishness; hover still reports the
+actual rate), and the <b>MPC vote score</b> is plotted as it stands, since 0 there already means
+no change. Bank Rate and the gilt yield have no neutral value, so they are plotted as levels.</p>
 <p>The Timeline tab can overlay UK policy and market series on a right-hand axis, to read the
 hawkish–dovish signal against actual conditions: the <b>Bank of England Bank Rate</b>,
 <b>CPI headline</b> and <b>CPI core</b> (ex energy, food, alcohol &amp; tobacco) annual
