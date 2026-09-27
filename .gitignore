@@ -21,3 +21,6 @@ classify*.log
 
 # the retired 9k-cap comparison log, kept for provenance
 !data/processed/tournament_log_9k_cap.jsonl
+!data/processed/roster_state.json
+!data/processed/scrape_misses.json
+!data/processed/tournament_log_gemini_20k.jsonl

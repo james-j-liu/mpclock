@@ -29,8 +29,15 @@ from ..roster_mpc import canon, is_mpc
 from ..schema import ST_TESTIMONY, Speech
 
 BASE = "https://committees.parliament.uk"
-LISTING = (BASE + "/committee/158/treasury-committee/publications/oral-evidence/"
+LISTING = (BASE + "/committee/{cid}/{slug}/publications/oral-evidence/"
            "?DateFrom=&DateTo=&SearchTerm=bank%20of%20england&SessionId=&page={page}")
+# Both committees publish transcripts in the same format. The Lords committee holds
+# an annual session with the Governor and ran the QE (2021) and Bank-independence
+# (2023) inquiries, all with MPC members as witnesses.
+COMMITTEES = {
+    "treasury": (158, "treasury-committee", "Treasury Committee"),
+    "lords": (175, "economic-affairs-committee", "Lords Economic Affairs Committee"),
+}
 UA = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
                     "(KHTML, like Gecko) Chrome/124.0 Safari/537.36"}
 CACHE = RAW / "tsc"
@@ -87,14 +94,22 @@ class Session:
     date: str
     category: str
     url: str
+    committee: str = "treasury"
+    # the Treasury Committee's Monetary Policy Report series; anything else is a
+    # session where an MPC member happened to give evidence, and gets classified
+    series: bool = True
 
 
-def sessions(use_cache: bool = True, max_pages: int = 12) -> list[Session]:
-    """Monetary-policy evidence sessions with an HTML transcript, newest first."""
+def sessions(use_cache: bool = True, max_pages: int = 12, committee: str = "treasury",
+             include_other: bool = True) -> list[Session]:
+    """Evidence sessions with an HTML transcript, newest first: the Monetary Policy
+    Report series, plus (include_other) any session with an MPC member as a witness."""
+    cid, slug, _ = COMMITTEES[committee]
     out: list[Session] = []
     for page in range(1, max_pages + 1):
         try:
-            body = _fetch(LISTING.format(page=page), f"listing_{page}.html", use_cache)
+            body = _fetch(LISTING.format(cid=cid, slug=slug, page=page),
+                          f"listing_{committee}_{page}.html", use_cache)
         except requests.RequestException:
             break
         cards = _CARD_RE.findall(body)
@@ -103,15 +118,28 @@ def sessions(use_cache: bool = True, max_pages: int = 12) -> list[Session]:
         for card in cards:
             work = re.search(r'<span class="label">(?:Work|Inquiry)</span>([^<]*)', card)
             category = _clean(work.group(1)) if work else ""
-            if not SERIES_RE.search(category):
-                continue
+            series = committee == "treasury" and bool(SERIES_RE.search(category))
+            if not series:
+                # Older cards name the witnesses; since 2026 they list institutions
+                # only ("Bank of England, Monetary Policy Committee"). Either way the
+                # transcript's own witness line decides who is an MPC member, so a
+                # Bank session with no MPC witness just yields no records.
+                wit = re.search(r'<span class="label">Witnesses</span>(.*?)</div>', card, re.S)
+                wtext = _clean(wit.group(1)) if wit else ""
+                if not include_other or not (
+                        _witness_names(wtext) or re.search(r"Monetary Policy Committee", wtext)
+                        or (committee == "lords" and "Bank of England" in wtext)):
+                    continue
             link = re.search(r'href="(/oralevidence/\d+/html/)"', card)
-            date = re.search(r'<div class="primary-info">([^<]+)</div>', card)
+            # (the div gained an id attribute in September 2026, which silently
+            # emptied every listing — match on the class alone)
+            date = re.search(r'<div class="primary-info"[^>]*>([^<]+)</div>', card)
             if not link or not date:
                 continue   # PDF-only sessions (a handful of older ones) are skipped
             iso = _iso(_clean(date.group(1)))
             if iso:
-                out.append(Session(iso, category, BASE + link.group(1)))
+                out.append(Session(iso, category or "Oral evidence", BASE + link.group(1),
+                                   committee, series))
     seen: dict[str, Session] = {}
     for s in out:
         seen.setdefault(s.url, s)
@@ -180,16 +208,49 @@ def _witness_names(witness_line: str, listing_witnesses: str = "") -> dict[str, 
     return out
 
 
+_PEER_RE = re.compile(r"^(?:Lord|Baroness|The Lord|Viscount|Earl)\b|^(?:The )?Chair", re.I)
+
+
+def _roster_surnames() -> dict[str, str]:
+    """surname -> MPC member, for surnames only one member has ever held."""
+    from ..roster_mpc import CURRENT_MPC, FORMER_MPC
+    seen: dict[str, set[str]] = {}
+    for full in CURRENT_MPC | FORMER_MPC:
+        person = canon(full)
+        seen.setdefault(person.split()[-1].lower(), set()).add(person)
+    return {k: next(iter(v)) for k, v in seen.items() if len(v) == 1}
+
+
+def _witnesses_from_labels(turns: list, mp_surnames: set[str], min_turns: int = 3) -> dict[str, str]:
+    """Witnesses read off the speaker labels, for transcripts whose header carries
+    no "Witnesses:" line (appointment hearings, most Lords sessions). A label is an
+    MPC witness if its surname is a member's and it is not a committee member —
+    peers and the Chair ask the questions in the Lords, and Lord King of Lothbury
+    sits on that committee, so a titled peer is never taken for a witness."""
+    index = _roster_surnames()
+    counts: dict[str, int] = {}
+    for t in turns:
+        counts[t.label] = counts.get(t.label, 0) + 1
+    out: dict[str, str] = {}
+    for label, n in counts.items():
+        if n < min_turns or _PEER_RE.search(label):
+            continue
+        sur = _surname(label)
+        if sur in index and sur not in mp_surnames:
+            out[sur] = index[sur]
+    return out
+
+
 def session_records(sess: Session, use_cache: bool = True,
                     min_words: int = 250) -> list[Speech]:
     body = _fetch(sess.url, f"transcript_{sess.url.rstrip('/').split('/')[-2]}.html", use_cache)
     turns, members, witness_line = parse_turns(body)
     if not turns:
         return []
-    witnesses = _witness_names(witness_line)
+    mp_surnames = {_surname(n) for n in re.split(r"[;,]", members) if n.strip()}
+    witnesses = _witness_names(witness_line) or _witnesses_from_labels(turns, mp_surnames)
     if not witnesses:
         return []
-    mp_surnames = {_surname(n) for n in re.split(r"[;,]", members) if n.strip()}
 
     # A committee member and a witness can share a surname (John Mann MP vs
     # Catherine Mann), so a bare surname that belongs to someone on the committee
@@ -223,8 +284,15 @@ def session_records(sess: Session, use_cache: bool = True,
             words[who] += len(turn.text.split())
             last_was_witness = True
 
-    label = "Monetary Policy Report" if "monetary policy report" in sess.category.lower() \
-        else "Inflation Report"
+    if sess.series:
+        # (unchanged wording, so records already in the corpus keep their ids)
+        label = "Monetary Policy Report" if "monetary policy report" in sess.category.lower() \
+            else "Inflation Report"
+        title = f"Treasury Committee evidence — {label}, {sess.date}"
+    else:
+        topic = re.sub(r"\s*\((?:Regular evidence sessions|Non-inquiry session)\)", "",
+                       sess.category).strip()
+        title = f"{COMMITTEES[sess.committee][2]} evidence — {topic}, {sess.date}"
     out: list[Speech] = []
     for name, paragraphs in docs.items():
         if words[name] < min_words:      # a witness who barely spoke
@@ -232,7 +300,7 @@ def session_records(sess: Session, use_cache: bool = True,
         out.append(Speech(
             date=sess.date,
             speaker=name,
-            title=f"Treasury Committee evidence — {label}, {sess.date}",
+            title=title[:220],
             text="\n\n".join(paragraphs),
             source_type=ST_TESTIMONY,
             institution="Bank of England",
@@ -243,14 +311,21 @@ def session_records(sess: Session, use_cache: bool = True,
 
 
 def load(use_cache: bool = True, concurrency: int = 6, start_year: int | None = None,
-         end_year: int | None = None, verbose: bool = True) -> list[Speech]:
-    sess = sessions(use_cache)
+         end_year: int | None = None, verbose: bool = True,
+         skip_urls: set[str] | None = None, max_pages: int = 12) -> list[Speech]:
+    """skip_urls: transcripts already in the corpus — a published transcript never
+    changes, so the daily run fetches only sessions it has not seen. max_pages:
+    the listing is newest-first, so a daily run needs only its first page or two."""
+    sess = [s for committee in COMMITTEES
+            for s in sessions(use_cache, max_pages=max_pages, committee=committee)]
+    if skip_urls:
+        sess = [s for s in sess if s.url not in skip_urls]
     if start_year:
         sess = [s for s in sess if int(s.date[:4]) >= start_year]
     if end_year:
         sess = [s for s in sess if int(s.date[:4]) <= end_year]
     if verbose:
-        print(f"  Treasury Committee: {len(sess)} monetary-policy sessions")
+        print(f"  Parliamentary evidence: {len(sess)} sessions ({sum(s.series for s in sess)} MPR series)")
     out: list[Speech] = []
     with ThreadPoolExecutor(max_workers=concurrency) as ex:
         futs = {ex.submit(session_records, s, use_cache): s for s in sess}

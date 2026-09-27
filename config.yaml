@@ -12,14 +12,23 @@ corpus:
 
 judge:
   provider: openrouter
-  model: "google/gemini-2.5-flash-lite"   # cheaper (~$0.10/$0.40 vs 3.1-lite's $0.25/$1.50)
+  model: "google/gemini-2.5-flash-lite"   # chat model: policy classification only
+  # Scoring runs on TypeSafe's Jev decision model: it answers a typed choice/score
+  # question instead of writing text, bills input only ($0.042/M, output free) and
+  # shows far less slot-A bias than the chat judge. PAIRWISE_MODEL / DIRECT_MODEL
+  # env vars override; a non-Jev id falls back to the chat judges below.
+  pairwise_model: "typesafe/jev-1.13"
+  direct_model: "typesafe/jev-1.13"
+  # Jev's context is 32k tokens and a comparison carries two excerpts, so each is
+  # capped here; longer documents are sampled 40/20/40 (opening/middle/close).
+  jev_excerpt_chars: 56000
   validator_model: "anthropic/claude-haiku-4.5"  # cross-model check on a subset
-  # How much of a document the model reads. Every comparison sends two excerpts
-  # and the run makes ~15 per document, so this setting is the token bill.
-  # Over the cap a document is sampled head/middle/tail rather than truncated.
+  # Chat-judge settings (used only when a non-Jev scoring model is configured).
+  # Every comparison sends two excerpts and the run makes ~15 per document, so
+  # this cap is the token bill; over it a document is sampled head/middle/tail.
   max_excerpt_chars: 20000
-  # …except these, which are judged whole however long they run: the Committee's
-  # own minutes, and each Monetary Policy Report with its annexes.
+  # …except these, judged whole however long: the minutes and each Monetary
+  # Policy Report with its annexes. (Jev cannot do this — its window is fixed.)
   uncapped_types: [mp_account, mp_report]
   temperature: 0.0
   concurrency: 8
@@ -28,6 +37,11 @@ tournament:
   initial_mu: 50.0
   initial_sigma: 8.333
   target_appearances_per_speech: 30   # FedLock parity (=> ~15*N comparisons)
+  # Jev verdicts below this confidence are recorded as draws, not wins: most calls
+  # between closely matched documents are near coin-flips, and treating them as
+  # decisive adds noise (split-half reliability 0.54 -> 0.67; draw_experiment.py).
+  draw_below_confidence: 0.60
+  draw_probability: 0.75    # TrueSkill's prior that equal documents come out level
   sigma_convergence: 2.0
   pairing:
     swiss_fraction: 0.6

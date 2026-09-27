@@ -25,13 +25,15 @@ class Rating:
 
 class Tournament:
     def __init__(self, ids: list[str], *, initial_mu=50.0, initial_sigma=8.333,
-                 beta=None, tau=None, seed=0):
+                 beta=None, tau=None, seed=0, draw_probability: float = 0.0):
         # beta scales skill->win prob; tau adds per-game dynamics. Keep TS defaults
-        # proportional to our wider (0-100) scale.
+        # proportional to our wider (0-100) scale. draw_probability is the prior that
+        # two equally hawkish documents come out level (see record(drawn=True)).
         beta = beta if beta is not None else initial_sigma / 2
         tau = tau if tau is not None else initial_sigma / 100
         self.env = trueskill.TrueSkill(
-            mu=initial_mu, sigma=initial_sigma, beta=beta, tau=tau, draw_probability=0.0
+            mu=initial_mu, sigma=initial_sigma, beta=beta, tau=tau,
+            draw_probability=draw_probability,
         )
         self.ratings: dict[str, trueskill.Rating] = {
             i: self.env.create_rating() for i in ids
@@ -39,10 +41,10 @@ class Tournament:
         self.n_comp: dict[str, int] = {i: 0 for i in ids}
         self.rng = random.Random(seed)
 
-    def record(self, winner_id: str, loser_id: str) -> None:
-        """winner = the more hawkish speech."""
+    def record(self, winner_id: str, loser_id: str, drawn: bool = False) -> None:
+        """winner = the more hawkish speech; drawn = the judge could not separate them."""
         w, l = self.ratings[winner_id], self.ratings[loser_id]
-        new_w, new_l = self.env.rate_1vs1(w, l)
+        new_w, new_l = self.env.rate_1vs1(w, l, drawn=drawn)
         self.ratings[winner_id], self.ratings[loser_id] = new_w, new_l
         self.n_comp[winner_id] += 1
         self.n_comp[loser_id] += 1

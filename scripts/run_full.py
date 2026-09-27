@@ -36,6 +36,7 @@ from mpclock.output.build_data import era_adjust, write_data_json
 from mpclock.process.anonymize import Anonymizer
 from mpclock.process.roster import build_roster
 from mpclock.roster_mpc import is_mpc
+from mpclock.tenure import for_corpus
 from mpclock.schema import load_corpus, save_corpus
 from mpclock.tournament.runner import run_tournament
 
@@ -59,9 +60,10 @@ class MockDirectScorer:
         net = sum(tl.count(w) for w in self.HAWK) - sum(tl.count(w) for w in self.DOVE)
         return max(0.0, min(100.0, 50.0 + 2.5 * net))
 
-    def score_all(self, speeches, macro, concurrency: int = 8):
+    def score_all(self, speeches, macro, concurrency: int = 8, anonymizer=None):
         for s in speeches:
-            s.direct_score = round(self.score(s.text_anon or s.text, macro.string(s.date)), 2)
+            text = anonymizer.text_of(s) if anonymizer else s.text
+            s.direct_score = round(self.score(text, macro.string(s.date)), 2)
         return speeches
 
 
@@ -104,7 +106,9 @@ def main():
     # distort the TrueSkill ratings and the era means.
     if not args.include_non_mpc:
         before = len(pool)
-        pool = [s for s in pool if is_mpc(s.speaker)]
+        # …and only while they sat on it (tenure read from the minutes' attendance)
+        tenure = for_corpus(corpus)
+        pool = [s for s in pool if is_mpc(s.speaker) and tenure.active(s.speaker, s.date)]
         print(f"MPC filter: kept {len(pool)} / {before} records "
               f"({before - len(pool)} non-MPC records removed)")
 
@@ -114,11 +118,8 @@ def main():
         sys.exit("No policy-relevant records in window. Run classify_corpus.py first.")
 
     # anonymize using a roster drawn from the FULL corpus (every recognisable name)
-    roster = build_roster([s.speaker for s in corpus])
-    anon = Anonymizer(roster)
-    for s in pool:
-        if not s.text_anon:
-            s.text_anon = anon(s.text)
+    # (applied lazily by the judges, only to documents actually sent to a model)
+    anon = Anonymizer(build_roster([s.speaker for s in corpus]))
 
     macro = MacroContext()
 
@@ -129,12 +130,16 @@ def main():
             judge = MockJudge()
             print("DRY RUN: MockJudge (no API calls)")
         else:
-            from mpclock.judge.openrouter import Judge
-            judge = Judge(model=args.model)
+            import os
+            from mpclock.judge.factory import make_pairwise_judge
+            if args.model:
+                os.environ["PAIRWISE_MODEL"] = args.model
+            judge = make_pairwise_judge()
             print(f"Judge model: {judge.model}")
         run_tournament(pool, judge, appearances_per_speech=args.appearances,
                        macro=macro, seed=args.seed, concurrency=args.concurrency,
-                       resume=args.resume, full_run=True, log_path=args.log)
+                       resume=args.resume, full_run=True, log_path=args.log,
+                       anonymizer=anon)
         # persist pairwise results immediately so a later crash can't lose them
         era_adjust(pool)
         write_data_json(pool, args.out)
@@ -146,15 +151,18 @@ def main():
             scorer = MockDirectScorer()
             print("DRY RUN: MockDirectScorer (no API calls)")
         else:
-            from mpclock.judge.direct import DirectScorer
-            scorer = DirectScorer(model=args.model)
+            import os
+            from mpclock.judge.factory import make_direct_scorer
+            if args.model:
+                os.environ["DIRECT_MODEL"] = args.model
+            scorer = make_direct_scorer()
             print(f"Direct scorer model: {scorer.model}")
         # only score what has no direct score yet, so re-runs after a corpus change
         # don't re-pay for (and jitter) documents that already carry one
         todo = [s for s in pool if s.direct_score is None] if not args.redo_direct else pool
         print(f"Direct scoring {len(todo)} of {len(pool)} documents")
         if todo:
-            scorer.score_all(todo, macro, concurrency=args.direct_concurrency)
+            scorer.score_all(todo, macro, concurrency=args.direct_concurrency, anonymizer=anon)
 
     era_adjust(pool)
     # pool records are the same objects as in `corpus`, so this persists the new

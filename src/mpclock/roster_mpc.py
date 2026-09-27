@@ -83,6 +83,28 @@ ALIASES = {
 }
 
 
+def _apply_live_state() -> None:
+    """Overlay data/processed/roster_state.json, which the daily job rewrites from the
+    attendance list of the newest minutes (tenure.sync_roster). The sets above are
+    the fallback; the minutes are the authority on who sits on the Committee now,
+    and they name a new member before anyone edits this file."""
+    import json
+
+    from .config import PROCESSED
+    path = PROCESSED / "roster_state.json"
+    try:
+        state = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return
+    current = {canon(n) for n in state.get("current", [])}
+    if not 5 <= len(current) <= 12:
+        return
+    FORMER_MPC.update((CURRENT_MPC - current) | {canon(n) for n in state.get("former", [])})
+    CURRENT_MPC.clear()
+    CURRENT_MPC.update(current)
+    FORMER_MPC.difference_update(CURRENT_MPC)
+
+
 def canon(name: str) -> str:
     return ALIASES.get(name, name)
 
@@ -105,3 +127,6 @@ def to_dict() -> dict:
         "former": sorted(FORMER_MPC),
         "aliases": ALIASES,
     }
+
+
+_apply_live_state()

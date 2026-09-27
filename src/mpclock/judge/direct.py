@@ -100,13 +100,20 @@ class DirectScorer:
                 pass
         return None
 
-    def score_all(self, speeches: list[Speech], macro, concurrency: int = 8) -> list[Speech]:
+    def score_all(self, speeches: list[Speech], macro, concurrency: int = 8,
+                  anonymizer=None) -> list[Speech]:
         from concurrent.futures import ThreadPoolExecutor
 
         from tqdm import tqdm
 
+        if anonymizer is None:
+            from ..process.anonymize import Anonymizer
+            from ..process.roster import build_roster
+            anonymizer = Anonymizer(build_roster([s.speaker for s in speeches]))
+
         def work(s: Speech):
-            val = self.score(s.text_anon or s.text, macro.string(s.date), s.source_type)
+            # anonymised here, never falling back to the raw named text
+            val = self.score(anonymizer.text_of(s), macro.string(s.date), s.source_type)
             if val is not None:
                 s.direct_score = round(val, 2)
             return s

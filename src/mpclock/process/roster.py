@@ -49,7 +49,11 @@ TITLES = [
 
 
 def build_roster(corpus_speakers: list[str]) -> list[str]:
-    names = set(SEED_OFFICIALS)
+    # every MPC member, current and former, and every alias — not just people who
+    # already have records — or a new member with no speeches of their own yet is
+    # named verbatim inside everyone else's texts
+    from ..roster_mpc import ALIASES, CURRENT_MPC, FORMER_MPC
+    names = set(SEED_OFFICIALS) | CURRENT_MPC | FORMER_MPC | set(ALIASES)
     for s in corpus_speakers:
         if s and s != "BoE MPC":
             names.add(s)

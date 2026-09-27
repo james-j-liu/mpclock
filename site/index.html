@@ -66,8 +66,8 @@
   <button data-tab="methodology">Methodology</button>
   <div style="margin-left:auto;display:flex;align-items:center;gap:16px;padding:6px 12px;">
     <label style="color:var(--mut);font-size:12px;display:flex;align-items:center;gap:5px;cursor:pointer;"
-      title="Include each MPC member's evidence to the Treasury Committee. Unlike speeches these are unscripted answers under cross-examination, and they carry the committee's questions with them — untick to score members on their own written communication alone">
-      <input type="checkbox" id="inc-tsc" checked> Treasury Cttee evidence</label>
+      title="Include each MPC member's evidence to Parliament — the Treasury Committee (Monetary Policy Report hearings, appointment hearings, inquiries) and the Lords Economic Affairs Committee. Unlike speeches these are unscripted answers under cross-examination, and they carry the committee's questions with them — untick to score members on their prepared communication alone">
+      <input type="checkbox" id="inc-tsc" checked> Parliamentary evidence</label>
     <label style="color:var(--mut);font-size:12px;display:flex;align-items:center;gap:5px;cursor:pointer;"
       title="Attribute the press conference — the Governor's opening remarks and the transcript of the Q&amp;A — to the Governor in office at the time (Carney / Bailey) instead of the BoE MPC composite. The minutes and the Monetary Policy Report always stay with BoE MPC.">
       <input type="checkbox" id="attr-pc"> Press conf → Governor</label>
@@ -89,8 +89,9 @@
       <label>Documents
         <select id="tl-docs"><option value="all" selected>All</option>
         <option value="mpc">MPC output only (minutes, Report, press conf.)</option>
-        <option value="testimony">Treasury Committee evidence only</option>
+        <option value="testimony">Parliamentary evidence only (Commons and Lords)</option>
         <option value="member_view">Vote rationales only (from the minutes)</option>
+        <option value="meeting">Meeting transcripts only (2015–17, 8-year lag)</option>
         <option value="speeches">Member speeches only</option></select></label>
       <span class="overlays" id="tl-overlays">Overlay:
         <label><input type="checkbox" class="ov" value="bank_rate"> Bank Rate</label>
@@ -215,16 +216,16 @@ function passMembership(n,mode){ return mode==="all"?true:mode==="current"?isCur
 // Document/event types (the "BoE MPC" composite spans several).
 const SOURCE_LABELS={mp_account:"MPC minutes", mp_statement:"Monetary Policy Summary / opening remarks",
   mp_report:"Monetary Policy Report", mp_qa:"Press conference transcript",
-  speech:"Speech", interview:"Interview", testimony:"Treasury Committee evidence",
-  member_view:"Vote rationale (minutes)"};
-const TYPE_ORDER=["mp_account","mp_statement","mp_report","mp_qa","member_view",
+  speech:"Speech", interview:"Interview", testimony:"Parliamentary evidence",
+  member_view:"Vote rationale (minutes)", meeting:"MPC meeting transcript"};
+const TYPE_ORDER=["mp_account","mp_statement","mp_report","mp_qa","member_view","meeting",
   "speech","interview","testimony"];
 // distinct marker glyphs so the Committee's own output stands out from ordinary
 // member speeches: minutes = triangle, summary = square, report section =
 // hexagon, press conference = diamond.
 const SYMBOL_FOR={mp_account:"triangle-up", mp_statement:"square", mp_report:"hexagon",
   mp_qa:"diamond", speech:"circle", interview:"circle", testimony:"star",
-  member_view:"pentagon"};
+  member_view:"pentagon", meeting:"cross"};
 const MP_TYPES=new Set(["mp_account","mp_statement","mp_report","mp_qa"]);
 // Treasury Committee evidence is an individual member's, not the Committee's, but
 // it is unscripted cross-examination rather than a speech, so it gets its own glyph
@@ -234,6 +235,9 @@ const TESTIMONY="testimony";
 // out the reasoning behind their own vote. That paragraph is cut out of the
 // minutes and scored as the member's own, so it is individual, not committee, output.
 const MEMBER_VIEW="member_view";
+// Word-for-word transcripts of the policy meetings themselves, released eight
+// years on: each member's own contributions to the debate, one document a meeting.
+const MEETING="meeting";
 function includeTestimony(){ const el=document.getElementById("inc-tsc"); return !el||el.checked; }
 function applyView(){
   DATA = includeTestimony() ? ALL : ALL.filter(d=>d.st!==TESTIMONY);
@@ -253,7 +257,8 @@ function passDocs(d){
   if(v==="mpc") return MP_TYPES.has(d.st);
   if(v==="testimony") return d.st===TESTIMONY;
   if(v==="member_view") return d.st===MEMBER_VIEW;
-  return !MP_TYPES.has(d.st) && d.st!==TESTIMONY && d.st!==MEMBER_VIEW;
+  if(v==="meeting") return d.st===MEETING;
+  return !MP_TYPES.has(d.st) && d.st!==TESTIMONY && d.st!==MEMBER_VIEW && d.st!==MEETING;
 }
 function fillSpeakerTypes(){
   const spk=document.getElementById("sp-speaker").value;
@@ -540,16 +545,27 @@ and then rescaled into the same units as the pairwise score. This roughly double
 resolution (≈25 levels at half-integer steps) but is still discrete. This residual coarseness
 is exactly why the <b>pairwise</b> method exists: it is genuinely continuous, so for fine
 distinctions between speakers or speeches, prefer the pairwise score.</p>
+<h3>The judge</h3>
+<p>Comparisons and direct scores are made by <b>Jev</b> (TypeSafe, via OpenRouter), a
+<i>decision</i> model: rather than writing an answer it is asked a typed question — "which
+excerpt is more hawkish relative to its macro context?", or "where on this seven-point scale
+does this excerpt sit?" — and returns a probability for each option. Three things follow. It
+shows <b>no slot bias</b>: the chat model it replaced picked whichever excerpt came first about
+70% of the time; Jev splits evenly. Its confidence is <b>calibrated</b> — when it is at least 70%
+sure, it agrees with the consensus ranking over 90% of the time. And it bills input only, at
+about a fifth of the chat model's rate, so it can read far more of each document for less.
+The direct score is Jev's probability-weighted position on the seven-point scale, which is
+continuous, unlike the round numbers a chat model writes. Policy classification still uses a
+chat model (Gemini 2.5 Flash-Lite), since that is a judgement about topic, not stance.</p>
 <h3>How much of each document the judge reads</h3>
-<p>Every comparison sends the model two documents and the tournament makes ~15 per document,
-so the excerpt length is essentially the whole cost of the exercise. The <b>MPC minutes</b> and
-each <b>Monetary Policy Report with its annexes</b> are passed <b>whole, however long</b> —
-these are the documents the corpus exists to read closely, and a Report runs to ~200,000
-characters. Everything else is read up to <b>20,000 characters</b>; beyond that a document is
-<b>sampled from three places</b> — 40% from the opening, 20% from the middle, 40% from the
-close — rather than simply cut off. Sampling matters because a Bank of England speech opens
-with thanks to the host and several paragraphs of framing, so a document judged on its first
-few thousand characters can be judged on none of its argument.</p>
+<p>Jev's context window is 32,000 tokens and a comparison carries two documents, so each is
+read up to <b>56,000 characters</b> — roughly 9,000 words, which covers the large majority of
+the corpus <b>in full</b>, the minutes included. Anything longer — every Monetary Policy
+Report, some press conferences and a few long speeches — is <b>sampled from three places</b>,
+40% from the opening, 20% from the middle and 40% from the close, rather than simply cut off.
+Sampling matters because a Bank of England speech opens with thanks to the host and several
+paragraphs of framing, and a Report opens with its contents page: judged on the opening alone,
+a document can be judged on none of its argument.</p>
 <h3>Anonymization</h3>
 <p>A five-layer pipeline strips names, titles, and speaker labels before judging, so the
 model reads the text on its merits rather than recognising who is speaking.</p>
@@ -589,6 +605,31 @@ into that person's record across every tab. The <b>minutes</b> and the <b>Moneta
 Report</b> are the Committee's own documents and remain "BoE MPC" whether the box is ticked or
 not. The transcript is the full press conference, so it also carries the questions put by
 journalists and answers given by the other MPC members on the platform.</p>
+<h3>MPC meeting transcripts</h3>
+<p>Following the 2014 Warsh Review, the Bank publishes word-for-word transcripts of the MPC's
+policy meetings eight years after the event — 2015 to 2017 so far. They are the only record of
+what each member actually argued inside the room, before the minutes smoothed it into
+consensus prose. Each transcript is <b>split by speaker</b>: one document per member per
+meeting, holding everything they said (✚ marker, and its own <b>Documents</b> option).</p>
+<h3>Other parliamentary evidence, and the Governor's broadcast interview</h3>
+<p>Beyond the Monetary Policy Report hearings, MPC members give evidence at their own
+appointment and reappointment hearings, to the Treasury Committee's inquiries (quantitative
+easing and tightening, the pandemic, Brexit), and to the House of Lords Economic Affairs
+Committee, which questions the Governor annually and ran inquiries into QE (2021) and the
+Bank's independence (2023). These are split per member in the same way, but — unlike the
+Report hearings — run through the monetary-policy classifier, since a financial-stability or
+payments session is not a statement of policy stance. Since June 2026 the Bank also publishes
+the transcript of the Governor's pooled broadcast interview after each decision, which joins
+his record as an interview.</p>
+<h3>Who counted as a member, and when</h3>
+<p>Every set of minutes lists the members present, so each member's time on the Committee is
+read from those lists, and a document by an individual is scored only if it falls within it —
+with a margin before a first meeting for the appointment hearing, and a short one after the
+last. That excludes former members speaking years later as outside commentators and speeches
+from before someone joined, and it catches misattributions (a surname shared with a
+long-departed member) and mis-dated documents. The same attendance list keeps the "current
+MPC" roster up to date: the current Committee is whoever the newest minutes record as
+present, so a new appointee is picked up the day their first minutes are published.</p>
 <h3>Treasury Committee evidence</h3>
 <p>Every few months the MPC appears before the House of Commons Treasury Committee to be
 questioned on the Monetary Policy Report (the Inflation Report before the 2019 rename). Four
@@ -598,7 +639,7 @@ member, containing their own answers together with the committee questions they 
 answering. Two members from the same session share some question text but no answer text.
 These carry a ★ marker and their own <b>Documents</b> filter option on the Timeline.</p>
 <p>Because evidence is a different kind of text — unscripted answers under cross-examination,
-carrying the committee's questions with them — the <b>Treasury Cttee evidence</b> checkbox in
+carrying the committee's questions with them — the <b>Parliamentary evidence</b> checkbox in
 the top right takes it out of everything at once: the timeline, the rankings, the speaker
 averages and the data table. Untick it to score members on their prepared communication
 alone, and compare. Across the corpus evidence reads somewhat more hawkish on average than

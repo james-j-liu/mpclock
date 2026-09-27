@@ -30,7 +30,9 @@ from . import boe_sitemap
 UA = boe_sitemap.UA
 BASE = "https://www.bankofengland.co.uk"
 
-_PDF_RE = re.compile(r'href="((?:https://www\.bankofengland\.co\.uk)?/-/media/boe/files/speech/[^"?#]+\.pdf)"', re.I)
+# speeches, and the occasional speech the Bank filed as a paper (Haldane's 2009
+# "Banking on the State" lives under /files/paper/)
+_PDF_RE = re.compile(r'href="((?:https://www\.bankofengland\.co\.uk)?/-/media/boe/files/(?:speech|paper)/[^"?#]+\.pdf)"', re.I)
 # title/desc tail: "<topic> − speech by <Name>", "remarks given by <Name> at …",
 # "slides by", "keynote address delivered by", "Speech by <Name> at …"
 _ROLE = (r"(?:speech|remarks|slides|lecture|keynote|address|words|comments|"
@@ -115,11 +117,36 @@ def _clean_name(cand: str) -> str:
     return cand if _NAME_OK.match(cand) else ""
 
 
+_TRAIL_DASH_RE = re.compile(r"\s[-–—]\s*([A-Z][\w.'’-]+(?:\s+[A-Z][\w.'’-]+){1,2})\s*$")
+_FROM_NAME_RE = re.compile(r"\bfrom\s+([A-Z][\w.'’-]+(?:\s+[A-Z][\w.'’-]+){1,2})\s*$")
+_POSSESSIVE_RE = re.compile(r"^([A-Z][\w.'’-]+\s+[A-Z][\w'’-]+)['’]s\b")
+_GOVERNORS_RE = re.compile(r"^Governor['’]s\b|\bGovernor['’]s (?:speech|remarks|lecture|address)", re.I)
+
+# Since 2026 the Bank also titles pages "Dave Ramsden: Speech on quantitative
+# tightening, …" — the name leads instead of trailing after "speech by".
+_LEAD_NAME_RE = re.compile(r"^\s*([A-ZÀ-Ý][\w.'’-]+(?:\s+[A-ZÀ-Ý][\w.'’-]*){1,3})\s*:\s")
+
+
+def _known_person(name: str) -> str:
+    """The canonical roster name if `name` is someone the roster knows, else ""."""
+    from ..roster_mpc import CURRENT_MPC, FORMER_MPC, canon
+    person = canon(name)
+    return person if person in CURRENT_MPC or person in FORMER_MPC else ""
+
+
 def _speaker_from_slug(url: str) -> str:
     slug = url.rsplit("/", 1)[-1]
     m = _SLUG_BY_RE.search(slug)
     if m:
         return " ".join(w.capitalize() for w in m.group(1).split("-"))
+    # "dave-ramsden-speech-on-quantitative-tightening": a slug that opens with the
+    # name. Only trusted when the name is on the roster, since any two leading
+    # words would otherwise pass as a person.
+    words = slug.split("-")
+    for n in (3, 2):
+        person = _known_person(" ".join(w.capitalize() for w in words[:n]))
+        if person:
+            return person
     return ""
 
 
@@ -130,12 +157,24 @@ def _speaker(title: str, venue: str, url: str) -> str:
             name = _clean_name(m.group(1))
             if name:
                 return name
+    m = _LEAD_NAME_RE.match(title)
+    if m and _NAME_OK.match(m.group(1)):
+        return m.group(1)
+    # Older titles name the speaker in looser ways — "On counterparty risk - Andy
+    # Haldane", "Introduction from Mark Carney", "Andy Haldane's opening remarks".
+    # These patterns would match any capitalised words, so only a name on the MPC
+    # roster is accepted from them.
+    for rx in (_TRAIL_DASH_RE, _FROM_NAME_RE, _POSSESSIVE_RE):
+        m = rx.search(title)
+        if m and _known_person(m.group(1)):
+            return _known_person(m.group(1))
     return _speaker_from_slug(url)
 
 
 def _clean_title(title: str) -> str:
-    """Remove the '… − speech by Name' attribution tail to leave the topic."""
+    """Remove the attribution — '… − speech by Name' or 'Name: …' — to leave the topic."""
     t = _BY_RE.sub("", title).strip(" -–—")
+    t = _LEAD_NAME_RE.sub("", t, count=1).strip() if _LEAD_NAME_RE.match(t) else t
     return t or title
 
 
@@ -160,14 +199,27 @@ def _valid(date: str) -> str:
         return ""
 
 
+def _near_url_month(day: str, um) -> bool:
+    """Whether `day` is within a month of the /speech/YYYY/<month>/ the URL files it
+    under. The URL is the Bank's own filing and is never wrong about the month; a
+    date read from the text can be a citation ("Bernanke, 27 January 2005")."""
+    if not um or um.group(2) not in _MONTH_IDX:
+        return True
+    filed = int(um.group(1)) * 12 + _MONTH_IDX[um.group(2)]
+    got = int(day[:4]) * 12 + int(day[5:7])
+    return abs(got - filed) <= 1
+
+
 def _pick_date(url: str, traf_date: str, body: str) -> str:
-    # 1) the delivery date printed at the top of the speech PDF/page
-    for m in _DATE_TEXT_RE.finditer(body[:1500]):
-        cand = _valid(f"{m.group(3)}-{_MONTH_IDX[m.group(2).lower()]:02d}-{int(m.group(1)):02d}")
-        if cand:
-            return cand
-    # 2) trafilatura's parsed metadata date, if it agrees with the URL year
     um = re.search(r"/speech/(\d{4})/([a-z]+)/", url)
+    # 1) the delivery date printed at the top of the speech PDF/page — the first
+    #    one near the month the URL files the speech under
+    for window in (body[:1500], body[:8000]):   # the header first, then further in
+        for m in _DATE_TEXT_RE.finditer(window):
+            cand = _valid(f"{m.group(3)}-{_MONTH_IDX[m.group(2).lower()]:02d}-{int(m.group(1)):02d}")
+            if cand and _near_url_month(cand, um):
+                return cand
+    # 2) trafilatura's parsed metadata date, if it agrees with the URL year
     if re.match(r"\d{4}-\d{2}-\d{2}", traf_date or ""):
         if not um or traf_date[:4] == um.group(1):
             return traf_date
@@ -201,10 +253,20 @@ def extract_speech(url: str, min_chars: int = 800) -> Speech | None:
 
     venue = _og(html, "og:description")
     speaker = _speaker(title, venue, url)
-    if not speaker:
-        return None
     date = _pick_date(url, (meta.get("date") or ""), text)
     if not re.match(r"\d{4}-\d{2}-\d{2}", date):
+        return None
+    if not speaker and _GOVERNORS_RE.search(title):
+        # "Governor's speech at Mansion House": the office, not the name — the
+        # Governor in office that day (these are the year's most important speeches)
+        from .boe_interviews import governor_on
+        speaker = governor_on(date)
+    if not speaker:
+        return None
+    # The sitemap lists speeches before they are given ("Text to be published
+    # Monday 28 September"); a date in the future is a placeholder, not a speech.
+    import datetime as _dt
+    if date > _dt.date.today().isoformat():
         return None
     stype = ST_INTERVIEW if _INTERVIEW_RE.search(title) else ST_SPEECH
     return Speech(

@@ -29,7 +29,13 @@ def run_tournament(
     concurrency: int | None = None,
     resume: bool = False,
     full_run: bool = False,
+    anonymizer=None,
+    min_total: int | None = None,
+    max_new: int | None = None,
 ) -> Tournament:
+    """min_total: keep going until the log holds at least this many comparisons (a
+    full re-run resumed in chunks). max_new: stop after this many new comparisons in
+    this call, so a chunk fits a time limit; the log makes the next call resume."""
     tcfg = cfg()["tournament"]
     jcfg = cfg()["judge"]
     appearances = appearances_per_speech or tcfg["target_appearances_per_speech"]
@@ -43,9 +49,23 @@ def run_tournament(
         initial_mu=tcfg["initial_mu"],
         initial_sigma=tcfg["initial_sigma"],
         seed=seed,
+        draw_probability=tcfg.get("draw_probability", 0.0),
     )
+    # A Jev verdict carries a calibrated confidence. Below the threshold the model
+    # could not really separate the two documents, and recording that as a full win
+    # feeds TrueSkill a near coin-flip as if it were decisive; it is recorded as a
+    # draw instead (split-half reliability 0.54 -> 0.67, scripts/draw_experiment.py).
+    # Chat-judge records carry no calibrated probability ("p_a"), so they never draw.
+    draw_below = tcfg.get("draw_below_confidence")
+
+    def drawn(rec: dict) -> bool:
+        return bool(draw_below) and "p_a" in rec and rec.get("confidence", 1.0) < draw_below
     macro_str = {sid: macro.string(by_id[sid].date) for sid in ids}
     rng = random.Random(seed)
+    if anonymizer is None:
+        from ..process.anonymize import Anonymizer
+        from ..process.roster import build_roster
+        anonymizer = Anonymizer(build_roster([s.speaker for s in speeches]))
 
     total_comparisons = appearances * len(ids) // 2
     log_path = Path(log_path)
@@ -73,9 +93,9 @@ def run_tournament(
                 if a_id not in by_id or b_id not in by_id:
                     continue  # belongs to a different pool
                 if w == "A":
-                    tour.record(a_id, b_id); replayed += 1
+                    tour.record(a_id, b_id, drawn=drawn(rec)); replayed += 1
                 elif w == "B":
-                    tour.record(b_id, a_id); replayed += 1
+                    tour.record(b_id, a_id, drawn=drawn(rec)); replayed += 1
         done = replayed
         print(f"[tournament] resumed: replayed {replayed} logged comparisons")
         logf = log_path.open("a", encoding="utf-8")
@@ -92,9 +112,11 @@ def run_tournament(
         else:
             a_id, b_id = j, i
         a, b = by_id[a_id], by_id[b_id]
+        # anonymised lazily — only documents actually drawn pay for it — and never
+        # with a fallback to the raw, named text
         res = judge.compare(
-            a.text_anon or a.text, macro_str[a_id],
-            b.text_anon or b.text, macro_str[b_id],
+            anonymizer.text_of(a), macro_str[a_id],
+            anonymizer.text_of(b), macro_str[b_id],
             a_type=a.source_type, b_type=b.source_type,
         )
         return a_id, b_id, res
@@ -114,9 +136,13 @@ def run_tournament(
     budget = done + appearances * new_count // 2
     if full_run:
         budget = max(budget, total_comparisons)
-    cap = done + appearances * len(ids)          # hard safety bound
+    if min_total:
+        budget = max(budget, min_total)
+    cap = max(done, min_total or 0) + appearances * len(ids)   # hard safety bound
+    if max_new is not None:
+        budget = min(budget, done + max_new)
     while done < budget and done < cap:
-        n = batch
+        n = min(batch, budget - done)     # a chunk stops at its budget, not a batch past it
         pairs = tour.select_pairs(n, tcfg["pairing"])
         with ThreadPoolExecutor(max_workers=concurrency) as ex:
             futs = [ex.submit(judge_pair, p) for p in pairs]
@@ -135,9 +161,9 @@ def run_tournament(
                 consecutive_failures = 0
                 w = res.get("winner")
                 if w == "A":
-                    tour.record(a_id, b_id)
+                    tour.record(a_id, b_id, drawn=drawn(res))
                 elif w == "B":
-                    tour.record(b_id, a_id)
+                    tour.record(b_id, a_id, drawn=drawn(res))
                 else:
                     continue  # unparseable -> skip, don't corrupt ratings
                 logf.write(json.dumps({"a": a_id, "b": b_id, **res}) + "\n")

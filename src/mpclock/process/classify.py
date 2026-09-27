@@ -28,9 +28,11 @@ import requests
 from tenacity import retry, stop_after_attempt, wait_exponential
 
 from ..config import judge_model, openrouter_key
-from ..schema import COUNCIL_TYPES, ST_MEMBER_VIEW, ST_REPORT, ST_TESTIMONY, Speech
+from ..schema import (COUNCIL_TYPES, ST_MEETING, ST_MEMBER_VIEW, ST_REPORT, ST_TESTIMONY,
+                      Speech)
 
 API_URL = "https://openrouter.ai/api/v1/chat/completions"
+_MPR_SERIES_RE = re.compile(r"Treasury Committee evidence — (?:Monetary Policy|Inflation) Report")
 
 _SENTENCE_RE = re.compile(r"[a-z]{3}[^.!?\n]{50,}[.!?]")
 # academic speeches close with pages of citations; sampling the end of the file
@@ -125,10 +127,14 @@ class Classifier:
         if speech.source_type == ST_REPORT:
             return is_prose(speech.text)
         if speech.source_type in COUNCIL_TYPES or \
-                speech.source_type in (ST_TESTIMONY, ST_MEMBER_VIEW):
-            # Treasury Committee evidence is ingested only for the Monetary Policy
-            # Report sessions, and a member view is that member's stated reason for
-            # their Bank Rate vote, so the subject is settled before the text is read
+                speech.source_type in (ST_MEMBER_VIEW, ST_MEETING) or \
+                (speech.source_type == ST_TESTIMONY and _MPR_SERIES_RE.match(speech.title)):
+            # A member view is that member's stated reason for their Bank Rate vote,
+            # a meeting transcript is the policy meeting itself, and the Treasury
+            # Committee's Monetary Policy Report hearings are about exactly that — the
+            # subject is settled before the text is read. Other evidence sessions
+            # (appointment hearings, QE inquiries, Financial Stability Report
+            # hearings, the Lords) are classified like any speech.
             return True
         excerpt = self.excerpt(speech)
         if not self._ask(STAGE1, excerpt):

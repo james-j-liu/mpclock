@@ -24,7 +24,8 @@ except Exception:
     pass
 
 from mpclock.config import PROCESSED
-from mpclock.corpus import assemble, bis_boe, boe_mpc, tsc_evidence
+from mpclock.corpus import (assemble, bis_boe, boe_interviews, boe_mpc, mpc_transcripts,
+                            tsc_evidence)
 from mpclock.roster_mpc import canon, is_mpc
 from mpclock.schema import (COUNCIL_TYPES, ST_ACCOUNT, ST_MEMBER_VIEW, ST_REPORT,
                             ST_STATEMENT, load_corpus, save_corpus)
@@ -34,7 +35,7 @@ CORPUS = PROCESSED / "corpus.jsonl"
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--only", default="", help="mpc | tsc | bis (default: all three)")
+    ap.add_argument("--only", default="", help="mpc | tsc | transcripts | interviews | bis (default: all)")
     ap.add_argument("--split", action="store_true",
                     help="score every report section/box/annex separately "
                          "(default follows config.yaml corpus.split_report_sections)")
@@ -86,13 +87,21 @@ def main():
         print("\nTreasury Committee evidence (per MPC member)...")
         incoming += tsc_evidence.load(use_cache=not args.no_cache)
 
+    if args.only in ("", "transcripts"):
+        print("\nMPC meeting transcripts (per member, 8-year lag)...")
+        incoming += mpc_transcripts.load(use_cache=not args.no_cache)
+
+    if args.only in ("", "interviews"):
+        print("\nGovernor's broadcast interviews...")
+        incoming += boe_interviews.load(use_cache=not args.no_cache)
+
     if args.only in ("", "bis"):
         print("\nBIS cross-check...")
         site = [s for s in corpus if s.institution == "Bank of England"]
         bis = bis_boe.load(use_cache=not args.no_cache)
         incoming += bis_boe.crosscheck(site, bis)
 
-    merged = assemble.merge(corpus, incoming)
+    merged = assemble.drop_duplicates(assemble.merge(corpus, incoming))
     restored = 0
     for s in merged:
         if s.mu is None and s.id in scores:

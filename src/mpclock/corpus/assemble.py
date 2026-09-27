@@ -63,6 +63,15 @@ def load_all(use_cache: bool = True, skip: tuple = (),
         except Exception as e:  # noqa: BLE001
             print(f"    [warn] Treasury Committee evidence failed: {type(e).__name__}: {e}")
 
+    if "extra" not in skip:
+        print("[+] MPC meeting transcripts and Governor interviews...")
+        try:
+            from . import boe_interviews, mpc_transcripts
+            speeches += mpc_transcripts.load(use_cache=use_cache)
+            speeches += boe_interviews.load(use_cache=use_cache)
+        except Exception as e:  # noqa: BLE001
+            print(f"    [warn] transcripts/interviews failed: {type(e).__name__}: {e}")
+
     if "bis" not in skip:
         print("[4/4] BIS cross-check...")
         try:
@@ -96,6 +105,59 @@ def merge(existing: list[Speech], incoming: list[Speech]) -> list[Speech]:
     print(f"Merged {added} new records into {len(existing)} existing "
           f"-> {len(by_id)} total")
     return list(by_id.values())
+
+
+def _overlap(a: str, b: str, n: int = 8) -> float:
+    """Share of the shorter text's word 8-grams that also occur in the other:
+    about 1 for two transcriptions of one speech, near 0 for two different talks."""
+    def grams(t: str) -> set:
+        w = t.lower().split()[:4000]
+        return {" ".join(w[i:i + n]) for i in range(max(0, len(w) - n + 1))}
+    ga, gb = grams(a), grams(b)
+    if not ga or not gb:
+        return 0.0
+    return len(ga & gb) / min(len(ga), len(gb))
+
+
+def drop_duplicates(corpus: list[Speech], verbose: bool = True) -> list[Speech]:
+    """Remove the second copy of a speech held twice under different URLs.
+
+    Two cases: a BIS backfill record for a speech the Bank's site now also yields
+    (the BIS copy was only added because the site page used to fail to parse), and
+    the same speech filed twice by the Bank itself (a speech and its paper
+    version). Same speaker, within two days, and texts of similar length count as
+    one speech; the Bank's own copy is kept, else the longer one.
+    """
+    from ..roster_mpc import canon
+    import datetime as _dt
+
+    def day(s): return _dt.date.fromisoformat(s.date)
+    by_speaker: dict[str, list[Speech]] = {}
+    for s in corpus:
+        if s.source_type in ("speech", "interview") and s.word_count:
+            by_speaker.setdefault(canon(s.speaker), []).append(s)
+    drop: set[str] = set()
+    for docs in by_speaker.values():
+        docs.sort(key=lambda s: s.date)
+        for i, a in enumerate(docs):
+            for b in docs[i + 1:]:
+                if (day(b) - day(a)).days > 2:
+                    break
+                if a.id in drop or b.id in drop:
+                    continue
+                if min(a.word_count, b.word_count) / max(a.word_count, b.word_count) < 0.8:
+                    continue            # two different talks on consecutive days
+                if _overlap(a.text, b.text) < 0.5:
+                    continue            # similar length, different words: two talks
+                site_a = "(BIS)" not in a.institution
+                site_b = "(BIS)" not in b.institution
+                if site_a != site_b:
+                    drop.add(b.id if site_a else a.id)
+                else:
+                    drop.add(a.id if a.word_count < b.word_count else b.id)
+    if verbose and drop:
+        print(f"de-duplicated {len(drop)} speeches held twice under different URLs")
+    return [s for s in corpus if s.id not in drop]
 
 
 def build(use_cache: bool = True, out_path=CORPUS_PATH, **kw) -> list[Speech]:

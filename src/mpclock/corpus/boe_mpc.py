@@ -317,7 +317,10 @@ def _minutes_date(url: str, text: str, title: str) -> str:
 # member sets out, in their own paragraph, the reasoning behind their own vote.
 # That is individual communication sitting inside a committee document, so it is
 # cut out of the minutes and scored per member.
-_VIEWS_HEAD_RE = re.compile(r"^\s*MPC members[’'’]?\s*views\s*$", re.I | re.M)
+# "MPC members' views" — or, when a second vote sits alongside Bank Rate (the
+# annual QT decision), "MPC members' views on Bank Rate"
+_VIEWS_HEAD_RE = re.compile(r"^\s*MPC members[’'’]?\s*views(?:\s+on\s+[^\n]{3,40})?\s*$",
+                            re.I | re.M)
 _NUMBERED_RE = re.compile(r"^\s*\d+\.\s", re.M)
 _VOTE_GROUP_RE = re.compile(r"^\s*Votes? to [^\n]{3,80}$", re.I | re.M)
 # "Andrew Bailey:", "Catherine L Mann:" — the middle token can be a bare initial
@@ -585,7 +588,7 @@ def load_new(seen_urls: set[str], seen_titles: set[str], use_cache: bool = False
     split = _split_default()
     murls = [u for u in minutes_urls(use_cache, start_year, end_year) if u not in seen_urls]
     rurls = [u for u in report_urls(use_cache, start_year, end_year)
-             if issue_label(u) not in seen_titles]
+             if issue_label(u) not in seen_titles and u not in seen_urls]
     if verbose:
         print(f"  MPC composite: {len(murls)} new minutes, {len(rurls)} new report rounds")
     if not murls and not rurls:
