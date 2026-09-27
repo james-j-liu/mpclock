@@ -255,3 +255,83 @@ def scores(parsed: dict) -> dict:
         "mean_vote": sum(prefs) / len(prefs) / unit,
         "dissent": (tighter - looser) / len(prefs),
     }
+
+
+# --- who voted for what -----------------------------------------------------
+# The counted parser above gives the Committee's vote; this gives each member's.
+# The minutes name the dissenters and state what they wanted ("Three members
+# (Megan Greene, Catherine L Mann and Huw Pill) voted against the proposition,
+# preferring to increase Bank Rate by 0.25 percentage points"); everyone else on
+# the attendance list voted for the decision.
+_SENTENCE_SPLIT_RE = re.compile(r"(?<=[a-z%)\]])\.\s+(?=[A-Z(])")
+_PREF_RE = re.compile(r"(?:prefer(?:red|ring)|voted)\s+to\s+"
+                      r"(increase|reduce|raise|cut|lower|maintain)\s+" + _RATE +
+                      r"(?:\s+" + _AMOUNT + r")?" + _LEVEL + r"?", re.I)
+_DISSENT_CUE_RE = re.compile(r"voted\s+against|prefer(?:red|ring)\s+to|"
+                             r"members?\b[^.]{0,120}voted\s+to\s+(?:increase|reduce|raise|cut)",
+                             re.I)
+
+
+def _name_index() -> dict[str, str]:
+    """Written form -> MPC member: full names, aliases, and unshared surnames."""
+    from ..roster_mpc import ALIASES, CURRENT_MPC, FORMER_MPC, canon
+    people = {canon(n) for n in CURRENT_MPC | FORMER_MPC}
+    idx = {p: p for p in people}
+    idx.update({a: canon(a) for a in ALIASES})
+    by_sur: dict[str, set[str]] = {}
+    for p in people:
+        by_sur.setdefault(p.split()[-1], set()).add(p)
+    idx.update({s: next(iter(v)) for s, v in by_sur.items() if len(v) == 1})
+    return idx
+
+
+def member_votes(text: str, decision_bp: int, prev_level: float | None,
+                 present: list[str], governor: str) -> dict[str, int] | None:
+    """{member: preferred change in bp} for one meeting, or None if unreadable.
+
+    `present` is the attendance list; `governor` resolves "the Governor" in the
+    older minutes' lists; `prev_level` prices a preference stated as a level.
+    """
+    if not present:
+        return None
+    idx = _name_index()
+    names_rx = re.compile(r"\b(" + "|".join(sorted(map(re.escape, idx), key=len, reverse=True))
+                          + r"|the Governor)\b")
+    votes: dict[str, int] = {}
+    for anchor in _ANCHOR_RE.finditer(text):
+        region = text[max(0, anchor.start() - 400):anchor.start() + 2600]
+        for sent in _SENTENCE_SPLIT_RE.split(_WS.sub(" ", region)):
+            if not _DISSENT_CUE_RE.search(sent):
+                continue
+            pm = _PREF_RE.search(sent)
+            if not pm:
+                continue
+            d = _DIR.get(pm.group(1).lower(), 0)
+            if pm.group(2):
+                bp = d * _bp(pm.group(2), pm.group(3))
+            elif pm.group(4) and prev_level is not None:
+                bp = int(round((float(pm.group(4)) - prev_level) * 100))
+            else:
+                bp = 0 if d == 0 else d * 25
+            # only names before the preference clause are the ones holding it
+            for nm in names_rx.findall(sent[:pm.start()]):
+                person = governor if nm == "the Governor" else idx[nm]
+                votes.setdefault(person, bp)
+        if votes:
+            break                   # the first region naming dissenters is the vote
+    return {p: votes.get(p, decision_bp) for p in present}
+
+
+def checked_member_votes(text: str, prev_level: float | None, present: list[str],
+                         governor: str) -> dict[str, int] | None:
+    """member_votes, kept only when it agrees with the counted reading of the same
+    minutes: the same decision, and as many members off it as the count says."""
+    counted = parse_votes(text)
+    if not counted:
+        return None
+    named = member_votes(text, counted["decision_bp"], prev_level, present, governor)
+    if not named:
+        return None
+    n_off = sum(1 for v in named.values() if v != counted["decision_bp"])
+    n_counted = sum(1 for v in counted["prefs_bp"] if v != counted["decision_bp"])
+    return named if n_off == n_counted else None
