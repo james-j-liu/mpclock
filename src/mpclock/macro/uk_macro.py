@@ -3,8 +3,8 @@
 Series come from the ONS "timeseries" open-data endpoint (the old api.ons.gov.uk
 was retired in Nov 2024; the live JSON now lives under www.ons.gov.uk). Each series
 is addressed by a "{topic}|{cdid}|{dataset}" key. For each speech date we report the
-most recent observation on or before that date, so the judge sees only information
-available at the time.
+most recent observation PUBLISHED on or before that date (each series is shifted
+by its publication lag), so the judge sees only information available at the time.
 
 Series:
   - core_cpi     : CPI excl. energy, food, alcohol & tobacco, annual % change (~Core PCE)
@@ -85,6 +85,13 @@ def _fetch_series(series_key: str) -> pd.Series | None:
     return s[~s.index.isna()].dropna().sort_index()
 
 
+# Days from the start of an observation's reference period to its publication.
+# ONS: CPI for month M comes out mid-M+1; the LFS unemployment rate is a rolling
+# three months labelled by its last month and published ~6 weeks after it; the
+# first GDP estimate for a quarter comes ~6 weeks after the quarter ends.
+PUBLICATION_LAG_DAYS = {"core_cpi": 48, "unemployment": 75, "gdp_growth": 135, "vix": 0}
+
+
 class MacroContext:
     def __init__(self):
         series_cfg = cfg()["macro"]["series"]
@@ -94,6 +101,11 @@ class MacroContext:
                 continue
             s = _fetch_series(key)
             if s is not None and len(s):
+                # observations are dated by the period they describe (a month's CPI
+                # is dated the 1st); shift each to when it was actually published,
+                # or a speech on the 5th is judged against a figure not yet out
+                s = s.copy()
+                s.index = s.index + pd.Timedelta(days=PUBLICATION_LAG_DAYS.get(name, 0))
                 self.series[name] = s
 
     def as_of(self, d: str) -> dict[str, float | None]:
