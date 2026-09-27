@@ -35,11 +35,9 @@ import pandas as pd
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import brier_score_loss, log_loss
 
-from mpclock.corpus.boe_interviews import governor_on
-from mpclock.macro.mpc_votes import checked_member_votes
+from mpclock.macro.mpc_votes import member_votes_by_meeting
 from mpclock.roster_mpc import canon
 from mpclock.schema import load_corpus
-from mpclock.tenure import attendance
 
 OWN = {"speech", "interview", "testimony", "member_view"}
 BASE = ["prev_same", "n_same_prev"]
@@ -53,12 +51,9 @@ def load():
     rate = pd.DataFrame(json.loads((ROOT / "site/macro.json").read_text())["series"]
                         ["bank_rate"]["data"], columns=["d", "r"])
     rate["d"] = pd.to_datetime(rate["d"])
-    meetings = []
-    for s in sorted((s for s in corpus if s.source_type == "mp_account"), key=lambda s: s.date):
-        before = rate[rate.d < pd.Timestamp(s.date)]
-        v = checked_member_votes(s.text, float(before.r.iloc[-1]) if len(before) else None,
-                                 attendance(s.text), governor_on(s.date))
-        meetings.append((pd.Timestamp(s.date), v))
+    levels = [(d.strftime("%Y-%m-%d"), float(r)) for d, r in zip(rate.d, rate.r)]
+    meetings = [(pd.Timestamp(d), v) for d, v in member_votes_by_meeting(
+        [s for s in corpus if s.source_type == "mp_account"], levels)]
     return docs, meetings
 
 

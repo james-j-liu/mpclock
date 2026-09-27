@@ -38,11 +38,9 @@ import numpy as np
 import pandas as pd
 import statsmodels.api as sm
 
-from mpclock.corpus.boe_interviews import governor_on
-from mpclock.macro.mpc_votes import checked_member_votes
+from mpclock.macro.mpc_votes import member_votes_by_meeting
 from mpclock.roster_mpc import canon
 from mpclock.schema import load_corpus
-from mpclock.tenure import attendance
 
 PUBLIC = {"speech", "interview", "testimony"}
 
@@ -57,19 +55,18 @@ def build_panel(window: int, with_transcripts: bool) -> pd.DataFrame:
                         ["bank_rate"]["data"], columns=["d", "r"])
     rate["d"] = pd.to_datetime(rate["d"])
 
+    levels = [(d.strftime("%Y-%m-%d"), float(r)) for d, r in zip(rate.d, rate.r)]
     rows = []
-    for s in sorted((s for s in corpus if s.source_type == "mp_account"), key=lambda s: s.date):
-        day = pd.Timestamp(s.date)
-        before = rate[rate.d < day]
-        votes = checked_member_votes(s.text, float(before.r.iloc[-1]) if len(before) else None,
-                                     attendance(s.text), governor_on(s.date))
+    for date, votes in member_votes_by_meeting(
+            [s for s in corpus if s.source_type == "mp_account"], levels):
         if not votes:
             continue
+        day = pd.Timestamp(date)
         decision = pd.Series(list(votes.values())).mode().iloc[0]
         recent = docs[(docs.d < day) & (docs.d >= day - pd.Timedelta(days=window))]
         own = recent.groupby("p")["m"].mean()
         for person, bp in votes.items():
-            rows.append({"meeting": s.date, "member": person,
+            rows.append({"meeting": date, "member": person,
                          "dev": (bp - decision) / 25.0,
                          "hawk": own.get(person, np.nan)})
     panel = pd.DataFrame(rows)

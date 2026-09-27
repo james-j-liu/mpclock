@@ -75,6 +75,8 @@ def _count_names(blob: str) -> int:
     parts = [p.strip() for p in re.split(r",|\band\b", blob) if p.strip()]
     return len([p for p in parts if re.match(r"^(?:the\s+)?[A-Z]", p)])
 _UNANIMOUS_RE = re.compile(r"voted\s+unanimously", re.I)
+_RUNOFF_RE = re.compile(r"In\s+order\s+to\s+secure\s+a\s+majority"
+                        r"|invited\s+the\s+Committee\s+to\s+vote\s+on\s+whether", re.I)
 _PRESENT_RE = re.compile(r"following\s+members\s+of\s+the\s+Committee\s+were\s+present:?(.{0,700})",
                          re.I | re.S)
 
@@ -126,15 +128,31 @@ _ANCHOR_RE = re.compile(
     r"|voted\s+by\s+a\s+majority|voted\s+unanimously|MPC\s+voted)", re.I)
 
 
-def parse_votes(text: str) -> dict | None:
+def _final_vote(text: str) -> str:
+    """Only the deciding vote when there were two rounds.
+
+    With no majority for any single option the Chair calls a second vote between
+    the two leading ones (August 2025: 4 for -25bp, 4 hold, 1 for -50bp, then 5-4
+    for -25bp). Read together, both rounds count 14 votes from nine members; the
+    second round is the decision, and the members' first preferences are dropped.
+    """
+    last = None
+    for last in _RUNOFF_RE.finditer(text):
+        pass
+    return text[last.start():] if last else text
+
+
+def parse_votes(text: str, n_present: int | None = None) -> dict | None:
     """{'decision_bp', 'n_members', 'prefs_bp': [...]} or None if unreadable.
 
     Each place the vote is recorded is read on its own. Since 2015 the same vote
     appears twice — in the Monetary Policy Summary and again in the minutes — and
     reading both together counted every dissent twice; the first complete,
-    self-consistent reading wins.
+    self-consistent reading wins. `n_present` overrides the attendance count read
+    from the text, for minutes whose members-present list is missing.
     """
-    present = _members_present(text)
+    present = n_present or _members_present(text)
+    text = _final_vote(text)
     regions = [text[max(0, m.start() - 400):m.start() + 2600]
                for m in _ANCHOR_RE.finditer(text)]
     regions.append(text[:4500])          # the Summary, if the anchors missed it
@@ -268,7 +286,7 @@ _PREF_RE = re.compile(r"(?:prefer(?:red|ring)|voted)\s+to\s+"
                       r"(increase|reduce|raise|cut|lower|maintain)\s+" + _RATE +
                       r"(?:\s+" + _AMOUNT + r")?" + _LEVEL + r"?", re.I)
 _DISSENT_CUE_RE = re.compile(r"voted\s+against|prefer(?:red|ring)\s+to|"
-                             r"members?\b[^.]{0,120}voted\s+to\s+(?:increase|reduce|raise|cut)",
+                             r"members?\b[^.]{0,120}voted\s+to\s+(?:increase|reduce|raise|cut|maintain)",
                              re.I)
 
 
@@ -298,6 +316,7 @@ def member_votes(text: str, decision_bp: int, prev_level: float | None,
     names_rx = re.compile(r"\b(" + "|".join(sorted(map(re.escape, idx), key=len, reverse=True))
                           + r"|the Governor)\b")
     votes: dict[str, int] = {}
+    text = _final_vote(text)
     for anchor in _ANCHOR_RE.finditer(text):
         region = text[max(0, anchor.start() - 400):anchor.start() + 2600]
         for sent in _SENTENCE_SPLIT_RE.split(_WS.sub(" ", region)):
@@ -326,7 +345,7 @@ def checked_member_votes(text: str, prev_level: float | None, present: list[str]
                          governor: str) -> dict[str, int] | None:
     """member_votes, kept only when it agrees with the counted reading of the same
     minutes: the same decision, and as many members off it as the count says."""
-    counted = parse_votes(text)
+    counted = parse_votes(text, len(present) or None)
     if not counted:
         return None
     named = member_votes(text, counted["decision_bp"], prev_level, present, governor)
@@ -335,3 +354,36 @@ def checked_member_votes(text: str, prev_level: float | None, present: list[str]
     n_off = sum(1 for v in named.values() if v != counted["decision_bp"])
     n_counted = sum(1 for v in counted["prefs_bp"] if v != counted["decision_bp"])
     return named if n_off == n_counted else None
+
+
+def member_votes_by_meeting(minutes, rate: list[tuple[str, float]]) -> list[tuple[str, dict | None]]:
+    """[(date, {member: preferred change in bp} or None)] for every set of minutes.
+
+    `minutes` are mp_account records, `rate` the Bank Rate series as (date, level).
+    A meeting whose members-present list is missing (it can be swept into the
+    member-views section that ends the minutes, as in March 2026) borrows the
+    members present at both neighbouring meetings — or at the one neighbour it has.
+    The named reading is still checked against the counted one, so a borrowed list
+    that is wrong about who was there fails the check rather than inventing a vote.
+    """
+    from ..corpus.boe_interviews import governor_on
+    from ..tenure import attendance
+
+    minutes = sorted(minutes, key=lambda s: s.date)
+    present = [attendance(s.text) for s in minutes]
+    for i, names in enumerate(present):
+        if names:
+            continue
+        before = next((p for p in reversed(present[:i]) if p), None)
+        after = next((attendance(s.text) for s in minutes[i + 1:] if attendance(s.text)), None)
+        if before and after:
+            present[i] = [p for p in before if p in after]
+        else:
+            present[i] = list(before or after or [])
+    rate = sorted(rate)
+    out = []
+    for s, names in zip(minutes, present):
+        prev = [lvl for d, lvl in rate if d < s.date]
+        out.append((s.date, checked_member_votes(s.text, prev[-1] if prev else None,
+                                                 names, governor_on(s.date))))
+    return out

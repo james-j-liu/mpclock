@@ -29,6 +29,36 @@ import requests
 
 from mpclock.macro.uk_macro import _fetch_series  # ONS fetcher (topic|cdid|dataset)
 
+RECENT_DAYS = 400   # per-member vote failures newer than this are flagged in CI
+
+
+def check_member_votes(minutes, bank_rate) -> list[str]:
+    """Flag meetings whose per-member votes cannot be read.
+
+    The member-level analyses (forecast_votes, member_vote_analysis) silently skip
+    such meetings, and the pairs of meetings either side of them. Old failures
+    (mostly 1997-2004 wording) are counted; a failure in the last RECENT_DAYS is
+    new — a change in how the minutes are written — and is raised as a GitHub
+    Actions warning so it shows on the run summary, not only in the log.
+    """
+    import os
+    from mpclock.macro.mpc_votes import member_votes_by_meeting
+
+    got = member_votes_by_meeting(minutes, [(str(d)[:10], float(v)) for d, v in bank_rate])
+    failed = [d for d, v in got if v is None]
+    cutoff = str(pd.Timestamp.today().normalize() - pd.Timedelta(days=RECENT_DAYS))[:10]
+    recent = [d for d in failed if d >= cutoff]
+    print(f"[votes] per-member votes read for {len(got) - len(failed)} of {len(got)} meetings; "
+          f"{len(failed) - len(recent)} older gaps, {len(recent)} recent")
+    for d in recent:
+        msg = (f"per-member votes unreadable for the {d} MPC minutes - "
+               f"that meeting is missing from the member-level forecasting data")
+        if os.environ.get("GITHUB_ACTIONS"):
+            print(f"::warning title=MPC vote parse::{msg}")
+        else:
+            print(f"[warn] {msg}")
+    return recent
+
 START = "1997-01-01"
 TODAY = date.today().isoformat()
 OUT = Path("site/macro.json")
@@ -115,9 +145,10 @@ def vote_series(bank_rate: list[list] | None) -> dict:
             fallback += 1
             rows.append((s.date, actual / 25.0))
 
-    print(f"[votes] {len(minutes)} meetings | {parsed} read member-by-member "
+    print(f"[votes] {len(minutes)} meetings | {parsed} read from the vote count "
           f"| {fallback} from the rate change alone | {mismatches} dropped for "
           f"disagreeing with the rate series")
+    check_member_votes(minutes, bank_rate or [])
     if not rows:
         return {}
     data = [[d, round(v, 3)] for d, v in rows]
