@@ -93,7 +93,7 @@ def attendance(minutes_text: str) -> list[str]:
         return []
     names = []
     for line in _BLOCK_END_RE.split(m.group(1))[0].splitlines():
-        hit = _NAME_LINE_RE.match(line.strip())
+        hit = _NAME_LINE_RE.match(line.strip().lstrip("•·▪-– "))   # March 2026 lists are bulleted
         if hit and "present" not in line.lower():
             names.append(canon(hit.group(1).strip()))
     return names

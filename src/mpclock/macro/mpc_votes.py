@@ -107,7 +107,7 @@ def _members_present(text: str) -> int:
     if not m:
         return 0
     block = m.group(1)
-    lines = [_WS.sub(" ", ln).strip(" ,;") for ln in block.splitlines()]
+    lines = [_WS.sub(" ", ln).strip(" ,;").lstrip("•·▪-– ") for ln in block.splitlines()]
     names = [ln for ln in lines
              if 3 <= len(ln) <= 60 and re.match(r"^(?:The\s+)?[A-Z]", ln)
              and "Treasury" not in ln and "present" not in ln.lower()]

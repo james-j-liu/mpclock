@@ -121,44 +121,29 @@ def run_tournament(
         )
         return a_id, b_id, res
 
-    # Budget the comparisons to the GENUINELY new speeches (those with no logged
-    # comparisons after the replay): ~appearances/2 comparisons per new speech. This
-    # gives a fresh full run its full ~15*N budget (all speeches new) and keeps a daily
-    # increment small and always-terminating - it never tries to re-converge speeches
-    # that already carry a rating (which, if a few can't reach the target, would loop
-    # forever dumping comparisons onto the rest).
-    #
-    # full_run instead budgets to the whole pool's target (15*N at 30 appearances),
-    # counted from zero. That is what makes a killed full run resumable: the "new"
-    # rule would see every speech carrying one or two comparisons and stop dead,
-    # leaving the pool under-sampled.
-    new_count = sum(1 for c in tour.n_comp.values() if c == 0)
-    budget = done + appearances * new_count // 2
-    if full_run:
-        budget = max(budget, total_comparisons)
-    if min_total:
-        budget = max(budget, min_total)
-    cap = max(done, min_total or 0) + appearances * len(ids)   # hard safety bound
-    if max_new is not None:
-        budget = min(budget, done + max_new)
-    while done < budget and done < cap:
-        n = min(batch, budget - done)     # a chunk stops at its budget, not a batch past it
-        pairs = tour.select_pairs(n, tcfg["pairing"])
+    # A full run (or a chunk of one) budgets to the whole pool's target (15*N at 30
+    # appearances), counted from zero, so a killed run resumes. A daily increment
+    # tops up only the under-sampled documents, pairing them directly (below).
+    state = {"done": done, "failures": 0, "consecutive": 0}
+
+    def run_pairs(pairs) -> list[tuple[str, str]]:
+        """Judge and record a batch of pairs; returns the pairs actually recorded."""
+        recorded = []
         with ThreadPoolExecutor(max_workers=concurrency) as ex:
             futs = [ex.submit(judge_pair, p) for p in pairs]
             for fut in as_completed(futs):
                 try:
                     a_id, b_id, res = fut.result()
                 except Exception as e:  # exhausted retries on this pair -> skip
-                    failures += 1
-                    consecutive_failures += 1
-                    if consecutive_failures >= 200:
+                    state["failures"] += 1
+                    state["consecutive"] += 1
+                    if state["consecutive"] >= 200:
                         logf.close(); pbar.close()
                         raise RuntimeError(
-                            f"Aborting: {consecutive_failures} consecutive judge "
+                            f"Aborting: {state['consecutive']} consecutive judge "
                             f"failures (API likely down). Last error: {e!r}")
                     continue
-                consecutive_failures = 0
+                state["consecutive"] = 0
                 w = res.get("winner")
                 if w == "A":
                     tour.record(a_id, b_id, drawn=drawn(res))
@@ -168,10 +153,54 @@ def run_tournament(
                     continue  # unparseable -> skip, don't corrupt ratings
                 logf.write(json.dumps({"a": a_id, "b": b_id, **res}) + "\n")
                 logf.flush()
-                done += 1
+                state["done"] += 1
                 pbar.update(1)
-        if tour.max_sigma() < sigma_target and tour.mean_appearances() >= appearances:
-            break
+                recorded.append((a_id, b_id))
+        return recorded
+
+    if not full_run and not min_total:
+        # Daily increment. The documents that need comparisons are a handful in a
+        # pool of ~1,700, so drawing pairs from the whole pool (as below) put each
+        # new document in about one of "its" 15 comparisons, leaving it at the prior.
+        # Instead each under-sampled document is paired directly, one comparison per
+        # round, against a settled document rated near it NOW — so its partners
+        # follow its rating as it moves — until it has appearances/2 appearances.
+        floor = tcfg.get("min_appearances", 10)
+        goal = appearances // 2
+        need = {sid: goal - tour.n_comp[sid] for sid in ids if tour.n_comp[sid] < floor}
+        tries = {sid: 0 for sid in need}
+        allowance = max_new if max_new is not None else sum(need.values())
+        while need and state["done"] - done < allowance:
+            pairs = [(sid, j) for sid in list(need)[: allowance - (state["done"] - done)]
+                     if (j := tour.settled_partner(sid, need))]
+            if not pairs:
+                break
+            for sid, _ in pairs:
+                tries[sid] += 1
+            got = run_pairs(pairs)
+            for a_id, b_id in got:
+                for sid in (a_id, b_id):
+                    if sid in need:
+                        need[sid] -= 1
+            for sid in list(need):   # topped up, or failing repeatedly: stop on it
+                if need[sid] <= 0 or tries[sid] >= 2 * goal:
+                    del need[sid]
+    else:
+        new_count = sum(1 for c in tour.n_comp.values() if c == 0)
+        budget = done + appearances * new_count // 2
+        if full_run:
+            budget = max(budget, total_comparisons)
+        if min_total:
+            budget = max(budget, min_total)
+        cap = max(done, min_total or 0) + appearances * len(ids)   # hard safety bound
+        if max_new is not None:
+            budget = min(budget, done + max_new)
+        while state["done"] < budget and state["done"] < cap:
+            n = min(batch, budget - state["done"])   # a chunk stops at its budget
+            run_pairs(tour.select_pairs(n, tcfg["pairing"]))
+            if tour.max_sigma() < sigma_target and tour.mean_appearances() >= appearances:
+                break
+    failures = state["failures"]
 
     logf.close()
     pbar.close()

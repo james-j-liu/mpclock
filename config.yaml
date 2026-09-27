@@ -42,6 +42,7 @@ tournament:
   # decisive adds noise (split-half reliability 0.54 -> 0.67; draw_experiment.py).
   draw_below_confidence: 0.60
   draw_probability: 0.75    # TrueSkill's prior that equal documents come out level
+  min_appearances: 10       # daily run tops up any document below this, pairing it directly
   sigma_convergence: 2.0
   pairing:
     swiss_fraction: 0.6

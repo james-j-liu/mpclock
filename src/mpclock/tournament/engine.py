@@ -99,6 +99,16 @@ class Tournament:
         self.rng.shuffle(pairs)
         return pairs[:n_pairs]
 
+    def settled_partner(self, i: str, unsettled, k: int = 8) -> str | None:
+        """A random one of the k settled documents rated nearest to i right now —
+        near enough to be informative, random enough not to replay one pairing."""
+        mu = self.ratings[i].mu
+        pool = [j for j in self.ratings if j != i and j not in unsettled]
+        if not pool:
+            return None
+        near = sorted(pool, key=lambda j: abs(self.ratings[j].mu - mu))[:k]
+        return self.rng.choice(near)
+
     def _near_mu_partner(self, i, by_mu, mu_index):
         idx = mu_index[i]
         for delta in (1, -1, 2, -2, 3, -3):

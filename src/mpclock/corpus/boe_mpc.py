@@ -321,7 +321,12 @@ def _minutes_date(url: str, text: str, title: str) -> str:
 # annual QT decision), "MPC members' views on Bank Rate"
 _VIEWS_HEAD_RE = re.compile(r"^\s*MPC members[’'’]?\s*views(?:\s+on\s+[^\n]{3,40})?\s*$",
                             re.I | re.M)
-_NUMBERED_RE = re.compile(r"^\s*\d+\.\s", re.M)
+# "21. On 5 November …" — or "35: On 18 March …" (March 2026 numbered with colons)
+_NUMBERED_RE = re.compile(r"^\s*\d+[.:]\s", re.M)
+# what follows the section, numbered or not: a missed end sweeps the gilt-stock
+# paragraph and the attendance list into the last member's rationale
+_VIEWS_END_RE = re.compile(r"^\s*Operational considerations\s*$"
+                           r"|members\s+of\s+the\s+Committee\s+were\s+present", re.I | re.M)
 _VOTE_GROUP_RE = re.compile(r"^\s*Votes? to [^\n]{3,80}$", re.I | re.M)
 # "Andrew Bailey:", "Catherine L Mann:" — the middle token can be a bare initial
 _MEMBER_PARA_RE = re.compile(r"^([A-Z][A-Za-z.'’-]*(?:\s+[A-Z][A-Za-z.'’-]*){1,3})\s*:\s+(?=[A-Z“\"])",
@@ -342,6 +347,9 @@ def split_member_views(text: str) -> tuple[str, list[tuple[str, str, str]]]:
     # preamble ("20. Members set out the rationale …" … "21. On 5 November …")
     nums = [m.start() for m in _NUMBERED_RE.finditer(text, body_start)]
     end = nums[1] if len(nums) > 1 else (nums[0] if nums else len(text))
+    stop = _VIEWS_END_RE.search(text, body_start)
+    if stop:
+        end = min(end, stop.start())
     section = text[body_start:end]
 
     views: list[tuple[str, str, str]] = []

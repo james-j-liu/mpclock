@@ -27,7 +27,7 @@ try:
 except Exception:
     pass
 
-from mpclock.config import PROCESSED
+from mpclock.config import PROCESSED, cfg
 from mpclock.corpus import (assemble, boe_interviews, boe_mpc, boe_sitemap, boe_speeches,
                             mpc_transcripts, tsc_evidence)
 from mpclock.macro.uk_macro import MacroContext
@@ -144,7 +144,12 @@ def main():
         macro = MacroContext()
         new_ids = {s.id for s in new}
         n_new_pool = sum(1 for s in pool if s.id in new_ids or s.mu is None)
-        print(f"pool {len(pool)} MPC policy records | {n_new_pool} new to score")
+        # re-ingested or previously short-changed records are topped up too
+        floor = cfg()["tournament"].get("min_appearances", 10)
+        n_thin = sum(1 for s in pool if s.mu is not None and s.id not in new_ids
+                     and (s.n_comparisons or 0) < floor)
+        print(f"pool {len(pool)} MPC policy records | {n_new_pool} new to score"
+              + (f" | {n_thin} under {floor} comparisons to top up" if n_thin else ""))
         if args.no_score:
             print("--no-score: ingested and classified only")
             raise SystemExit(0)
@@ -158,7 +163,7 @@ def main():
             judge, scorer = make_pairwise_judge(), make_direct_scorer()
             print(f"judges: pairwise={judge.model} direct={scorer.model}")
 
-        if n_new_pool:
+        if n_new_pool or n_thin:
             run_tournament(pool, judge, appearances_per_speech=args.appearances,
                            macro=macro, resume=True, anonymizer=anon)
         to_direct = [s for s in pool if s.direct_score is None]
