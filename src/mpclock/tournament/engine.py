@@ -79,17 +79,18 @@ class Tournament:
             if j:
                 pairs.append((i, j))
 
-        # swiss-style: shuffle, sort by mu, pair neighbours with small jitter
+        # swiss-style: sort by mu and pair rating neighbours, starting from a random
+        # place in the ranking each call. (Starting at 0 every call, as this used to,
+        # gave every Swiss comparison of every batch to the most dovish documents,
+        # because the runner's batches are far shorter than the ranking.)
         order = sorted(ids, key=lambda i: self.ratings[i].mu)
-        k = 0
-        while len([p for p in pairs]) < n_unc + n_swiss and k + 1 < len(order):
-            a, b = order[k], order[k + 1]
-            if a != b:
-                pairs.append((a, b))
-            k += 2
-            if k + 1 >= len(order):
-                self.rng.shuffle(order)
-                k = 0
+        if len(order) >= 2:
+            k = self.rng.randrange(len(order) - 1)
+            while len(pairs) < n_unc + n_swiss:
+                if k + 1 >= len(order):
+                    k = self.rng.randrange(min(2, len(order) - 1))   # wrap; alternate the phase
+                pairs.append((order[k], order[k + 1]))
+                k += 2
 
         # random
         for _ in range(max(0, n_rand)):
