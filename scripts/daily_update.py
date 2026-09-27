@@ -121,8 +121,11 @@ def main():
     #      we log it and fall back to redeploying the existing scored data.
     corpus, scored_ok = existing, True
     try:
+        # new records, plus any MPC record left unclassified (e.g. re-ingested by add_sources)
+        pending = new + [s for s in existing if s.is_policy is None and is_mpc(s.speaker)]
+        if pending:
+            Classifier().classify_all(pending)      # is_policy (composite types auto-pass)
         if new:
-            Classifier().classify_all(new)          # is_policy (composite types auto-pass)
             # a newly parsed site page can duplicate an old BIS backfill copy
             corpus = assemble.drop_duplicates(existing + new)
             save_corpus(corpus, CORPUS)

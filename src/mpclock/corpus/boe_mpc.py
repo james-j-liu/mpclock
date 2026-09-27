@@ -385,7 +385,10 @@ def _minutes_record(url: str, use_cache: bool = True) -> list[Speech]:
                 if "/-/media/boe/files/" in h and not _SKIP_MEDIA_RE.search(h.rsplit("/", 1)[-1])]
         if not pdfs:
             return []
-        page_url, pdf_url = url, pdfs[0]
+        # Report-round pages link the Inflation Report / MPR PDF first; the minutes
+        # PDF is the one filed under the minutes paths.
+        own = [p for p in pdfs if re.search(r"/files/(?:monetary-policy-summary-and-minutes|minutes)/", p)]
+        page_url, pdf_url = url, (own or pdfs)[0]
 
     text = pdf_text(pdf_url, use_cache=use_cache)
     if len(text) < 2000:
