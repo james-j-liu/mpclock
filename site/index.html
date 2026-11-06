@@ -496,7 +496,7 @@ function buildDataTable(){
     return {header,rows};
   }
   const header=["Date","Speaker","Institution","Type","Pairwise raw","Pairwise adj","Direct raw","Direct adj","Sigma","N comparisons","Words","Title"];
-  const rows=DATA.slice().sort((a,b)=>a.d<b.d?-1:1).map(d=>[
+  const rows=DATA.slice().sort((a,b)=>a.d<b.d?1:a.d>b.d?-1:0).map(d=>[
     d.d, dispName(d), d.inst, SOURCE_LABELS[d.st]||d.st,
     numNorm(d.m), numNorm(d.ma), numNorm(d.ds), numNorm(d.dsa),
     d.s==null?"":d.s, d.n==null?"":d.n, d.wc==null?"":d.wc, d.tt]);
