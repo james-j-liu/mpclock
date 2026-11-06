@@ -1,8 +1,4 @@
 {
-"https://www.bankofengland.co.uk/monetary-policy-report/2026/november-2026": {
-"first": "2026-09-27",
-"last": "2026-10-31"
-},
 "https://www.bankofengland.co.uk/monetary-policy-report/2027/april-2027": {
 "first": "2026-09-27",
 "last": "2026-10-31"
@@ -20,10 +16,6 @@
 "last": "2026-10-31"
 },
 "https://www.bankofengland.co.uk/monetary-policy-summary-and-minutes/2026/december-2026": {
-"first": "2026-09-27",
-"last": "2026-10-31"
-},
-"https://www.bankofengland.co.uk/monetary-policy-summary-and-minutes/2026/november-2026": {
 "first": "2026-09-27",
 "last": "2026-10-31"
 },
@@ -125,11 +117,11 @@
 },
 "https://www.bankofengland.co.uk/speech/2026/november/clare-lombardelli-speech-at-the-bank-watchers-conference": {
 "first": "2026-10-31",
-"last": "2026-11-05"
+"last": "2026-11-06"
 },
 "https://www.bankofengland.co.uk/speech/2026/november/huw-pill-speech-at-the-institute-of-international-monetary-research": {
 "first": "2026-10-31",
-"last": "2026-11-05"
+"last": "2026-11-06"
 },
 "https://www.bankofengland.co.uk/speech/2026/october/clair-mills-resilience-for-growth-conference-exeter": {
 "first": "2026-10-17",
@@ -137,7 +129,7 @@
 },
 "https://www.bankofengland.co.uk/speech/2026/october/financial-innovation-dollar-dominance-and-their-uk-monetary-policy-implications": {
 "first": "2026-10-17",
-"last": "2026-10-30"
+"last": "2026-11-06"
 },
 "https://www.bankofengland.co.uk/speech/2026/september/sasha-mills-speech-at-hogan-lovells-and-global-digital-finance-digital-assets-summit": {
 "first": "2026-09-27",
