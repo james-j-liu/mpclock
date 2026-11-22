@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-22 15:16 UTC",
+ "generated": "2026-11-22 15:28 UTC",
  "last_meeting": {
   "date": "2026-11-04",
   "decision_bp": 25,
@@ -32,7 +32,7 @@
    "probs": {
     "-1": 0.0,
     "0": 0.1395,
-    "1": 0.7712,
+    "1": 0.7711,
     "2": 0.0887,
     "3": 0.0007
    },
@@ -53,11 +53,11 @@
    "surprise_data": 0.018,
    "energy": -1.677,
    "contributions": {
-    "prev_dev": 0.362,
+    "prev_dev": 0.361,
     "pull": -1.557,
     "pace": -0.286,
     "moved_last": -1.523,
-    "mpr_x_pace": -0.843,
+    "mpr_x_pace": -0.844,
     "guidance": -0.848,
     "surprise": -0.225,
     "fed": 0.0,
@@ -80,8 +80,8 @@
    "member": "Huw Pill",
    "prev_vote": 1,
    "probs": {
-    "-1": 0.0169,
-    "0": 0.5031,
+    "-1": 0.017,
+    "0": 0.5032,
     "1": 0.4734,
     "2": 0.0065,
     "3": 0.0
@@ -107,7 +107,7 @@
     "pull": 0.195,
     "pace": -0.286,
     "moved_last": -1.523,
-    "mpr_x_pace": -0.843,
+    "mpr_x_pace": -0.844,
     "guidance": 0.0,
     "surprise": -0.223,
     "fed": 0.0,
@@ -132,7 +132,7 @@
    "probs": {
     "-1": 0.0178,
     "0": 0.5148,
-    "1": 0.4613,
+    "1": 0.4612,
     "2": 0.0062,
     "3": 0.0
    },
@@ -157,7 +157,7 @@
     "pull": 0.195,
     "pace": -0.286,
     "moved_last": -1.523,
-    "mpr_x_pace": -0.843,
+    "mpr_x_pace": -0.844,
     "guidance": -0.076,
     "surprise": -0.197,
     "fed": 0.0,
@@ -181,7 +181,7 @@
    "prev_vote": 1,
    "probs": {
     "-1": 0.0251,
-    "0": 0.593,
+    "0": 0.5929,
     "1": 0.3776,
     "2": 0.0044,
     "3": 0.0
@@ -207,8 +207,8 @@
     "pull": 0.195,
     "pace": -0.286,
     "moved_last": -1.523,
-    "mpr_x_pace": -0.843,
-    "guidance": -0.47,
+    "mpr_x_pace": -0.844,
+    "guidance": -0.469,
     "surprise": -0.154,
     "fed": 0.0,
     "ecb": 0.0
@@ -231,7 +231,7 @@
    "prev_vote": 1,
    "probs": {
     "-1": 0.0333,
-    "0": 0.6509,
+    "0": 0.6508,
     "1": 0.3126,
     "2": 0.0033,
     "3": 0.0
@@ -257,7 +257,7 @@
     "pull": 0.195,
     "pace": -0.286,
     "moved_last": -1.523,
-    "mpr_x_pace": -0.843,
+    "mpr_x_pace": -0.844,
     "guidance": -0.767,
     "surprise": -0.148,
     "fed": 0.0,
@@ -319,7 +319,7 @@
     "pull": 0.195,
     "pace": -0.286,
     "moved_last": -1.523,
-    "mpr_x_pace": -0.843,
+    "mpr_x_pace": -0.844,
     "guidance": -0.894,
     "surprise": -0.151,
     "fed": 0.0,
@@ -369,7 +369,7 @@
     "pull": 0.195,
     "pace": -0.286,
     "moved_last": -1.523,
-    "mpr_x_pace": -0.843,
+    "mpr_x_pace": -0.844,
     "guidance": -0.885,
     "surprise": -0.186,
     "fed": 0.0,
@@ -425,7 +425,7 @@
     "pull": 0.195,
     "pace": -0.286,
     "moved_last": -1.523,
-    "mpr_x_pace": -0.843,
+    "mpr_x_pace": -0.844,
     "guidance": -0.894,
     "surprise": -0.223,
     "fed": 0.0,
@@ -449,12 +449,12 @@
    "prev_vote": 1,
    "probs": {
     "-1": 0.0588,
-    "0": 0.7383,
+    "0": 0.7382,
     "1": 0.2012,
     "2": 0.0018,
     "3": 0.0
    },
-   "expected_bp": 3.6,
+   "expected_bp": 3.7,
    "features": {
     "prev_dev": 0.0,
     "pull": 0.111,
@@ -475,8 +475,8 @@
     "pull": 0.195,
     "pace": -0.286,
     "moved_last": -1.523,
-    "mpr_x_pace": -0.843,
-    "guidance": -1.288,
+    "mpr_x_pace": -0.844,
+    "guidance": -1.287,
     "surprise": -0.223,
     "fed": 0.0,
     "ecb": 0.0
@@ -497,7 +497,7 @@
  ],
  "decision": {
   "-25": 0.0,
-  "0": 0.7642,
+  "0": 0.7643,
   "25": 0.2357,
   "50": 0.0,
   "75": 0.0
@@ -572,12 +572,12 @@
    "ecb"
   ],
   "coefficients": {
-   "prev_dev": 0.362,
+   "prev_dev": 0.361,
    "pull": 1.752,
    "pace": -0.572,
    "moved_last": -1.523,
    "mpr_x_pace": 1.687,
-   "guidance": 1.515,
+   "guidance": 1.514,
    "surprise": 0.275,
    "fed": 0.157,
    "ecb": 0.452
@@ -658,10 +658,10 @@
    },
    {
     "model": "+ Fed & ECB",
-    "log_loss": 0.7236,
+    "log_loss": 0.7237,
     "brier": 0.3654,
     "vote_hit": 0.7612,
-    "p_actual": 0.6384,
+    "p_actual": 0.6383,
     "switch_hit": 0.239,
     "decision_hit": 0.7701,
     "decision_p": 0.7376,
@@ -775,10 +775,10 @@
     "date": "2016-09-14",
     "actual": 0,
     "predicted": 0,
-    "p_actual": 0.704,
+    "p_actual": 0.703,
     "dist": {
-     "-1": 0.296,
-     "0": 0.704
+     "-1": 0.297,
+     "0": 0.703
     }
    },
    {
@@ -883,10 +883,10 @@
     "date": "2018-05-09",
     "actual": 0,
     "predicted": 0,
-    "p_actual": 0.68,
+    "p_actual": 0.681,
     "dist": {
-     "0": 0.68,
-     "1": 0.32
+     "0": 0.681,
+     "1": 0.319
     }
    },
    {
@@ -1270,7 +1270,7 @@
     "predicted": 1,
     "p_actual": 0.0,
     "dist": {
-     "0": 0.486,
+     "0": 0.487,
      "1": 0.513
     }
    },
@@ -1423,10 +1423,10 @@
     "date": "2025-06-18",
     "actual": 0,
     "predicted": -1,
-    "p_actual": 0.147,
+    "p_actual": 0.148,
     "dist": {
-     "-1": 0.853,
-     "0": 0.147
+     "-1": 0.852,
+     "0": 0.148
     }
    },
    {
@@ -2239,7 +2239,7 @@
     "date": "2016-12-14",
     "member": "Michael Saunders",
     "actual": 0,
-    "p_actual": 0.792,
+    "p_actual": 0.791,
     "predicted": 0
    },
    {
@@ -2855,7 +2855,7 @@
     "date": "2018-06-20",
     "member": "Silvana Tenreyro",
     "actual": 0,
-    "p_actual": 0.818,
+    "p_actual": 0.819,
     "predicted": 0
    },
    {
@@ -2932,7 +2932,7 @@
     "date": "2018-09-12",
     "member": "Mark Carney",
     "actual": 0,
-    "p_actual": 0.308,
+    "p_actual": 0.307,
     "predicted": 1
    },
    {
@@ -4192,42 +4192,42 @@
     "date": "2021-05-05",
     "member": "Andrew Bailey",
     "actual": 0,
-    "p_actual": 0.824,
+    "p_actual": 0.823,
     "predicted": 0
    },
    {
     "date": "2021-05-05",
     "member": "Ben Broadbent",
     "actual": 0,
-    "p_actual": 0.824,
+    "p_actual": 0.823,
     "predicted": 0
    },
    {
     "date": "2021-05-05",
     "member": "Jon Cunliffe",
     "actual": 0,
-    "p_actual": 0.824,
+    "p_actual": 0.823,
     "predicted": 0
    },
    {
     "date": "2021-05-05",
     "member": "Andrew Haldane",
     "actual": 0,
-    "p_actual": 0.824,
+    "p_actual": 0.823,
     "predicted": 0
    },
    {
     "date": "2021-05-05",
     "member": "Jonathan Haskel",
     "actual": 0,
-    "p_actual": 0.824,
+    "p_actual": 0.823,
     "predicted": 0
    },
    {
     "date": "2021-05-05",
     "member": "Dave Ramsden",
     "actual": 0,
-    "p_actual": 0.824,
+    "p_actual": 0.823,
     "predicted": 0
    },
    {
@@ -4248,7 +4248,7 @@
     "date": "2021-05-05",
     "member": "Gertjan Vlieghe",
     "actual": 0,
-    "p_actual": 0.824,
+    "p_actual": 0.823,
     "predicted": 0
    },
    {
@@ -4752,7 +4752,7 @@
     "date": "2022-06-15",
     "member": "Andrew Bailey",
     "actual": 1,
-    "p_actual": 0.664,
+    "p_actual": 0.665,
     "predicted": 1
    },
    {
@@ -5529,7 +5529,7 @@
     "date": "2023-12-13",
     "member": "Megan Greene",
     "actual": 1,
-    "p_actual": 0.147,
+    "p_actual": 0.146,
     "predicted": 0
    },
    {
@@ -5543,7 +5543,7 @@
     "date": "2023-12-13",
     "member": "Catherine Mann",
     "actual": 1,
-    "p_actual": 0.624,
+    "p_actual": 0.623,
     "predicted": 1
    },
    {
@@ -6117,7 +6117,7 @@
     "date": "2025-02-05",
     "member": "Dave Ramsden",
     "actual": -1,
-    "p_actual": 0.526,
+    "p_actual": 0.525,
     "predicted": -1
    },
    {
@@ -6376,7 +6376,7 @@
     "date": "2025-08-06",
     "member": "Alan Taylor",
     "actual": -1,
-    "p_actual": 0.771,
+    "p_actual": 0.772,
     "predicted": -1
    },
    {
@@ -6523,7 +6523,7 @@
     "date": "2025-12-17",
     "member": "Swati Dhingra",
     "actual": -1,
-    "p_actual": 0.824,
+    "p_actual": 0.825,
     "predicted": -1
    },
    {
@@ -6691,7 +6691,7 @@
     "date": "2026-03-18",
     "member": "Alan Taylor",
     "actual": 0,
-    "p_actual": 0.367,
+    "p_actual": 0.368,
     "predicted": -1
    },
    {
@@ -6866,7 +6866,7 @@
     "date": "2026-07-29",
     "member": "Huw Pill",
     "actual": 1,
-    "p_actual": 0.459,
+    "p_actual": 0.458,
     "predicted": 0
    },
    {
