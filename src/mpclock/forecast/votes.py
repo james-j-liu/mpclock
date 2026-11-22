@@ -65,6 +65,16 @@ VOTE_OVERRIDES = {
                    "Alan Taylor": -2, "Catherine Mann": 0, "Huw Pill": 0},
 }
 
+# members who are Bank staff (Governor, Deputy Governors, Chief Economist) — they rarely
+# vote against the Governor
+INTERNAL = {"Mervyn King", "Mark Carney", "Andrew Bailey", "Charles Bean", "Charlie Bean", "Paul Tucker",
+            "Spencer Dale", "Andy Haldane", "Andrew Haldane", "Ben Broadbent", "Jon Cunliffe",
+            "Dave Ramsden", "Huw Pill", "Sarah Breeden", "Clare Lombardelli", "Minouche Shafik",
+            "Nemat Shafik"}
+_HEDGE = re.compile(r"(?i)\bconditional\b|\bgradual(ly)?\b|data[- ]dependent|not on a pre-?set path|"
+                    r"meeting[- ]by[- ]meeting|in the absence of|\bunless\b|\bif the\b|\bwould depend\b|"
+                    r"will depend|\bnot (yet )?(enough|sufficient) (information|evidence)|wouldn.t rule out|"
+                    r"careful(ly)?\b|two-sided|\buncertain")
 SIGNAL_SOURCE = "text"   # "text" or "passages": which coded vote feeds the guidance inputs
                          # (backtested: whole text 0.670 log loss, passages alone 0.680)
 HISTORY = 6       # meetings of each member's voting record used, beyond the last one
@@ -75,6 +85,8 @@ FEATURE_GROUPS = {
     "pace": ["pace", "moved_last", "mpr_x_pace"],
     "words": ["guidance", "signal_level"],
     "direction": ["direction"],
+    "governor": ["gov_pull"],
+    "hedge": ["signal_hedged", "guidance_hedged"],
     "data": ["surprise"],          # outturns vs MPR, plus half-weighted energy-price change
     "global": ["fed", "ecb"],
     "fx": ["fx"],
@@ -321,7 +333,12 @@ def member_window(ctx: Context, member: str, start: str, end: str, prev_vote: in
         dv = np.array([c.get("dir_ev_pass", c.get("dir_ev", 0.0)) for _, c in coded])
         direction = float((w * dv).sum() / w.sum())
     g_regex, _ = guidance_score(text)
-    return {"tone": float(tone), "guidance": float(gap), "has_guidance": has, "signal": signal,
+    # how conditional is the guidance: hedging phrases per policy sentence in the window
+    from .guidance import policy_passages
+    pas = " ".join(policy_passages(d[2], 20000) for d in docs if d[4] != "member_view")
+    n_pol = max(1, len(re.findall(r"(?i)bank rate|interest rates?|tighten|restrictive|further increase|cut", pas)))
+    hedge = float(min(1.0, len(_HEDGE.findall(pas)) / n_pol)) if pas else 0.0
+    return {"hedge": hedge,"tone": float(tone), "guidance": float(gap), "has_guidance": has, "signal": signal,
             "direction": direction,
             "guidance_regex": float(g_regex), "n_docs": len(docs), "topic_w": topic_weights(text),
             "doc_dates": [d[0] for d in docs],
@@ -331,17 +348,31 @@ def member_window(ctx: Context, member: str, start: str, end: str, prev_vote: in
                      for d in docs]}
 
 
-def features_for(ctx: Context, prev: Meeting, date: str, members: list[str]) -> list[dict]:
-    """Rows for each member at a meeting on `date` (a past meeting or a future one)."""
+def features_for(ctx: Context, prev: Meeting, date: str, members: list[str],
+                 words_since: str | None = None, freeze_data: bool = False) -> list[dict]:
+    """Rows for each member at a meeting on `date` (a past meeting or a future one).
+    words_since: read members' words from this date instead of `prev` (used to carry
+    their latest words forward to a meeting after a hypothetical one); freeze_data:
+    assume no data or market news (for meetings beyond the next)."""
     start, end = prev.date, date
-    surp, detail = data_surprises(ctx, start, end)
-    mk = market_changes(ctx, start, end)
+    surp, detail = ({}, []) if freeze_data else data_surprises(ctx, start, end)
+    mk = ({k: 0.0 for k in ("brent", "gas", "energy", "fx", "fed", "ecb")} if freeze_data
+          else market_changes(ctx, start, end))
     pace = pace_features(ctx, 0, date)
     mean_prev = np.mean(list(prev.votes.values()))
     # the meetings before `prev`, newest first: a member's record over several meetings,
     # not just the last vote
     i_prev = next((i for i, m in enumerate(ctx.meetings) if m.date == prev.date), len(ctx.meetings) - 1)
     earlier = ctx.meetings[max(0, i_prev - HISTORY):i_prev][::-1]
+    from ..corpus.boe_interviews import governor_on
+    try:
+        gov = governor_on(date)
+    except StopIteration:
+        gov = None
+    g_prev = prev.votes.get(gov, prev.decision)
+    w_start = words_since or start
+    gw = member_window(ctx, gov, w_start, end, g_prev) if gov else None
+    gov_signal = (gw["signal"] if gw and gw["signal"] is not None else g_prev)
     rows = []
     for p in members:
         pv = prev.votes.get(p, prev.decision)
@@ -357,7 +388,7 @@ def features_for(ctx: Context, prev: Meeting, date: str, members: list[str]) -> 
             streak = next((k for k, (v, _) in enumerate(hist) if v != pv), len(hist))
         else:
             hist_dev, dissents, trend, streak = 0.0, 0.0, 0.0, 0
-        w = member_window(ctx, p, start, end, pv)
+        w = member_window(ctx, p, w_start, end, pv)
         if surp:
             tw = w["topic_w"]
             personal = sum(tw[k] * v for k, v in surp.items()) / sum(tw[k] for k in surp)
@@ -382,6 +413,13 @@ def features_for(ctx: Context, prev: Meeting, date: str, members: list[str]) -> 
             # from their last vote): "more tightening needed" from someone who just voted
             # to hike is news against the drift back to hold after a move
             "signal_level": float(w["has_guidance"] * (w["guidance"] + pv)),
+            "internal": float(p in INTERNAL and p != gov),
+            # internal members lean towards the vote the Governor's own words point to
+            "gov_pull": float((gov_signal - pv) if (p in INTERNAL and p != gov) else 0.0),
+            # hedged guidance: the same signal, scaled by how conditional the wording was
+            "signal_hedged": float(w["has_guidance"] * (w["guidance"] + pv) * w["hedge"]),
+            "guidance_hedged": float(w["guidance"] * w["hedge"]),
+            "hedge": w["hedge"],
             # which way the member's next move leans over the next few meetings (+1 up, -1 down)
             "direction": float(w["direction"]),
             "_mpr": pace["mpr"], "_surprises": surp, "_detail": detail, "_markets": mk,

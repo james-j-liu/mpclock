@@ -1,5 +1,173 @@
 {
- "generated": "2026-11-22 19:27 UTC",
+ "second_meeting": {
+  "date": "2027-02-03",
+  "scenarios": [
+   {
+    "december_bp": 0,
+    "p_december": 0.5246,
+    "members": {
+     "Andrew Bailey": {
+      "-2": 0.0001,
+      "-1": 0.009,
+      "0": 0.5728,
+      "1": 0.4153,
+      "2": 0.0029,
+      "3": 0.0
+     },
+     "Sarah Breeden": {
+      "-2": 0.0001,
+      "-1": 0.0125,
+      "0": 0.6492,
+      "1": 0.3363,
+      "2": 0.0018,
+      "3": 0.0
+     },
+     "Swati Dhingra": {
+      "-2": 0.0001,
+      "-1": 0.0126,
+      "0": 0.6545,
+      "1": 0.331,
+      "2": 0.0017,
+      "3": 0.0
+     },
+     "Megan Greene": {
+      "-2": 0.0,
+      "-1": 0.0012,
+      "0": 0.1089,
+      "1": 0.8383,
+      "2": 0.0514,
+      "3": 0.0001
+     },
+     "Clare Lombardelli": {
+      "-2": 0.0,
+      "-1": 0.0024,
+      "0": 0.2399,
+      "1": 0.7396,
+      "2": 0.018,
+      "3": 0.0
+     },
+     "Catherine Mann": {
+      "-2": 0.0,
+      "-1": 0.0003,
+      "0": 0.026,
+      "1": 0.7637,
+      "2": 0.2091,
+      "3": 0.001
+     },
+     "Huw Pill": {
+      "-2": 0.0,
+      "-1": 0.0013,
+      "0": 0.1178,
+      "1": 0.8337,
+      "2": 0.047,
+      "3": 0.0001
+     },
+     "Dave Ramsden": {
+      "-2": 0.0001,
+      "-1": 0.007,
+      "0": 0.5128,
+      "1": 0.4761,
+      "2": 0.0039,
+      "3": 0.0
+     },
+     "Alan Taylor": {
+      "-2": 0.0003,
+      "-1": 0.0241,
+      "0": 0.7697,
+      "1": 0.2052,
+      "2": 0.0008,
+      "3": 0.0
+     }
+    },
+    "decision": {
+     "-50": 0.0,
+     "-25": 0.0,
+     "0": 0.2619,
+     "25": 0.7381,
+     "50": 0.0,
+     "75": 0.0
+    }
+   },
+   {
+    "december_bp": 25,
+    "p_december": 0.4753,
+    "members": {
+     "Andrew Bailey": {
+      "-1": 0.0708,
+      "0": 0.814,
+      "1": 0.1146,
+      "2": 0.0006,
+      "3": 0.0
+     },
+     "Sarah Breeden": {
+      "-1": 0.0963,
+      "0": 0.8239,
+      "1": 0.0795,
+      "2": 0.0004,
+      "3": 0.0
+     },
+     "Swati Dhingra": {
+      "-1": 0.0975,
+      "0": 0.8251,
+      "1": 0.0771,
+      "2": 0.0004,
+      "3": 0.0
+     },
+     "Megan Greene": {
+      "-1": 0.0107,
+      "0": 0.4518,
+      "1": 0.5307,
+      "2": 0.0069,
+      "3": 0.0
+     },
+     "Clare Lombardelli": {
+      "-1": 0.0196,
+      "0": 0.6143,
+      "1": 0.3629,
+      "2": 0.0032,
+      "3": 0.0
+     },
+     "Catherine Mann": {
+      "-1": 0.0023,
+      "0": 0.1668,
+      "1": 0.7974,
+      "2": 0.0334,
+      "3": 0.0001
+     },
+     "Huw Pill": {
+      "-1": 0.0115,
+      "0": 0.4703,
+      "1": 0.5117,
+      "2": 0.0064,
+      "3": 0.0
+     },
+     "Dave Ramsden": {
+      "-1": 0.0538,
+      "0": 0.7975,
+      "1": 0.1478,
+      "2": 0.0009,
+      "3": 0.0
+     },
+     "Alan Taylor": {
+      "-1": 0.1736,
+      "0": 0.7891,
+      "1": 0.0372,
+      "2": 0.0001,
+      "3": 0.0
+     }
+    },
+    "decision": {
+     "-25": 0.0,
+     "0": 0.9461,
+     "25": 0.0539,
+     "50": 0.0,
+     "75": 0.0
+    }
+   }
+  ],
+  "note": "Conditional on each December outcome; members' latest words carried forward; no new data or market moves assumed; February is an MPR meeting."
+ },
+ "generated": "2026-11-22 20:08 UTC",
  "last_meeting": {
   "date": "2026-11-04",
   "decision_bp": 25,
@@ -31,12 +199,12 @@
    "prev_vote": 2,
    "probs": {
     "-1": 0.0,
-    "0": 0.0657,
-    "1": 0.7717,
-    "2": 0.1615,
-    "3": 0.0011
+    "0": 0.0857,
+    "1": 0.7884,
+    "2": 0.1251,
+    "3": 0.0008
    },
-   "expected_bp": 27.5,
+   "expected_bp": 26.0,
    "features": {
     "prev_dev": 1.0,
     "pull": -0.889,
@@ -48,6 +216,9 @@
     "guidance": -0.59,
     "signal_level": 1.41,
     "direction": 1.0,
+    "gov_pull": 0.0,
+    "signal_hedged": 0.0,
+    "guidance_hedged": -0.0,
     "surprise": -0.821,
     "fed": 0.0,
     "ecb": 0.0,
@@ -57,16 +228,18 @@
    "surprise_data": 0.018,
    "energy": -1.677,
    "contributions": {
-    "prev_dev": 0.325,
-    "pull": -1.884,
-    "hist_dev": 0.357,
-    "trend": -0.85,
-    "pace": -0.513,
-    "moved_last": -1.021,
-    "mpr_x_pace": -0.87,
-    "guidance": -0.849,
-    "signal_level": 1.314,
-    "surprise": -0.291
+    "prev_dev": 0.312,
+    "pull": -1.881,
+    "hist_dev": 0.358,
+    "trend": -0.841,
+    "pace": -0.506,
+    "moved_last": -1.039,
+    "mpr_x_pace": -0.873,
+    "guidance": -0.818,
+    "signal_level": 0.992,
+    "surprise": -0.291,
+    "signal_hedged": 0.0,
+    "guidance_hedged": 0.0
    },
    "n_docs": 1,
    "doc_dates": [
@@ -119,119 +292,16 @@
    ]
   },
   {
-   "member": "Huw Pill",
-   "prev_vote": 1,
-   "probs": {
-    "-1": 0.0024,
-    "0": 0.1466,
-    "1": 0.8202,
-    "2": 0.0308,
-    "3": 0.0001
-   },
-   "expected_bp": 22.0,
-   "features": {
-    "prev_dev": 0.0,
-    "pull": 0.111,
-    "hist_dev": 0.8,
-    "trend": 0.0,
-    "pace": 0.5,
-    "moved_last": 1.0,
-    "mpr_x_pace": -0.5,
-    "guidance": -0.007,
-    "signal_level": 0.993,
-    "direction": 1.0,
-    "surprise": -0.654,
-    "fed": 0.0,
-    "ecb": 0.0,
-    "fx": 0.265,
-    "tone": 0.484
-   },
-   "surprise_data": 0.184,
-   "energy": -1.677,
-   "contributions": {
-    "prev_dev": 0.0,
-    "pull": 0.235,
-    "hist_dev": 0.585,
-    "trend": -0.0,
-    "pace": -0.513,
-    "moved_last": -1.021,
-    "mpr_x_pace": -0.87,
-    "guidance": -0.01,
-    "signal_level": 0.926,
-    "surprise": -0.232
-   },
-   "n_docs": 2,
-   "doc_dates": [
-    "2026-11-04",
-    "2026-11-14"
-   ],
-   "docs": [
-    {
-     "date": "2026-11-04",
-     "type": "member_view",
-     "signal": 1.0,
-     "dir": {
-      "higher": 1.0,
-      "lower": 0.0,
-      "unchanged": 0.0
-     }
-    },
-    {
-     "date": "2026-11-14",
-     "type": "interview",
-     "signal": 0.99,
-     "dir": {
-      "higher": 1.0,
-      "lower": 0.0,
-      "unchanged": 0.0
-     }
-    }
-   ],
-   "signal": 0.9931617008967313,
-   "record": [
-    {
-     "date": "2026-09-16",
-     "vote": 1,
-     "decision": 0
-    },
-    {
-     "date": "2026-07-29",
-     "vote": 1,
-     "decision": 0
-    },
-    {
-     "date": "2026-06-17",
-     "vote": 1,
-     "decision": 0
-    },
-    {
-     "date": "2026-04-29",
-     "vote": 1,
-     "decision": 0
-    },
-    {
-     "date": "2026-03-18",
-     "vote": 0,
-     "decision": 0
-    },
-    {
-     "date": "2026-02-04",
-     "vote": 0,
-     "decision": 0
-    }
-   ]
-  },
-  {
    "member": "Megan Greene",
    "prev_vote": 1,
    "probs": {
-    "-1": 0.0028,
-    "0": 0.1684,
-    "1": 0.8025,
-    "2": 0.0262,
+    "-1": 0.0023,
+    "0": 0.1413,
+    "1": 0.8247,
+    "2": 0.0317,
     "3": 0.0001
    },
-   "expected_bp": 21.3,
+   "expected_bp": 22.2,
    "features": {
     "prev_dev": 0.0,
     "pull": 0.111,
@@ -243,6 +313,9 @@
     "guidance": -0.023,
     "signal_level": 0.977,
     "direction": 1.0,
+    "gov_pull": 0.0,
+    "signal_hedged": 0.489,
+    "guidance_hedged": -0.011,
     "surprise": -0.729,
     "fed": 0.0,
     "ecb": 0.0,
@@ -254,14 +327,16 @@
    "contributions": {
     "prev_dev": 0.0,
     "pull": 0.235,
-    "hist_dev": 0.484,
+    "hist_dev": 0.485,
     "trend": -0.0,
-    "pace": -0.513,
-    "moved_last": -1.021,
-    "mpr_x_pace": -0.87,
-    "guidance": -0.033,
-    "signal_level": 0.911,
-    "surprise": -0.258
+    "pace": -0.506,
+    "moved_last": -1.039,
+    "mpr_x_pace": -0.873,
+    "guidance": -0.032,
+    "signal_level": 0.688,
+    "surprise": -0.258,
+    "signal_hedged": 0.437,
+    "guidance_hedged": 0.001
    },
    "n_docs": 2,
    "doc_dates": [
@@ -325,16 +400,124 @@
    ]
   },
   {
+   "member": "Huw Pill",
+   "prev_vote": 1,
+   "probs": {
+    "-1": 0.0023,
+    "0": 0.1454,
+    "1": 0.8215,
+    "2": 0.0307,
+    "3": 0.0001
+   },
+   "expected_bp": 22.0,
+   "features": {
+    "prev_dev": 0.0,
+    "pull": 0.111,
+    "hist_dev": 0.8,
+    "trend": 0.0,
+    "pace": 0.5,
+    "moved_last": 1.0,
+    "mpr_x_pace": -0.5,
+    "guidance": -0.007,
+    "signal_level": 0.993,
+    "direction": 1.0,
+    "gov_pull": -0.49,
+    "signal_hedged": 0.271,
+    "guidance_hedged": -0.002,
+    "surprise": -0.654,
+    "fed": 0.0,
+    "ecb": 0.0,
+    "fx": 0.265,
+    "tone": 0.484
+   },
+   "surprise_data": 0.184,
+   "energy": -1.677,
+   "contributions": {
+    "prev_dev": 0.0,
+    "pull": 0.235,
+    "hist_dev": 0.587,
+    "trend": -0.0,
+    "pace": -0.506,
+    "moved_last": -1.039,
+    "mpr_x_pace": -0.873,
+    "guidance": -0.009,
+    "signal_level": 0.699,
+    "surprise": -0.232,
+    "signal_hedged": 0.242,
+    "guidance_hedged": 0.0
+   },
+   "n_docs": 2,
+   "doc_dates": [
+    "2026-11-04",
+    "2026-11-14"
+   ],
+   "docs": [
+    {
+     "date": "2026-11-04",
+     "type": "member_view",
+     "signal": 1.0,
+     "dir": {
+      "higher": 1.0,
+      "lower": 0.0,
+      "unchanged": 0.0
+     }
+    },
+    {
+     "date": "2026-11-14",
+     "type": "interview",
+     "signal": 0.99,
+     "dir": {
+      "higher": 1.0,
+      "lower": 0.0,
+      "unchanged": 0.0
+     }
+    }
+   ],
+   "signal": 0.9931617008967313,
+   "record": [
+    {
+     "date": "2026-09-16",
+     "vote": 1,
+     "decision": 0
+    },
+    {
+     "date": "2026-07-29",
+     "vote": 1,
+     "decision": 0
+    },
+    {
+     "date": "2026-06-17",
+     "vote": 1,
+     "decision": 0
+    },
+    {
+     "date": "2026-04-29",
+     "vote": 1,
+     "decision": 0
+    },
+    {
+     "date": "2026-03-18",
+     "vote": 0,
+     "decision": 0
+    },
+    {
+     "date": "2026-02-04",
+     "vote": 0,
+     "decision": 0
+    }
+   ]
+  },
+  {
    "member": "Clare Lombardelli",
    "prev_vote": 1,
    "probs": {
-    "-1": 0.0112,
-    "0": 0.4431,
-    "1": 0.539,
-    "2": 0.0066,
+    "-1": 0.009,
+    "0": 0.3944,
+    "1": 0.5885,
+    "2": 0.0081,
     "3": 0.0
    },
-   "expected_bp": 13.5,
+   "expected_bp": 14.9,
    "features": {
     "prev_dev": 0.0,
     "pull": 0.111,
@@ -346,6 +529,9 @@
     "guidance": -0.079,
     "signal_level": 0.921,
     "direction": 1.0,
+    "gov_pull": -0.49,
+    "signal_hedged": 0.461,
+    "guidance_hedged": -0.039,
     "surprise": -0.528,
     "fed": 0.0,
     "ecb": 0.0,
@@ -358,13 +544,15 @@
     "prev_dev": 0.0,
     "pull": 0.235,
     "hist_dev": 0.0,
-    "trend": -0.85,
-    "pace": -0.513,
-    "moved_last": -1.021,
-    "mpr_x_pace": -0.87,
-    "guidance": -0.113,
-    "signal_level": 0.859,
-    "surprise": -0.187
+    "trend": -0.841,
+    "pace": -0.506,
+    "moved_last": -1.039,
+    "mpr_x_pace": -0.873,
+    "guidance": -0.109,
+    "signal_level": 0.649,
+    "surprise": -0.187,
+    "signal_hedged": 0.412,
+    "guidance_hedged": 0.002
    },
    "n_docs": 3,
    "doc_dates": [
@@ -442,13 +630,13 @@
    "member": "Dave Ramsden",
    "prev_vote": 1,
    "probs": {
-    "-1": 0.0228,
-    "0": 0.6083,
-    "1": 0.3656,
-    "2": 0.0032,
+    "-1": 0.0256,
+    "0": 0.6352,
+    "1": 0.3363,
+    "2": 0.0028,
     "3": 0.0
    },
-   "expected_bp": 8.7,
+   "expected_bp": 7.9,
    "features": {
     "prev_dev": 0.0,
     "pull": 0.111,
@@ -460,6 +648,9 @@
     "guidance": -0.35,
     "signal_level": 0.65,
     "direction": 0.92,
+    "gov_pull": -0.49,
+    "signal_hedged": 0.0,
+    "guidance_hedged": -0.0,
     "surprise": -0.561,
     "fed": 0.0,
     "ecb": 0.0,
@@ -472,13 +663,15 @@
     "prev_dev": 0.0,
     "pull": 0.235,
     "hist_dev": -0.065,
-    "trend": -0.85,
-    "pace": -0.513,
-    "moved_last": -1.021,
-    "mpr_x_pace": -0.87,
-    "guidance": -0.503,
-    "signal_level": 0.606,
-    "surprise": -0.199
+    "trend": -0.841,
+    "pace": -0.506,
+    "moved_last": -1.039,
+    "mpr_x_pace": -0.873,
+    "guidance": -0.485,
+    "signal_level": 0.457,
+    "surprise": -0.199,
+    "signal_hedged": 0.0,
+    "guidance_hedged": 0.0
    },
    "n_docs": 1,
    "doc_dates": [
@@ -534,13 +727,13 @@
    "member": "Andrew Bailey",
    "prev_vote": 1,
    "probs": {
-    "-1": 0.0294,
-    "0": 0.66,
-    "1": 0.3081,
-    "2": 0.0025,
+    "-1": 0.0297,
+    "0": 0.6642,
+    "1": 0.3037,
+    "2": 0.0024,
     "3": 0.0
    },
-   "expected_bp": 7.1,
+   "expected_bp": 7.0,
    "features": {
     "prev_dev": 0.0,
     "pull": 0.111,
@@ -552,6 +745,9 @@
     "guidance": -0.49,
     "signal_level": 0.51,
     "direction": 0.848,
+    "gov_pull": 0.0,
+    "signal_hedged": 0.073,
+    "guidance_hedged": -0.07,
     "surprise": -0.539,
     "fed": 0.0,
     "ecb": 0.0,
@@ -564,13 +760,15 @@
     "prev_dev": 0.0,
     "pull": 0.235,
     "hist_dev": 0.0,
-    "trend": -0.85,
-    "pace": -0.513,
-    "moved_last": -1.021,
-    "mpr_x_pace": -0.87,
-    "guidance": -0.705,
-    "signal_level": 0.475,
-    "surprise": -0.191
+    "trend": -0.841,
+    "pace": -0.506,
+    "moved_last": -1.039,
+    "mpr_x_pace": -0.873,
+    "guidance": -0.68,
+    "signal_level": 0.359,
+    "surprise": -0.191,
+    "signal_hedged": 0.065,
+    "guidance_hedged": 0.004
    },
    "n_docs": 3,
    "doc_dates": [
@@ -648,13 +846,13 @@
    "member": "Sarah Breeden",
    "prev_vote": 1,
    "probs": {
-    "-1": 0.0404,
-    "0": 0.7146,
-    "1": 0.2432,
-    "2": 0.0018,
+    "-1": 0.0423,
+    "0": 0.7236,
+    "1": 0.2324,
+    "2": 0.0017,
     "3": 0.0
    },
-   "expected_bp": 5.2,
+   "expected_bp": 4.8,
    "features": {
     "prev_dev": 0.0,
     "pull": 0.111,
@@ -666,6 +864,9 @@
     "guidance": -0.6,
     "signal_level": 0.4,
     "direction": 0.89,
+    "gov_pull": -0.49,
+    "signal_hedged": 0.0,
+    "guidance_hedged": -0.0,
     "surprise": -0.548,
     "fed": 0.0,
     "ecb": 0.0,
@@ -678,13 +879,15 @@
     "prev_dev": 0.0,
     "pull": 0.235,
     "hist_dev": -0.065,
-    "trend": -0.85,
-    "pace": -0.513,
-    "moved_last": -1.021,
-    "mpr_x_pace": -0.87,
-    "guidance": -0.863,
-    "signal_level": 0.373,
-    "surprise": -0.194
+    "trend": -0.841,
+    "pace": -0.506,
+    "moved_last": -1.039,
+    "mpr_x_pace": -0.873,
+    "guidance": -0.832,
+    "signal_level": 0.282,
+    "surprise": -0.194,
+    "signal_hedged": 0.0,
+    "guidance_hedged": 0.0
    },
    "n_docs": 1,
    "doc_dates": [
@@ -740,13 +943,13 @@
    "member": "Swati Dhingra",
    "prev_vote": 1,
    "probs": {
-    "-1": 0.0441,
-    "0": 0.7277,
-    "1": 0.2266,
-    "2": 0.0016,
+    "-1": 0.0462,
+    "0": 0.7359,
+    "1": 0.2163,
+    "2": 0.0015,
     "3": 0.0
    },
-   "expected_bp": 4.6,
+   "expected_bp": 4.3,
    "features": {
     "prev_dev": 0.0,
     "pull": 0.111,
@@ -758,6 +961,9 @@
     "guidance": -0.6,
     "signal_level": 0.4,
     "direction": 0.91,
+    "gov_pull": 0.0,
+    "signal_hedged": 0.0,
+    "guidance_hedged": -0.0,
     "surprise": -0.811,
     "fed": 0.0,
     "ecb": 0.0,
@@ -770,13 +976,15 @@
     "prev_dev": 0.0,
     "pull": 0.235,
     "hist_dev": -0.065,
-    "trend": -0.85,
-    "pace": -0.513,
-    "moved_last": -1.021,
-    "mpr_x_pace": -0.87,
-    "guidance": -0.863,
-    "signal_level": 0.373,
-    "surprise": -0.287
+    "trend": -0.841,
+    "pace": -0.506,
+    "moved_last": -1.039,
+    "mpr_x_pace": -0.873,
+    "guidance": -0.832,
+    "signal_level": 0.282,
+    "surprise": -0.287,
+    "signal_hedged": 0.0,
+    "guidance_hedged": 0.0
    },
    "n_docs": 1,
    "doc_dates": [
@@ -832,13 +1040,13 @@
    "member": "Alan Taylor",
    "prev_vote": 1,
    "probs": {
-    "-1": 0.0823,
+    "-1": 0.0801,
     "0": 0.7856,
-    "1": 0.1313,
-    "2": 0.0008,
+    "1": 0.1334,
+    "2": 0.0009,
     "3": 0.0
    },
-   "expected_bp": 1.3,
+   "expected_bp": 1.4,
    "features": {
     "prev_dev": 0.0,
     "pull": 0.111,
@@ -850,6 +1058,9 @@
     "guidance": -0.88,
     "signal_level": 0.12,
     "direction": 0.38,
+    "gov_pull": 0.0,
+    "signal_hedged": 0.0,
+    "guidance_hedged": -0.0,
     "surprise": -0.811,
     "fed": 0.0,
     "ecb": 0.0,
@@ -862,13 +1073,15 @@
     "prev_dev": 0.0,
     "pull": 0.235,
     "hist_dev": -0.065,
-    "trend": -0.85,
-    "pace": -0.513,
-    "moved_last": -1.021,
-    "mpr_x_pace": -0.87,
-    "guidance": -1.266,
-    "signal_level": 0.112,
-    "surprise": -0.287
+    "trend": -0.841,
+    "pace": -0.506,
+    "moved_last": -1.039,
+    "mpr_x_pace": -0.873,
+    "guidance": -1.22,
+    "signal_level": 0.084,
+    "surprise": -0.287,
+    "signal_hedged": 0.0,
+    "guidance_hedged": 0.0
    },
    "n_docs": 1,
    "doc_dates": [
@@ -923,8 +1136,8 @@
  ],
  "decision": {
   "-25": 0.0,
-  "0": 0.5255,
-  "25": 0.4745,
+  "0": 0.5246,
+  "25": 0.4753,
   "50": 0.0,
   "75": 0.0
  },
@@ -996,25 +1209,29 @@
    "mpr_x_pace",
    "guidance",
    "signal_level",
-   "surprise"
+   "surprise",
+   "signal_hedged",
+   "guidance_hedged"
   ],
   "coefficients": {
-   "prev_dev": 0.325,
-   "pull": 2.119,
-   "hist_dev": 0.731,
-   "trend": -0.85,
-   "pace": -1.025,
-   "moved_last": -1.021,
-   "mpr_x_pace": 1.74,
-   "guidance": 1.439,
-   "signal_level": 0.932,
-   "surprise": 0.354
+   "prev_dev": 0.312,
+   "pull": 2.116,
+   "hist_dev": 0.734,
+   "trend": -0.841,
+   "pace": -1.013,
+   "moved_last": -1.039,
+   "mpr_x_pace": 1.747,
+   "guidance": 1.387,
+   "signal_level": 0.704,
+   "surprise": 0.354,
+   "signal_hedged": 0.893,
+   "guidance_hedged": -0.057
   },
   "cutpoints": [
-   -6.936,
-   -2.642,
-   2.548,
-   8.694
+   -6.954,
+   -2.649,
+   2.553,
+   8.681
   ]
  },
  "backtest": {
@@ -1098,46 +1315,72 @@
     "meetings": 87
    },
    {
+    "model": "+ hedged guidance",
+    "log_loss": 0.6665,
+    "brier": 0.347,
+    "vote_hit": 0.7779,
+    "p_actual": 0.6576,
+    "switch_hit": 0.2732,
+    "decision_hit": 0.7471,
+    "decision_p": 0.7431,
+    "n": 779,
+    "n_switch": 205,
+    "meetings": 87
+   },
+   {
+    "model": "+ votes with Governor",
+    "log_loss": 0.668,
+    "brier": 0.3487,
+    "vote_hit": 0.7818,
+    "p_actual": 0.6582,
+    "switch_hit": 0.2878,
+    "decision_hit": 0.7471,
+    "decision_p": 0.74,
+    "n": 779,
+    "n_switch": 205,
+    "meetings": 87
+   },
+   {
     "model": "+ Fed & ECB",
-    "log_loss": 0.6778,
-    "brier": 0.3515,
-    "vote_hit": 0.7651,
-    "p_actual": 0.6562,
+    "log_loss": 0.6775,
+    "brier": 0.3461,
+    "vote_hit": 0.7612,
+    "p_actual": 0.6603,
     "switch_hit": 0.2634,
-    "decision_hit": 0.7701,
-    "decision_p": 0.7488,
+    "decision_hit": 0.7816,
+    "decision_p": 0.7545,
     "n": 779,
     "n_switch": 205,
     "meetings": 87
    },
    {
     "model": "+ sterling",
-    "log_loss": 0.694,
-    "brier": 0.3603,
+    "log_loss": 0.6913,
+    "brier": 0.3551,
     "vote_hit": 0.7599,
-    "p_actual": 0.654,
-    "switch_hit": 0.2537,
-    "decision_hit": 0.7701,
-    "decision_p": 0.7464,
+    "p_actual": 0.6581,
+    "switch_hit": 0.2488,
+    "decision_hit": 0.7816,
+    "decision_p": 0.7526,
     "n": 779,
     "n_switch": 205,
     "meetings": 87
    },
    {
     "model": "+ speech tone",
-    "log_loss": 0.6993,
-    "brier": 0.3621,
-    "vote_hit": 0.7599,
-    "p_actual": 0.653,
-    "switch_hit": 0.2537,
-    "decision_hit": 0.7701,
-    "decision_p": 0.7465,
+    "log_loss": 0.6947,
+    "brier": 0.3568,
+    "vote_hit": 0.7587,
+    "p_actual": 0.6571,
+    "switch_hit": 0.2488,
+    "decision_hit": 0.7816,
+    "decision_p": 0.7526,
     "n": 779,
     "n_switch": 205,
     "meetings": 87
    }
   ],
-  "chosen": "+ data & energy",
+  "chosen": "+ hedged guidance",
   "decisions": [
    {
     "date": "2015-06-03",
@@ -1161,10 +1404,10 @@
     "date": "2016-02-03",
     "actual": 0,
     "predicted": 0,
-    "p_actual": 0.953,
+    "p_actual": 0.955,
     "dist": {
-     "0": 0.953,
-     "1": 0.047
+     "0": 0.955,
+     "1": 0.045
     }
    },
    {
@@ -1216,10 +1459,10 @@
     "date": "2016-09-14",
     "actual": 0,
     "predicted": 0,
-    "p_actual": 0.856,
+    "p_actual": 0.859,
     "dist": {
-     "-1": 0.144,
-     "0": 0.856
+     "-1": 0.141,
+     "0": 0.859
     }
    },
    {
@@ -1255,20 +1498,20 @@
     "date": "2017-06-14",
     "actual": 0,
     "predicted": 0,
-    "p_actual": 0.831,
+    "p_actual": 0.815,
     "dist": {
-     "0": 0.831,
-     "1": 0.047
+     "0": 0.815,
+     "1": 0.053
     }
    },
    {
     "date": "2017-08-02",
     "actual": 0,
     "predicted": 0,
-    "p_actual": 0.37,
+    "p_actual": 0.373,
     "dist": {
-     "0": 0.37,
-     "1": 0.314
+     "0": 0.373,
+     "1": 0.311
     }
    },
    {
@@ -1285,30 +1528,30 @@
     "date": "2017-11-01",
     "actual": 1,
     "predicted": 0,
-    "p_actual": 0.099,
+    "p_actual": 0.093,
     "dist": {
-     "0": 0.901,
-     "1": 0.099
+     "0": 0.907,
+     "1": 0.093
     }
    },
    {
     "date": "2017-12-13",
     "actual": 0,
     "predicted": 0,
-    "p_actual": 0.957,
+    "p_actual": 0.961,
     "dist": {
-     "0": 0.957,
-     "1": 0.043
+     "0": 0.961,
+     "1": 0.039
     }
    },
    {
     "date": "2018-02-07",
     "actual": 0,
     "predicted": 0,
-    "p_actual": 0.779,
+    "p_actual": 0.772,
     "dist": {
-     "0": 0.779,
-     "1": 0.221
+     "0": 0.772,
+     "1": 0.228
     }
    },
    {
@@ -1324,50 +1567,50 @@
     "date": "2018-05-09",
     "actual": 0,
     "predicted": 0,
-    "p_actual": 0.871,
+    "p_actual": 0.868,
     "dist": {
-     "0": 0.871,
-     "1": 0.129
+     "0": 0.868,
+     "1": 0.132
     }
    },
    {
     "date": "2018-06-20",
     "actual": 0,
     "predicted": 0,
-    "p_actual": 0.968,
+    "p_actual": 0.97,
     "dist": {
-     "0": 0.968,
-     "1": 0.032
+     "0": 0.97,
+     "1": 0.03
     }
    },
    {
     "date": "2018-08-01",
     "actual": 1,
     "predicted": 0,
-    "p_actual": 0.155,
+    "p_actual": 0.159,
     "dist": {
-     "0": 0.845,
-     "1": 0.155
+     "0": 0.841,
+     "1": 0.159
     }
    },
    {
     "date": "2018-09-12",
     "actual": 0,
     "predicted": 1,
-    "p_actual": 0.055,
+    "p_actual": 0.056,
     "dist": {
-     "0": 0.055,
-     "1": 0.945
+     "0": 0.056,
+     "1": 0.944
     }
    },
    {
     "date": "2018-10-31",
     "actual": 0,
     "predicted": 0,
-    "p_actual": 0.819,
+    "p_actual": 0.821,
     "dist": {
-     "0": 0.819,
-     "1": 0.181
+     "0": 0.821,
+     "1": 0.179
     }
    },
    {
@@ -1428,10 +1671,10 @@
     "date": "2019-09-18",
     "actual": 0,
     "predicted": 0,
-    "p_actual": 0.995,
+    "p_actual": 0.994,
     "dist": {
-     "0": 0.995,
-     "1": 0.005
+     "0": 0.994,
+     "1": 0.006
     }
    },
    {
@@ -1447,30 +1690,30 @@
     "date": "2020-01-29",
     "actual": 0,
     "predicted": 0,
-    "p_actual": 0.948,
+    "p_actual": 0.94,
     "dist": {
-     "-1": 0.052,
-     "0": 0.948
+     "-1": 0.06,
+     "0": 0.94
     }
    },
    {
     "date": "2020-03-25",
     "actual": 0,
     "predicted": 0,
-    "p_actual": 0.891,
+    "p_actual": 0.887,
     "dist": {
-     "-1": 0.108,
-     "0": 0.891
+     "-1": 0.113,
+     "0": 0.887
     }
    },
    {
     "date": "2020-05-06",
     "actual": 0,
     "predicted": 0,
-    "p_actual": 0.98,
+    "p_actual": 0.982,
     "dist": {
-     "-1": 0.02,
-     "0": 0.98
+     "-1": 0.018,
+     "0": 0.982
     }
    },
    {
@@ -1525,7 +1768,7 @@
     "p_actual": 0.986,
     "dist": {
      "0": 0.986,
-     "1": 0.014
+     "1": 0.015
     }
    },
    {
@@ -1560,20 +1803,20 @@
     "date": "2021-08-04",
     "actual": 0,
     "predicted": 0,
-    "p_actual": 0.883,
+    "p_actual": 0.884,
     "dist": {
-     "0": 0.883,
-     "1": 0.029
+     "0": 0.884,
+     "1": 0.028
     }
    },
    {
     "date": "2021-09-22",
     "actual": 0,
     "predicted": 0,
-    "p_actual": 0.975,
+    "p_actual": 0.978,
     "dist": {
-     "0": 0.975,
-     "1": 0.025
+     "0": 0.978,
+     "1": 0.022
     }
    },
    {
@@ -1590,29 +1833,29 @@
     "date": "2021-12-15",
     "actual": 1,
     "predicted": 0,
-    "p_actual": 0.256,
+    "p_actual": 0.252,
     "dist": {
-     "0": 0.744,
-     "1": 0.256
+     "0": 0.748,
+     "1": 0.252
     }
    },
    {
     "date": "2022-02-02",
     "actual": 1,
     "predicted": 1,
-    "p_actual": 0.873,
+    "p_actual": 0.889,
     "dist": {
-     "0": 0.128,
-     "1": 0.873
+     "0": 0.111,
+     "1": 0.889
     }
    },
    {
     "date": "2022-03-16",
     "actual": 1,
     "predicted": 1,
-    "p_actual": 0.997,
+    "p_actual": 0.998,
     "dist": {
-     "1": 0.997
+     "1": 0.998
     }
    },
    {
@@ -1637,20 +1880,20 @@
     "date": "2022-08-03",
     "actual": 2,
     "predicted": 1,
-    "p_actual": 0.066,
+    "p_actual": 0.064,
     "dist": {
-     "1": 0.934,
-     "2": 0.066
+     "1": 0.936,
+     "2": 0.064
     }
    },
    {
     "date": "2022-09-21",
     "actual": 2,
     "predicted": 1,
-    "p_actual": 0.309,
+    "p_actual": 0.3,
     "dist": {
-     "1": 0.691,
-     "2": 0.309
+     "1": 0.7,
+     "2": 0.3
     }
    },
    {
@@ -1659,7 +1902,7 @@
     "predicted": 2,
     "p_actual": 0.0,
     "dist": {
-     "1": 0.027,
+     "1": 0.028,
      "2": 0.973
     }
    },
@@ -1667,40 +1910,40 @@
     "date": "2022-12-14",
     "actual": 2,
     "predicted": 2,
-    "p_actual": 0.992,
+    "p_actual": 0.991,
     "dist": {
-     "2": 0.992,
-     "3": 0.005
+     "2": 0.991,
+     "3": 0.007
     }
    },
    {
     "date": "2023-02-01",
     "actual": 2,
     "predicted": 1,
-    "p_actual": 0.331,
+    "p_actual": 0.316,
     "dist": {
-     "1": 0.669,
-     "2": 0.331
+     "1": 0.684,
+     "2": 0.316
     }
    },
    {
     "date": "2023-03-22",
     "actual": 1,
     "predicted": 1,
-    "p_actual": 0.915,
+    "p_actual": 0.925,
     "dist": {
-     "1": 0.915,
-     "2": 0.083
+     "1": 0.925,
+     "2": 0.073
     }
    },
    {
     "date": "2023-05-10",
     "actual": 1,
     "predicted": 1,
-    "p_actual": 0.991,
+    "p_actual": 0.992,
     "dist": {
-     "1": 0.991,
-     "2": 0.009
+     "1": 0.992,
+     "2": 0.008
     }
    },
    {
@@ -1709,18 +1952,18 @@
     "predicted": 1,
     "p_actual": 0.0,
     "dist": {
-     "0": 0.247,
-     "1": 0.753
+     "0": 0.317,
+     "1": 0.683
     }
    },
    {
     "date": "2023-08-02",
     "actual": 1,
     "predicted": 1,
-    "p_actual": 0.717,
+    "p_actual": 0.712,
     "dist": {
-     "1": 0.717,
-     "2": 0.283
+     "1": 0.712,
+     "2": 0.288
     }
    },
    {
@@ -1730,26 +1973,26 @@
     "p_actual": 0.006,
     "dist": {
      "0": 0.006,
-     "1": 0.994
+     "1": 0.993
     }
    },
    {
     "date": "2023-11-01",
     "actual": 0,
     "predicted": 1,
-    "p_actual": 0.381,
+    "p_actual": 0.386,
     "dist": {
-     "0": 0.381,
-     "1": 0.619
+     "0": 0.386,
+     "1": 0.614
     }
    },
    {
     "date": "2023-12-13",
     "actual": 0,
     "predicted": 0,
-    "p_actual": 0.909,
+    "p_actual": 0.911,
     "dist": {
-     "0": 0.909,
+     "0": 0.911,
      "1": 0.005
     }
    },
@@ -1757,10 +2000,10 @@
     "date": "2024-01-31",
     "actual": 0,
     "predicted": 0,
-    "p_actual": 0.983,
+    "p_actual": 0.981,
     "dist": {
-     "0": 0.983,
-     "1": 0.017
+     "0": 0.981,
+     "1": 0.019
     }
    },
    {
@@ -1813,6 +2056,26 @@
     "date": "2024-11-06",
     "actual": -1,
     "predicted": 0,
+    "p_actual": 0.145,
+    "dist": {
+     "-1": 0.145,
+     "0": 0.855
+    }
+   },
+   {
+    "date": "2024-12-18",
+    "actual": 0,
+    "predicted": 0,
+    "p_actual": 0.915,
+    "dist": {
+     "-1": 0.085,
+     "0": 0.915
+    }
+   },
+   {
+    "date": "2025-02-05",
+    "actual": -1,
+    "predicted": 0,
     "p_actual": 0.133,
     "dist": {
      "-1": 0.133,
@@ -1820,113 +2083,93 @@
     }
    },
    {
-    "date": "2024-12-18",
-    "actual": 0,
-    "predicted": 0,
-    "p_actual": 0.916,
-    "dist": {
-     "-1": 0.084,
-     "0": 0.916
-    }
-   },
-   {
-    "date": "2025-02-05",
-    "actual": -1,
-    "predicted": 0,
-    "p_actual": 0.143,
-    "dist": {
-     "-1": 0.143,
-     "0": 0.857
-    }
-   },
-   {
     "date": "2025-03-19",
     "actual": 0,
     "predicted": -1,
-    "p_actual": 0.2,
+    "p_actual": 0.172,
     "dist": {
-     "-1": 0.8,
-     "0": 0.2
+     "-1": 0.828,
+     "0": 0.172
     }
    },
    {
     "date": "2025-05-07",
     "actual": -1,
     "predicted": 0,
-    "p_actual": 0.073,
+    "p_actual": 0.071,
     "dist": {
-     "-1": 0.073,
-     "0": 0.926
+     "-1": 0.071,
+     "0": 0.929
     }
    },
    {
     "date": "2025-06-18",
     "actual": 0,
     "predicted": -1,
-    "p_actual": 0.21,
+    "p_actual": 0.18,
     "dist": {
-     "-1": 0.79,
-     "0": 0.21
+     "-1": 0.82,
+     "0": 0.18
     }
    },
    {
     "date": "2025-08-06",
     "actual": -1,
     "predicted": 0,
-    "p_actual": 0.361,
+    "p_actual": 0.348,
     "dist": {
-     "-1": 0.361,
-     "0": 0.639
+     "-1": 0.348,
+     "0": 0.652
     }
    },
    {
     "date": "2025-09-17",
     "actual": 0,
     "predicted": 0,
-    "p_actual": 0.675,
+    "p_actual": 0.69,
     "dist": {
-     "-1": 0.325,
-     "0": 0.675
+     "-1": 0.31,
+     "0": 0.69
     }
    },
    {
     "date": "2025-11-05",
     "actual": 0,
     "predicted": 0,
-    "p_actual": 0.889,
+    "p_actual": 0.892,
     "dist": {
-     "-1": 0.111,
-     "0": 0.889
+     "-1": 0.107,
+     "0": 0.892
     }
    },
    {
     "date": "2025-12-17",
     "actual": -1,
     "predicted": 0,
-    "p_actual": 0.464,
+    "p_actual": 0.429,
     "dist": {
-     "-1": 0.464,
-     "0": 0.536
+     "-1": 0.429,
+     "0": 0.571
     }
    },
    {
     "date": "2026-02-04",
     "actual": 0,
     "predicted": -1,
-    "p_actual": 0.219,
+    "p_actual": 0.247,
     "dist": {
-     "-1": 0.781,
-     "0": 0.219
+     "-1": 0.752,
+     "0": 0.247
     }
    },
    {
     "date": "2026-03-18",
     "actual": 0,
     "predicted": 0,
-    "p_actual": 0.733,
+    "p_actual": 0.748,
     "dist": {
-     "-1": 0.267,
-     "0": 0.733
+     "-1": 0.253,
+     "0": 0.748
     }
    },
    {
@@ -1943,10 +2186,10 @@
     "date": "2026-06-17",
     "actual": 0,
     "predicted": 0,
-    "p_actual": 0.964,
+    "p_actual": 0.965,
     "dist": {
-     "0": 0.964,
-     "1": 0.036
+     "0": 0.965,
+     "1": 0.035
     }
    },
    {
@@ -1962,20 +2205,20 @@
     "date": "2026-09-16",
     "actual": 0,
     "predicted": 0,
-    "p_actual": 0.601,
+    "p_actual": 0.606,
     "dist": {
-     "0": 0.601,
-     "1": 0.4
+     "0": 0.606,
+     "1": 0.395
     }
    },
    {
     "date": "2026-11-04",
     "actual": 1,
     "predicted": 0,
-    "p_actual": 0.328,
+    "p_actual": 0.34,
     "dist": {
-     "0": 0.672,
-     "1": 0.328
+     "0": 0.66,
+     "1": 0.34
     }
    }
   ],
@@ -1983,13 +2226,13 @@
   "n": 779,
   "recent": {
    "since": "2021-11-22",
-   "log_loss": 0.9794,
-   "brier": 0.5115,
-   "vote_hit": 0.6546,
-   "p_actual": 0.5662,
+   "log_loss": 0.9738,
+   "brier": 0.5106,
+   "vote_hit": 0.6518,
+   "p_actual": 0.5672,
    "switch_hit": 0.277,
    "decision_hit": 0.55,
-   "decision_p": 0.59,
+   "decision_p": 0.5893,
    "meetings": 40,
    "n": 359,
    "n_switch": 148,
@@ -2057,7 +2300,7 @@
     "date": "2015-06-03",
     "member": "Martin Weale",
     "actual": 0,
-    "p_actual": 0.852,
+    "p_actual": 0.854,
     "predicted": 0
    },
    {
@@ -2078,7 +2321,7 @@
     "date": "2015-07-08",
     "member": "Jon Cunliffe",
     "actual": 0,
-    "p_actual": 0.841,
+    "p_actual": 0.834,
     "predicted": 0
    },
    {
@@ -2099,7 +2342,7 @@
     "date": "2015-07-08",
     "member": "Andrew Haldane",
     "actual": 0,
-    "p_actual": 0.856,
+    "p_actual": 0.857,
     "predicted": 0
    },
    {
@@ -2120,28 +2363,28 @@
     "date": "2015-07-08",
     "member": "Martin Weale",
     "actual": 0,
-    "p_actual": 0.844,
+    "p_actual": 0.845,
     "predicted": 0
    },
    {
     "date": "2016-02-03",
     "member": "Mark Carney",
     "actual": 0,
-    "p_actual": 0.788,
+    "p_actual": 0.79,
     "predicted": 0
    },
    {
     "date": "2016-02-03",
     "member": "Ben Broadbent",
     "actual": 0,
-    "p_actual": 0.803,
+    "p_actual": 0.804,
     "predicted": 0
    },
    {
     "date": "2016-02-03",
     "member": "Jon Cunliffe",
     "actual": 0,
-    "p_actual": 0.777,
+    "p_actual": 0.778,
     "predicted": 0
    },
    {
@@ -2155,49 +2398,49 @@
     "date": "2016-02-03",
     "member": "Kristin Forbes",
     "actual": 0,
-    "p_actual": 0.644,
+    "p_actual": 0.647,
     "predicted": 0
    },
    {
     "date": "2016-02-03",
     "member": "Andrew Haldane",
     "actual": 0,
-    "p_actual": 0.796,
+    "p_actual": 0.797,
     "predicted": 0
    },
    {
     "date": "2016-02-03",
     "member": "Ian McCafferty",
     "actual": 0,
-    "p_actual": 0.298,
+    "p_actual": 0.299,
     "predicted": 1
    },
    {
     "date": "2016-02-03",
     "member": "Gertjan Vlieghe",
     "actual": 0,
-    "p_actual": 0.818,
+    "p_actual": 0.819,
     "predicted": 0
    },
    {
     "date": "2016-02-03",
     "member": "Martin Weale",
     "actual": 0,
-    "p_actual": 0.705,
+    "p_actual": 0.712,
     "predicted": 0
    },
    {
     "date": "2016-03-16",
     "member": "Mark Carney",
     "actual": 0,
-    "p_actual": 0.859,
+    "p_actual": 0.86,
     "predicted": 0
    },
    {
     "date": "2016-03-16",
     "member": "Ben Broadbent",
     "actual": 0,
-    "p_actual": 0.859,
+    "p_actual": 0.86,
     "predicted": 0
    },
    {
@@ -2211,245 +2454,245 @@
     "date": "2016-03-16",
     "member": "Nemat Shafik",
     "actual": 0,
-    "p_actual": 0.859,
+    "p_actual": 0.86,
     "predicted": 0
    },
    {
     "date": "2016-03-16",
     "member": "Kristin Forbes",
     "actual": 0,
-    "p_actual": 0.859,
+    "p_actual": 0.86,
     "predicted": 0
    },
    {
     "date": "2016-03-16",
     "member": "Andrew Haldane",
     "actual": 0,
-    "p_actual": 0.859,
+    "p_actual": 0.86,
     "predicted": 0
    },
    {
     "date": "2016-03-16",
     "member": "Ian McCafferty",
     "actual": 0,
-    "p_actual": 0.859,
+    "p_actual": 0.86,
     "predicted": 0
    },
    {
     "date": "2016-03-16",
+    "member": "Gertjan Vlieghe",
+    "actual": 0,
+    "p_actual": 0.809,
+    "predicted": 0
+   },
+   {
+    "date": "2016-03-16",
+    "member": "Martin Weale",
+    "actual": 0,
+    "p_actual": 0.817,
+    "predicted": 0
+   },
+   {
+    "date": "2016-04-13",
+    "member": "Mark Carney",
+    "actual": 0,
+    "p_actual": 0.859,
+    "predicted": 0
+   },
+   {
+    "date": "2016-04-13",
+    "member": "Ben Broadbent",
+    "actual": 0,
+    "p_actual": 0.859,
+    "predicted": 0
+   },
+   {
+    "date": "2016-04-13",
+    "member": "Jon Cunliffe",
+    "actual": 0,
+    "p_actual": 0.859,
+    "predicted": 0
+   },
+   {
+    "date": "2016-04-13",
+    "member": "Nemat Shafik",
+    "actual": 0,
+    "p_actual": 0.859,
+    "predicted": 0
+   },
+   {
+    "date": "2016-04-13",
+    "member": "Kristin Forbes",
+    "actual": 0,
+    "p_actual": 0.859,
+    "predicted": 0
+   },
+   {
+    "date": "2016-04-13",
+    "member": "Andrew Haldane",
+    "actual": 0,
+    "p_actual": 0.859,
+    "predicted": 0
+   },
+   {
+    "date": "2016-04-13",
+    "member": "Ian McCafferty",
+    "actual": 0,
+    "p_actual": 0.859,
+    "predicted": 0
+   },
+   {
+    "date": "2016-04-13",
+    "member": "Gertjan Vlieghe",
+    "actual": 0,
+    "p_actual": 0.859,
+    "predicted": 0
+   },
+   {
+    "date": "2016-04-13",
+    "member": "Martin Weale",
+    "actual": 0,
+    "p_actual": 0.859,
+    "predicted": 0
+   },
+   {
+    "date": "2016-05-11",
+    "member": "Mark Carney",
+    "actual": 0,
+    "p_actual": 0.854,
+    "predicted": 0
+   },
+   {
+    "date": "2016-05-11",
+    "member": "Ben Broadbent",
+    "actual": 0,
+    "p_actual": 0.859,
+    "predicted": 0
+   },
+   {
+    "date": "2016-05-11",
+    "member": "Jon Cunliffe",
+    "actual": 0,
+    "p_actual": 0.86,
+    "predicted": 0
+   },
+   {
+    "date": "2016-05-11",
+    "member": "Nemat Shafik",
+    "actual": 0,
+    "p_actual": 0.859,
+    "predicted": 0
+   },
+   {
+    "date": "2016-05-11",
+    "member": "Kristin Forbes",
+    "actual": 0,
+    "p_actual": 0.859,
+    "predicted": 0
+   },
+   {
+    "date": "2016-05-11",
+    "member": "Andrew Haldane",
+    "actual": 0,
+    "p_actual": 0.859,
+    "predicted": 0
+   },
+   {
+    "date": "2016-05-11",
+    "member": "Ian McCafferty",
+    "actual": 0,
+    "p_actual": 0.858,
+    "predicted": 0
+   },
+   {
+    "date": "2016-05-11",
+    "member": "Gertjan Vlieghe",
+    "actual": 0,
+    "p_actual": 0.859,
+    "predicted": 0
+   },
+   {
+    "date": "2016-05-11",
+    "member": "Martin Weale",
+    "actual": 0,
+    "p_actual": 0.859,
+    "predicted": 0
+   },
+   {
+    "date": "2016-06-15",
+    "member": "Mark Carney",
+    "actual": 0,
+    "p_actual": 0.805,
+    "predicted": 0
+   },
+   {
+    "date": "2016-06-15",
+    "member": "Ben Broadbent",
+    "actual": 0,
+    "p_actual": 0.856,
+    "predicted": 0
+   },
+   {
+    "date": "2016-06-15",
+    "member": "Jon Cunliffe",
+    "actual": 0,
+    "p_actual": 0.857,
+    "predicted": 0
+   },
+   {
+    "date": "2016-06-15",
+    "member": "Nemat Shafik",
+    "actual": 0,
+    "p_actual": 0.857,
+    "predicted": 0
+   },
+   {
+    "date": "2016-06-15",
+    "member": "Kristin Forbes",
+    "actual": 0,
+    "p_actual": 0.857,
+    "predicted": 0
+   },
+   {
+    "date": "2016-06-15",
+    "member": "Andrew Haldane",
+    "actual": 0,
+    "p_actual": 0.857,
+    "predicted": 0
+   },
+   {
+    "date": "2016-06-15",
+    "member": "Ian McCafferty",
+    "actual": 0,
+    "p_actual": 0.857,
+    "predicted": 0
+   },
+   {
+    "date": "2016-06-15",
     "member": "Gertjan Vlieghe",
     "actual": 0,
     "p_actual": 0.804,
     "predicted": 0
    },
    {
-    "date": "2016-03-16",
-    "member": "Martin Weale",
-    "actual": 0,
-    "p_actual": 0.813,
-    "predicted": 0
-   },
-   {
-    "date": "2016-04-13",
-    "member": "Mark Carney",
-    "actual": 0,
-    "p_actual": 0.858,
-    "predicted": 0
-   },
-   {
-    "date": "2016-04-13",
-    "member": "Ben Broadbent",
-    "actual": 0,
-    "p_actual": 0.858,
-    "predicted": 0
-   },
-   {
-    "date": "2016-04-13",
-    "member": "Jon Cunliffe",
-    "actual": 0,
-    "p_actual": 0.858,
-    "predicted": 0
-   },
-   {
-    "date": "2016-04-13",
-    "member": "Nemat Shafik",
-    "actual": 0,
-    "p_actual": 0.858,
-    "predicted": 0
-   },
-   {
-    "date": "2016-04-13",
-    "member": "Kristin Forbes",
-    "actual": 0,
-    "p_actual": 0.858,
-    "predicted": 0
-   },
-   {
-    "date": "2016-04-13",
-    "member": "Andrew Haldane",
-    "actual": 0,
-    "p_actual": 0.858,
-    "predicted": 0
-   },
-   {
-    "date": "2016-04-13",
-    "member": "Ian McCafferty",
-    "actual": 0,
-    "p_actual": 0.858,
-    "predicted": 0
-   },
-   {
-    "date": "2016-04-13",
-    "member": "Gertjan Vlieghe",
-    "actual": 0,
-    "p_actual": 0.858,
-    "predicted": 0
-   },
-   {
-    "date": "2016-04-13",
-    "member": "Martin Weale",
-    "actual": 0,
-    "p_actual": 0.858,
-    "predicted": 0
-   },
-   {
-    "date": "2016-05-11",
-    "member": "Mark Carney",
-    "actual": 0,
-    "p_actual": 0.853,
-    "predicted": 0
-   },
-   {
-    "date": "2016-05-11",
-    "member": "Ben Broadbent",
-    "actual": 0,
-    "p_actual": 0.858,
-    "predicted": 0
-   },
-   {
-    "date": "2016-05-11",
-    "member": "Jon Cunliffe",
-    "actual": 0,
-    "p_actual": 0.859,
-    "predicted": 0
-   },
-   {
-    "date": "2016-05-11",
-    "member": "Nemat Shafik",
-    "actual": 0,
-    "p_actual": 0.858,
-    "predicted": 0
-   },
-   {
-    "date": "2016-05-11",
-    "member": "Kristin Forbes",
-    "actual": 0,
-    "p_actual": 0.858,
-    "predicted": 0
-   },
-   {
-    "date": "2016-05-11",
-    "member": "Andrew Haldane",
-    "actual": 0,
-    "p_actual": 0.858,
-    "predicted": 0
-   },
-   {
-    "date": "2016-05-11",
-    "member": "Ian McCafferty",
-    "actual": 0,
-    "p_actual": 0.858,
-    "predicted": 0
-   },
-   {
-    "date": "2016-05-11",
-    "member": "Gertjan Vlieghe",
-    "actual": 0,
-    "p_actual": 0.858,
-    "predicted": 0
-   },
-   {
-    "date": "2016-05-11",
-    "member": "Martin Weale",
-    "actual": 0,
-    "p_actual": 0.858,
-    "predicted": 0
-   },
-   {
-    "date": "2016-06-15",
-    "member": "Mark Carney",
-    "actual": 0,
-    "p_actual": 0.804,
-    "predicted": 0
-   },
-   {
-    "date": "2016-06-15",
-    "member": "Ben Broadbent",
-    "actual": 0,
-    "p_actual": 0.855,
-    "predicted": 0
-   },
-   {
-    "date": "2016-06-15",
-    "member": "Jon Cunliffe",
-    "actual": 0,
-    "p_actual": 0.857,
-    "predicted": 0
-   },
-   {
-    "date": "2016-06-15",
-    "member": "Nemat Shafik",
-    "actual": 0,
-    "p_actual": 0.857,
-    "predicted": 0
-   },
-   {
-    "date": "2016-06-15",
-    "member": "Kristin Forbes",
-    "actual": 0,
-    "p_actual": 0.857,
-    "predicted": 0
-   },
-   {
-    "date": "2016-06-15",
-    "member": "Andrew Haldane",
-    "actual": 0,
-    "p_actual": 0.857,
-    "predicted": 0
-   },
-   {
-    "date": "2016-06-15",
-    "member": "Ian McCafferty",
-    "actual": 0,
-    "p_actual": 0.857,
-    "predicted": 0
-   },
-   {
-    "date": "2016-06-15",
-    "member": "Gertjan Vlieghe",
-    "actual": 0,
-    "p_actual": 0.797,
-    "predicted": 0
-   },
-   {
     "date": "2016-06-15",
     "member": "Martin Weale",
     "actual": 0,
-    "p_actual": 0.857,
+    "p_actual": 0.858,
     "predicted": 0
    },
    {
     "date": "2016-08-03",
     "member": "Mark Carney",
     "actual": -1,
-    "p_actual": 0.197,
+    "p_actual": 0.239,
     "predicted": 0
    },
    {
     "date": "2016-08-03",
     "member": "Ben Broadbent",
     "actual": -1,
-    "p_actual": 0.054,
+    "p_actual": 0.053,
     "predicted": 0
    },
    {
@@ -2463,35 +2706,35 @@
     "date": "2016-08-03",
     "member": "Nemat Shafik",
     "actual": -1,
-    "p_actual": 0.054,
+    "p_actual": 0.053,
     "predicted": 0
    },
    {
     "date": "2016-08-03",
     "member": "Kristin Forbes",
     "actual": -1,
-    "p_actual": 0.054,
+    "p_actual": 0.053,
     "predicted": 0
    },
    {
     "date": "2016-08-03",
     "member": "Andrew Haldane",
     "actual": -1,
-    "p_actual": 0.436,
+    "p_actual": 0.497,
     "predicted": 0
    },
    {
     "date": "2016-08-03",
     "member": "Ian McCafferty",
     "actual": -1,
-    "p_actual": 0.054,
+    "p_actual": 0.053,
     "predicted": 0
    },
    {
     "date": "2016-08-03",
     "member": "Gertjan Vlieghe",
     "actual": -1,
-    "p_actual": 0.054,
+    "p_actual": 0.053,
     "predicted": 0
    },
    {
@@ -2505,70 +2748,70 @@
     "date": "2016-09-14",
     "member": "Mark Carney",
     "actual": 0,
-    "p_actual": 0.656,
+    "p_actual": 0.657,
     "predicted": 0
    },
    {
     "date": "2016-09-14",
     "member": "Ben Broadbent",
     "actual": 0,
-    "p_actual": 0.656,
+    "p_actual": 0.657,
     "predicted": 0
    },
    {
     "date": "2016-09-14",
     "member": "Jon Cunliffe",
     "actual": 0,
-    "p_actual": 0.656,
+    "p_actual": 0.657,
     "predicted": 0
    },
    {
     "date": "2016-09-14",
     "member": "Nemat Shafik",
     "actual": 0,
-    "p_actual": 0.842,
+    "p_actual": 0.846,
     "predicted": 0
    },
    {
     "date": "2016-09-14",
     "member": "Kristin Forbes",
     "actual": 0,
-    "p_actual": 0.656,
+    "p_actual": 0.657,
     "predicted": 0
    },
    {
     "date": "2016-09-14",
     "member": "Andrew Haldane",
     "actual": 0,
-    "p_actual": 0.656,
+    "p_actual": 0.657,
     "predicted": 0
    },
    {
     "date": "2016-09-14",
     "member": "Ian McCafferty",
     "actual": 0,
-    "p_actual": 0.656,
+    "p_actual": 0.657,
     "predicted": 0
    },
    {
     "date": "2016-09-14",
     "member": "Michael Saunders",
     "actual": 0,
-    "p_actual": 0.462,
+    "p_actual": 0.465,
     "predicted": -1
    },
    {
     "date": "2016-09-14",
     "member": "Gertjan Vlieghe",
     "actual": 0,
-    "p_actual": 0.656,
+    "p_actual": 0.657,
     "predicted": 0
    },
    {
     "date": "2016-11-02",
     "member": "Mark Carney",
     "actual": 0,
-    "p_actual": 0.704,
+    "p_actual": 0.707,
     "predicted": 0
    },
    {
@@ -2582,105 +2825,105 @@
     "date": "2016-11-02",
     "member": "Jon Cunliffe",
     "actual": 0,
-    "p_actual": 0.76,
+    "p_actual": 0.761,
     "predicted": 0
    },
    {
     "date": "2016-11-02",
     "member": "Nemat Shafik",
     "actual": 0,
-    "p_actual": 0.543,
+    "p_actual": 0.558,
     "predicted": 0
    },
    {
     "date": "2016-11-02",
     "member": "Kristin Forbes",
     "actual": 0,
-    "p_actual": 0.765,
+    "p_actual": 0.766,
     "predicted": 0
    },
    {
     "date": "2016-11-02",
     "member": "Andrew Haldane",
     "actual": 0,
-    "p_actual": 0.76,
+    "p_actual": 0.761,
     "predicted": 0
    },
    {
     "date": "2016-11-02",
     "member": "Ian McCafferty",
     "actual": 0,
-    "p_actual": 0.76,
+    "p_actual": 0.761,
     "predicted": 0
    },
    {
     "date": "2016-11-02",
     "member": "Michael Saunders",
     "actual": 0,
-    "p_actual": 0.815,
+    "p_actual": 0.813,
     "predicted": 0
    },
    {
     "date": "2016-11-02",
     "member": "Gertjan Vlieghe",
     "actual": 0,
-    "p_actual": 0.76,
+    "p_actual": 0.761,
     "predicted": 0
    },
    {
     "date": "2016-12-14",
     "member": "Mark Carney",
     "actual": 0,
-    "p_actual": 0.812,
+    "p_actual": 0.813,
     "predicted": 0
    },
    {
     "date": "2016-12-14",
     "member": "Ben Broadbent",
     "actual": 0,
-    "p_actual": 0.82,
+    "p_actual": 0.821,
     "predicted": 0
    },
    {
     "date": "2016-12-14",
     "member": "Jon Cunliffe",
     "actual": 0,
-    "p_actual": 0.809,
+    "p_actual": 0.81,
     "predicted": 0
    },
    {
     "date": "2016-12-14",
     "member": "Nemat Shafik",
     "actual": 0,
-    "p_actual": 0.826,
+    "p_actual": 0.827,
     "predicted": 0
    },
    {
     "date": "2016-12-14",
     "member": "Kristin Forbes",
     "actual": 0,
-    "p_actual": 0.73,
+    "p_actual": 0.713,
     "predicted": 0
    },
    {
     "date": "2016-12-14",
     "member": "Andrew Haldane",
     "actual": 0,
-    "p_actual": 0.81,
+    "p_actual": 0.811,
     "predicted": 0
    },
    {
     "date": "2016-12-14",
     "member": "Ian McCafferty",
     "actual": 0,
-    "p_actual": 0.832,
+    "p_actual": 0.834,
     "predicted": 0
    },
    {
     "date": "2016-12-14",
     "member": "Michael Saunders",
     "actual": 0,
-    "p_actual": 0.788,
+    "p_actual": 0.791,
     "predicted": 0
    },
    {
@@ -2701,63 +2944,63 @@
     "date": "2017-02-01",
     "member": "Ben Broadbent",
     "actual": 0,
-    "p_actual": 0.857,
+    "p_actual": 0.858,
     "predicted": 0
    },
    {
     "date": "2017-02-01",
     "member": "Jon Cunliffe",
     "actual": 0,
-    "p_actual": 0.857,
+    "p_actual": 0.858,
     "predicted": 0
    },
    {
     "date": "2017-02-01",
     "member": "Nemat Shafik",
     "actual": 0,
-    "p_actual": 0.857,
+    "p_actual": 0.858,
     "predicted": 0
    },
    {
     "date": "2017-02-01",
     "member": "Kristin Forbes",
     "actual": 0,
-    "p_actual": 0.842,
+    "p_actual": 0.846,
     "predicted": 0
    },
    {
     "date": "2017-02-01",
     "member": "Andrew Haldane",
     "actual": 0,
-    "p_actual": 0.857,
+    "p_actual": 0.858,
     "predicted": 0
    },
    {
     "date": "2017-02-01",
     "member": "Ian McCafferty",
     "actual": 0,
-    "p_actual": 0.856,
+    "p_actual": 0.857,
     "predicted": 0
    },
    {
     "date": "2017-02-01",
     "member": "Michael Saunders",
     "actual": 0,
-    "p_actual": 0.857,
+    "p_actual": 0.858,
     "predicted": 0
    },
    {
     "date": "2017-02-01",
     "member": "Gertjan Vlieghe",
     "actual": 0,
-    "p_actual": 0.857,
+    "p_actual": 0.858,
     "predicted": 0
    },
    {
     "date": "2017-06-14",
     "member": "Mark Carney",
     "actual": 0,
-    "p_actual": 0.727,
+    "p_actual": 0.728,
     "predicted": 0
    },
    {
@@ -2771,175 +3014,175 @@
     "date": "2017-06-14",
     "member": "Jon Cunliffe",
     "actual": 0,
-    "p_actual": 0.747,
+    "p_actual": 0.746,
     "predicted": 0
    },
    {
     "date": "2017-06-14",
     "member": "Kristin Forbes",
     "actual": 1,
-    "p_actual": 0.599,
+    "p_actual": 0.682,
     "predicted": 1
    },
    {
     "date": "2017-06-14",
     "member": "Andrew Haldane",
     "actual": 0,
-    "p_actual": 0.742,
+    "p_actual": 0.744,
     "predicted": 0
    },
    {
     "date": "2017-06-14",
     "member": "Ian McCafferty",
     "actual": 1,
-    "p_actual": 0.293,
+    "p_actual": 0.292,
     "predicted": 0
    },
    {
     "date": "2017-06-14",
     "member": "Michael Saunders",
     "actual": 1,
-    "p_actual": 0.254,
+    "p_actual": 0.262,
     "predicted": 0
    },
    {
     "date": "2017-06-14",
     "member": "Gertjan Vlieghe",
     "actual": 0,
-    "p_actual": 0.753,
+    "p_actual": 0.754,
     "predicted": 0
    },
    {
     "date": "2017-08-02",
     "member": "Mark Carney",
     "actual": 0,
-    "p_actual": 0.651,
+    "p_actual": 0.649,
     "predicted": 0
    },
    {
     "date": "2017-08-02",
     "member": "Ben Broadbent",
     "actual": 0,
-    "p_actual": 0.653,
+    "p_actual": 0.654,
     "predicted": 0
    },
    {
     "date": "2017-08-02",
     "member": "Jon Cunliffe",
     "actual": 0,
-    "p_actual": 0.675,
+    "p_actual": 0.677,
     "predicted": 0
    },
    {
     "date": "2017-08-02",
     "member": "Andrew Haldane",
     "actual": 0,
-    "p_actual": 0.405,
+    "p_actual": 0.416,
     "predicted": 1
    },
    {
     "date": "2017-08-02",
     "member": "Ian McCafferty",
     "actual": 1,
-    "p_actual": 0.813,
+    "p_actual": 0.815,
     "predicted": 1
    },
    {
     "date": "2017-08-02",
     "member": "Michael Saunders",
     "actual": 1,
-    "p_actual": 0.813,
+    "p_actual": 0.815,
     "predicted": 1
    },
    {
     "date": "2017-08-02",
     "member": "Silvana Tenreyro",
     "actual": 0,
-    "p_actual": 0.675,
+    "p_actual": 0.677,
     "predicted": 0
    },
    {
     "date": "2017-08-02",
     "member": "Gertjan Vlieghe",
     "actual": 0,
-    "p_actual": 0.675,
+    "p_actual": 0.677,
     "predicted": 0
    },
    {
     "date": "2017-09-13",
     "member": "Mark Carney",
     "actual": 0,
-    "p_actual": 0.754,
+    "p_actual": 0.755,
     "predicted": 0
    },
    {
     "date": "2017-09-13",
     "member": "Ben Broadbent",
     "actual": 0,
-    "p_actual": 0.754,
+    "p_actual": 0.755,
     "predicted": 0
    },
    {
     "date": "2017-09-13",
     "member": "Jon Cunliffe",
     "actual": 0,
-    "p_actual": 0.754,
+    "p_actual": 0.755,
     "predicted": 0
    },
    {
     "date": "2017-09-13",
     "member": "Dave Ramsden",
     "actual": 0,
-    "p_actual": 0.754,
+    "p_actual": 0.755,
     "predicted": 0
    },
    {
     "date": "2017-09-13",
     "member": "Andrew Haldane",
     "actual": 0,
-    "p_actual": 0.754,
+    "p_actual": 0.755,
     "predicted": 0
    },
    {
     "date": "2017-09-13",
     "member": "Ian McCafferty",
     "actual": 1,
-    "p_actual": 0.854,
+    "p_actual": 0.855,
     "predicted": 1
    },
    {
     "date": "2017-09-13",
     "member": "Michael Saunders",
     "actual": 1,
-    "p_actual": 0.839,
+    "p_actual": 0.806,
     "predicted": 1
    },
    {
     "date": "2017-09-13",
     "member": "Silvana Tenreyro",
     "actual": 0,
-    "p_actual": 0.754,
+    "p_actual": 0.755,
     "predicted": 0
    },
    {
     "date": "2017-09-13",
     "member": "Gertjan Vlieghe",
     "actual": 0,
-    "p_actual": 0.754,
+    "p_actual": 0.755,
     "predicted": 0
    },
    {
     "date": "2017-11-01",
     "member": "Mark Carney",
     "actual": 1,
-    "p_actual": 0.352,
+    "p_actual": 0.335,
     "predicted": 0
    },
    {
     "date": "2017-11-01",
     "member": "Ben Broadbent",
     "actual": 1,
-    "p_actual": 0.124,
+    "p_actual": 0.123,
     "predicted": 0
    },
    {
@@ -2960,49 +3203,49 @@
     "date": "2017-11-01",
     "member": "Andrew Haldane",
     "actual": 1,
-    "p_actual": 0.124,
+    "p_actual": 0.123,
     "predicted": 0
    },
    {
     "date": "2017-11-01",
     "member": "Ian McCafferty",
     "actual": 1,
-    "p_actual": 0.856,
+    "p_actual": 0.857,
     "predicted": 1
    },
    {
     "date": "2017-11-01",
     "member": "Michael Saunders",
     "actual": 1,
-    "p_actual": 0.82,
+    "p_actual": 0.821,
     "predicted": 1
    },
    {
     "date": "2017-11-01",
     "member": "Silvana Tenreyro",
     "actual": 1,
-    "p_actual": 0.124,
+    "p_actual": 0.123,
     "predicted": 0
    },
    {
     "date": "2017-11-01",
     "member": "Gertjan Vlieghe",
     "actual": 1,
-    "p_actual": 0.339,
+    "p_actual": 0.314,
     "predicted": 0
    },
    {
     "date": "2017-12-13",
     "member": "Mark Carney",
     "actual": 0,
-    "p_actual": 0.769,
+    "p_actual": 0.771,
     "predicted": 0
    },
    {
     "date": "2017-12-13",
     "member": "Ben Broadbent",
     "actual": 0,
-    "p_actual": 0.735,
+    "p_actual": 0.733,
     "predicted": 0
    },
    {
@@ -3023,49 +3266,49 @@
     "date": "2017-12-13",
     "member": "Andrew Haldane",
     "actual": 0,
-    "p_actual": 0.77,
+    "p_actual": 0.772,
     "predicted": 0
    },
    {
     "date": "2017-12-13",
     "member": "Ian McCafferty",
     "actual": 0,
-    "p_actual": 0.227,
+    "p_actual": 0.256,
     "predicted": 1
    },
    {
     "date": "2017-12-13",
     "member": "Michael Saunders",
     "actual": 0,
-    "p_actual": 0.379,
+    "p_actual": 0.371,
     "predicted": 1
    },
    {
     "date": "2017-12-13",
     "member": "Silvana Tenreyro",
     "actual": 0,
-    "p_actual": 0.682,
+    "p_actual": 0.683,
     "predicted": 0
    },
    {
     "date": "2017-12-13",
     "member": "Gertjan Vlieghe",
     "actual": 0,
-    "p_actual": 0.555,
+    "p_actual": 0.593,
     "predicted": 0
    },
    {
     "date": "2018-02-07",
     "member": "Mark Carney",
     "actual": 0,
-    "p_actual": 0.647,
+    "p_actual": 0.646,
     "predicted": 0
    },
    {
     "date": "2018-02-07",
     "member": "Ben Broadbent",
     "actual": 0,
-    "p_actual": 0.638,
+    "p_actual": 0.637,
     "predicted": 0
    },
    {
@@ -3079,77 +3322,77 @@
     "date": "2018-02-07",
     "member": "Dave Ramsden",
     "actual": 0,
-    "p_actual": 0.842,
+    "p_actual": 0.841,
     "predicted": 0
    },
    {
     "date": "2018-02-07",
     "member": "Andrew Haldane",
     "actual": 0,
-    "p_actual": 0.638,
+    "p_actual": 0.637,
     "predicted": 0
    },
    {
     "date": "2018-02-07",
     "member": "Ian McCafferty",
     "actual": 0,
-    "p_actual": 0.55,
+    "p_actual": 0.549,
     "predicted": 0
    },
    {
     "date": "2018-02-07",
     "member": "Michael Saunders",
     "actual": 0,
-    "p_actual": 0.222,
+    "p_actual": 0.196,
     "predicted": 1
    },
    {
     "date": "2018-02-07",
     "member": "Silvana Tenreyro",
     "actual": 0,
-    "p_actual": 0.43,
+    "p_actual": 0.432,
     "predicted": 1
    },
    {
     "date": "2018-02-07",
     "member": "Gertjan Vlieghe",
     "actual": 0,
-    "p_actual": 0.638,
+    "p_actual": 0.637,
     "predicted": 0
    },
    {
     "date": "2018-03-21",
     "member": "Mark Carney",
     "actual": 0,
-    "p_actual": 0.842,
+    "p_actual": 0.843,
     "predicted": 0
    },
    {
     "date": "2018-03-21",
     "member": "Ben Broadbent",
     "actual": 0,
-    "p_actual": 0.813,
+    "p_actual": 0.784,
     "predicted": 0
    },
    {
     "date": "2018-03-21",
     "member": "Jon Cunliffe",
     "actual": 0,
-    "p_actual": 0.817,
+    "p_actual": 0.818,
     "predicted": 0
    },
    {
     "date": "2018-03-21",
     "member": "Dave Ramsden",
     "actual": 0,
-    "p_actual": 0.865,
+    "p_actual": 0.859,
     "predicted": 0
    },
    {
     "date": "2018-03-21",
     "member": "Andrew Haldane",
     "actual": 0,
-    "p_actual": 0.833,
+    "p_actual": 0.846,
     "predicted": 0
    },
    {
@@ -3177,7 +3420,7 @@
     "date": "2018-03-21",
     "member": "Gertjan Vlieghe",
     "actual": 0,
-    "p_actual": 0.832,
+    "p_actual": 0.833,
     "predicted": 0
    },
    {
@@ -3212,63 +3455,63 @@
     "date": "2018-05-09",
     "member": "Andrew Haldane",
     "actual": 0,
-    "p_actual": 0.791,
+    "p_actual": 0.79,
     "predicted": 0
    },
    {
     "date": "2018-05-09",
     "member": "Ian McCafferty",
     "actual": 1,
-    "p_actual": 0.734,
+    "p_actual": 0.738,
     "predicted": 1
    },
    {
     "date": "2018-05-09",
     "member": "Michael Saunders",
     "actual": 1,
-    "p_actual": 0.778,
+    "p_actual": 0.812,
     "predicted": 1
    },
    {
     "date": "2018-05-09",
     "member": "Silvana Tenreyro",
     "actual": 0,
-    "p_actual": 0.821,
+    "p_actual": 0.82,
     "predicted": 0
    },
    {
     "date": "2018-05-09",
     "member": "Gertjan Vlieghe",
     "actual": 0,
-    "p_actual": 0.298,
+    "p_actual": 0.315,
     "predicted": 1
    },
    {
     "date": "2018-06-20",
     "member": "Mark Carney",
     "actual": 0,
-    "p_actual": 0.771,
+    "p_actual": 0.774,
     "predicted": 0
    },
    {
     "date": "2018-06-20",
     "member": "Ben Broadbent",
     "actual": 0,
-    "p_actual": 0.864,
+    "p_actual": 0.865,
     "predicted": 0
    },
    {
     "date": "2018-06-20",
     "member": "Jon Cunliffe",
     "actual": 0,
-    "p_actual": 0.866,
+    "p_actual": 0.867,
     "predicted": 0
    },
    {
     "date": "2018-06-20",
     "member": "Dave Ramsden",
     "actual": 0,
-    "p_actual": 0.781,
+    "p_actual": 0.788,
     "predicted": 0
    },
    {
@@ -3282,28 +3525,28 @@
     "date": "2018-06-20",
     "member": "Ian McCafferty",
     "actual": 1,
-    "p_actual": 0.788,
+    "p_actual": 0.789,
     "predicted": 1
    },
    {
     "date": "2018-06-20",
     "member": "Michael Saunders",
     "actual": 1,
-    "p_actual": 0.84,
+    "p_actual": 0.83,
     "predicted": 1
    },
    {
     "date": "2018-06-20",
     "member": "Silvana Tenreyro",
     "actual": 0,
-    "p_actual": 0.85,
+    "p_actual": 0.851,
     "predicted": 0
    },
    {
     "date": "2018-06-20",
     "member": "Gertjan Vlieghe",
     "actual": 0,
-    "p_actual": 0.857,
+    "p_actual": 0.858,
     "predicted": 0
    },
    {
@@ -3317,14 +3560,14 @@
     "date": "2018-08-01",
     "member": "Ben Broadbent",
     "actual": 1,
-    "p_actual": 0.16,
+    "p_actual": 0.159,
     "predicted": 0
    },
    {
     "date": "2018-08-01",
     "member": "Jon Cunliffe",
     "actual": 1,
-    "p_actual": 0.233,
+    "p_actual": 0.253,
     "predicted": 0
    },
    {
@@ -3338,21 +3581,21 @@
     "date": "2018-08-01",
     "member": "Andrew Haldane",
     "actual": 1,
-    "p_actual": 0.666,
+    "p_actual": 0.669,
     "predicted": 1
    },
    {
     "date": "2018-08-01",
     "member": "Ian McCafferty",
     "actual": 1,
-    "p_actual": 0.866,
+    "p_actual": 0.867,
     "predicted": 1
    },
    {
     "date": "2018-08-01",
     "member": "Michael Saunders",
     "actual": 1,
-    "p_actual": 0.851,
+    "p_actual": 0.852,
     "predicted": 1
    },
    {
@@ -3373,7 +3616,7 @@
     "date": "2018-09-12",
     "member": "Mark Carney",
     "actual": 0,
-    "p_actual": 0.261,
+    "p_actual": 0.245,
     "predicted": 1
    },
    {
@@ -3401,28 +3644,28 @@
     "date": "2018-09-12",
     "member": "Andrew Haldane",
     "actual": 0,
-    "p_actual": 0.253,
+    "p_actual": 0.26,
     "predicted": 1
    },
    {
     "date": "2018-09-12",
     "member": "Jonathan Haskel",
     "actual": 0,
-    "p_actual": 0.166,
+    "p_actual": 0.168,
     "predicted": 1
    },
    {
     "date": "2018-09-12",
     "member": "Michael Saunders",
     "actual": 0,
-    "p_actual": 0.11,
+    "p_actual": 0.111,
     "predicted": 1
    },
    {
     "date": "2018-09-12",
     "member": "Silvana Tenreyro",
     "actual": 0,
-    "p_actual": 0.219,
+    "p_actual": 0.224,
     "predicted": 1
    },
    {
@@ -3436,35 +3679,35 @@
     "date": "2018-10-31",
     "member": "Mark Carney",
     "actual": 0,
-    "p_actual": 0.608,
+    "p_actual": 0.615,
     "predicted": 0
    },
    {
     "date": "2018-10-31",
     "member": "Ben Broadbent",
     "actual": 0,
-    "p_actual": 0.676,
+    "p_actual": 0.677,
     "predicted": 0
    },
    {
     "date": "2018-10-31",
     "member": "Jon Cunliffe",
     "actual": 0,
-    "p_actual": 0.676,
+    "p_actual": 0.677,
     "predicted": 0
    },
    {
     "date": "2018-10-31",
     "member": "Dave Ramsden",
     "actual": 0,
-    "p_actual": 0.676,
+    "p_actual": 0.677,
     "predicted": 0
    },
    {
     "date": "2018-10-31",
     "member": "Andrew Haldane",
     "actual": 0,
-    "p_actual": 0.26,
+    "p_actual": 0.256,
     "predicted": 1
    },
    {
@@ -3485,21 +3728,21 @@
     "date": "2018-10-31",
     "member": "Silvana Tenreyro",
     "actual": 0,
-    "p_actual": 0.676,
+    "p_actual": 0.677,
     "predicted": 0
    },
    {
     "date": "2018-10-31",
     "member": "Gertjan Vlieghe",
     "actual": 0,
-    "p_actual": 0.632,
+    "p_actual": 0.635,
     "predicted": 0
    },
    {
     "date": "2018-12-19",
     "member": "Mark Carney",
     "actual": 0,
-    "p_actual": 0.866,
+    "p_actual": 0.867,
     "predicted": 0
    },
    {
@@ -3513,140 +3756,140 @@
     "date": "2018-12-19",
     "member": "Jon Cunliffe",
     "actual": 0,
-    "p_actual": 0.866,
+    "p_actual": 0.865,
     "predicted": 0
    },
    {
     "date": "2018-12-19",
     "member": "Dave Ramsden",
     "actual": 0,
-    "p_actual": 0.841,
+    "p_actual": 0.842,
     "predicted": 0
    },
    {
     "date": "2018-12-19",
     "member": "Andrew Haldane",
     "actual": 0,
-    "p_actual": 0.854,
+    "p_actual": 0.855,
     "predicted": 0
    },
    {
     "date": "2018-12-19",
     "member": "Jonathan Haskel",
     "actual": 0,
-    "p_actual": 0.841,
+    "p_actual": 0.842,
     "predicted": 0
    },
    {
     "date": "2018-12-19",
     "member": "Michael Saunders",
     "actual": 0,
-    "p_actual": 0.758,
+    "p_actual": 0.78,
     "predicted": 0
    },
    {
     "date": "2018-12-19",
     "member": "Silvana Tenreyro",
     "actual": 0,
-    "p_actual": 0.841,
+    "p_actual": 0.842,
     "predicted": 0
    },
    {
     "date": "2018-12-19",
     "member": "Gertjan Vlieghe",
     "actual": 0,
-    "p_actual": 0.841,
+    "p_actual": 0.842,
     "predicted": 0
    },
    {
     "date": "2019-02-06",
     "member": "Mark Carney",
     "actual": 0,
-    "p_actual": 0.842,
+    "p_actual": 0.843,
     "predicted": 0
    },
    {
     "date": "2019-02-06",
     "member": "Ben Broadbent",
     "actual": 0,
-    "p_actual": 0.842,
+    "p_actual": 0.843,
     "predicted": 0
    },
    {
     "date": "2019-02-06",
     "member": "Jon Cunliffe",
     "actual": 0,
-    "p_actual": 0.842,
+    "p_actual": 0.843,
     "predicted": 0
    },
    {
     "date": "2019-02-06",
+    "member": "Andrew Haldane",
+    "actual": 0,
+    "p_actual": 0.846,
+    "predicted": 0
+   },
+   {
+    "date": "2019-02-06",
+    "member": "Jonathan Haskel",
+    "actual": 0,
+    "p_actual": 0.843,
+    "predicted": 0
+   },
+   {
+    "date": "2019-02-06",
+    "member": "Dave Ramsden",
+    "actual": 0,
+    "p_actual": 0.843,
+    "predicted": 0
+   },
+   {
+    "date": "2019-02-06",
+    "member": "Michael Saunders",
+    "actual": 0,
+    "p_actual": 0.848,
+    "predicted": 0
+   },
+   {
+    "date": "2019-02-06",
+    "member": "Silvana Tenreyro",
+    "actual": 0,
+    "p_actual": 0.843,
+    "predicted": 0
+   },
+   {
+    "date": "2019-02-06",
+    "member": "Gertjan Vlieghe",
+    "actual": 0,
+    "p_actual": 0.843,
+    "predicted": 0
+   },
+   {
+    "date": "2019-03-20",
+    "member": "Mark Carney",
+    "actual": 0,
+    "p_actual": 0.842,
+    "predicted": 0
+   },
+   {
+    "date": "2019-03-20",
+    "member": "Ben Broadbent",
+    "actual": 0,
+    "p_actual": 0.843,
+    "predicted": 0
+   },
+   {
+    "date": "2019-03-20",
+    "member": "Jon Cunliffe",
+    "actual": 0,
+    "p_actual": 0.843,
+    "predicted": 0
+   },
+   {
+    "date": "2019-03-20",
     "member": "Andrew Haldane",
     "actual": 0,
     "p_actual": 0.845,
-    "predicted": 0
-   },
-   {
-    "date": "2019-02-06",
-    "member": "Jonathan Haskel",
-    "actual": 0,
-    "p_actual": 0.842,
-    "predicted": 0
-   },
-   {
-    "date": "2019-02-06",
-    "member": "Dave Ramsden",
-    "actual": 0,
-    "p_actual": 0.842,
-    "predicted": 0
-   },
-   {
-    "date": "2019-02-06",
-    "member": "Michael Saunders",
-    "actual": 0,
-    "p_actual": 0.847,
-    "predicted": 0
-   },
-   {
-    "date": "2019-02-06",
-    "member": "Silvana Tenreyro",
-    "actual": 0,
-    "p_actual": 0.842,
-    "predicted": 0
-   },
-   {
-    "date": "2019-02-06",
-    "member": "Gertjan Vlieghe",
-    "actual": 0,
-    "p_actual": 0.842,
-    "predicted": 0
-   },
-   {
-    "date": "2019-03-20",
-    "member": "Mark Carney",
-    "actual": 0,
-    "p_actual": 0.842,
-    "predicted": 0
-   },
-   {
-    "date": "2019-03-20",
-    "member": "Ben Broadbent",
-    "actual": 0,
-    "p_actual": 0.842,
-    "predicted": 0
-   },
-   {
-    "date": "2019-03-20",
-    "member": "Jon Cunliffe",
-    "actual": 0,
-    "p_actual": 0.842,
-    "predicted": 0
-   },
-   {
-    "date": "2019-03-20",
-    "member": "Andrew Haldane",
-    "actual": 0,
-    "p_actual": 0.844,
     "predicted": 0
    },
    {
@@ -3660,49 +3903,49 @@
     "date": "2019-03-20",
     "member": "Dave Ramsden",
     "actual": 0,
+    "p_actual": 0.842,
+    "predicted": 0
+   },
+   {
+    "date": "2019-03-20",
+    "member": "Michael Saunders",
+    "actual": 0,
+    "p_actual": 0.847,
+    "predicted": 0
+   },
+   {
+    "date": "2019-03-20",
+    "member": "Silvana Tenreyro",
+    "actual": 0,
+    "p_actual": 0.844,
+    "predicted": 0
+   },
+   {
+    "date": "2019-03-20",
+    "member": "Gertjan Vlieghe",
+    "actual": 0,
+    "p_actual": 0.844,
+    "predicted": 0
+   },
+   {
+    "date": "2019-05-01",
+    "member": "Mark Carney",
+    "actual": 0,
     "p_actual": 0.841,
     "predicted": 0
    },
    {
-    "date": "2019-03-20",
-    "member": "Michael Saunders",
-    "actual": 0,
-    "p_actual": 0.846,
-    "predicted": 0
-   },
-   {
-    "date": "2019-03-20",
-    "member": "Silvana Tenreyro",
-    "actual": 0,
-    "p_actual": 0.843,
-    "predicted": 0
-   },
-   {
-    "date": "2019-03-20",
-    "member": "Gertjan Vlieghe",
-    "actual": 0,
-    "p_actual": 0.843,
-    "predicted": 0
-   },
-   {
-    "date": "2019-05-01",
-    "member": "Mark Carney",
-    "actual": 0,
-    "p_actual": 0.84,
-    "predicted": 0
-   },
-   {
     "date": "2019-05-01",
     "member": "Ben Broadbent",
     "actual": 0,
-    "p_actual": 0.84,
+    "p_actual": 0.841,
     "predicted": 0
    },
    {
     "date": "2019-05-01",
     "member": "Jon Cunliffe",
     "actual": 0,
-    "p_actual": 0.84,
+    "p_actual": 0.841,
     "predicted": 0
    },
    {
@@ -3716,14 +3959,14 @@
     "date": "2019-05-01",
     "member": "Jonathan Haskel",
     "actual": 0,
-    "p_actual": 0.84,
+    "p_actual": 0.841,
     "predicted": 0
    },
    {
     "date": "2019-05-01",
     "member": "Dave Ramsden",
     "actual": 0,
-    "p_actual": 0.84,
+    "p_actual": 0.841,
     "predicted": 0
    },
    {
@@ -3737,21 +3980,21 @@
     "date": "2019-05-01",
     "member": "Silvana Tenreyro",
     "actual": 0,
-    "p_actual": 0.84,
+    "p_actual": 0.841,
     "predicted": 0
    },
    {
     "date": "2019-05-01",
     "member": "Gertjan Vlieghe",
     "actual": 0,
-    "p_actual": 0.84,
+    "p_actual": 0.841,
     "predicted": 0
    },
    {
     "date": "2019-06-19",
     "member": "Mark Carney",
     "actual": 0,
-    "p_actual": 0.828,
+    "p_actual": 0.829,
     "predicted": 0
    },
    {
@@ -3765,56 +4008,56 @@
     "date": "2019-06-19",
     "member": "Jon Cunliffe",
     "actual": 0,
-    "p_actual": 0.821,
+    "p_actual": 0.822,
     "predicted": 0
    },
    {
     "date": "2019-06-19",
     "member": "Andrew Haldane",
     "actual": 0,
-    "p_actual": 0.821,
+    "p_actual": 0.822,
     "predicted": 0
    },
    {
     "date": "2019-06-19",
     "member": "Jonathan Haskel",
     "actual": 0,
-    "p_actual": 0.821,
+    "p_actual": 0.822,
     "predicted": 0
    },
    {
     "date": "2019-06-19",
     "member": "Dave Ramsden",
     "actual": 0,
-    "p_actual": 0.78,
+    "p_actual": 0.722,
     "predicted": 0
    },
    {
     "date": "2019-06-19",
     "member": "Michael Saunders",
     "actual": 0,
-    "p_actual": 0.847,
+    "p_actual": 0.848,
     "predicted": 0
    },
    {
     "date": "2019-06-19",
     "member": "Silvana Tenreyro",
     "actual": 0,
-    "p_actual": 0.821,
+    "p_actual": 0.822,
     "predicted": 0
    },
    {
     "date": "2019-06-19",
     "member": "Gertjan Vlieghe",
     "actual": 0,
-    "p_actual": 0.821,
+    "p_actual": 0.822,
     "predicted": 0
    },
    {
     "date": "2019-07-31",
     "member": "Mark Carney",
     "actual": 0,
-    "p_actual": 0.805,
+    "p_actual": 0.802,
     "predicted": 0
    },
    {
@@ -3828,7 +4071,7 @@
     "date": "2019-07-31",
     "member": "Jon Cunliffe",
     "actual": 0,
-    "p_actual": 0.772,
+    "p_actual": 0.756,
     "predicted": 0
    },
    {
@@ -3856,112 +4099,112 @@
     "date": "2019-07-31",
     "member": "Michael Saunders",
     "actual": 0,
-    "p_actual": 0.805,
+    "p_actual": 0.808,
     "predicted": 0
    },
    {
     "date": "2019-07-31",
     "member": "Silvana Tenreyro",
     "actual": 0,
-    "p_actual": 0.821,
+    "p_actual": 0.823,
     "predicted": 0
    },
    {
     "date": "2019-07-31",
     "member": "Gertjan Vlieghe",
+    "actual": 0,
+    "p_actual": 0.796,
+    "predicted": 0
+   },
+   {
+    "date": "2019-09-18",
+    "member": "Mark Carney",
+    "actual": 0,
+    "p_actual": 0.847,
+    "predicted": 0
+   },
+   {
+    "date": "2019-09-18",
+    "member": "Ben Broadbent",
     "actual": 0,
     "p_actual": 0.8,
     "predicted": 0
    },
    {
     "date": "2019-09-18",
-    "member": "Mark Carney",
-    "actual": 0,
-    "p_actual": 0.846,
-    "predicted": 0
-   },
-   {
-    "date": "2019-09-18",
-    "member": "Ben Broadbent",
-    "actual": 0,
-    "p_actual": 0.799,
-    "predicted": 0
-   },
-   {
-    "date": "2019-09-18",
     "member": "Jon Cunliffe",
     "actual": 0,
-    "p_actual": 0.799,
+    "p_actual": 0.8,
     "predicted": 0
    },
    {
     "date": "2019-09-18",
     "member": "Andrew Haldane",
     "actual": 0,
-    "p_actual": 0.837,
+    "p_actual": 0.835,
     "predicted": 0
    },
    {
     "date": "2019-09-18",
     "member": "Jonathan Haskel",
     "actual": 0,
-    "p_actual": 0.799,
+    "p_actual": 0.8,
     "predicted": 0
    },
    {
     "date": "2019-09-18",
     "member": "Dave Ramsden",
     "actual": 0,
-    "p_actual": 0.799,
+    "p_actual": 0.8,
     "predicted": 0
    },
    {
     "date": "2019-09-18",
     "member": "Michael Saunders",
     "actual": 0,
-    "p_actual": 0.799,
+    "p_actual": 0.8,
     "predicted": 0
    },
    {
     "date": "2019-09-18",
     "member": "Silvana Tenreyro",
     "actual": 0,
-    "p_actual": 0.799,
+    "p_actual": 0.8,
     "predicted": 0
    },
    {
     "date": "2019-09-18",
     "member": "Gertjan Vlieghe",
     "actual": 0,
-    "p_actual": 0.799,
+    "p_actual": 0.8,
     "predicted": 0
    },
    {
     "date": "2019-12-18",
     "member": "Mark Carney",
     "actual": 0,
-    "p_actual": 0.844,
+    "p_actual": 0.845,
     "predicted": 0
    },
    {
     "date": "2019-12-18",
     "member": "Ben Broadbent",
     "actual": 0,
-    "p_actual": 0.847,
+    "p_actual": 0.848,
     "predicted": 0
    },
    {
     "date": "2019-12-18",
     "member": "Jon Cunliffe",
     "actual": 0,
-    "p_actual": 0.847,
+    "p_actual": 0.848,
     "predicted": 0
    },
    {
     "date": "2019-12-18",
     "member": "Andrew Haldane",
     "actual": 0,
-    "p_actual": 0.847,
+    "p_actual": 0.848,
     "predicted": 0
    },
    {
@@ -3975,217 +4218,217 @@
     "date": "2019-12-18",
     "member": "Dave Ramsden",
     "actual": 0,
-    "p_actual": 0.847,
+    "p_actual": 0.848,
     "predicted": 0
    },
    {
     "date": "2019-12-18",
     "member": "Michael Saunders",
     "actual": -1,
-    "p_actual": 0.386,
-    "predicted": 0
+    "p_actual": 0.501,
+    "predicted": -1
    },
    {
     "date": "2019-12-18",
     "member": "Silvana Tenreyro",
     "actual": 0,
-    "p_actual": 0.847,
+    "p_actual": 0.848,
     "predicted": 0
    },
    {
     "date": "2019-12-18",
     "member": "Gertjan Vlieghe",
     "actual": 0,
-    "p_actual": 0.825,
+    "p_actual": 0.826,
     "predicted": 0
    },
    {
     "date": "2020-01-29",
     "member": "Mark Carney",
     "actual": 0,
-    "p_actual": 0.766,
+    "p_actual": 0.77,
     "predicted": 0
    },
    {
     "date": "2020-01-29",
     "member": "Ben Broadbent",
     "actual": 0,
-    "p_actual": 0.807,
+    "p_actual": 0.808,
     "predicted": 0
    },
    {
     "date": "2020-01-29",
     "member": "Jon Cunliffe",
     "actual": 0,
-    "p_actual": 0.807,
+    "p_actual": 0.808,
     "predicted": 0
    },
    {
     "date": "2020-01-29",
     "member": "Andrew Haldane",
     "actual": 0,
-    "p_actual": 0.807,
+    "p_actual": 0.808,
     "predicted": 0
    },
    {
     "date": "2020-01-29",
     "member": "Jonathan Haskel",
     "actual": -1,
-    "p_actual": 0.673,
+    "p_actual": 0.733,
     "predicted": -1
    },
    {
     "date": "2020-01-29",
     "member": "Dave Ramsden",
     "actual": 0,
-    "p_actual": 0.807,
+    "p_actual": 0.808,
     "predicted": 0
    },
    {
     "date": "2020-01-29",
     "member": "Michael Saunders",
     "actual": -1,
-    "p_actual": 0.76,
+    "p_actual": 0.813,
     "predicted": -1
    },
    {
     "date": "2020-01-29",
     "member": "Silvana Tenreyro",
     "actual": 0,
-    "p_actual": 0.807,
+    "p_actual": 0.808,
     "predicted": 0
    },
    {
     "date": "2020-01-29",
     "member": "Gertjan Vlieghe",
     "actual": 0,
-    "p_actual": 0.807,
+    "p_actual": 0.808,
     "predicted": 0
    },
    {
     "date": "2020-03-25",
     "member": "Andrew Bailey",
     "actual": 0,
-    "p_actual": 0.755,
+    "p_actual": 0.756,
     "predicted": 0
    },
    {
     "date": "2020-03-25",
     "member": "Ben Broadbent",
     "actual": 0,
-    "p_actual": 0.783,
+    "p_actual": 0.781,
     "predicted": 0
    },
    {
     "date": "2020-03-25",
     "member": "Jon Cunliffe",
     "actual": 0,
-    "p_actual": 0.755,
+    "p_actual": 0.756,
     "predicted": 0
    },
    {
     "date": "2020-03-25",
     "member": "Andrew Haldane",
     "actual": 0,
-    "p_actual": 0.755,
+    "p_actual": 0.756,
     "predicted": 0
    },
    {
     "date": "2020-03-25",
     "member": "Jonathan Haskel",
     "actual": 0,
-    "p_actual": 0.445,
+    "p_actual": 0.408,
     "predicted": -1
    },
    {
     "date": "2020-03-25",
     "member": "Dave Ramsden",
     "actual": 0,
-    "p_actual": 0.755,
+    "p_actual": 0.756,
     "predicted": 0
    },
    {
     "date": "2020-03-25",
     "member": "Michael Saunders",
     "actual": 0,
-    "p_actual": 0.1,
+    "p_actual": 0.099,
     "predicted": -1
    },
    {
     "date": "2020-03-25",
     "member": "Silvana Tenreyro",
     "actual": 0,
-    "p_actual": 0.755,
+    "p_actual": 0.756,
     "predicted": 0
    },
    {
     "date": "2020-03-25",
     "member": "Gertjan Vlieghe",
     "actual": 0,
-    "p_actual": 0.755,
+    "p_actual": 0.756,
     "predicted": 0
    },
    {
     "date": "2020-05-06",
     "member": "Andrew Bailey",
     "actual": 0,
-    "p_actual": 0.813,
+    "p_actual": 0.814,
     "predicted": 0
    },
    {
     "date": "2020-05-06",
     "member": "Ben Broadbent",
     "actual": 0,
-    "p_actual": 0.813,
+    "p_actual": 0.814,
     "predicted": 0
    },
    {
     "date": "2020-05-06",
     "member": "Jon Cunliffe",
     "actual": 0,
-    "p_actual": 0.813,
+    "p_actual": 0.814,
     "predicted": 0
    },
    {
     "date": "2020-05-06",
     "member": "Andrew Haldane",
     "actual": 0,
-    "p_actual": 0.813,
+    "p_actual": 0.814,
     "predicted": 0
    },
    {
     "date": "2020-05-06",
     "member": "Jonathan Haskel",
     "actual": 0,
-    "p_actual": 0.617,
+    "p_actual": 0.619,
     "predicted": 0
    },
    {
     "date": "2020-05-06",
     "member": "Dave Ramsden",
     "actual": 0,
-    "p_actual": 0.813,
+    "p_actual": 0.814,
     "predicted": 0
    },
    {
     "date": "2020-05-06",
     "member": "Michael Saunders",
     "actual": 0,
-    "p_actual": 0.617,
+    "p_actual": 0.619,
     "predicted": 0
    },
    {
     "date": "2020-05-06",
     "member": "Silvana Tenreyro",
     "actual": 0,
-    "p_actual": 0.788,
+    "p_actual": 0.78,
     "predicted": 0
    },
    {
     "date": "2020-05-06",
     "member": "Gertjan Vlieghe",
     "actual": 0,
-    "p_actual": 0.726,
+    "p_actual": 0.74,
     "predicted": 0
    },
    {
@@ -4213,21 +4456,21 @@
     "date": "2020-06-17",
     "member": "Andrew Haldane",
     "actual": 0,
-    "p_actual": 0.83,
+    "p_actual": 0.831,
     "predicted": 0
    },
    {
     "date": "2020-06-17",
     "member": "Jonathan Haskel",
     "actual": 0,
-    "p_actual": 0.785,
+    "p_actual": 0.789,
     "predicted": 0
    },
    {
     "date": "2020-06-17",
     "member": "Dave Ramsden",
     "actual": 0,
-    "p_actual": 0.83,
+    "p_actual": 0.831,
     "predicted": 0
    },
    {
@@ -4241,434 +4484,434 @@
     "date": "2020-06-17",
     "member": "Silvana Tenreyro",
     "actual": 0,
-    "p_actual": 0.83,
+    "p_actual": 0.831,
     "predicted": 0
    },
    {
     "date": "2020-06-17",
     "member": "Gertjan Vlieghe",
     "actual": 0,
-    "p_actual": 0.83,
-    "predicted": 0
-   },
-   {
-    "date": "2020-08-04",
-    "member": "Andrew Bailey",
-    "actual": 0,
-    "p_actual": 0.843,
-    "predicted": 0
-   },
-   {
-    "date": "2020-08-04",
-    "member": "Ben Broadbent",
-    "actual": 0,
-    "p_actual": 0.843,
-    "predicted": 0
-   },
-   {
-    "date": "2020-08-04",
-    "member": "Jon Cunliffe",
-    "actual": 0,
-    "p_actual": 0.843,
-    "predicted": 0
-   },
-   {
-    "date": "2020-08-04",
-    "member": "Andrew Haldane",
-    "actual": 0,
-    "p_actual": 0.843,
-    "predicted": 0
-   },
-   {
-    "date": "2020-08-04",
-    "member": "Jonathan Haskel",
-    "actual": 0,
-    "p_actual": 0.832,
-    "predicted": 0
-   },
-   {
-    "date": "2020-08-04",
-    "member": "Dave Ramsden",
-    "actual": 0,
-    "p_actual": 0.843,
-    "predicted": 0
-   },
-   {
-    "date": "2020-08-04",
-    "member": "Michael Saunders",
-    "actual": 0,
-    "p_actual": 0.844,
-    "predicted": 0
-   },
-   {
-    "date": "2020-08-04",
-    "member": "Silvana Tenreyro",
-    "actual": 0,
-    "p_actual": 0.844,
-    "predicted": 0
-   },
-   {
-    "date": "2020-08-04",
-    "member": "Gertjan Vlieghe",
-    "actual": 0,
-    "p_actual": 0.843,
-    "predicted": 0
-   },
-   {
-    "date": "2020-09-16",
-    "member": "Andrew Bailey",
-    "actual": 0,
-    "p_actual": 0.83,
-    "predicted": 0
-   },
-   {
-    "date": "2020-09-16",
-    "member": "Ben Broadbent",
-    "actual": 0,
     "p_actual": 0.831,
     "predicted": 0
    },
    {
-    "date": "2020-09-16",
-    "member": "Jon Cunliffe",
-    "actual": 0,
-    "p_actual": 0.829,
-    "predicted": 0
-   },
-   {
-    "date": "2020-09-16",
-    "member": "Andrew Haldane",
-    "actual": 0,
-    "p_actual": 0.829,
-    "predicted": 0
-   },
-   {
-    "date": "2020-09-16",
-    "member": "Jonathan Haskel",
-    "actual": 0,
-    "p_actual": 0.839,
-    "predicted": 0
-   },
-   {
-    "date": "2020-09-16",
-    "member": "Dave Ramsden",
-    "actual": 0,
-    "p_actual": 0.829,
-    "predicted": 0
-   },
-   {
-    "date": "2020-09-16",
-    "member": "Michael Saunders",
-    "actual": 0,
-    "p_actual": 0.66,
-    "predicted": 0
-   },
-   {
-    "date": "2020-09-16",
-    "member": "Silvana Tenreyro",
-    "actual": 0,
-    "p_actual": 0.829,
-    "predicted": 0
-   },
-   {
-    "date": "2020-09-16",
-    "member": "Gertjan Vlieghe",
-    "actual": 0,
-    "p_actual": 0.834,
-    "predicted": 0
-   },
-   {
-    "date": "2020-11-04",
+    "date": "2020-08-04",
     "member": "Andrew Bailey",
-    "actual": 0,
-    "p_actual": 0.842,
-    "predicted": 0
-   },
-   {
-    "date": "2020-11-04",
-    "member": "Ben Broadbent",
-    "actual": 0,
-    "p_actual": 0.842,
-    "predicted": 0
-   },
-   {
-    "date": "2020-11-04",
-    "member": "Jon Cunliffe",
-    "actual": 0,
-    "p_actual": 0.842,
-    "predicted": 0
-   },
-   {
-    "date": "2020-11-04",
-    "member": "Andrew Haldane",
-    "actual": 0,
-    "p_actual": 0.842,
-    "predicted": 0
-   },
-   {
-    "date": "2020-11-04",
-    "member": "Jonathan Haskel",
     "actual": 0,
     "p_actual": 0.844,
     "predicted": 0
    },
    {
-    "date": "2020-11-04",
-    "member": "Dave Ramsden",
-    "actual": 0,
-    "p_actual": 0.842,
-    "predicted": 0
-   },
-   {
-    "date": "2020-11-04",
-    "member": "Michael Saunders",
+    "date": "2020-08-04",
+    "member": "Ben Broadbent",
     "actual": 0,
     "p_actual": 0.844,
     "predicted": 0
    },
    {
-    "date": "2020-11-04",
-    "member": "Silvana Tenreyro",
-    "actual": 0,
-    "p_actual": 0.842,
-    "predicted": 0
-   },
-   {
-    "date": "2020-11-04",
-    "member": "Gertjan Vlieghe",
-    "actual": 0,
-    "p_actual": 0.76,
-    "predicted": 0
-   },
-   {
-    "date": "2020-12-16",
-    "member": "Andrew Bailey",
-    "actual": 0,
-    "p_actual": 0.841,
-    "predicted": 0
-   },
-   {
-    "date": "2020-12-16",
-    "member": "Ben Broadbent",
-    "actual": 0,
-    "p_actual": 0.834,
-    "predicted": 0
-   },
-   {
-    "date": "2020-12-16",
+    "date": "2020-08-04",
     "member": "Jon Cunliffe",
     "actual": 0,
-    "p_actual": 0.834,
+    "p_actual": 0.844,
     "predicted": 0
    },
    {
-    "date": "2020-12-16",
+    "date": "2020-08-04",
     "member": "Andrew Haldane",
-    "actual": 0,
-    "p_actual": 0.839,
-    "predicted": 0
-   },
-   {
-    "date": "2020-12-16",
-    "member": "Jonathan Haskel",
-    "actual": 0,
-    "p_actual": 0.837,
-    "predicted": 0
-   },
-   {
-    "date": "2020-12-16",
-    "member": "Dave Ramsden",
-    "actual": 0,
-    "p_actual": 0.841,
-    "predicted": 0
-   },
-   {
-    "date": "2020-12-16",
-    "member": "Michael Saunders",
-    "actual": 0,
-    "p_actual": 0.831,
-    "predicted": 0
-   },
-   {
-    "date": "2020-12-16",
-    "member": "Silvana Tenreyro",
-    "actual": 0,
-    "p_actual": 0.842,
-    "predicted": 0
-   },
-   {
-    "date": "2020-12-16",
-    "member": "Gertjan Vlieghe",
-    "actual": 0,
-    "p_actual": 0.834,
-    "predicted": 0
-   },
-   {
-    "date": "2021-02-03",
-    "member": "Andrew Bailey",
-    "actual": 0,
-    "p_actual": 0.745,
-    "predicted": 0
-   },
-   {
-    "date": "2021-02-03",
-    "member": "Ben Broadbent",
-    "actual": 0,
-    "p_actual": 0.77,
-    "predicted": 0
-   },
-   {
-    "date": "2021-02-03",
-    "member": "Jon Cunliffe",
-    "actual": 0,
-    "p_actual": 0.781,
-    "predicted": 0
-   },
-   {
-    "date": "2021-02-03",
-    "member": "Andrew Haldane",
-    "actual": 0,
-    "p_actual": 0.781,
-    "predicted": 0
-   },
-   {
-    "date": "2021-02-03",
-    "member": "Jonathan Haskel",
-    "actual": 0,
-    "p_actual": 0.781,
-    "predicted": 0
-   },
-   {
-    "date": "2021-02-03",
-    "member": "Dave Ramsden",
-    "actual": 0,
-    "p_actual": 0.781,
-    "predicted": 0
-   },
-   {
-    "date": "2021-02-03",
-    "member": "Michael Saunders",
-    "actual": 0,
-    "p_actual": 0.781,
-    "predicted": 0
-   },
-   {
-    "date": "2021-02-03",
-    "member": "Silvana Tenreyro",
-    "actual": 0,
-    "p_actual": 0.848,
-    "predicted": 0
-   },
-   {
-    "date": "2021-02-03",
-    "member": "Gertjan Vlieghe",
-    "actual": 0,
-    "p_actual": 0.781,
-    "predicted": 0
-   },
-   {
-    "date": "2021-03-17",
-    "member": "Andrew Bailey",
-    "actual": 0,
-    "p_actual": 0.848,
-    "predicted": 0
-   },
-   {
-    "date": "2021-03-17",
-    "member": "Ben Broadbent",
     "actual": 0,
     "p_actual": 0.845,
     "predicted": 0
    },
    {
+    "date": "2020-08-04",
+    "member": "Jonathan Haskel",
+    "actual": 0,
+    "p_actual": 0.834,
+    "predicted": 0
+   },
+   {
+    "date": "2020-08-04",
+    "member": "Dave Ramsden",
+    "actual": 0,
+    "p_actual": 0.844,
+    "predicted": 0
+   },
+   {
+    "date": "2020-08-04",
+    "member": "Michael Saunders",
+    "actual": 0,
+    "p_actual": 0.845,
+    "predicted": 0
+   },
+   {
+    "date": "2020-08-04",
+    "member": "Silvana Tenreyro",
+    "actual": 0,
+    "p_actual": 0.845,
+    "predicted": 0
+   },
+   {
+    "date": "2020-08-04",
+    "member": "Gertjan Vlieghe",
+    "actual": 0,
+    "p_actual": 0.844,
+    "predicted": 0
+   },
+   {
+    "date": "2020-09-16",
+    "member": "Andrew Bailey",
+    "actual": 0,
+    "p_actual": 0.831,
+    "predicted": 0
+   },
+   {
+    "date": "2020-09-16",
+    "member": "Ben Broadbent",
+    "actual": 0,
+    "p_actual": 0.832,
+    "predicted": 0
+   },
+   {
+    "date": "2020-09-16",
+    "member": "Jon Cunliffe",
+    "actual": 0,
+    "p_actual": 0.831,
+    "predicted": 0
+   },
+   {
+    "date": "2020-09-16",
+    "member": "Andrew Haldane",
+    "actual": 0,
+    "p_actual": 0.831,
+    "predicted": 0
+   },
+   {
+    "date": "2020-09-16",
+    "member": "Jonathan Haskel",
+    "actual": 0,
+    "p_actual": 0.84,
+    "predicted": 0
+   },
+   {
+    "date": "2020-09-16",
+    "member": "Dave Ramsden",
+    "actual": 0,
+    "p_actual": 0.831,
+    "predicted": 0
+   },
+   {
+    "date": "2020-09-16",
+    "member": "Michael Saunders",
+    "actual": 0,
+    "p_actual": 0.522,
+    "predicted": 0
+   },
+   {
+    "date": "2020-09-16",
+    "member": "Silvana Tenreyro",
+    "actual": 0,
+    "p_actual": 0.831,
+    "predicted": 0
+   },
+   {
+    "date": "2020-09-16",
+    "member": "Gertjan Vlieghe",
+    "actual": 0,
+    "p_actual": 0.835,
+    "predicted": 0
+   },
+   {
+    "date": "2020-11-04",
+    "member": "Andrew Bailey",
+    "actual": 0,
+    "p_actual": 0.843,
+    "predicted": 0
+   },
+   {
+    "date": "2020-11-04",
+    "member": "Ben Broadbent",
+    "actual": 0,
+    "p_actual": 0.843,
+    "predicted": 0
+   },
+   {
+    "date": "2020-11-04",
+    "member": "Jon Cunliffe",
+    "actual": 0,
+    "p_actual": 0.843,
+    "predicted": 0
+   },
+   {
+    "date": "2020-11-04",
+    "member": "Andrew Haldane",
+    "actual": 0,
+    "p_actual": 0.843,
+    "predicted": 0
+   },
+   {
+    "date": "2020-11-04",
+    "member": "Jonathan Haskel",
+    "actual": 0,
+    "p_actual": 0.845,
+    "predicted": 0
+   },
+   {
+    "date": "2020-11-04",
+    "member": "Dave Ramsden",
+    "actual": 0,
+    "p_actual": 0.843,
+    "predicted": 0
+   },
+   {
+    "date": "2020-11-04",
+    "member": "Michael Saunders",
+    "actual": 0,
+    "p_actual": 0.845,
+    "predicted": 0
+   },
+   {
+    "date": "2020-11-04",
+    "member": "Silvana Tenreyro",
+    "actual": 0,
+    "p_actual": 0.843,
+    "predicted": 0
+   },
+   {
+    "date": "2020-11-04",
+    "member": "Gertjan Vlieghe",
+    "actual": 0,
+    "p_actual": 0.748,
+    "predicted": 0
+   },
+   {
+    "date": "2020-12-16",
+    "member": "Andrew Bailey",
+    "actual": 0,
+    "p_actual": 0.843,
+    "predicted": 0
+   },
+   {
+    "date": "2020-12-16",
+    "member": "Ben Broadbent",
+    "actual": 0,
+    "p_actual": 0.836,
+    "predicted": 0
+   },
+   {
+    "date": "2020-12-16",
+    "member": "Jon Cunliffe",
+    "actual": 0,
+    "p_actual": 0.836,
+    "predicted": 0
+   },
+   {
+    "date": "2020-12-16",
+    "member": "Andrew Haldane",
+    "actual": 0,
+    "p_actual": 0.841,
+    "predicted": 0
+   },
+   {
+    "date": "2020-12-16",
+    "member": "Jonathan Haskel",
+    "actual": 0,
+    "p_actual": 0.839,
+    "predicted": 0
+   },
+   {
+    "date": "2020-12-16",
+    "member": "Dave Ramsden",
+    "actual": 0,
+    "p_actual": 0.843,
+    "predicted": 0
+   },
+   {
+    "date": "2020-12-16",
+    "member": "Michael Saunders",
+    "actual": 0,
+    "p_actual": 0.831,
+    "predicted": 0
+   },
+   {
+    "date": "2020-12-16",
+    "member": "Silvana Tenreyro",
+    "actual": 0,
+    "p_actual": 0.843,
+    "predicted": 0
+   },
+   {
+    "date": "2020-12-16",
+    "member": "Gertjan Vlieghe",
+    "actual": 0,
+    "p_actual": 0.836,
+    "predicted": 0
+   },
+   {
+    "date": "2021-02-03",
+    "member": "Andrew Bailey",
+    "actual": 0,
+    "p_actual": 0.746,
+    "predicted": 0
+   },
+   {
+    "date": "2021-02-03",
+    "member": "Ben Broadbent",
+    "actual": 0,
+    "p_actual": 0.768,
+    "predicted": 0
+   },
+   {
+    "date": "2021-02-03",
+    "member": "Jon Cunliffe",
+    "actual": 0,
+    "p_actual": 0.782,
+    "predicted": 0
+   },
+   {
+    "date": "2021-02-03",
+    "member": "Andrew Haldane",
+    "actual": 0,
+    "p_actual": 0.782,
+    "predicted": 0
+   },
+   {
+    "date": "2021-02-03",
+    "member": "Jonathan Haskel",
+    "actual": 0,
+    "p_actual": 0.782,
+    "predicted": 0
+   },
+   {
+    "date": "2021-02-03",
+    "member": "Dave Ramsden",
+    "actual": 0,
+    "p_actual": 0.782,
+    "predicted": 0
+   },
+   {
+    "date": "2021-02-03",
+    "member": "Michael Saunders",
+    "actual": 0,
+    "p_actual": 0.782,
+    "predicted": 0
+   },
+   {
+    "date": "2021-02-03",
+    "member": "Silvana Tenreyro",
+    "actual": 0,
+    "p_actual": 0.846,
+    "predicted": 0
+   },
+   {
+    "date": "2021-02-03",
+    "member": "Gertjan Vlieghe",
+    "actual": 0,
+    "p_actual": 0.782,
+    "predicted": 0
+   },
+   {
+    "date": "2021-03-17",
+    "member": "Andrew Bailey",
+    "actual": 0,
+    "p_actual": 0.849,
+    "predicted": 0
+   },
+   {
+    "date": "2021-03-17",
+    "member": "Ben Broadbent",
+    "actual": 0,
+    "p_actual": 0.847,
+    "predicted": 0
+   },
+   {
     "date": "2021-03-17",
     "member": "Jon Cunliffe",
     "actual": 0,
-    "p_actual": 0.85,
+    "p_actual": 0.851,
     "predicted": 0
    },
    {
     "date": "2021-03-17",
     "member": "Andrew Haldane",
     "actual": 0,
-    "p_actual": 0.834,
+    "p_actual": 0.827,
     "predicted": 0
    },
    {
     "date": "2021-03-17",
     "member": "Jonathan Haskel",
-    "actual": 0,
-    "p_actual": 0.846,
-    "predicted": 0
-   },
-   {
-    "date": "2021-03-17",
-    "member": "Dave Ramsden",
     "actual": 0,
     "p_actual": 0.848,
     "predicted": 0
    },
    {
     "date": "2021-03-17",
+    "member": "Dave Ramsden",
+    "actual": 0,
+    "p_actual": 0.849,
+    "predicted": 0
+   },
+   {
+    "date": "2021-03-17",
     "member": "Michael Saunders",
     "actual": 0,
-    "p_actual": 0.85,
+    "p_actual": 0.851,
     "predicted": 0
    },
    {
     "date": "2021-03-17",
     "member": "Silvana Tenreyro",
     "actual": 0,
-    "p_actual": 0.85,
+    "p_actual": 0.851,
     "predicted": 0
    },
    {
     "date": "2021-03-17",
     "member": "Gertjan Vlieghe",
     "actual": 0,
-    "p_actual": 0.831,
+    "p_actual": 0.834,
     "predicted": 0
    },
    {
     "date": "2021-05-05",
     "member": "Andrew Bailey",
     "actual": 0,
-    "p_actual": 0.842,
+    "p_actual": 0.843,
     "predicted": 0
    },
    {
     "date": "2021-05-05",
     "member": "Ben Broadbent",
     "actual": 0,
-    "p_actual": 0.842,
+    "p_actual": 0.843,
     "predicted": 0
    },
    {
     "date": "2021-05-05",
     "member": "Jon Cunliffe",
     "actual": 0,
-    "p_actual": 0.842,
+    "p_actual": 0.843,
     "predicted": 0
    },
    {
     "date": "2021-05-05",
     "member": "Andrew Haldane",
     "actual": 0,
-    "p_actual": 0.842,
+    "p_actual": 0.843,
     "predicted": 0
    },
    {
     "date": "2021-05-05",
     "member": "Jonathan Haskel",
     "actual": 0,
-    "p_actual": 0.842,
+    "p_actual": 0.843,
     "predicted": 0
    },
    {
     "date": "2021-05-05",
     "member": "Dave Ramsden",
     "actual": 0,
-    "p_actual": 0.842,
+    "p_actual": 0.843,
     "predicted": 0
    },
    {
@@ -4682,84 +4925,84 @@
     "date": "2021-05-05",
     "member": "Silvana Tenreyro",
     "actual": 0,
-    "p_actual": 0.798,
+    "p_actual": 0.8,
     "predicted": 0
    },
    {
     "date": "2021-05-05",
     "member": "Gertjan Vlieghe",
     "actual": 0,
-    "p_actual": 0.842,
+    "p_actual": 0.843,
     "predicted": 0
    },
    {
     "date": "2021-06-22",
     "member": "Andrew Bailey",
+    "actual": 0,
+    "p_actual": 0.825,
+    "predicted": 0
+   },
+   {
+    "date": "2021-06-22",
+    "member": "Ben Broadbent",
+    "actual": 0,
+    "p_actual": 0.809,
+    "predicted": 0
+   },
+   {
+    "date": "2021-06-22",
+    "member": "Jon Cunliffe",
+    "actual": 0,
+    "p_actual": 0.799,
+    "predicted": 0
+   },
+   {
+    "date": "2021-06-22",
+    "member": "Andrew Haldane",
+    "actual": 0,
+    "p_actual": 0.785,
+    "predicted": 0
+   },
+   {
+    "date": "2021-06-22",
+    "member": "Jonathan Haskel",
+    "actual": 0,
+    "p_actual": 0.819,
+    "predicted": 0
+   },
+   {
+    "date": "2021-06-22",
+    "member": "Dave Ramsden",
     "actual": 0,
     "p_actual": 0.824,
     "predicted": 0
    },
    {
     "date": "2021-06-22",
-    "member": "Ben Broadbent",
-    "actual": 0,
-    "p_actual": 0.807,
-    "predicted": 0
-   },
-   {
-    "date": "2021-06-22",
-    "member": "Jon Cunliffe",
-    "actual": 0,
-    "p_actual": 0.795,
-    "predicted": 0
-   },
-   {
-    "date": "2021-06-22",
-    "member": "Andrew Haldane",
-    "actual": 0,
-    "p_actual": 0.78,
-    "predicted": 0
-   },
-   {
-    "date": "2021-06-22",
-    "member": "Jonathan Haskel",
-    "actual": 0,
-    "p_actual": 0.818,
-    "predicted": 0
-   },
-   {
-    "date": "2021-06-22",
-    "member": "Dave Ramsden",
-    "actual": 0,
-    "p_actual": 0.823,
-    "predicted": 0
-   },
-   {
-    "date": "2021-06-22",
     "member": "Michael Saunders",
     "actual": 0,
-    "p_actual": 0.826,
+    "p_actual": 0.827,
     "predicted": 0
    },
    {
     "date": "2021-06-22",
     "member": "Silvana Tenreyro",
     "actual": 0,
-    "p_actual": 0.818,
+    "p_actual": 0.819,
     "predicted": 0
    },
    {
     "date": "2021-06-22",
     "member": "Gertjan Vlieghe",
     "actual": 0,
-    "p_actual": 0.823,
+    "p_actual": 0.824,
     "predicted": 0
    },
    {
     "date": "2021-08-04",
     "member": "Andrew Bailey",
     "actual": 0,
-    "p_actual": 0.727,
+    "p_actual": 0.729,
     "predicted": 0
    },
    {
@@ -4773,238 +5016,238 @@
     "date": "2021-08-04",
     "member": "Jon Cunliffe",
     "actual": 0,
-    "p_actual": 0.715,
+    "p_actual": 0.716,
     "predicted": 0
    },
    {
     "date": "2021-08-04",
     "member": "Jonathan Haskel",
     "actual": 0,
-    "p_actual": 0.75,
+    "p_actual": 0.751,
     "predicted": 0
    },
    {
     "date": "2021-08-04",
     "member": "Dave Ramsden",
     "actual": 0,
-    "p_actual": 0.714,
+    "p_actual": 0.713,
     "predicted": 0
    },
    {
     "date": "2021-08-04",
     "member": "Michael Saunders",
     "actual": 0,
-    "p_actual": 0.691,
+    "p_actual": 0.692,
     "predicted": 0
    },
    {
     "date": "2021-08-04",
     "member": "Silvana Tenreyro",
     "actual": 0,
-    "p_actual": 0.715,
+    "p_actual": 0.716,
     "predicted": 0
    },
    {
     "date": "2021-08-04",
     "member": "Gertjan Vlieghe",
     "actual": 0,
-    "p_actual": 0.753,
+    "p_actual": 0.754,
     "predicted": 0
    },
    {
     "date": "2021-09-22",
     "member": "Andrew Bailey",
     "actual": 0,
-    "p_actual": 0.743,
+    "p_actual": 0.747,
     "predicted": 0
    },
    {
     "date": "2021-09-22",
     "member": "Ben Broadbent",
     "actual": 0,
-    "p_actual": 0.641,
+    "p_actual": 0.662,
     "predicted": 0
    },
    {
     "date": "2021-09-22",
     "member": "Jon Cunliffe",
     "actual": 0,
-    "p_actual": 0.789,
+    "p_actual": 0.79,
     "predicted": 0
    },
    {
     "date": "2021-09-22",
     "member": "Jonathan Haskel",
     "actual": 0,
-    "p_actual": 0.789,
+    "p_actual": 0.79,
     "predicted": 0
    },
    {
     "date": "2021-09-22",
     "member": "Catherine Mann",
     "actual": 0,
-    "p_actual": 0.789,
+    "p_actual": 0.79,
     "predicted": 0
    },
    {
     "date": "2021-09-22",
     "member": "Huw Pill",
     "actual": 0,
-    "p_actual": 0.789,
+    "p_actual": 0.79,
     "predicted": 0
    },
    {
     "date": "2021-09-22",
     "member": "Dave Ramsden",
     "actual": 0,
-    "p_actual": 0.759,
+    "p_actual": 0.762,
     "predicted": 0
    },
    {
     "date": "2021-09-22",
     "member": "Michael Saunders",
     "actual": 0,
-    "p_actual": 0.789,
+    "p_actual": 0.79,
     "predicted": 0
    },
    {
     "date": "2021-09-22",
     "member": "Silvana Tenreyro",
     "actual": 0,
-    "p_actual": 0.764,
+    "p_actual": 0.767,
     "predicted": 0
    },
    {
     "date": "2021-11-02",
     "member": "Andrew Bailey",
     "actual": 0,
-    "p_actual": 0.69,
+    "p_actual": 0.694,
     "predicted": 0
    },
    {
     "date": "2021-11-02",
     "member": "Ben Broadbent",
     "actual": 0,
-    "p_actual": 0.82,
+    "p_actual": 0.821,
     "predicted": 0
    },
    {
     "date": "2021-11-02",
     "member": "Jon Cunliffe",
     "actual": 0,
-    "p_actual": 0.82,
+    "p_actual": 0.821,
     "predicted": 0
    },
    {
     "date": "2021-11-02",
     "member": "Jonathan Haskel",
     "actual": 0,
-    "p_actual": 0.82,
+    "p_actual": 0.821,
     "predicted": 0
    },
    {
     "date": "2021-11-02",
     "member": "Catherine Mann",
     "actual": 0,
-    "p_actual": 0.82,
+    "p_actual": 0.821,
     "predicted": 0
    },
    {
     "date": "2021-11-02",
     "member": "Huw Pill",
     "actual": 0,
-    "p_actual": 0.82,
+    "p_actual": 0.821,
     "predicted": 0
    },
    {
     "date": "2021-11-02",
     "member": "Dave Ramsden",
     "actual": 1,
-    "p_actual": 0.142,
+    "p_actual": 0.141,
     "predicted": 0
    },
    {
     "date": "2021-11-02",
     "member": "Michael Saunders",
     "actual": 1,
-    "p_actual": 0.142,
+    "p_actual": 0.141,
     "predicted": 0
    },
    {
     "date": "2021-11-02",
     "member": "Silvana Tenreyro",
     "actual": 0,
-    "p_actual": 0.704,
+    "p_actual": 0.692,
     "predicted": 0
    },
    {
     "date": "2021-12-15",
     "member": "Andrew Bailey",
     "actual": 1,
-    "p_actual": 0.243,
+    "p_actual": 0.24,
     "predicted": 0
    },
    {
     "date": "2021-12-15",
     "member": "Ben Broadbent",
+    "actual": 1,
+    "p_actual": 0.347,
+    "predicted": 0
+   },
+   {
+    "date": "2021-12-15",
+    "member": "Jon Cunliffe",
+    "actual": 1,
+    "p_actual": 0.176,
+    "predicted": 0
+   },
+   {
+    "date": "2021-12-15",
+    "member": "Jonathan Haskel",
+    "actual": 1,
+    "p_actual": 0.224,
+    "predicted": 0
+   },
+   {
+    "date": "2021-12-15",
+    "member": "Catherine Mann",
     "actual": 1,
     "p_actual": 0.385,
     "predicted": 0
    },
    {
     "date": "2021-12-15",
-    "member": "Jon Cunliffe",
-    "actual": 1,
-    "p_actual": 0.177,
-    "predicted": 0
-   },
-   {
-    "date": "2021-12-15",
-    "member": "Jonathan Haskel",
-    "actual": 1,
-    "p_actual": 0.229,
-    "predicted": 0
-   },
-   {
-    "date": "2021-12-15",
-    "member": "Catherine Mann",
-    "actual": 1,
-    "p_actual": 0.412,
-    "predicted": 0
-   },
-   {
-    "date": "2021-12-15",
     "member": "Huw Pill",
     "actual": 1,
-    "p_actual": 0.522,
+    "p_actual": 0.568,
     "predicted": 1
    },
    {
     "date": "2021-12-15",
     "member": "Dave Ramsden",
     "actual": 1,
-    "p_actual": 0.704,
+    "p_actual": 0.706,
     "predicted": 1
    },
    {
     "date": "2021-12-15",
     "member": "Michael Saunders",
     "actual": 1,
-    "p_actual": 0.768,
+    "p_actual": 0.782,
     "predicted": 1
    },
    {
     "date": "2021-12-15",
     "member": "Silvana Tenreyro",
     "actual": 0,
-    "p_actual": 0.793,
+    "p_actual": 0.794,
     "predicted": 0
    },
    {
     "date": "2022-02-02",
     "member": "Andrew Bailey",
     "actual": 1,
-    "p_actual": 0.651,
+    "p_actual": 0.639,
     "predicted": 1
    },
    {
@@ -5032,7 +5275,7 @@
     "date": "2022-02-02",
     "member": "Catherine Mann",
     "actual": 2,
-    "p_actual": 0.014,
+    "p_actual": 0.026,
     "predicted": 1
    },
    {
@@ -5060,70 +5303,70 @@
     "date": "2022-02-02",
     "member": "Silvana Tenreyro",
     "actual": 1,
-    "p_actual": 0.098,
+    "p_actual": 0.099,
     "predicted": 0
    },
    {
     "date": "2022-03-16",
     "member": "Andrew Bailey",
     "actual": 1,
-    "p_actual": 0.845,
+    "p_actual": 0.863,
     "predicted": 1
    },
    {
     "date": "2022-03-16",
     "member": "Ben Broadbent",
     "actual": 1,
-    "p_actual": 0.88,
+    "p_actual": 0.881,
     "predicted": 1
    },
    {
     "date": "2022-03-16",
     "member": "Jon Cunliffe",
     "actual": 0,
-    "p_actual": 0.411,
+    "p_actual": 0.406,
     "predicted": 1
    },
    {
     "date": "2022-03-16",
     "member": "Jonathan Haskel",
     "actual": 1,
-    "p_actual": 0.771,
+    "p_actual": 0.777,
     "predicted": 1
    },
    {
     "date": "2022-03-16",
     "member": "Catherine Mann",
     "actual": 1,
-    "p_actual": 0.69,
+    "p_actual": 0.696,
     "predicted": 1
    },
    {
     "date": "2022-03-16",
     "member": "Huw Pill",
     "actual": 1,
-    "p_actual": 0.885,
+    "p_actual": 0.877,
     "predicted": 1
    },
    {
     "date": "2022-03-16",
     "member": "Dave Ramsden",
     "actual": 1,
-    "p_actual": 0.68,
+    "p_actual": 0.686,
     "predicted": 1
    },
    {
     "date": "2022-03-16",
     "member": "Michael Saunders",
     "actual": 1,
-    "p_actual": 0.541,
+    "p_actual": 0.51,
     "predicted": 1
    },
    {
     "date": "2022-03-16",
     "member": "Silvana Tenreyro",
     "actual": 1,
-    "p_actual": 0.798,
+    "p_actual": 0.813,
     "predicted": 1
    },
    {
@@ -5137,49 +5380,49 @@
     "date": "2022-05-04",
     "member": "Ben Broadbent",
     "actual": 1,
-    "p_actual": 0.602,
+    "p_actual": 0.62,
     "predicted": 1
    },
    {
     "date": "2022-05-04",
     "member": "Jon Cunliffe",
     "actual": 1,
-    "p_actual": 0.37,
+    "p_actual": 0.389,
     "predicted": 0
    },
    {
     "date": "2022-05-04",
     "member": "Jonathan Haskel",
     "actual": 2,
-    "p_actual": 0.052,
+    "p_actual": 0.051,
     "predicted": 1
    },
    {
     "date": "2022-05-04",
     "member": "Catherine Mann",
     "actual": 2,
-    "p_actual": 0.175,
+    "p_actual": 0.304,
     "predicted": 1
    },
    {
     "date": "2022-05-04",
     "member": "Huw Pill",
     "actual": 1,
-    "p_actual": 0.886,
+    "p_actual": 0.887,
     "predicted": 1
    },
    {
     "date": "2022-05-04",
     "member": "Dave Ramsden",
     "actual": 1,
-    "p_actual": 0.886,
+    "p_actual": 0.887,
     "predicted": 1
    },
    {
     "date": "2022-05-04",
     "member": "Michael Saunders",
     "actual": 2,
-    "p_actual": 0.054,
+    "p_actual": 0.053,
     "predicted": 1
    },
    {
@@ -5193,70 +5436,70 @@
     "date": "2022-06-15",
     "member": "Andrew Bailey",
     "actual": 1,
-    "p_actual": 0.885,
+    "p_actual": 0.882,
     "predicted": 1
    },
    {
     "date": "2022-06-15",
     "member": "Ben Broadbent",
     "actual": 1,
-    "p_actual": 0.777,
+    "p_actual": 0.775,
     "predicted": 1
    },
    {
     "date": "2022-06-15",
     "member": "Jon Cunliffe",
     "actual": 1,
-    "p_actual": 0.547,
+    "p_actual": 0.543,
     "predicted": 1
    },
    {
     "date": "2022-06-15",
     "member": "Jonathan Haskel",
     "actual": 2,
-    "p_actual": 0.101,
+    "p_actual": 0.087,
     "predicted": 1
    },
    {
     "date": "2022-06-15",
     "member": "Catherine Mann",
     "actual": 2,
-    "p_actual": 0.2,
+    "p_actual": 0.195,
     "predicted": 1
    },
    {
     "date": "2022-06-15",
     "member": "Huw Pill",
     "actual": 1,
-    "p_actual": 0.864,
+    "p_actual": 0.866,
     "predicted": 1
    },
    {
     "date": "2022-06-15",
     "member": "Dave Ramsden",
     "actual": 1,
-    "p_actual": 0.877,
+    "p_actual": 0.872,
     "predicted": 1
    },
    {
     "date": "2022-06-15",
     "member": "Michael Saunders",
     "actual": 2,
-    "p_actual": 0.339,
+    "p_actual": 0.397,
     "predicted": 1
    },
    {
     "date": "2022-06-15",
     "member": "Silvana Tenreyro",
     "actual": 1,
-    "p_actual": 0.77,
+    "p_actual": 0.769,
     "predicted": 1
    },
    {
     "date": "2022-08-03",
     "member": "Andrew Bailey",
     "actual": 2,
-    "p_actual": 0.203,
+    "p_actual": 0.182,
     "predicted": 1
    },
    {
@@ -5277,7 +5520,7 @@
     "date": "2022-08-03",
     "member": "Jonathan Haskel",
     "actual": 2,
-    "p_actual": 0.769,
+    "p_actual": 0.767,
     "predicted": 2
    },
    {
@@ -5291,7 +5534,7 @@
     "date": "2022-08-03",
     "member": "Huw Pill",
     "actual": 2,
-    "p_actual": 0.139,
+    "p_actual": 0.145,
     "predicted": 1
    },
    {
@@ -5305,49 +5548,49 @@
     "date": "2022-08-03",
     "member": "Michael Saunders",
     "actual": 2,
-    "p_actual": 0.797,
+    "p_actual": 0.809,
     "predicted": 2
    },
    {
     "date": "2022-08-03",
     "member": "Silvana Tenreyro",
     "actual": 1,
-    "p_actual": 0.886,
+    "p_actual": 0.887,
     "predicted": 1
    },
    {
     "date": "2022-09-21",
     "member": "Andrew Bailey",
     "actual": 2,
-    "p_actual": 0.411,
+    "p_actual": 0.382,
     "predicted": 1
    },
    {
     "date": "2022-09-21",
     "member": "Ben Broadbent",
     "actual": 2,
-    "p_actual": 0.334,
+    "p_actual": 0.332,
     "predicted": 1
    },
    {
     "date": "2022-09-21",
     "member": "Jon Cunliffe",
     "actual": 2,
-    "p_actual": 0.325,
+    "p_actual": 0.322,
     "predicted": 1
    },
    {
     "date": "2022-09-21",
     "member": "Huw Pill",
     "actual": 2,
-    "p_actual": 0.272,
+    "p_actual": 0.258,
     "predicted": 1
    },
    {
     "date": "2022-09-21",
     "member": "Silvana Tenreyro",
     "actual": 2,
-    "p_actual": 0.041,
+    "p_actual": 0.047,
     "predicted": 1
    },
    {
@@ -5361,7 +5604,7 @@
     "date": "2022-09-21",
     "member": "Catherine Mann",
     "actual": 3,
-    "p_actual": 0.031,
+    "p_actual": 0.043,
     "predicted": 2
    },
    {
@@ -5375,21 +5618,21 @@
     "date": "2022-09-21",
     "member": "Swati Dhingra",
     "actual": 1,
-    "p_actual": 0.402,
+    "p_actual": 0.404,
     "predicted": 2
    },
    {
     "date": "2022-11-02",
     "member": "Andrew Bailey",
     "actual": 3,
-    "p_actual": 0.03,
+    "p_actual": 0.027,
     "predicted": 2
    },
    {
     "date": "2022-11-02",
     "member": "Ben Broadbent",
     "actual": 3,
-    "p_actual": 0.019,
+    "p_actual": 0.02,
     "predicted": 2
    },
    {
@@ -5403,28 +5646,28 @@
     "date": "2022-11-02",
     "member": "Jonathan Haskel",
     "actual": 3,
-    "p_actual": 0.011,
+    "p_actual": 0.01,
     "predicted": 2
    },
    {
     "date": "2022-11-02",
     "member": "Catherine Mann",
     "actual": 3,
-    "p_actual": 0.186,
+    "p_actual": 0.181,
     "predicted": 2
    },
    {
     "date": "2022-11-02",
     "member": "Huw Pill",
     "actual": 3,
-    "p_actual": 0.038,
+    "p_actual": 0.043,
     "predicted": 2
    },
    {
     "date": "2022-11-02",
     "member": "Dave Ramsden",
     "actual": 3,
-    "p_actual": 0.181,
+    "p_actual": 0.16,
     "predicted": 2
    },
    {
@@ -5438,7 +5681,7 @@
     "date": "2022-11-02",
     "member": "Silvana Tenreyro",
     "actual": 1,
-    "p_actual": 0.486,
+    "p_actual": 0.49,
     "predicted": 2
    },
    {
@@ -5452,259 +5695,259 @@
     "date": "2022-12-14",
     "member": "Ben Broadbent",
     "actual": 2,
-    "p_actual": 0.813,
+    "p_actual": 0.807,
     "predicted": 2
    },
    {
     "date": "2022-12-14",
     "member": "Jon Cunliffe",
     "actual": 2,
-    "p_actual": 0.748,
+    "p_actual": 0.749,
     "predicted": 2
    },
    {
     "date": "2022-12-14",
     "member": "Swati Dhingra",
     "actual": 0,
-    "p_actual": 0.017,
+    "p_actual": 0.019,
     "predicted": 1
    },
    {
     "date": "2022-12-14",
     "member": "Jonathan Haskel",
     "actual": 2,
-    "p_actual": 0.574,
+    "p_actual": 0.547,
     "predicted": 2
    },
    {
     "date": "2022-12-14",
     "member": "Catherine Mann",
     "actual": 3,
-    "p_actual": 0.436,
-    "predicted": 2
+    "p_actual": 0.508,
+    "predicted": 3
    },
    {
     "date": "2022-12-14",
     "member": "Huw Pill",
     "actual": 2,
-    "p_actual": 0.806,
+    "p_actual": 0.805,
     "predicted": 2
    },
    {
     "date": "2022-12-14",
     "member": "Dave Ramsden",
     "actual": 2,
-    "p_actual": 0.604,
-    "predicted": 2
+    "p_actual": 0.447,
+    "predicted": 3
    },
    {
     "date": "2022-12-14",
     "member": "Silvana Tenreyro",
     "actual": 0,
-    "p_actual": 0.067,
+    "p_actual": 0.061,
     "predicted": 1
    },
    {
     "date": "2023-02-01",
     "member": "Andrew Bailey",
     "actual": 2,
-    "p_actual": 0.497,
-    "predicted": 2
+    "p_actual": 0.488,
+    "predicted": 1
    },
    {
     "date": "2023-02-01",
     "member": "Ben Broadbent",
     "actual": 2,
-    "p_actual": 0.497,
-    "predicted": 2
+    "p_actual": 0.488,
+    "predicted": 1
    },
    {
     "date": "2023-02-01",
     "member": "Jon Cunliffe",
     "actual": 2,
-    "p_actual": 0.481,
+    "p_actual": 0.472,
     "predicted": 1
    },
    {
     "date": "2023-02-01",
-    "member": "Swati Dhingra",
-    "actual": 0,
-    "p_actual": 0.77,
-    "predicted": 0
-   },
-   {
-    "date": "2023-02-01",
-    "member": "Jonathan Haskel",
-    "actual": 2,
-    "p_actual": 0.579,
-    "predicted": 2
-   },
-   {
-    "date": "2023-02-01",
-    "member": "Catherine Mann",
-    "actual": 2,
-    "p_actual": 0.728,
-    "predicted": 2
-   },
-   {
-    "date": "2023-02-01",
-    "member": "Huw Pill",
-    "actual": 2,
-    "p_actual": 0.503,
-    "predicted": 2
-   },
-   {
-    "date": "2023-02-01",
-    "member": "Dave Ramsden",
-    "actual": 2,
-    "p_actual": 0.535,
-    "predicted": 2
-   },
-   {
-    "date": "2023-02-01",
-    "member": "Silvana Tenreyro",
-    "actual": 0,
-    "p_actual": 0.855,
-    "predicted": 0
-   },
-   {
-    "date": "2023-03-22",
-    "member": "Andrew Bailey",
-    "actual": 1,
-    "p_actual": 0.736,
-    "predicted": 1
-   },
-   {
-    "date": "2023-03-22",
-    "member": "Ben Broadbent",
-    "actual": 1,
-    "p_actual": 0.53,
-    "predicted": 1
-   },
-   {
-    "date": "2023-03-22",
-    "member": "Jon Cunliffe",
-    "actual": 1,
-    "p_actual": 0.53,
-    "predicted": 1
-   },
-   {
-    "date": "2023-03-22",
-    "member": "Swati Dhingra",
-    "actual": 0,
-    "p_actual": 0.875,
-    "predicted": 0
-   },
-   {
-    "date": "2023-03-22",
-    "member": "Jonathan Haskel",
-    "actual": 1,
-    "p_actual": 0.598,
-    "predicted": 1
-   },
-   {
-    "date": "2023-03-22",
-    "member": "Catherine Mann",
-    "actual": 1,
-    "p_actual": 0.336,
-    "predicted": 2
-   },
-   {
-    "date": "2023-03-22",
-    "member": "Huw Pill",
-    "actual": 1,
-    "p_actual": 0.718,
-    "predicted": 1
-   },
-   {
-    "date": "2023-03-22",
-    "member": "Dave Ramsden",
-    "actual": 1,
-    "p_actual": 0.501,
-    "predicted": 1
-   },
-   {
-    "date": "2023-03-22",
-    "member": "Silvana Tenreyro",
-    "actual": 0,
-    "p_actual": 0.874,
-    "predicted": 0
-   },
-   {
-    "date": "2023-05-10",
-    "member": "Andrew Bailey",
-    "actual": 1,
-    "p_actual": 0.83,
-    "predicted": 1
-   },
-   {
-    "date": "2023-05-10",
-    "member": "Ben Broadbent",
-    "actual": 1,
-    "p_actual": 0.825,
-    "predicted": 1
-   },
-   {
-    "date": "2023-05-10",
-    "member": "Jon Cunliffe",
-    "actual": 1,
-    "p_actual": 0.868,
-    "predicted": 1
-   },
-   {
-    "date": "2023-05-10",
     "member": "Swati Dhingra",
     "actual": 0,
     "p_actual": 0.78,
     "predicted": 0
    },
    {
+    "date": "2023-02-01",
+    "member": "Jonathan Haskel",
+    "actual": 2,
+    "p_actual": 0.571,
+    "predicted": 2
+   },
+   {
+    "date": "2023-02-01",
+    "member": "Catherine Mann",
+    "actual": 2,
+    "p_actual": 0.727,
+    "predicted": 2
+   },
+   {
+    "date": "2023-02-01",
+    "member": "Huw Pill",
+    "actual": 2,
+    "p_actual": 0.504,
+    "predicted": 2
+   },
+   {
+    "date": "2023-02-01",
+    "member": "Dave Ramsden",
+    "actual": 2,
+    "p_actual": 0.527,
+    "predicted": 2
+   },
+   {
+    "date": "2023-02-01",
+    "member": "Silvana Tenreyro",
+    "actual": 0,
+    "p_actual": 0.858,
+    "predicted": 0
+   },
+   {
+    "date": "2023-03-22",
+    "member": "Andrew Bailey",
+    "actual": 1,
+    "p_actual": 0.73,
+    "predicted": 1
+   },
+   {
+    "date": "2023-03-22",
+    "member": "Ben Broadbent",
+    "actual": 1,
+    "p_actual": 0.536,
+    "predicted": 1
+   },
+   {
+    "date": "2023-03-22",
+    "member": "Jon Cunliffe",
+    "actual": 1,
+    "p_actual": 0.536,
+    "predicted": 1
+   },
+   {
+    "date": "2023-03-22",
+    "member": "Swati Dhingra",
+    "actual": 0,
+    "p_actual": 0.877,
+    "predicted": 0
+   },
+   {
+    "date": "2023-03-22",
+    "member": "Jonathan Haskel",
+    "actual": 1,
+    "p_actual": 0.639,
+    "predicted": 1
+   },
+   {
+    "date": "2023-03-22",
+    "member": "Catherine Mann",
+    "actual": 1,
+    "p_actual": 0.362,
+    "predicted": 2
+   },
+   {
+    "date": "2023-03-22",
+    "member": "Huw Pill",
+    "actual": 1,
+    "p_actual": 0.715,
+    "predicted": 1
+   },
+   {
+    "date": "2023-03-22",
+    "member": "Dave Ramsden",
+    "actual": 1,
+    "p_actual": 0.507,
+    "predicted": 1
+   },
+   {
+    "date": "2023-03-22",
+    "member": "Silvana Tenreyro",
+    "actual": 0,
+    "p_actual": 0.876,
+    "predicted": 0
+   },
+   {
+    "date": "2023-05-10",
+    "member": "Andrew Bailey",
+    "actual": 1,
+    "p_actual": 0.833,
+    "predicted": 1
+   },
+   {
+    "date": "2023-05-10",
+    "member": "Ben Broadbent",
+    "actual": 1,
+    "p_actual": 0.826,
+    "predicted": 1
+   },
+   {
+    "date": "2023-05-10",
+    "member": "Jon Cunliffe",
+    "actual": 1,
+    "p_actual": 0.865,
+    "predicted": 1
+   },
+   {
+    "date": "2023-05-10",
+    "member": "Swati Dhingra",
+    "actual": 0,
+    "p_actual": 0.786,
+    "predicted": 0
+   },
+   {
     "date": "2023-05-10",
     "member": "Jonathan Haskel",
     "actual": 1,
-    "p_actual": 0.717,
+    "p_actual": 0.725,
     "predicted": 1
    },
    {
     "date": "2023-05-10",
     "member": "Catherine Mann",
     "actual": 1,
-    "p_actual": 0.687,
+    "p_actual": 0.695,
     "predicted": 1
    },
    {
     "date": "2023-05-10",
     "member": "Huw Pill",
     "actual": 1,
-    "p_actual": 0.659,
+    "p_actual": 0.689,
     "predicted": 1
    },
    {
     "date": "2023-05-10",
     "member": "Dave Ramsden",
     "actual": 1,
-    "p_actual": 0.729,
+    "p_actual": 0.737,
     "predicted": 1
    },
    {
     "date": "2023-05-10",
     "member": "Silvana Tenreyro",
     "actual": 0,
-    "p_actual": 0.839,
+    "p_actual": 0.834,
     "predicted": 0
    },
    {
     "date": "2023-06-21",
     "member": "Andrew Bailey",
     "actual": 2,
-    "p_actual": 0.008,
+    "p_actual": 0.007,
     "predicted": 1
    },
    {
     "date": "2023-06-21",
     "member": "Ben Broadbent",
     "actual": 2,
-    "p_actual": 0.015,
+    "p_actual": 0.013,
     "predicted": 1
    },
    {
@@ -5718,126 +5961,126 @@
     "date": "2023-06-21",
     "member": "Swati Dhingra",
     "actual": 0,
-    "p_actual": 0.875,
+    "p_actual": 0.876,
     "predicted": 0
    },
    {
     "date": "2023-06-21",
     "member": "Jonathan Haskel",
     "actual": 2,
-    "p_actual": 0.016,
+    "p_actual": 0.011,
     "predicted": 1
    },
    {
     "date": "2023-06-21",
     "member": "Catherine Mann",
     "actual": 2,
-    "p_actual": 0.017,
+    "p_actual": 0.013,
     "predicted": 1
    },
    {
     "date": "2023-06-21",
     "member": "Huw Pill",
     "actual": 2,
-    "p_actual": 0.018,
+    "p_actual": 0.014,
     "predicted": 1
    },
    {
     "date": "2023-06-21",
     "member": "Dave Ramsden",
     "actual": 2,
-    "p_actual": 0.01,
+    "p_actual": 0.008,
     "predicted": 1
    },
    {
     "date": "2023-06-21",
     "member": "Silvana Tenreyro",
     "actual": 0,
-    "p_actual": 0.736,
+    "p_actual": 0.735,
     "predicted": 0
    },
    {
     "date": "2023-08-02",
     "member": "Andrew Bailey",
     "actual": 1,
-    "p_actual": 0.537,
+    "p_actual": 0.573,
     "predicted": 1
    },
    {
     "date": "2023-08-02",
     "member": "Ben Broadbent",
     "actual": 1,
-    "p_actual": 0.449,
+    "p_actual": 0.447,
     "predicted": 2
    },
    {
     "date": "2023-08-02",
     "member": "Jon Cunliffe",
     "actual": 1,
-    "p_actual": 0.449,
+    "p_actual": 0.447,
     "predicted": 2
    },
    {
     "date": "2023-08-02",
     "member": "Swati Dhingra",
     "actual": 0,
-    "p_actual": 0.783,
+    "p_actual": 0.787,
     "predicted": 0
    },
    {
     "date": "2023-08-02",
     "member": "Megan Greene",
     "actual": 1,
-    "p_actual": 0.239,
+    "p_actual": 0.241,
     "predicted": 2
    },
    {
     "date": "2023-08-02",
     "member": "Jonathan Haskel",
     "actual": 2,
-    "p_actual": 0.545,
+    "p_actual": 0.547,
     "predicted": 2
    },
    {
     "date": "2023-08-02",
     "member": "Catherine Mann",
     "actual": 2,
-    "p_actual": 0.569,
+    "p_actual": 0.572,
     "predicted": 2
    },
    {
     "date": "2023-08-02",
     "member": "Huw Pill",
     "actual": 1,
-    "p_actual": 0.756,
+    "p_actual": 0.753,
     "predicted": 1
    },
    {
     "date": "2023-08-02",
     "member": "Dave Ramsden",
     "actual": 1,
-    "p_actual": 0.707,
+    "p_actual": 0.693,
     "predicted": 1
    },
    {
     "date": "2023-09-20",
     "member": "Andrew Bailey",
     "actual": 0,
-    "p_actual": 0.163,
+    "p_actual": 0.164,
     "predicted": 1
    },
    {
     "date": "2023-09-20",
     "member": "Ben Broadbent",
     "actual": 0,
-    "p_actual": 0.195,
+    "p_actual": 0.188,
     "predicted": 1
    },
    {
     "date": "2023-09-20",
     "member": "Jon Cunliffe",
     "actual": 1,
-    "p_actual": 0.868,
+    "p_actual": 0.864,
     "predicted": 1
    },
    {
@@ -5851,42 +6094,42 @@
     "date": "2023-09-20",
     "member": "Megan Greene",
     "actual": 1,
-    "p_actual": 0.789,
+    "p_actual": 0.787,
     "predicted": 1
    },
    {
     "date": "2023-09-20",
     "member": "Jonathan Haskel",
     "actual": 1,
-    "p_actual": 0.591,
+    "p_actual": 0.598,
     "predicted": 1
    },
    {
     "date": "2023-09-20",
     "member": "Catherine Mann",
     "actual": 1,
-    "p_actual": 0.595,
+    "p_actual": 0.59,
     "predicted": 1
    },
    {
     "date": "2023-09-20",
     "member": "Huw Pill",
     "actual": 0,
-    "p_actual": 0.153,
+    "p_actual": 0.154,
     "predicted": 1
    },
    {
     "date": "2023-09-20",
     "member": "Dave Ramsden",
     "actual": 0,
-    "p_actual": 0.08,
+    "p_actual": 0.083,
     "predicted": 1
    },
    {
     "date": "2023-11-01",
     "member": "Andrew Bailey",
     "actual": 0,
-    "p_actual": 0.563,
+    "p_actual": 0.566,
     "predicted": 0
    },
    {
@@ -5900,231 +6143,231 @@
     "date": "2023-11-01",
     "member": "Ben Broadbent",
     "actual": 0,
-    "p_actual": 0.563,
+    "p_actual": 0.566,
     "predicted": 0
    },
    {
     "date": "2023-11-01",
     "member": "Swati Dhingra",
-    "actual": 0,
-    "p_actual": 0.866,
-    "predicted": 0
-   },
-   {
-    "date": "2023-11-01",
-    "member": "Megan Greene",
-    "actual": 1,
-    "p_actual": 0.864,
-    "predicted": 1
-   },
-   {
-    "date": "2023-11-01",
-    "member": "Jonathan Haskel",
-    "actual": 1,
-    "p_actual": 0.85,
-    "predicted": 1
-   },
-   {
-    "date": "2023-11-01",
-    "member": "Catherine Mann",
-    "actual": 1,
-    "p_actual": 0.845,
-    "predicted": 1
-   },
-   {
-    "date": "2023-11-01",
-    "member": "Huw Pill",
-    "actual": 0,
-    "p_actual": 0.563,
-    "predicted": 0
-   },
-   {
-    "date": "2023-11-01",
-    "member": "Dave Ramsden",
-    "actual": 0,
-    "p_actual": 0.563,
-    "predicted": 0
-   },
-   {
-    "date": "2023-12-13",
-    "member": "Andrew Bailey",
-    "actual": 0,
-    "p_actual": 0.867,
-    "predicted": 0
-   },
-   {
-    "date": "2023-12-13",
-    "member": "Sarah Breeden",
-    "actual": 0,
-    "p_actual": 0.856,
-    "predicted": 0
-   },
-   {
-    "date": "2023-12-13",
-    "member": "Ben Broadbent",
-    "actual": 0,
-    "p_actual": 0.856,
-    "predicted": 0
-   },
-   {
-    "date": "2023-12-13",
-    "member": "Megan Greene",
-    "actual": 1,
-    "p_actual": 0.712,
-    "predicted": 1
-   },
-   {
-    "date": "2023-12-13",
-    "member": "Jonathan Haskel",
-    "actual": 1,
-    "p_actual": 0.739,
-    "predicted": 1
-   },
-   {
-    "date": "2023-12-13",
-    "member": "Catherine Mann",
-    "actual": 1,
-    "p_actual": 0.792,
-    "predicted": 1
-   },
-   {
-    "date": "2023-12-13",
-    "member": "Huw Pill",
-    "actual": 0,
-    "p_actual": 0.856,
-    "predicted": 0
-   },
-   {
-    "date": "2023-12-13",
-    "member": "Dave Ramsden",
     "actual": 0,
     "p_actual": 0.868,
     "predicted": 0
    },
    {
-    "date": "2024-01-31",
-    "member": "Andrew Bailey",
-    "actual": 0,
-    "p_actual": 0.855,
-    "predicted": 0
-   },
-   {
-    "date": "2024-01-31",
-    "member": "Sarah Breeden",
-    "actual": 0,
-    "p_actual": 0.859,
-    "predicted": 0
-   },
-   {
-    "date": "2024-01-31",
-    "member": "Ben Broadbent",
-    "actual": 0,
-    "p_actual": 0.86,
-    "predicted": 0
-   },
-   {
-    "date": "2024-01-31",
-    "member": "Swati Dhingra",
-    "actual": -1,
-    "p_actual": 0.145,
-    "predicted": 0
-   },
-   {
-    "date": "2024-01-31",
+    "date": "2023-11-01",
     "member": "Megan Greene",
-    "actual": 0,
-    "p_actual": 0.249,
+    "actual": 1,
+    "p_actual": 0.865,
     "predicted": 1
    },
    {
-    "date": "2024-01-31",
+    "date": "2023-11-01",
     "member": "Jonathan Haskel",
     "actual": 1,
-    "p_actual": 0.721,
+    "p_actual": 0.852,
     "predicted": 1
    },
    {
-    "date": "2024-01-31",
+    "date": "2023-11-01",
     "member": "Catherine Mann",
     "actual": 1,
-    "p_actual": 0.721,
+    "p_actual": 0.848,
     "predicted": 1
    },
    {
-    "date": "2024-01-31",
+    "date": "2023-11-01",
     "member": "Huw Pill",
     "actual": 0,
-    "p_actual": 0.855,
+    "p_actual": 0.566,
+    "predicted": 0
+   },
+   {
+    "date": "2023-11-01",
+    "member": "Dave Ramsden",
+    "actual": 0,
+    "p_actual": 0.566,
+    "predicted": 0
+   },
+   {
+    "date": "2023-12-13",
+    "member": "Andrew Bailey",
+    "actual": 0,
+    "p_actual": 0.868,
+    "predicted": 0
+   },
+   {
+    "date": "2023-12-13",
+    "member": "Sarah Breeden",
+    "actual": 0,
+    "p_actual": 0.857,
+    "predicted": 0
+   },
+   {
+    "date": "2023-12-13",
+    "member": "Ben Broadbent",
+    "actual": 0,
+    "p_actual": 0.857,
+    "predicted": 0
+   },
+   {
+    "date": "2023-12-13",
+    "member": "Megan Greene",
+    "actual": 1,
+    "p_actual": 0.694,
+    "predicted": 1
+   },
+   {
+    "date": "2023-12-13",
+    "member": "Jonathan Haskel",
+    "actual": 1,
+    "p_actual": 0.738,
+    "predicted": 1
+   },
+   {
+    "date": "2023-12-13",
+    "member": "Catherine Mann",
+    "actual": 1,
+    "p_actual": 0.806,
+    "predicted": 1
+   },
+   {
+    "date": "2023-12-13",
+    "member": "Huw Pill",
+    "actual": 0,
+    "p_actual": 0.857,
+    "predicted": 0
+   },
+   {
+    "date": "2023-12-13",
+    "member": "Dave Ramsden",
+    "actual": 0,
+    "p_actual": 0.869,
     "predicted": 0
    },
    {
     "date": "2024-01-31",
-    "member": "Dave Ramsden",
-    "actual": 0,
-    "p_actual": 0.855,
-    "predicted": 0
-   },
-   {
-    "date": "2024-03-20",
     "member": "Andrew Bailey",
     "actual": 0,
     "p_actual": 0.857,
     "predicted": 0
    },
    {
+    "date": "2024-01-31",
+    "member": "Sarah Breeden",
+    "actual": 0,
+    "p_actual": 0.86,
+    "predicted": 0
+   },
+   {
+    "date": "2024-01-31",
+    "member": "Ben Broadbent",
+    "actual": 0,
+    "p_actual": 0.856,
+    "predicted": 0
+   },
+   {
+    "date": "2024-01-31",
+    "member": "Swati Dhingra",
+    "actual": -1,
+    "p_actual": 0.143,
+    "predicted": 0
+   },
+   {
+    "date": "2024-01-31",
+    "member": "Megan Greene",
+    "actual": 0,
+    "p_actual": 0.245,
+    "predicted": 1
+   },
+   {
+    "date": "2024-01-31",
+    "member": "Jonathan Haskel",
+    "actual": 1,
+    "p_actual": 0.724,
+    "predicted": 1
+   },
+   {
+    "date": "2024-01-31",
+    "member": "Catherine Mann",
+    "actual": 1,
+    "p_actual": 0.724,
+    "predicted": 1
+   },
+   {
+    "date": "2024-01-31",
+    "member": "Huw Pill",
+    "actual": 0,
+    "p_actual": 0.857,
+    "predicted": 0
+   },
+   {
+    "date": "2024-01-31",
+    "member": "Dave Ramsden",
+    "actual": 0,
+    "p_actual": 0.857,
+    "predicted": 0
+   },
+   {
+    "date": "2024-03-20",
+    "member": "Andrew Bailey",
+    "actual": 0,
+    "p_actual": 0.86,
+    "predicted": 0
+   },
+   {
     "date": "2024-03-20",
     "member": "Sarah Breeden",
     "actual": 0,
-    "p_actual": 0.861,
+    "p_actual": 0.862,
     "predicted": 0
    },
    {
     "date": "2024-03-20",
     "member": "Ben Broadbent",
     "actual": 0,
-    "p_actual": 0.862,
+    "p_actual": 0.863,
     "predicted": 0
    },
    {
     "date": "2024-03-20",
     "member": "Swati Dhingra",
     "actual": -1,
-    "p_actual": 0.802,
+    "p_actual": 0.78,
     "predicted": -1
    },
    {
     "date": "2024-03-20",
     "member": "Megan Greene",
     "actual": 0,
-    "p_actual": 0.78,
+    "p_actual": 0.781,
     "predicted": 0
    },
    {
     "date": "2024-03-20",
     "member": "Jonathan Haskel",
     "actual": 0,
-    "p_actual": 0.201,
+    "p_actual": 0.2,
     "predicted": 1
    },
    {
     "date": "2024-03-20",
     "member": "Catherine Mann",
     "actual": 0,
-    "p_actual": 0.074,
+    "p_actual": 0.075,
     "predicted": 1
    },
    {
     "date": "2024-03-20",
     "member": "Huw Pill",
     "actual": 0,
-    "p_actual": 0.863,
+    "p_actual": 0.864,
     "predicted": 0
    },
    {
     "date": "2024-03-20",
     "member": "Dave Ramsden",
     "actual": 0,
-    "p_actual": 0.862,
+    "p_actual": 0.863,
     "predicted": 0
    },
    {
@@ -6166,91 +6409,91 @@
     "date": "2024-05-08",
     "member": "Jonathan Haskel",
     "actual": 0,
-    "p_actual": 0.644,
+    "p_actual": 0.643,
     "predicted": 0
    },
    {
     "date": "2024-05-08",
     "member": "Catherine Mann",
     "actual": 0,
-    "p_actual": 0.644,
+    "p_actual": 0.643,
     "predicted": 0
    },
    {
     "date": "2024-05-08",
     "member": "Huw Pill",
     "actual": 0,
-    "p_actual": 0.851,
+    "p_actual": 0.852,
     "predicted": 0
    },
    {
     "date": "2024-05-08",
     "member": "Dave Ramsden",
     "actual": -1,
-    "p_actual": 0.07,
+    "p_actual": 0.069,
     "predicted": 0
    },
    {
     "date": "2024-06-19",
     "member": "Andrew Bailey",
     "actual": 0,
-    "p_actual": 0.845,
+    "p_actual": 0.846,
     "predicted": 0
    },
    {
     "date": "2024-06-19",
     "member": "Sarah Breeden",
     "actual": 0,
-    "p_actual": 0.845,
+    "p_actual": 0.846,
     "predicted": 0
    },
    {
     "date": "2024-06-19",
     "member": "Ben Broadbent",
     "actual": 0,
-    "p_actual": 0.845,
+    "p_actual": 0.846,
     "predicted": 0
    },
    {
     "date": "2024-06-19",
     "member": "Swati Dhingra",
     "actual": -1,
-    "p_actual": 0.607,
+    "p_actual": 0.592,
     "predicted": -1
    },
    {
     "date": "2024-06-19",
     "member": "Megan Greene",
     "actual": 0,
-    "p_actual": 0.857,
+    "p_actual": 0.858,
     "predicted": 0
    },
    {
     "date": "2024-06-19",
     "member": "Jonathan Haskel",
     "actual": 0,
-    "p_actual": 0.863,
+    "p_actual": 0.864,
     "predicted": 0
    },
    {
     "date": "2024-06-19",
     "member": "Catherine Mann",
     "actual": 0,
-    "p_actual": 0.863,
+    "p_actual": 0.864,
     "predicted": 0
    },
    {
     "date": "2024-06-19",
     "member": "Huw Pill",
     "actual": 0,
-    "p_actual": 0.845,
+    "p_actual": 0.846,
     "predicted": 0
    },
    {
     "date": "2024-06-19",
     "member": "Dave Ramsden",
     "actual": -1,
-    "p_actual": 0.653,
+    "p_actual": 0.655,
     "predicted": -1
    },
    {
@@ -6306,35 +6549,35 @@
     "date": "2024-07-31",
     "member": "Huw Pill",
     "actual": 0,
-    "p_actual": 0.858,
+    "p_actual": 0.861,
     "predicted": 0
    },
    {
     "date": "2024-07-31",
     "member": "Dave Ramsden",
     "actual": -1,
-    "p_actual": 0.686,
+    "p_actual": 0.684,
     "predicted": -1
    },
    {
     "date": "2024-09-18",
     "member": "Andrew Bailey",
     "actual": 0,
-    "p_actual": 0.486,
+    "p_actual": 0.47,
     "predicted": 1
    },
    {
     "date": "2024-09-18",
     "member": "Sarah Breeden",
     "actual": 0,
-    "p_actual": 0.868,
+    "p_actual": 0.873,
     "predicted": 0
    },
    {
     "date": "2024-09-18",
     "member": "Swati Dhingra",
     "actual": -1,
-    "p_actual": 0.441,
+    "p_actual": 0.442,
     "predicted": 0
    },
    {
@@ -6348,7 +6591,7 @@
     "date": "2024-09-18",
     "member": "Clare Lombardelli",
     "actual": 0,
-    "p_actual": 0.69,
+    "p_actual": 0.691,
     "predicted": 0
    },
    {
@@ -6362,7 +6605,7 @@
     "date": "2024-09-18",
     "member": "Huw Pill",
     "actual": 0,
-    "p_actual": 0.686,
+    "p_actual": 0.687,
     "predicted": 0
    },
    {
@@ -6376,91 +6619,91 @@
     "date": "2024-09-18",
     "member": "Alan Taylor",
     "actual": 0,
-    "p_actual": 0.69,
+    "p_actual": 0.691,
     "predicted": 0
    },
    {
     "date": "2024-11-06",
     "member": "Andrew Bailey",
     "actual": -1,
-    "p_actual": 0.326,
+    "p_actual": 0.328,
     "predicted": 0
    },
    {
     "date": "2024-11-06",
     "member": "Sarah Breeden",
     "actual": -1,
-    "p_actual": 0.326,
+    "p_actual": 0.328,
     "predicted": 0
    },
    {
     "date": "2024-11-06",
     "member": "Swati Dhingra",
     "actual": -1,
-    "p_actual": 0.702,
+    "p_actual": 0.691,
     "predicted": -1
    },
    {
     "date": "2024-11-06",
     "member": "Megan Greene",
     "actual": -1,
-    "p_actual": 0.16,
+    "p_actual": 0.161,
     "predicted": 0
    },
    {
     "date": "2024-11-06",
     "member": "Clare Lombardelli",
     "actual": -1,
-    "p_actual": 0.681,
+    "p_actual": 0.739,
     "predicted": -1
    },
    {
     "date": "2024-11-06",
     "member": "Catherine Mann",
     "actual": 0,
-    "p_actual": 0.821,
+    "p_actual": 0.822,
     "predicted": 0
    },
    {
     "date": "2024-11-06",
     "member": "Huw Pill",
     "actual": -1,
-    "p_actual": 0.154,
+    "p_actual": 0.155,
     "predicted": 0
    },
    {
     "date": "2024-11-06",
     "member": "Dave Ramsden",
     "actual": -1,
-    "p_actual": 0.348,
+    "p_actual": 0.35,
     "predicted": 0
    },
    {
     "date": "2024-11-06",
     "member": "Alan Taylor",
     "actual": -1,
-    "p_actual": 0.177,
+    "p_actual": 0.179,
     "predicted": 0
    },
    {
     "date": "2024-12-18",
     "member": "Andrew Bailey",
     "actual": 0,
-    "p_actual": 0.618,
+    "p_actual": 0.631,
     "predicted": 0
    },
    {
     "date": "2024-12-18",
     "member": "Sarah Breeden",
     "actual": 0,
-    "p_actual": 0.622,
+    "p_actual": 0.621,
     "predicted": 0
    },
    {
     "date": "2024-12-18",
     "member": "Swati Dhingra",
     "actual": -1,
-    "p_actual": 0.344,
+    "p_actual": 0.329,
     "predicted": 0
    },
    {
@@ -6474,49 +6717,49 @@
     "date": "2024-12-18",
     "member": "Clare Lombardelli",
     "actual": 0,
-    "p_actual": 0.622,
+    "p_actual": 0.621,
     "predicted": 0
    },
    {
     "date": "2024-12-18",
     "member": "Catherine Mann",
     "actual": 0,
-    "p_actual": 0.785,
+    "p_actual": 0.788,
     "predicted": 0
    },
    {
     "date": "2024-12-18",
     "member": "Huw Pill",
     "actual": 0,
-    "p_actual": 0.869,
+    "p_actual": 0.874,
     "predicted": 0
    },
    {
     "date": "2024-12-18",
     "member": "Dave Ramsden",
     "actual": -1,
-    "p_actual": 0.322,
+    "p_actual": 0.355,
     "predicted": 0
    },
    {
     "date": "2024-12-18",
     "member": "Alan Taylor",
     "actual": -1,
-    "p_actual": 0.512,
+    "p_actual": 0.524,
     "predicted": -1
    },
    {
     "date": "2025-02-05",
     "member": "Andrew Bailey",
     "actual": -1,
-    "p_actual": 0.198,
+    "p_actual": 0.197,
     "predicted": 0
    },
    {
     "date": "2025-02-05",
     "member": "Sarah Breeden",
     "actual": -1,
-    "p_actual": 0.665,
+    "p_actual": 0.643,
     "predicted": -1
    },
    {
@@ -6530,14 +6773,14 @@
     "date": "2025-02-05",
     "member": "Megan Greene",
     "actual": -1,
-    "p_actual": 0.251,
+    "p_actual": 0.253,
     "predicted": 0
    },
    {
     "date": "2025-02-05",
     "member": "Clare Lombardelli",
     "actual": -1,
-    "p_actual": 0.198,
+    "p_actual": 0.197,
     "predicted": 0
    },
    {
@@ -6551,35 +6794,35 @@
     "date": "2025-02-05",
     "member": "Huw Pill",
     "actual": -1,
-    "p_actual": 0.179,
+    "p_actual": 0.177,
     "predicted": 0
    },
    {
     "date": "2025-02-05",
     "member": "Dave Ramsden",
     "actual": -1,
-    "p_actual": 0.22,
+    "p_actual": 0.184,
     "predicted": 0
    },
    {
     "date": "2025-02-05",
     "member": "Alan Taylor",
     "actual": -1,
-    "p_actual": 0.86,
+    "p_actual": 0.861,
     "predicted": -1
    },
    {
     "date": "2025-03-19",
     "member": "Andrew Bailey",
     "actual": 0,
-    "p_actual": 0.367,
+    "p_actual": 0.373,
     "predicted": -1
    },
    {
     "date": "2025-03-19",
     "member": "Sarah Breeden",
     "actual": 0,
-    "p_actual": 0.47,
+    "p_actual": 0.466,
     "predicted": -1
    },
    {
@@ -6593,14 +6836,14 @@
     "date": "2025-03-19",
     "member": "Megan Greene",
     "actual": 0,
-    "p_actual": 0.555,
+    "p_actual": 0.508,
     "predicted": 0
    },
    {
     "date": "2025-03-19",
     "member": "Clare Lombardelli",
     "actual": 0,
-    "p_actual": 0.47,
+    "p_actual": 0.466,
     "predicted": -1
    },
    {
@@ -6614,63 +6857,63 @@
     "date": "2025-03-19",
     "member": "Huw Pill",
     "actual": 0,
-    "p_actual": 0.381,
+    "p_actual": 0.42,
     "predicted": -1
    },
    {
     "date": "2025-03-19",
     "member": "Dave Ramsden",
     "actual": 0,
-    "p_actual": 0.436,
+    "p_actual": 0.358,
     "predicted": -1
    },
    {
     "date": "2025-03-19",
     "member": "Alan Taylor",
     "actual": 0,
-    "p_actual": 0.743,
+    "p_actual": 0.72,
     "predicted": 0
    },
    {
     "date": "2025-05-07",
     "member": "Andrew Bailey",
     "actual": -1,
-    "p_actual": 0.204,
+    "p_actual": 0.201,
     "predicted": 0
    },
    {
     "date": "2025-05-07",
     "member": "Sarah Breeden",
     "actual": -1,
-    "p_actual": 0.204,
+    "p_actual": 0.201,
     "predicted": 0
    },
    {
     "date": "2025-05-07",
     "member": "Megan Greene",
     "actual": -1,
-    "p_actual": 0.191,
+    "p_actual": 0.189,
     "predicted": 0
    },
    {
     "date": "2025-05-07",
     "member": "Clare Lombardelli",
     "actual": -1,
-    "p_actual": 0.204,
+    "p_actual": 0.201,
     "predicted": 0
    },
    {
     "date": "2025-05-07",
     "member": "Dave Ramsden",
     "actual": -1,
-    "p_actual": 0.243,
+    "p_actual": 0.24,
     "predicted": 0
    },
    {
     "date": "2025-05-07",
     "member": "Swati Dhingra",
     "actual": -2,
-    "p_actual": 0.063,
+    "p_actual": 0.062,
     "predicted": -1
    },
    {
@@ -6684,70 +6927,70 @@
     "date": "2025-05-07",
     "member": "Catherine Mann",
     "actual": 0,
-    "p_actual": 0.671,
+    "p_actual": 0.677,
     "predicted": 0
    },
    {
     "date": "2025-05-07",
     "member": "Huw Pill",
     "actual": 0,
-    "p_actual": 0.784,
+    "p_actual": 0.787,
     "predicted": 0
    },
    {
     "date": "2025-06-18",
     "member": "Andrew Bailey",
     "actual": 0,
-    "p_actual": 0.25,
+    "p_actual": 0.229,
     "predicted": -1
    },
    {
     "date": "2025-06-18",
     "member": "Sarah Breeden",
     "actual": 0,
-    "p_actual": 0.147,
+    "p_actual": 0.166,
     "predicted": -1
    },
    {
     "date": "2025-06-18",
     "member": "Swati Dhingra",
     "actual": -1,
-    "p_actual": 0.575,
+    "p_actual": 0.647,
     "predicted": -1
    },
    {
     "date": "2025-06-18",
     "member": "Megan Greene",
     "actual": 0,
-    "p_actual": 0.758,
+    "p_actual": 0.744,
     "predicted": 0
    },
    {
     "date": "2025-06-18",
     "member": "Clare Lombardelli",
     "actual": 0,
-    "p_actual": 0.429,
+    "p_actual": 0.343,
     "predicted": -1
    },
    {
     "date": "2025-06-18",
     "member": "Catherine Mann",
     "actual": 0,
-    "p_actual": 0.809,
+    "p_actual": 0.814,
     "predicted": 0
    },
    {
     "date": "2025-06-18",
     "member": "Huw Pill",
     "actual": 0,
-    "p_actual": 0.82,
+    "p_actual": 0.823,
     "predicted": 0
    },
    {
     "date": "2025-06-18",
     "member": "Dave Ramsden",
     "actual": -1,
-    "p_actual": 0.655,
+    "p_actual": 0.656,
     "predicted": -1
    },
    {
@@ -6761,7 +7004,7 @@
     "date": "2025-08-06",
     "member": "Andrew Bailey",
     "actual": -1,
-    "p_actual": 0.362,
+    "p_actual": 0.357,
     "predicted": 0
    },
    {
@@ -6775,273 +7018,273 @@
     "date": "2025-08-06",
     "member": "Swati Dhingra",
     "actual": -1,
-    "p_actual": 0.859,
+    "p_actual": 0.86,
     "predicted": -1
    },
    {
     "date": "2025-08-06",
     "member": "Megan Greene",
     "actual": 0,
-    "p_actual": 0.522,
+    "p_actual": 0.554,
     "predicted": 0
    },
    {
     "date": "2025-08-06",
     "member": "Clare Lombardelli",
     "actual": 0,
-    "p_actual": 0.792,
+    "p_actual": 0.793,
     "predicted": 0
    },
    {
     "date": "2025-08-06",
     "member": "Catherine Mann",
     "actual": 0,
-    "p_actual": 0.847,
+    "p_actual": 0.848,
     "predicted": 0
    },
    {
     "date": "2025-08-06",
     "member": "Huw Pill",
     "actual": 0,
-    "p_actual": 0.855,
+    "p_actual": 0.856,
     "predicted": 0
    },
    {
     "date": "2025-08-06",
     "member": "Dave Ramsden",
     "actual": -1,
-    "p_actual": 0.852,
+    "p_actual": 0.861,
     "predicted": -1
    },
    {
     "date": "2025-08-06",
     "member": "Alan Taylor",
     "actual": -1,
-    "p_actual": 0.784,
+    "p_actual": 0.813,
     "predicted": -1
    },
    {
     "date": "2025-09-17",
     "member": "Andrew Bailey",
     "actual": 0,
-    "p_actual": 0.356,
+    "p_actual": 0.389,
     "predicted": -1
    },
    {
     "date": "2025-09-17",
     "member": "Sarah Breeden",
     "actual": 0,
-    "p_actual": 0.435,
+    "p_actual": 0.437,
     "predicted": -1
    },
    {
     "date": "2025-09-17",
     "member": "Swati Dhingra",
     "actual": -1,
-    "p_actual": 0.776,
+    "p_actual": 0.774,
     "predicted": -1
    },
    {
     "date": "2025-09-17",
     "member": "Megan Greene",
-    "actual": 0,
-    "p_actual": 0.842,
-    "predicted": 0
-   },
-   {
-    "date": "2025-09-17",
-    "member": "Clare Lombardelli",
-    "actual": 0,
-    "p_actual": 0.858,
-    "predicted": 0
-   },
-   {
-    "date": "2025-09-17",
-    "member": "Catherine Mann",
-    "actual": 0,
-    "p_actual": 0.859,
-    "predicted": 0
-   },
-   {
-    "date": "2025-09-17",
-    "member": "Huw Pill",
-    "actual": 0,
-    "p_actual": 0.858,
-    "predicted": 0
-   },
-   {
-    "date": "2025-09-17",
-    "member": "Dave Ramsden",
-    "actual": 0,
-    "p_actual": 0.272,
-    "predicted": -1
-   },
-   {
-    "date": "2025-09-17",
-    "member": "Alan Taylor",
-    "actual": -1,
-    "p_actual": 0.67,
-    "predicted": -1
-   },
-   {
-    "date": "2025-11-05",
-    "member": "Andrew Bailey",
-    "actual": 0,
-    "p_actual": 0.749,
-    "predicted": 0
-   },
-   {
-    "date": "2025-11-05",
-    "member": "Sarah Breeden",
-    "actual": -1,
-    "p_actual": 0.387,
-    "predicted": 0
-   },
-   {
-    "date": "2025-11-05",
-    "member": "Swati Dhingra",
-    "actual": -1,
-    "p_actual": 0.842,
-    "predicted": -1
-   },
-   {
-    "date": "2025-11-05",
-    "member": "Megan Greene",
-    "actual": 0,
-    "p_actual": 0.842,
-    "predicted": 0
-   },
-   {
-    "date": "2025-11-05",
-    "member": "Clare Lombardelli",
-    "actual": 0,
-    "p_actual": 0.842,
-    "predicted": 0
-   },
-   {
-    "date": "2025-11-05",
-    "member": "Catherine Mann",
     "actual": 0,
     "p_actual": 0.845,
     "predicted": 0
    },
    {
+    "date": "2025-09-17",
+    "member": "Clare Lombardelli",
+    "actual": 0,
+    "p_actual": 0.859,
+    "predicted": 0
+   },
+   {
+    "date": "2025-09-17",
+    "member": "Catherine Mann",
+    "actual": 0,
+    "p_actual": 0.86,
+    "predicted": 0
+   },
+   {
+    "date": "2025-09-17",
+    "member": "Huw Pill",
+    "actual": 0,
+    "p_actual": 0.859,
+    "predicted": 0
+   },
+   {
+    "date": "2025-09-17",
+    "member": "Dave Ramsden",
+    "actual": 0,
+    "p_actual": 0.276,
+    "predicted": -1
+   },
+   {
+    "date": "2025-09-17",
+    "member": "Alan Taylor",
+    "actual": -1,
+    "p_actual": 0.774,
+    "predicted": -1
+   },
+   {
+    "date": "2025-11-05",
+    "member": "Andrew Bailey",
+    "actual": 0,
+    "p_actual": 0.752,
+    "predicted": 0
+   },
+   {
+    "date": "2025-11-05",
+    "member": "Sarah Breeden",
+    "actual": -1,
+    "p_actual": 0.37,
+    "predicted": 0
+   },
+   {
+    "date": "2025-11-05",
+    "member": "Swati Dhingra",
+    "actual": -1,
+    "p_actual": 0.843,
+    "predicted": -1
+   },
+   {
+    "date": "2025-11-05",
+    "member": "Megan Greene",
+    "actual": 0,
+    "p_actual": 0.842,
+    "predicted": 0
+   },
+   {
+    "date": "2025-11-05",
+    "member": "Clare Lombardelli",
+    "actual": 0,
+    "p_actual": 0.842,
+    "predicted": 0
+   },
+   {
+    "date": "2025-11-05",
+    "member": "Catherine Mann",
+    "actual": 0,
+    "p_actual": 0.846,
+    "predicted": 0
+   },
+   {
     "date": "2025-11-05",
     "member": "Huw Pill",
     "actual": 0,
-    "p_actual": 0.847,
+    "p_actual": 0.846,
     "predicted": 0
    },
    {
     "date": "2025-11-05",
     "member": "Dave Ramsden",
     "actual": -1,
-    "p_actual": 0.267,
+    "p_actual": 0.265,
     "predicted": 0
    },
    {
     "date": "2025-11-05",
     "member": "Alan Taylor",
     "actual": -1,
-    "p_actual": 0.844,
+    "p_actual": 0.843,
     "predicted": -1
    },
    {
     "date": "2025-12-17",
     "member": "Andrew Bailey",
     "actual": -1,
-    "p_actual": 0.277,
+    "p_actual": 0.256,
     "predicted": 0
    },
    {
     "date": "2025-12-17",
     "member": "Sarah Breeden",
     "actual": -1,
-    "p_actual": 0.837,
+    "p_actual": 0.816,
     "predicted": -1
    },
    {
     "date": "2025-12-17",
     "member": "Swati Dhingra",
     "actual": -1,
-    "p_actual": 0.849,
+    "p_actual": 0.854,
     "predicted": -1
    },
    {
     "date": "2025-12-17",
     "member": "Megan Greene",
     "actual": 0,
-    "p_actual": 0.833,
+    "p_actual": 0.834,
     "predicted": 0
    },
    {
     "date": "2025-12-17",
     "member": "Clare Lombardelli",
     "actual": 0,
-    "p_actual": 0.819,
+    "p_actual": 0.821,
     "predicted": 0
    },
    {
     "date": "2025-12-17",
     "member": "Catherine Mann",
     "actual": 0,
-    "p_actual": 0.838,
+    "p_actual": 0.839,
     "predicted": 0
    },
    {
     "date": "2025-12-17",
     "member": "Huw Pill",
     "actual": 0,
-    "p_actual": 0.838,
+    "p_actual": 0.84,
     "predicted": 0
    },
    {
     "date": "2025-12-17",
     "member": "Dave Ramsden",
     "actual": -1,
-    "p_actual": 0.842,
+    "p_actual": 0.835,
     "predicted": -1
    },
    {
     "date": "2025-12-17",
     "member": "Alan Taylor",
+    "actual": -1,
+    "p_actual": 0.856,
+    "predicted": -1
+   },
+   {
+    "date": "2026-02-04",
+    "member": "Andrew Bailey",
+    "actual": 0,
+    "p_actual": 0.186,
+    "predicted": -1
+   },
+   {
+    "date": "2026-02-04",
+    "member": "Sarah Breeden",
+    "actual": -1,
+    "p_actual": 0.842,
+    "predicted": -1
+   },
+   {
+    "date": "2026-02-04",
+    "member": "Swati Dhingra",
     "actual": -1,
     "p_actual": 0.84,
     "predicted": -1
    },
    {
     "date": "2026-02-04",
-    "member": "Andrew Bailey",
-    "actual": 0,
-    "p_actual": 0.167,
-    "predicted": -1
-   },
-   {
-    "date": "2026-02-04",
-    "member": "Sarah Breeden",
-    "actual": -1,
-    "p_actual": 0.848,
-    "predicted": -1
-   },
-   {
-    "date": "2026-02-04",
-    "member": "Swati Dhingra",
-    "actual": -1,
-    "p_actual": 0.828,
-    "predicted": -1
-   },
-   {
-    "date": "2026-02-04",
     "member": "Megan Greene",
     "actual": 0,
-    "p_actual": 0.811,
+    "p_actual": 0.814,
     "predicted": 0
    },
    {
     "date": "2026-02-04",
     "member": "Clare Lombardelli",
     "actual": 0,
-    "p_actual": 0.827,
+    "p_actual": 0.828,
     "predicted": 0
    },
    {
@@ -7055,42 +7298,42 @@
     "date": "2026-02-04",
     "member": "Huw Pill",
     "actual": 0,
-    "p_actual": 0.855,
+    "p_actual": 0.854,
     "predicted": 0
    },
    {
     "date": "2026-02-04",
     "member": "Dave Ramsden",
     "actual": -1,
-    "p_actual": 0.858,
+    "p_actual": 0.861,
     "predicted": -1
    },
    {
     "date": "2026-02-04",
     "member": "Alan Taylor",
     "actual": -1,
-    "p_actual": 0.826,
+    "p_actual": 0.84,
     "predicted": -1
    },
    {
     "date": "2026-03-18",
     "member": "Andrew Bailey",
     "actual": 0,
-    "p_actual": 0.7,
+    "p_actual": 0.706,
     "predicted": 0
    },
    {
     "date": "2026-03-18",
     "member": "Sarah Breeden",
     "actual": 0,
-    "p_actual": 0.137,
+    "p_actual": 0.156,
     "predicted": -1
    },
    {
     "date": "2026-03-18",
     "member": "Swati Dhingra",
     "actual": 0,
-    "p_actual": 0.111,
+    "p_actual": 0.126,
     "predicted": -1
    },
    {
@@ -7111,7 +7354,7 @@
     "date": "2026-03-18",
     "member": "Catherine Mann",
     "actual": 0,
-    "p_actual": 0.857,
+    "p_actual": 0.859,
     "predicted": 0
    },
    {
@@ -7125,14 +7368,14 @@
     "date": "2026-03-18",
     "member": "Dave Ramsden",
     "actual": 0,
-    "p_actual": 0.144,
+    "p_actual": 0.163,
     "predicted": -1
    },
    {
     "date": "2026-03-18",
     "member": "Alan Taylor",
     "actual": 0,
-    "p_actual": 0.11,
+    "p_actual": 0.093,
     "predicted": -1
    },
    {
@@ -7146,56 +7389,56 @@
     "date": "2026-04-29",
     "member": "Sarah Breeden",
     "actual": 0,
-    "p_actual": 0.666,
+    "p_actual": 0.671,
     "predicted": 0
    },
    {
     "date": "2026-04-29",
     "member": "Swati Dhingra",
     "actual": 0,
-    "p_actual": 0.517,
+    "p_actual": 0.531,
     "predicted": 0
    },
    {
     "date": "2026-04-29",
     "member": "Megan Greene",
     "actual": 0,
-    "p_actual": 0.851,
+    "p_actual": 0.854,
     "predicted": 0
    },
    {
     "date": "2026-04-29",
     "member": "Clare Lombardelli",
     "actual": 0,
-    "p_actual": 0.793,
+    "p_actual": 0.804,
     "predicted": 0
    },
    {
     "date": "2026-04-29",
     "member": "Catherine Mann",
     "actual": 0,
-    "p_actual": 0.856,
+    "p_actual": 0.858,
     "predicted": 0
    },
    {
     "date": "2026-04-29",
     "member": "Huw Pill",
     "actual": 1,
-    "p_actual": 0.153,
+    "p_actual": 0.17,
     "predicted": 0
    },
    {
     "date": "2026-04-29",
     "member": "Dave Ramsden",
     "actual": 0,
-    "p_actual": 0.629,
+    "p_actual": 0.636,
     "predicted": 0
    },
    {
     "date": "2026-04-29",
     "member": "Alan Taylor",
     "actual": 0,
-    "p_actual": 0.611,
+    "p_actual": 0.614,
     "predicted": 0
    },
    {
@@ -7223,35 +7466,35 @@
     "date": "2026-06-17",
     "member": "Megan Greene",
     "actual": 1,
-    "p_actual": 0.625,
+    "p_actual": 0.618,
     "predicted": 1
    },
    {
     "date": "2026-06-17",
     "member": "Clare Lombardelli",
     "actual": 0,
-    "p_actual": 0.755,
+    "p_actual": 0.762,
     "predicted": 0
    },
    {
     "date": "2026-06-17",
     "member": "Catherine Mann",
     "actual": 0,
-    "p_actual": 0.713,
+    "p_actual": 0.72,
     "predicted": 0
    },
    {
     "date": "2026-06-17",
     "member": "Huw Pill",
     "actual": 1,
-    "p_actual": 0.81,
+    "p_actual": 0.795,
     "predicted": 1
    },
    {
     "date": "2026-06-17",
     "member": "Dave Ramsden",
     "actual": 0,
-    "p_actual": 0.852,
+    "p_actual": 0.853,
     "predicted": 0
    },
    {
@@ -7265,28 +7508,28 @@
     "date": "2026-07-29",
     "member": "Andrew Bailey",
     "actual": 0,
-    "p_actual": 0.844,
+    "p_actual": 0.845,
     "predicted": 0
    },
    {
     "date": "2026-07-29",
     "member": "Sarah Breeden",
     "actual": 0,
-    "p_actual": 0.835,
+    "p_actual": 0.836,
     "predicted": 0
    },
    {
     "date": "2026-07-29",
     "member": "Swati Dhingra",
     "actual": 0,
-    "p_actual": 0.817,
+    "p_actual": 0.818,
     "predicted": 0
    },
    {
     "date": "2026-07-29",
     "member": "Megan Greene",
     "actual": 1,
-    "p_actual": 0.284,
+    "p_actual": 0.276,
     "predicted": 0
    },
    {
@@ -7300,56 +7543,56 @@
     "date": "2026-07-29",
     "member": "Catherine Mann",
     "actual": 1,
-    "p_actual": 0.132,
+    "p_actual": 0.129,
     "predicted": 0
    },
    {
     "date": "2026-07-29",
     "member": "Huw Pill",
     "actual": 1,
-    "p_actual": 0.521,
+    "p_actual": 0.509,
     "predicted": 1
    },
    {
     "date": "2026-07-29",
     "member": "Dave Ramsden",
     "actual": 0,
-    "p_actual": 0.831,
+    "p_actual": 0.832,
     "predicted": 0
    },
    {
     "date": "2026-07-29",
     "member": "Alan Taylor",
     "actual": 0,
-    "p_actual": 0.792,
+    "p_actual": 0.791,
     "predicted": 0
    },
    {
     "date": "2026-09-16",
     "member": "Andrew Bailey",
     "actual": 0,
-    "p_actual": 0.641,
+    "p_actual": 0.644,
     "predicted": 0
    },
    {
     "date": "2026-09-16",
     "member": "Sarah Breeden",
     "actual": 0,
-    "p_actual": 0.748,
+    "p_actual": 0.749,
     "predicted": 0
    },
    {
     "date": "2026-09-16",
     "member": "Swati Dhingra",
     "actual": 0,
-    "p_actual": 0.762,
+    "p_actual": 0.763,
     "predicted": 0
    },
    {
     "date": "2026-09-16",
     "member": "Megan Greene",
     "actual": 1,
-    "p_actual": 0.86,
+    "p_actual": 0.859,
     "predicted": 1
    },
    {
@@ -7363,14 +7606,14 @@
     "date": "2026-09-16",
     "member": "Catherine Mann",
     "actual": 1,
-    "p_actual": 0.839,
+    "p_actual": 0.832,
     "predicted": 1
    },
    {
     "date": "2026-09-16",
     "member": "Huw Pill",
     "actual": 1,
-    "p_actual": 0.81,
+    "p_actual": 0.807,
     "predicted": 1
    },
    {
@@ -7384,21 +7627,21 @@
     "date": "2026-09-16",
     "member": "Alan Taylor",
     "actual": 0,
-    "p_actual": 0.782,
+    "p_actual": 0.781,
     "predicted": 0
    },
    {
     "date": "2026-11-04",
     "member": "Andrew Bailey",
     "actual": 1,
-    "p_actual": 0.182,
+    "p_actual": 0.179,
     "predicted": 0
    },
    {
     "date": "2026-11-04",
     "member": "Sarah Breeden",
     "actual": 1,
-    "p_actual": 0.245,
+    "p_actual": 0.233,
     "predicted": 0
    },
    {
@@ -7419,68 +7662,68 @@
     "date": "2026-11-04",
     "member": "Clare Lombardelli",
     "actual": 1,
-    "p_actual": 0.463,
-    "predicted": 0
+    "p_actual": 0.503,
+    "predicted": 1
    },
    {
     "date": "2026-11-04",
     "member": "Catherine Mann",
     "actual": 2,
-    "p_actual": 0.066,
+    "p_actual": 0.095,
     "predicted": 1
    },
    {
     "date": "2026-11-04",
     "member": "Huw Pill",
     "actual": 1,
-    "p_actual": 0.854,
+    "p_actual": 0.849,
     "predicted": 1
    },
    {
     "date": "2026-11-04",
     "member": "Dave Ramsden",
     "actual": 1,
-    "p_actual": 0.2,
+    "p_actual": 0.196,
     "predicted": 0
    },
    {
     "date": "2026-11-04",
     "member": "Alan Taylor",
     "actual": 1,
-    "p_actual": 0.113,
+    "p_actual": 0.112,
     "predicted": 0
    }
   ],
   "calibration_move": [
    {
     "bin": "5%-15%",
-    "n": 163,
-    "predicted": 0.139,
-    "actual": 0.19
+    "n": 168,
+    "predicted": 0.138,
+    "actual": 0.196
    },
    {
     "bin": "15%-30%",
-    "n": 427,
-    "predicted": 0.195,
-    "actual": 0.173
+    "n": 420,
+    "predicted": 0.194,
+    "actual": 0.169
    },
    {
     "bin": "30%-50%",
     "n": 105,
-    "predicted": 0.385,
-    "actual": 0.39
+    "predicted": 0.38,
+    "actual": 0.371
    },
    {
     "bin": "50%-70%",
-    "n": 44,
-    "predicted": 0.611,
-    "actual": 0.705
+    "n": 47,
+    "predicted": 0.61,
+    "actual": 0.723
    },
    {
     "bin": "70%-100%",
-    "n": 40,
-    "predicted": 0.818,
-    "actual": 0.7
+    "n": 39,
+    "predicted": 0.824,
+    "actual": 0.718
    }
   ]
  }
