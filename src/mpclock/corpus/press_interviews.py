@@ -98,13 +98,11 @@ _DATE_URL = re.compile(r"/(20\d{2})[/-](\d{1,2})[/-](\d{1,2})(?:/|-|$)")
 def detect_date(text: str, urls: list[str], today: str) -> str | None:
     """A date in the link's path, else the latest date written in the opening of the
     text that is not in the future."""
+    from .quick_read import date_from_url
     for u in urls:
-        m = _DATE_URL.search(u)
-        if m:
-            try:
-                return dt.date(int(m.group(1)), int(m.group(2)), int(m.group(3))).isoformat()
-            except ValueError:
-                pass
+        d = date_from_url(u)
+        if d:
+            return d
     found = []
     head = (text or "")[:3000]
     for m in _DATE_DMY.finditer(head):
@@ -252,12 +250,14 @@ def ingest(sub: dict, corpus, issue: int | None = None, classify=True, code=True
     notes = []
     if auto_date:
         today = dt.date.today().isoformat()
-        d = page_date or detect_date(text, sub["urls"], today)
+        from .quick_read import date_from_url
+        url_date = next((d for d in map(date_from_url, sub["urls"]) if d), None)
+        d = url_date or page_date or detect_date(text, sub["urls"], today)
         if not d:
             return done("needs_info", "could not find the interview's date — give it")
         sub["date"] = d
         entry["date"] = d
-        notes.append(f"date {d} detected from the " + ("page" if page_date else "link/text"))
+        notes.append(f"date {d} taken from the " + ("link" if url_date else "page" if page_date else "text"))
     if auto_member:
         m, why = detect_member(text, sub["urls"], sub["date"], corpus)
         if not m:

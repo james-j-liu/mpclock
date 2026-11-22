@@ -184,9 +184,9 @@
         appears here in about a minute; the forecast and the site refresh a few minutes later.</p>
         <div class="pi-form">
           <label for="pi-member">Member</label><select id="pi-member"></select>
-          <label for="pi-date">Date</label><div><input id="pi-date" type="date"><div class="note" style="margin-top:3px">leave blank to take it from the article</div></div>
+          <label for="pi-date">Date</label><div><input id="pi-date" type="date"><div class="note" id="pi-date-note" style="margin-top:3px">Auto — taken from the link, or from the article</div></div>
           <label for="pi-outlet">Outlet</label><input id="pi-outlet" placeholder="optional — taken from the link if blank">
-          <label for="pi-urls">Link(s)</label><textarea id="pi-urls" placeholder="one per line — every outlet's report of the same interview can go here"></textarea>
+          <label for="pi-urls">Link(s)</label><div><textarea id="pi-urls" placeholder="one per line — every outlet's report of the same interview can go here"></textarea><div id="pi-url-note" style="margin-top:3px"></div></div>
           <label for="pi-text">Transcript / text</label><textarea id="pi-text" style="min-height:180px" placeholder="optional if the link is readable; needed for paywalled articles"></textarea>
           <span></span>
           <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">
@@ -937,11 +937,44 @@ function renderPress(){
   }
   document.getElementById("pi-table").innerHTML=h+'</tbody>';
 }
+// dates in links: /2026/11/10/, /2026-11-10, /2026/nov/10/, 20261110
+const PI_MON={jan:1,feb:2,mar:3,apr:4,may:5,jun:6,jul:7,aug:8,sep:9,oct:10,nov:11,dec:12};
+function piUrlDate(u){
+  const ok=(y,m,d)=>{ y=+y;m=+m;d=+d; const t=new Date(Date.UTC(y,m-1,d));
+    if(t.getUTCFullYear()!==y||t.getUTCMonth()!==m-1||t.getUTCDate()!==d) return null;
+    if(y<2000||t>new Date(Date.now()+864e5)) return null; return t.toISOString().slice(0,10); };
+  let m=u.match(/(?<!\d)(20\d{2})[\/-](\d{1,2})[\/-](\d{1,2})(?=[\/-]|$|\.|\?)/); if(m&&ok(m[1],m[2],m[3])) return ok(m[1],m[2],m[3]);
+  m=u.match(/\/(20\d{2})\/([a-z]{3,9})\/(\d{1,2})(?=\/|$)/i); if(m&&PI_MON[m[2].slice(0,3).toLowerCase()]&&ok(m[1],PI_MON[m[2].slice(0,3).toLowerCase()],m[3])) return ok(m[1],PI_MON[m[2].slice(0,3).toLowerCase()],m[3]);
+  m=u.match(/(?<!\d)(20\d{2})(\d{2})(\d{2})(?!\d)/); if(m) return ok(m[1],m[2],m[3]);
+  return null;
+}
+// sites that do not let an automated reader see the article
+const PI_PAYWALLED={"ft.com":"the FT","thetimes.com":"The Times","thetimes.co.uk":"The Times","telegraph.co.uk":"the Telegraph",
+  "wsj.com":"the WSJ","bloomberg.com":"Bloomberg","economist.com":"The Economist","barrons.com":"Barron's",
+  "newstatesman.com":"the New Statesman","spectator.co.uk":"The Spectator","thetimes.co":"The Times","nytimes.com":"the NYT",
+  "washingtonpost.com":"the Washington Post","businessinsider.com":"Business Insider","politico.eu":"Politico Pro"};
+function piHost(u){ try{ return new URL(u).hostname.replace(/^www\./,""); }catch(e){ return ""; } }
+function piUrlsChanged(){
+  const s=piCollect(), dn=document.getElementById("pi-date-note"), un=document.getElementById("pi-url-note");
+  const d=s.urls.map(piUrlDate).find(Boolean);
+  if(!document.getElementById("pi-date").value)
+    dn.innerHTML=d?'<span class="ok">Auto: '+esc(fmtDate(d))+' (from the link)</span>':'Auto — taken from the article (no date in the link)';
+  else dn.textContent="Set by hand — clear it to use auto";
+  const pay=s.urls.map(u=>{const h=piHost(u); const k=Object.keys(PI_PAYWALLED).find(x=>h===x||h.endsWith("."+x)); return k?PI_PAYWALLED[k]:null;}).filter(Boolean);
+  const hasText=s.text.split(/\s+/).filter(Boolean).length>=80;
+  if(pay.length && !hasText && pay.length===s.urls.length)
+    un.innerHTML='<span class="warn">'+esc([...new Set(pay)].join(", "))+' is paywalled, so the job cannot read it — paste the article text below.</span>';
+  else if(pay.length && !hasText)
+    un.innerHTML='<span class="note">'+esc([...new Set(pay)].join(", "))+' is paywalled; the other link(s) will be tried.</span>';
+  else un.innerHTML="";
+}
+["pi-urls","pi-text","pi-date"].forEach(id=>document.getElementById(id).addEventListener("input",piUrlsChanged));
 function piCollect(){
-  return {member:document.getElementById("pi-member").value, date:document.getElementById("pi-date").value,
+  const urls=document.getElementById("pi-urls").value.split(/\s+/).filter(u=>/^https?:\/\//.test(u));
+  return {member:document.getElementById("pi-member").value,
+    date:document.getElementById("pi-date").value || (urls.map(piUrlDate).find(Boolean)||""),
     outlet:document.getElementById("pi-outlet").value.trim(),
-    urls:document.getElementById("pi-urls").value.split(/\s+/).filter(u=>/^https?:\/\//.test(u)),
-    text:document.getElementById("pi-text").value.trim()};
+    urls:urls, text:document.getElementById("pi-text").value.trim()};
 }
 function piDuplicates(s){
   const out=[]; const day=d=>new Date(d+"T00:00:00Z").getTime()/864e5;
@@ -1038,19 +1071,31 @@ document.getElementById("pi-add").onclick=async()=>{
       say('<span class="warn">GitHub refused the request ('+r.status+'). '+esc(hint)+' <span class="note">'+esc(t.slice(0,160))+'</span></span>'); btn.disabled=false; return; }
     say('<span class="note">Sent. Waiting for the intake job to start…</span>');
     let run=null;
-    for(let i=0;i<40 && !run;i++){
-      await sleep(4000);
+    for(let i=0;i<60 && !run;i++){
+      await sleep(2500);
       const rr=await gh("/repos/"+REPO+"/actions/workflows/press_interview.yml/runs?event=workflow_dispatch&per_page=10");
       if(rr.ok){ const j=await rr.json(); run=(j.workflow_runs||[]).find(x=>(x.display_title||x.name||"").includes(rid)); }
     }
     if(!run){ say('<span class="warn">The job has not shown up yet. It may be queued behind the daily run — check back in a few minutes; the result will appear in the table below.</span>'); btn.disabled=false; return; }
     const link='<a href="'+esc(run.html_url)+'" target="_blank" rel="noopener">job log</a>';
-    for(let i=0;i<120;i++){
-      const label=run.status==="queued"||run.status==="waiting"?"queued (the daily run may be using the corpus)":run.status==="in_progress"?"checking, classifying and coding…":run.status;
-      say('<span class="note">Intake job: '+esc(label)+' — '+link+'</span>');
-      if(run.status==="completed") break;
-      await sleep(5000);
+    let linkOk=false;
+    for(let i=0;i<200;i++){
+      const jr=await gh("/repos/"+REPO+"/actions/runs/"+run.id+"/jobs");
+      const jobs=jr.ok?((await jr.json()).jobs||[]):[];
+      const chk=jobs.find(j=>j.name==="check"), ing=jobs.find(j=>j.name==="ingest");
+      if(chk && chk.status==="completed" && chk.conclusion==="failure"){
+        say('<span class="warn"><b>Could not read the link</b> — it is paywalled or blocks automated readers. Paste the article text into "Transcript / text" and press Add to corpus again.</span> <span class="note">('+link+')</span>');
+        btn.disabled=false; return;
+      }
+      if(chk && chk.conclusion==="success" && !linkOk){ linkOk=true; }
+      let label="starting…";
+      if(chk && chk.status!=="completed") label="reading the link…";
+      else if(linkOk && (!ing || ing.status==="queued" || ing.status==="waiting")) label="text read ✓ — waiting for the corpus (the daily run may be using it)…";
+      else if(ing && ing.status==="in_progress") label="text read ✓ — checking duplicates, classifying and coding…";
+      say('<span class="note">'+esc(label)+' — '+link+'</span>');
       const rr=await gh("/repos/"+REPO+"/actions/runs/"+run.id); if(rr.ok) run=await rr.json();
+      if(run.status==="completed") break;
+      await sleep(3000);
     }
     if(run.conclusion!=="success"){ say('<span class="warn">The intake job '+esc(run.conclusion||"did not finish")+' — see the '+link+'.</span>'); btn.disabled=false; return; }
     const fr=await gh("/repos/"+REPO+"/contents/data/processed/press_interviews.json?ref=main",{headers:{"Accept":"application/vnd.github.raw+json"}});
