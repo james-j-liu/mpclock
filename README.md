@@ -102,3 +102,31 @@ anonymised copy of a text is never stored, being derived. Texts over 2,000
 characters are stored zlib-compressed (base64 so the file stays JSONL): 88 MB of
 text becomes ~41 MB. zlib is deterministic, so an unchanged record is byte-identical
 on every save and git's daily deltas stay small.
+
+## Vote forecast and press interviews
+
+The **Vote forecast** tab gives each sitting member's probability of voting for each
+option at the next meeting (the range voted for last time, plus one 25bp step either
+side), and the Committee decision that implies. `scripts/vote_forecast.py` builds it
+from `src/mpclock/forecast/`:
+
+- `guidance.py` — every member document (speeches, interviews, evidence, vote
+  rationales) is coded by Jev for the vote it signals at the next meeting
+  (`data/processed/guidance_codes.json`; ~$0.0003 a document).
+- `mpr_nearterm.py` — Bank staff near-term projections for CPI, services CPI, private
+  regular pay and unemployment, read from every MPR/Inflation Report's chart data since 2015.
+- `inputs.py` — ONS outturns (with release dates), Brent and TTF gas, the sterling ERI,
+  and the Fed and ECB policy rates (`data/processed/forecast_inputs.json`).
+- `votes.py` — an ordered logit on the change from each member's own last vote, from:
+  the Committee's last vote, the revealed pace of the cycle (every meeting vs Report
+  meetings), the member's coded guidance, data surprises against the MPR plus energy
+  prices, and Fed/ECB moves. Input groups are kept only if they lower leave-one-year-out
+  log loss; tone and sterling did not.
+
+Backtest (87 meetings since mid-2015, leave-one-year-out): 77% of decisions called
+(69% for "everyone repeats their last vote"); last five years 63% (48%).
+
+The **Press interviews** tab files a GitHub issue with a link and/or transcript;
+`.github/workflows/press_interview.yml` checks it against what is held (same link, same
+interview reported by another outlet, an article that only reports a speech),
+classifies it, adds it to the corpus if relevant, codes it and reports back on the issue.

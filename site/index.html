@@ -44,6 +44,31 @@
   #dt-table tbody tr:hover { background:#1b2128; }
   #dt-table td.num { color:var(--ink); }
   a { color:var(--dove); }
+  .fc-grid { display:grid; grid-template-columns: minmax(0,1fr); gap:18px; }
+  .card { background:var(--panel); border:1px solid var(--line); border-radius:6px; padding:14px 16px; overflow-x:auto; }
+  .card h3 { margin:0 0 10px; font-size:14px; color:var(--hawk); letter-spacing:.3px; }
+  .card p, .card li { font-size:12.5px; line-height:1.6; color:var(--mut); }
+  table.t { border-collapse:collapse; font-size:12px; width:100%; }
+  table.t th, table.t td { padding:5px 8px; border-bottom:1px solid var(--line); text-align:right; white-space:nowrap; }
+  table.t th { color:var(--ink); background:#1b2128; position:sticky; top:0; }
+  table.t td.l, table.t th.l { text-align:left; white-space:normal; }
+  .pcell { position:relative; }
+  .pcell span.bar { position:absolute; left:0; top:3px; bottom:3px; opacity:.28; border-radius:2px; }
+  .pcell span.v { position:relative; }
+  .pos { color:#e9967a; } .neg { color:#7fa7d6; }
+  .decbar { display:flex; height:30px; border-radius:4px; overflow:hidden; margin:6px 0 4px; }
+  .decbar div { display:flex; align-items:center; justify-content:center; font-size:12px; color:#fff; }
+  .pi-form { display:grid; grid-template-columns: 140px minmax(0,1fr); gap:8px 12px; align-items:start; max-width:860px; }
+  .pi-form label { color:var(--mut); font-size:12.5px; padding-top:6px; }
+  .pi-form input, .pi-form textarea, .pi-form select { background:#0b0e13; color:var(--ink); border:1px solid var(--line);
+       border-radius:4px; padding:6px 8px; font:inherit; font-size:12.5px; width:100%; }
+  .pi-form textarea { min-height:90px; resize:vertical; }
+  .note { font-size:12px; color:var(--mut); }
+  .warn { color:#f2c744; font-size:12.5px; }
+  .ok { color:#7ec699; font-size:12.5px; }
+  .scroll { overflow:auto; max-height:60vh; }
+  @media (max-width: 640px) { .pi-form { grid-template-columns: minmax(0,1fr); } .wrap { padding:14px 16px; }
+    nav { flex-wrap:wrap; padding:0 8px; } nav button { padding:8px 10px; } nav > div { margin-left:0 !important; flex-wrap:wrap; } }
 </style>
 </head>
 <body>
@@ -63,6 +88,8 @@
   <button data-tab="rankings">Rankings</button>
   <button data-tab="speaker">Speaker Detail</button>
   <button data-tab="data">Data</button>
+  <button data-tab="forecast">Vote forecast</button>
+  <button data-tab="press">Press interviews</button>
   <button data-tab="methodology">Methodology</button>
   <div style="margin-left:auto;display:flex;align-items:center;gap:16px;padding:6px 12px;">
     <label style="color:var(--mut);font-size:12px;display:flex;align-items:center;gap:5px;cursor:pointer;"
@@ -138,6 +165,43 @@
       <span id="dt-info"></span>
     </div>
     <div id="dt-wrap"><table id="dt-table"></table></div>
+  </section>
+
+  <section id="forecast" class="hidden">
+    <div class="fc-grid" id="fc-root"><div class="note">Loading forecast…</div></div>
+  </section>
+
+  <section id="press" class="hidden">
+    <div class="fc-grid">
+      <div class="card">
+        <h3>Add a press interview</h3>
+        <p>Paste a link to an interview an MPC member gave to the press (newspaper, broadcaster,
+        podcast), and — if the article is paywalled — the transcript or article text. Submitting
+        opens a pre-filled GitHub issue; when you file it, the intake job checks it against
+        everything already held (the same link, the same interview reported by another outlet,
+        or an article that only reports a speech), classifies it for monetary-policy relevance,
+        adds it to the corpus if relevant and codes the vote it signals. The result is posted on
+        the issue, and the forecast refreshes.</p>
+        <div class="pi-form">
+          <label for="pi-member">Member</label><select id="pi-member"></select>
+          <label for="pi-date">Date</label><input id="pi-date" type="date">
+          <label for="pi-outlet">Outlet</label><input id="pi-outlet" placeholder="e.g. The Guardian">
+          <label for="pi-urls">Link(s)</label><textarea id="pi-urls" placeholder="one per line — every outlet's report of the same interview can go here"></textarea>
+          <label for="pi-text">Transcript / text</label><textarea id="pi-text" style="min-height:180px" placeholder="optional if the link is readable; needed for paywalled articles"></textarea>
+          <span></span>
+          <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">
+            <button class="btn" id="pi-check">Check for duplicates</button>
+            <button class="btn" id="pi-submit">Submit via GitHub issue</button>
+            <span id="pi-msg" class="note"></span>
+          </div>
+        </div>
+        <div id="pi-dups" style="margin-top:10px"></div>
+      </div>
+      <div class="card">
+        <h3>Submitted interviews</h3>
+        <div class="scroll"><table class="t" id="pi-table"></table></div>
+      </div>
+    </div>
   </section>
 
   <section id="methodology" class="hidden">
@@ -739,12 +803,173 @@ function fillSpeakers(){
   }
 }
 
+// ---------------- Vote forecast tab ----------------
+let FC=null, PI=null;
+const REPO="james-j-liu/mpclock";
+const esc=s=>String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
+const bpLabel=b=>{b=+b; return b===0?"No change":(b>0?"Hike ":"Cut ")+Math.abs(b)+"bp";};
+const pct=(x,d=0)=>(x==null?"—":(100*x).toFixed(d)+"%");
+const optColor=b=>{b=+b; return b>0?(b>=50?"#b8432f":"#e05d44"):(b<0?(b<=-50?"#2f5d8a":"#4477aa"):"#6e7681");};
+const FEAT_LABEL={prev_dev:"Dissent last time",pull:"Pull of colleagues",tone:"Tone of own words",
+  guidance:"Own forward guidance",surprise:"Data vs MPR",energy:"Energy prices",fx:"Sterling",
+  fed:"Fed",ecb:"ECB",pace:"Cycle pace",moved_last:"Moved last meeting",mpr_x_pace:"MPR-meeting pace"};
+function fmtDate(d){ if(!d) return "—"; const t=new Date(d+"T00:00:00Z");
+  return t.toLocaleDateString("en-GB",{day:"numeric",month:"short",year:"numeric",timeZone:"UTC"}); }
+
+function renderForecast(){
+  const root=document.getElementById("fc-root");
+  if(!FC){ fetch("forecast.json",{cache:"no-store"}).then(r=>{if(!r.ok)throw new Error(r.status);return r.json();})
+      .then(j=>{FC=j; renderForecast();})
+      .catch(e=>{root.innerHTML='<div class="note">No forecast yet ('+esc(e)+'). It is written by the daily run.</div>';});
+    return; }
+  const f=FC, opts=f.options_bp.map(String);
+  const last=f.last_meeting;
+  let h='<div class="card"><h3>Next meeting: '+fmtDate(f.next_meeting)+'</h3>';
+  h+='<p>As of '+fmtDate(f.as_of)+'. Last decision ('+fmtDate(last.date)+'): '+esc(bpLabel(last.decision_bp))+
+     ', Bank Rate '+(+last.bank_rate).toFixed(2)+'%. Options considered: '+opts.map(o=>esc(bpLabel(o))).join(" · ")+
+     ' — the range voted for last time, plus one 25bp step either side.</p>';
+  h+='<div class="note">Committee decision (median member, members simulated independently):</div><div class="decbar">';
+  for(const o of opts){const p=f.decision[o]||0; if(p<0.005) continue;
+    h+='<div style="width:'+(100*p)+'%;background:'+optColor(o)+'" title="'+esc(bpLabel(o))+' '+pct(p,1)+'">'+(p>0.07?esc(bpLabel(o))+' '+pct(p):"")+'</div>';}
+  h+='</div><p class="note">Independence makes the decision odds sharper than the member odds justify: members respond to the same news.</p></div>';
+
+  // members
+  h+='<div class="card"><h3>Members — probability of each vote</h3><div class="scroll"><table class="t"><thead><tr><th class="l">Member</th><th>Last vote</th>';
+  for(const o of opts) h+='<th>'+esc(bpLabel(o))+'</th>';
+  h+='<th>Expected</th><th class="l">Biggest drivers (log-odds of a tighter vote)</th><th class="l">Own words since last meeting</th></tr></thead><tbody>';
+  for(const m of f.members){
+    h+='<tr><td class="l">'+esc(m.member)+'</td><td>'+esc(bpLabel(m.prev_vote*25))+'</td>';
+    for(const o of opts){const p=m.probs[String(+o/25)]||0;
+      h+='<td class="pcell"><span class="bar" style="width:'+(100*p)+'%;background:'+optColor(o)+'"></span><span class="v">'+pct(p,p<0.1&&p>0?1:0)+'</span></td>';}
+    h+='<td>'+(m.expected_bp>0?"+":"")+m.expected_bp.toFixed(1)+'bp</td>';
+    const c=Object.entries(m.contributions).filter(([k,v])=>Math.abs(v)>=0.05).sort((a,b)=>Math.abs(b[1])-Math.abs(a[1])).slice(0,4);
+    h+='<td class="l">'+c.map(([k,v])=>'<span class="'+(v>0?"pos":"neg")+'">'+esc(FEAT_LABEL[k]||k)+' '+(v>0?"+":"")+v.toFixed(2)+'</span>').join(", ")+'</td>';
+    const docs=(m.docs||[]).map(d=>{const sig=d.signal==null?"":" → "+(d.signal>0?"+":"")+(25*d.signal).toFixed(0)+"bp";
+      return esc(fmtDate(d.date))+' '+esc(d.type.replace("_"," "))+esc(sig);});
+    h+='<td class="l note">'+(docs.length?docs.join("<br>"):"none")+'</td></tr>';
+  }
+  h+='</tbody></table></div><p class="note">Each member\'s odds come from an ordered logit on the change from their own last vote. "Own words → Nbp" is the vote a document signals, as coded by the Jev decision model (probability-weighted, 25bp per step).</p></div>';
+
+  // inputs
+  const inp=f.inputs||{};
+  h+='<div class="card"><h3>Data since the last meeting vs the last MPR</h3>';
+  const det=(inp.surprise_detail||[]);
+  if(det.length){
+    h+='<table class="t"><thead><tr><th class="l">Series</th><th>Period</th><th>Released</th><th>Outturn</th><th>MPR expected</th><th>Surprise (z)</th><th class="l">From</th></tr></thead><tbody>';
+    const NAME={cpi:"CPI inflation",services:"Services CPI",pay:"Private regular pay",unemp:"Unemployment rate"};
+    for(const d of det) h+='<tr><td class="l">'+esc(NAME[d.series]||d.series)+'</td><td>'+esc(d.period)+'</td><td>'+esc(fmtDate(d.released))+
+      '</td><td>'+(+d.actual).toFixed(1)+'%</td><td>'+(+d.expected).toFixed(2)+'%</td><td class="'+(d.z>0?"pos":"neg")+'">'+(d.z>0?"+":"")+d.z.toFixed(2)+
+      '</td><td class="l note">'+esc(d.mpr.replace("mpr-","").replace("-"," "))+' Report</td></tr>';
+    h+='</tbody></table><p class="note">Positive = hawkish (inflation or pay above, unemployment below what the Bank expected). Scales: CPI 0.2pp, services 0.3pp, pay 0.3pp, unemployment 0.15pp per unit.</p>';
+  } else h+='<p>No data published since the last meeting yet.</p>';
+  const mk=inp.markets||{};
+  h+='<table class="t" style="margin-top:10px"><thead><tr><th class="l">Market move since last meeting</th><th>Change</th></tr></thead><tbody>'+
+    '<tr><td class="l">Brent crude</td><td class="'+(mk.brent>0?"pos":"neg")+'">'+(mk.brent>0?"+":"")+(+mk.brent||0).toFixed(1)+'%</td></tr>'+
+    '<tr><td class="l">TTF gas</td><td class="'+(mk.gas>0?"pos":"neg")+'">'+(mk.gas>0?"+":"")+(+mk.gas||0).toFixed(1)+'%</td></tr>'+
+    '<tr><td class="l">Sterling ERI (fall = inflationary)</td><td>'+(-(mk.fx||0)*2>0?"+":"")+(-(mk.fx||0)*2).toFixed(1)+'%</td></tr>'+
+    '<tr><td class="l">Fed funds target</td><td>'+((mk.fed||0)*25).toFixed(0)+'bp</td></tr>'+
+    '<tr><td class="l">ECB deposit rate</td><td>'+((mk.ecb||0)*25).toFixed(0)+'bp</td></tr></tbody></table>';
+  h+='<p class="note">This is '+(inp.mpr_meeting?"":"not ")+'an MPR meeting. Cycle pace signal '+(+inp.pace||0).toFixed(2)+' (share of same-type meetings in the current cycle at which the Bank moved, signed by direction).</p></div>';
+
+  // model + backtest
+  const bt=f.backtest||{};
+  h+='<div class="card"><h3>Backtest — how good is this?</h3>';
+  if(bt.ladder){
+    h+='<p>Every meeting since '+esc(bt.since)+' ('+bt.n+' member-votes) predicted by a model fitted on the other years only. Rows add one group of inputs at a time; the forecast above uses <b>'+esc(bt.chosen)+'</b> (lowest out-of-sample log loss).</p>';
+    h+='<div class="scroll"><table class="t"><thead><tr><th class="l">Model</th><th>Log loss</th><th>Brier</th><th>Member votes called</th><th>Avg P(actual vote)</th><th>Vote changes called</th><th>Decisions called</th><th>Avg P(actual decision)</th></tr></thead><tbody>';
+    for(const r of bt.ladder) h+='<tr'+(r.model===bt.chosen?' style="background:#1f2a1f"':'')+'><td class="l">'+esc(r.model)+'</td><td>'+r.log_loss.toFixed(3)+'</td><td>'+r.brier.toFixed(3)+'</td><td>'+pct(r.vote_hit)+'</td><td>'+pct(r.p_actual)+'</td><td>'+pct(r.switch_hit)+' of '+r.n_switch+'</td><td>'+pct(r.decision_hit)+' of '+r.meetings+'</td><td>'+pct(r.decision_p)+'</td></tr>';
+    h+='</tbody></table></div>';
+    if(bt.recent){ const r=bt.recent;
+      h+='<p><b>Last five years only</b> (meetings since '+esc(r.since)+'): member votes called '+pct(r.vote_hit)+', decisions called '+pct(r.decision_hit)+' of '+r.meetings+', average probability on the actual decision '+pct(r.decision_p)+'.</p>'; }
+    if(bt.calibration_move){ h+='<p class="note">Calibration of P(member changes their vote): '+bt.calibration_move.map(c=>esc(c.bin)+' → '+pct(c.actual)+' (n='+c.n+')').join(" · ")+'</p>'; }
+    if(bt.decisions){
+      h+='<details><summary class="note" style="cursor:pointer">Meeting-by-meeting decision calls</summary><div class="scroll"><table class="t"><thead><tr><th class="l">Meeting</th><th>Actual</th><th>Predicted</th><th>P(actual)</th></tr></thead><tbody>';
+      for(const d of bt.decisions.slice().reverse()) h+='<tr><td class="l">'+esc(fmtDate(d.date))+'</td><td>'+esc(bpLabel(d.actual*25))+'</td><td class="'+(d.actual===d.predicted?"":"warn")+'">'+esc(bpLabel(d.predicted*25))+'</td><td>'+pct(d.p_actual)+'</td></tr>';
+      h+='</tbody></table></div></details>';
+    }
+  }
+  const co=(f.model||{}).coefficients||{};
+  h+='<p class="note">Coefficients (log-odds of a 25bp-tighter vote per unit): '+Object.entries(co).map(([k,v])=>esc(FEAT_LABEL[k]||k)+' '+(v>0?"+":"")+v.toFixed(2)).join(" · ")+'</p>';
+  h+='<p class="note">Updated '+esc(f.generated)+'.</p></div>';
+  h+='<div class="card"><h3>How the forecast works</h3><p>For each sitting member the model predicts the change from their own last vote. It reads: '+
+    '(1) <b>their words since the last meeting</b> — speeches, interviews (including press interviews added on the next tab), evidence to Parliament and their vote rationale in the last minutes — each coded by the Jev decision model for the vote it signals (the tournament tone score was tested too, and adds nothing once the coded guidance is in); '+
+    '(2) <b>data versus the Bank\'s own expectations, and energy</b> — CPI, services CPI, private regular pay and unemployment outturns published since the last meeting, against the Bank staff near-term projection in the latest Monetary Policy Report, weighted for each member by how much they talk about each, plus the change in Brent and gas prices (a 10% move counts as half a standard surprise); '+
+    '(3) <b>other central banks and sterling</b> — changes in the Fed and ECB policy rates since the last meeting, and the sterling ERI (tested; it does not help); '+
+    '(4) <b>pace</b> — whether this cycle has moved at every meeting or only at Report meetings, whether the Bank moved last time and whether this is a Report meeting; '+
+    '(5) <b>the Committee</b> — whether the member dissented last time and where the rest of the Committee voted. '+
+    'Input groups that do not improve the out-of-sample fit are left out of the live model; the backtest table shows which.</p></div>';
+  root.innerHTML=h;
+}
+
+// ---------------- Press interviews tab ----------------
+function renderPress(){
+  const sel=document.getElementById("pi-member");
+  if(!sel.options.length){
+    const cur=(FC&&FC.last_meeting)?Object.keys(FC.last_meeting.votes):
+      (META&&META.roster&&META.roster.current)||[];
+    const names=(cur.length?cur:[...new Set(ALL.map(d=>d.a))]).slice().sort();
+    sel.innerHTML=names.map(n=>'<option>'+esc(n)+'</option>').join("");
+    if(!FC) fetch("forecast.json",{cache:"no-store"}).then(r=>r.ok?r.json():null).then(j=>{ if(j){FC=j; sel.innerHTML=""; renderPress();} }).catch(()=>{});
+    document.getElementById("pi-date").value=new Date().toISOString().slice(0,10);
+  }
+  if(PI===null){ fetch("press_interviews.json",{cache:"no-store"}).then(r=>r.ok?r.json():[]).catch(()=>[])
+      .then(j=>{PI=j||[]; renderPress();}); return; }
+  const ST={added:"added",duplicate:"duplicate",speech_report:"report of a speech",not_policy:"not policy-relevant",needs_text:"needs transcript",rejected:"rejected"};
+  let h='<thead><tr><th class="l">Submitted</th><th class="l">Member</th><th>Date</th><th class="l">Outlet</th><th class="l">Outcome</th><th class="l">Links</th></tr></thead><tbody>';
+  if(!PI.length) h+='<tr><td class="l note" colspan="6">None yet.</td></tr>';
+  for(const e of PI.slice().reverse()){
+    h+='<tr><td class="l">'+esc(e.submitted)+(e.issue?' <a href="https://github.com/'+REPO+'/issues/'+e.issue+'" target="_blank" rel="noopener">#'+e.issue+'</a>':'')+'</td><td class="l">'+esc(e.member)+'</td><td>'+esc(e.date)+'</td><td class="l">'+esc(e.outlet)+
+      '</td><td class="l"><b>'+esc(ST[e.status]||e.status)+'</b> — <span class="note">'+esc(e.reason)+'</span></td><td class="l">'+
+      (e.urls||[]).map(u=>'<a href="'+esc(u)+'" target="_blank" rel="noopener">'+esc(u.replace(/^https?:\/\/(www\.)?/,"").slice(0,40))+'</a>').join("<br>")+'</td></tr>';
+  }
+  document.getElementById("pi-table").innerHTML=h+'</tbody>';
+}
+function piCollect(){
+  return {member:document.getElementById("pi-member").value, date:document.getElementById("pi-date").value,
+    outlet:document.getElementById("pi-outlet").value.trim(),
+    urls:document.getElementById("pi-urls").value.split(/\s+/).filter(u=>/^https?:\/\//.test(u)),
+    text:document.getElementById("pi-text").value.trim()};
+}
+function piDuplicates(s){
+  const out=[]; const day=d=>new Date(d+"T00:00:00Z").getTime()/864e5;
+  for(const e of (PI||[])){
+    if(s.urls.some(u=>(e.urls||[]).includes(u))) out.push("This link was already submitted on "+e.submitted+" ("+(e.status||"")+").");
+    else if(e.member===s.member && e.date && Math.abs(day(e.date)-day(s.date))<=4 && ["added","duplicate"].includes(e.status))
+      out.push("An interview by "+e.member+" on "+e.date+" ("+(e.outlet||"")+") is already held — if this is the same interview it will be linked to it, not added twice.");
+  }
+  for(const d of ALL){
+    if(d.a!==s.member || !d.d || Math.abs(day(d.d)-day(s.date))>4) continue;
+    if(d.st==="interview") out.push("Corpus already has an interview by "+d.a+" on "+d.d+": "+d.tt);
+    if(d.st==="speech" && Math.abs(day(d.d)-day(s.date))<=2) out.push("Speech by "+d.a+" on "+d.d+" ("+d.tt+") — if the article only reports this speech it will not be added.");
+  }
+  return [...new Set(out)];
+}
+document.getElementById("pi-check").onclick=()=>{
+  const s=piCollect(), d=piDuplicates(s), box=document.getElementById("pi-dups");
+  box.innerHTML=d.length?d.map(x=>'<div class="warn">'+esc(x)+'</div>').join(""):'<div class="ok">Nothing similar held for '+esc(s.member)+' around '+esc(s.date)+'.</div>';
+};
+document.getElementById("pi-submit").onclick=()=>{
+  const s=piCollect(), msg=document.getElementById("pi-msg");
+  if(!s.urls.length && s.text.split(/\s+/).length<80){ msg.innerHTML='<span class="warn">Add a link or paste the text (80+ words).</span>'; return; }
+  const title="[press-interview] "+s.member+" — "+s.date+(s.outlet?" — "+s.outlet:"");
+  const body="Member: "+s.member+"\nDate: "+s.date+"\nOutlet: "+s.outlet+"\nURLs: "+s.urls.join(" ")+"\n\nTranscript:\n"+s.text+"\n";
+  let url="https://github.com/"+REPO+"/issues/new?title="+encodeURIComponent(title)+"&body=";
+  if(encodeURIComponent(body).length<6500){ window.open(url+encodeURIComponent(body),"_blank","noopener");
+    msg.innerHTML='<span class="ok">Opened a pre-filled issue — press "Create" there to submit.</span>'; }
+  else navigator.clipboard.writeText(body).then(()=>{
+    window.open(url+encodeURIComponent("(paste here — the submission was copied to your clipboard)"),"_blank","noopener");
+    msg.innerHTML='<span class="ok">The text is too long for a link: it is on your clipboard — replace the issue body with it, then press "Create".</span>';
+  });
+};
+
 document.querySelectorAll("nav button").forEach(b=>b.onclick=()=>{
   document.querySelectorAll("nav button").forEach(x=>x.classList.remove("active"));
   b.classList.add("active");
   const tab=b.dataset.tab;
-  for(const s of ["timeline","rankings","speaker","data","methodology"])
+  for(const s of ["timeline","rankings","speaker","data","forecast","press","methodology"])
     document.getElementById(s).classList.toggle("hidden",s!==tab);
+  if(tab==="forecast")renderForecast();
+  if(tab==="press")renderPress();
   if(tab==="timeline")renderTimeline();
   if(tab==="rankings")renderRankings();
   if(tab==="speaker")renderSpeaker();

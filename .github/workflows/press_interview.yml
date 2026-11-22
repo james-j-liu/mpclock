@@ -1,0 +1,61 @@
+name: Press interview intake
+
+# Issues filed from the site's "Press interviews" tab (title starts "[press-interview]")
+# are checked for duplicates, classified, added to the corpus if policy-relevant and
+# coded for forward guidance; the outcome is posted on the issue, which is closed, and
+# the daily run is started so the interview is scored and the forecast refreshed.
+on:
+  issues:
+    types: [opened, edited]
+
+permissions:
+  contents: write
+  issues: write
+  actions: write
+
+concurrency:
+  group: daily-update        # never write the corpus at the same time as the daily run
+  cancel-in-progress: false
+
+jobs:
+  ingest:
+    # only the repository's owner and collaborators can add to the corpus
+    if: >-
+      startsWith(github.event.issue.title, '[press-interview]') &&
+      contains(fromJSON('["OWNER","MEMBER","COLLABORATOR"]'), github.event.issue.author_association)
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install -r requirements.txt
+      - name: Write the issue body to a file
+        env:
+          BODY: ${{ github.event.issue.body }}
+        run: printf '%s' "$BODY" > "$RUNNER_TEMP/issue_body.md"
+      - name: Ingest
+        env:
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+          JUDGE_MODEL: google/gemini-2.5-flash-lite
+        run: >-
+          python -u scripts/press_interview.py --body "$RUNNER_TEMP/issue_body.md"
+          --issue ${{ github.event.issue.number }} --summary "$RUNNER_TEMP/summary.md"
+      - name: Commit
+        run: |
+          git config user.name "mpclock-bot"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/processed/corpus.jsonl data/processed/press_interviews.json data/processed/guidance_codes.json site/press_interviews.json
+          git commit -m "press interview (issue #${{ github.event.issue.number }})" || echo "nothing to commit"
+          git pull --rebase origin main && git push origin HEAD:main
+      - name: Report on the issue and start the daily run
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh issue comment ${{ github.event.issue.number }} --repo ${{ github.repository }} --body-file "$RUNNER_TEMP/summary.md"
+          gh issue close ${{ github.event.issue.number }} --repo ${{ github.repository }}
+          gh workflow run daily.yml --repo ${{ github.repository }} --ref main || true
