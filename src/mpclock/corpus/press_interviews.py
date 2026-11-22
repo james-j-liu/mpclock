@@ -72,12 +72,89 @@ def save_registry(reg: list[dict]) -> None:
     SITE_COPY.write_text(json.dumps(reg, indent=1), encoding="utf-8")
 
 
-def fetch_article(url: str) -> str:
+def fetch_article(url: str) -> tuple[str, str | None]:
+    """(article text, publication date YYYY-MM-DD if the page states one)."""
     import requests
     import trafilatura
     r = requests.get(url, timeout=60, headers={"User-Agent": "Mozilla/5.0 (compatible; MPCLock/1.0)"})
     r.raise_for_status()
-    return trafilatura.extract(r.text, include_comments=False, include_tables=False) or ""
+    text = trafilatura.extract(r.text, include_comments=False, include_tables=False) or ""
+    date = None
+    try:
+        meta = trafilatura.extract_metadata(r.text)
+        date = (meta.date or "")[:10] if meta else None
+    except Exception:  # noqa: BLE001
+        pass
+    return text, (date if date and re.match(r"\d{4}-\d{2}-\d{2}$", date) else None)
+
+
+# --- auto-detection: who and when ------------------------------------------------
+_MONTHS = "january february march april may june july august september october november december".split()
+_DATE_DMY = re.compile(r"\b(\d{1,2})(?:st|nd|rd|th)?\s+(" + "|".join(_MONTHS) + r")\s+(\d{4})\b", re.I)
+_DATE_MDY = re.compile(r"\b(" + "|".join(_MONTHS) + r")\s+(\d{1,2})(?:st|nd|rd|th)?,?\s+(\d{4})\b", re.I)
+_DATE_URL = re.compile(r"/(20\d{2})[/-](\d{1,2})[/-](\d{1,2})(?:/|-|$)")
+
+
+def detect_date(text: str, urls: list[str], today: str) -> str | None:
+    """A date in the link's path, else the latest date written in the opening of the
+    text that is not in the future."""
+    for u in urls:
+        m = _DATE_URL.search(u)
+        if m:
+            try:
+                return dt.date(int(m.group(1)), int(m.group(2)), int(m.group(3))).isoformat()
+            except ValueError:
+                pass
+    found = []
+    head = (text or "")[:3000]
+    for m in _DATE_DMY.finditer(head):
+        found.append((int(m.group(3)), _MONTHS.index(m.group(2).lower()) + 1, int(m.group(1))))
+    for m in _DATE_MDY.finditer(head):
+        found.append((int(m.group(3)), _MONTHS.index(m.group(1).lower()) + 1, int(m.group(2))))
+    ok = []
+    for y, mo, d in found:
+        try:
+            x = dt.date(y, mo, d).isoformat()
+        except ValueError:
+            continue
+        if x <= today:
+            ok.append(x)
+    return max(ok) if ok else None
+
+
+def detect_member(text: str, urls: list[str], date: str, corpus) -> tuple[str | None, str]:
+    """The sitting MPC member the piece is about: full-name and surname mentions in the
+    text and the link, plus 'the Governor' for whoever was Governor that day. Returns
+    (member or None, explanation)."""
+    from ..tenure import for_corpus
+    from .boe_interviews import governor_on
+    ten = for_corpus(corpus)
+    sitting = [n for n in ten.table if ten.active(n, date)]
+    low = (text or "").lower()
+    slug = " ".join(urls).lower().replace("-", " ").replace("_", " ")
+    score = {}
+    for n in sitting:
+        parts = n.split()
+        sur = parts[-1].lower()
+        full = len(re.findall(r"\b" + re.escape(n.lower()) + r"\b", low))
+        surname = len(re.findall(r"\b" + re.escape(sur) + r"\b", low))
+        in_slug = sur in slug.split()
+        score[n] = 2 * full + surname + (3 if in_slug else 0)
+    try:
+        gov = governor_on(date)
+        g = len(re.findall(r"\bgovernor\b(?!\s*general)", low)) - \
+            len(re.findall(r"\bdeputy governor\b", low))
+        if gov in score and g > 0:
+            score[gov] += min(g, 5)
+    except StopIteration:
+        pass
+    ranked = sorted(score.items(), key=lambda x: -x[1])
+    if not ranked or ranked[0][1] < 2:
+        return None, "no sitting MPC member is named clearly enough"
+    if len(ranked) > 1 and ranked[0][1] < 1.5 * ranked[1][1]:
+        return None, (f"ambiguous between {ranked[0][0]} ({ranked[0][1]}) and "
+                      f"{ranked[1][0]} ({ranked[1][1]}) — choose the member")
+    return ranked[0][0], f"detected from the text ({ranked[0][1]} mentions)"
 
 
 def _shingles(text: str, n: int = 8) -> set:
@@ -145,33 +222,55 @@ def ingest(sub: dict, corpus, issue: int | None = None, classify=True, code=True
         save_registry(reg)
         return entry, corpus
 
-    member = canon(sub.get("member", ""))
-    entry["member"] = member
-    if not member or not is_mpc(member):
-        return done("rejected", f"'{sub.get('member')}' is not a known MPC member")
-    try:
-        dt.date.fromisoformat(sub.get("date", ""))
-    except ValueError:
-        return done("rejected", "date must be YYYY-MM-DD")
-    sub["member"] = member
-    if not for_corpus(corpus).active(member, sub["date"]):
-        return done("rejected", f"{member} was not on the MPC on {sub['date']}")
+    auto_member = sub.get("member", "").strip().lower() in ("", "auto", "auto-detect")
+    auto_date = sub.get("date", "").strip().lower() in ("", "auto", "auto-detect")
+    if not auto_date:
+        try:
+            dt.date.fromisoformat(sub["date"])
+        except ValueError:
+            return done("rejected", "date must be YYYY-MM-DD (or blank to detect it)")
 
     text = sub.get("transcript", "").strip()
-    fetched_from = None
-    if not text:
-        for u in sub["urls"]:
-            try:
-                t = fetch_article(u)
-            except Exception as e:  # noqa: BLE001
-                entry.setdefault("fetch_errors", []).append(f"{u}: {str(e)[:80]}")
-                continue
-            if len(t.split()) >= 150:
-                text, fetched_from = t, u
-                break
+    fetched_from, page_date = None, None
+    for u in sub["urls"]:
+        try:
+            t, d = fetch_article(u)
+        except Exception as e:  # noqa: BLE001
+            entry.setdefault("fetch_errors", []).append(f"{u}: {str(e)[:80]}")
+            continue
+        page_date = page_date or d
+        if not text and len(t.split()) >= 150:
+            text, fetched_from = t, u
+        if text and page_date:
+            break
     if len(text.split()) < 80:
         return done("needs_text", "could not read enough text from the link(s) — "
                                   "likely paywalled; paste the transcript or article text")
+
+    notes = []
+    if auto_date:
+        today = dt.date.today().isoformat()
+        d = page_date or detect_date(text, sub["urls"], today)
+        if not d:
+            return done("needs_info", "could not find the interview's date — give it")
+        sub["date"] = d
+        entry["date"] = d
+        notes.append(f"date {d} detected from the " + ("page" if page_date else "link/text"))
+    if auto_member:
+        m, why = detect_member(text, sub["urls"], sub["date"], corpus)
+        if not m:
+            return done("needs_info", f"could not tell which member this is: {why}")
+        sub["member"] = m
+        notes.append(f"member {m} {why}")
+    member = canon(sub.get("member", ""))
+    entry["member"] = member
+    if notes:
+        entry["detected"] = "; ".join(notes)
+    if not member or not is_mpc(member):
+        return done("rejected", f"'{sub.get('member')}' is not a known MPC member")
+    sub["member"] = member
+    if not for_corpus(corpus).active(member, sub["date"]):
+        return done("rejected", f"{member} was not on the MPC on {sub['date']}")
     entry["words"] = len(text.split())
     entry["text_source"] = "pasted" if not fetched_from else fetched_from
 

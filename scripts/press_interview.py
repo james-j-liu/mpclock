@@ -36,6 +36,8 @@ def main():
     lines = [f"**{entry['status'].replace('_', ' ')}** — {entry['reason']}", "",
              f"- member: {entry.get('member')}", f"- date: {entry.get('date')}",
              f"- outlet: {entry.get('outlet') or '—'}", f"- links: {', '.join(entry.get('urls') or []) or '—'}"]
+    if entry.get("detected"):
+        lines.append(f"- auto-detected: {entry['detected']}")
     if entry.get("words"):
         lines.append(f"- text: {entry['words']} words ({entry.get('text_source')})")
     if sig:
