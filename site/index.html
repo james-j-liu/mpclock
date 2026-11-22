@@ -860,10 +860,13 @@ function renderForecast(){
   h+='<p>As of '+fmtDate(f.as_of)+'. Last decision ('+fmtDate(last.date)+'): '+esc(bpLabel(last.decision_bp))+
      ', Bank Rate '+(+last.bank_rate).toFixed(2)+'%. Options considered: '+opts.map(o=>esc(bpLabel(o))).join(" · ")+
      ' — the range voted for last time, plus one 25bp step either side.</p>';
-  h+='<div class="note">Committee decision (median member, members simulated independently):</div><div class="decbar">';
+  h+='<div class="note">Committee decision (the median member's vote, members' votes correlated):</div><div class="decbar">';
   for(const o of opts){const p=f.decision[o]||0; if(p<0.005) continue;
     h+='<div style="width:'+(100*p)+'%;background:'+optColor(o)+'" title="'+esc(bpLabel(o))+' '+pct(p,1)+'">'+(p>0.07?esc(bpLabel(o))+' '+pct(p):"")+'</div>';}
-  h+='</div><p class="note">Independence makes the decision odds sharper than the member odds justify: members respond to the same news.</p></div>';
+  h+='</div>';
+  if(f.decision_range){ h+='<p class="note">80% ranges (refitting the model on 200 resampled histories): '+opts.filter(o=>(f.decision[o]||0)>=0.02).map(o=>esc(bpLabel(o))+' '+pct(f.decision_range[o][0])+'–'+pct(f.decision_range[o][1])).join(" · ")+
+    '. These cover uncertainty in the model\'s estimates only, not news still to come before the meeting.</p>'; }
+  h+='<p class="note">Members\' votes are simulated as moving together'+(f.correlation!=null?' (correlation '+(+f.correlation).toFixed(1)+', chosen so past Committee decisions are best predicted)':'')+': common news pushes everyone the same way, so the Committee odds are less sharp than if each member voted independently.</p></div>';
 
   // members
   h+='<div class="card"><h3>Members — probability of each vote</h3><div class="scroll"><table class="t"><thead><tr><th class="l">Member</th><th>Last vote</th>';
@@ -872,7 +875,9 @@ function renderForecast(){
   for(const m of f.members){
     h+='<tr><td class="l">'+esc(m.member)+'</td><td>'+esc(bpLabel(m.prev_vote*25))+'</td>';
     for(const o of opts){const p=m.probs[String(+o/25)]||0;
-      h+='<td class="pcell"><span class="bar" style="width:'+(100*p)+'%;background:'+optColor(o)+'"></span><span class="v">'+pct(p,p<0.1&&p>0?1:0)+'</span></td>';}
+      const rg=(m.ranges||{})[String(+o/25)];
+      h+='<td class="pcell"><span class="bar" style="width:'+(100*p)+'%;background:'+optColor(o)+'"></span><span class="v">'+pct(p,p<0.1&&p>0?1:0)+
+        (rg&&p>=0.05?'<br><span class="note" style="font-size:10.5px" title="80% range from refitting the model on resampled histories">'+pct(rg[0])+'–'+pct(rg[1])+'</span>':'')+'</span></td>';}
     h+='<td>'+(m.expected_bp>0?"+":"")+m.expected_bp.toFixed(1)+'bp</td>';
     const rec=(m.record||[]).slice().reverse().concat([{date:f.last_meeting.date,vote:m.prev_vote,decision:f.last_meeting.decision_bp/25}]);
     h+='<td class="l note" style="white-space:nowrap">'+rec.map(r=>{const v=r.vote*25, d=r.vote-r.decision;
@@ -956,6 +961,9 @@ function renderForecast(){
       h+='</tbody></table>';
       if(sel.half_life_scores) h+='<p class="note">Recency: a member\'s words lose half their weight every <b>'+sel.half_life+' days</b> before the meeting (chosen from '+Object.keys(sel.half_life_scores).join("/")+' days: '+Object.entries(sel.half_life_scores).map(([k,v])=>k+'d '+v.toFixed(4)).join(", ")+'; all words equal '+(sel.flat_words_log_loss!=null?sel.flat_words_log_loss.toFixed(4):"—")+').</p>';
     }
+    if(bt.correlation&&bt.correlation.calibration){ const cc=bt.correlation.calibration, rho=String(bt.correlation.rho);
+      const row=k=>(cc[k]||[]).map(c=>c.bin+': said '+pct(c.predicted)+', right '+pct(c.right)+' (n='+c.n+')').join(" · ");
+      h+='<p class="note">Committee odds calibration — members independent: '+row("0.0")+'. With correlation '+rho+': '+row(rho)+'.</p>'; }
     if(bt.recent){ const r=bt.recent;
       h+='<p><b>Last five years only</b> (meetings since '+esc(r.since)+'): member votes called '+pct(r.vote_hit)+', decisions called '+pct(r.decision_hit)+' of '+r.meetings+', average probability on the actual decision '+pct(r.decision_p)+'.</p>'; }
     if(bt.calibration_move){ h+='<p class="note">Calibration of P(member changes their vote): '+bt.calibration_move.map(c=>esc(c.bin)+' → '+pct(c.actual)+' (n='+c.n+')').join(" · ")+'</p>'; }

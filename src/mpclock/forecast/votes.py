@@ -538,16 +538,34 @@ def vote_distribution(prob_delta: np.ndarray, prev_vote: int, options: list[int]
     return out
 
 
-def decision_distribution(member_probs: list[dict[int, float]], n_sims: int = 20000,
-                          seed: int = 0) -> dict[int, float]:
-    """The Committee's decision as the median member's vote, simulating members
-    independently. Independence understates how often members move together, so
-    these odds are a little too confident in the modal outcome."""
+CORRELATION = 0.0   # members' common "news" factor in the Committee simulation; set from
+                    # the backtest by scripts/vote_forecast.py (calibrate_correlation)
+
+
+def simulate_votes(member_probs: list[dict[int, float]], n_sims: int = 20000, seed: int = 0,
+                   rho: float | None = None) -> tuple[list[int], np.ndarray]:
+    """Joint draws of every member's vote. Each member keeps exactly their own
+    probabilities (a Gaussian copula); rho is how strongly they move together — a shared
+    factor pushes everyone hawkish or dovish at once, as common news does."""
+    from scipy.stats import norm
+    rho = CORRELATION if rho is None else rho
     rng = np.random.default_rng(seed)
-    opts = sorted(member_probs[0])
+    opts = sorted({o for mp in member_probs for o in mp})
+    common = rng.standard_normal(n_sims)
     draws = []
     for mp in member_probs:
-        pr = np.array([mp[o] for o in opts])
-        draws.append(rng.choice(opts, size=n_sims, p=pr / pr.sum()))
-    med = np.median(np.vstack(draws), axis=0)
+        pr = np.array([mp.get(o, 0.0) for o in opts], float)
+        cdf = np.cumsum(pr / pr.sum())
+        z = np.sqrt(rho) * common + np.sqrt(1 - rho) * rng.standard_normal(n_sims)
+        u = norm.cdf(z)
+        draws.append(np.array(opts)[np.minimum(np.searchsorted(cdf, u), len(opts) - 1)])
+    return opts, np.vstack(draws)
+
+
+def decision_distribution(member_probs: list[dict[int, float]], n_sims: int = 20000,
+                          seed: int = 0, rho: float | None = None) -> dict[int, float]:
+    """The Committee's decision as the median member's vote, with members' votes
+    correlated through a common factor (rho; 0 = independent)."""
+    opts, draws = simulate_votes(member_probs, n_sims, seed, rho)
+    med = np.median(draws, axis=0)
     return {o: float(np.mean(med == o)) for o in opts}
