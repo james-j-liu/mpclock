@@ -65,8 +65,11 @@ VOTE_OVERRIDES = {
                    "Alan Taylor": -2, "Catherine Mann": 0, "Huw Pill": 0},
 }
 
+HISTORY = 6       # meetings of each member's voting record used, beyond the last one
+
 FEATURE_GROUPS = {
     "committee": ["prev_dev", "pull"],
+    "record": ["hist_dev", "trend"],
     "pace": ["pace", "moved_last", "mpr_x_pace"],
     "words": ["guidance"],
     "data": ["surprise"],          # outturns vs MPR, plus half-weighted energy-price change
@@ -325,9 +328,25 @@ def features_for(ctx: Context, prev: Meeting, date: str, members: list[str]) -> 
     mk = market_changes(ctx, start, end)
     pace = pace_features(ctx, 0, date)
     mean_prev = np.mean(list(prev.votes.values()))
+    # the meetings before `prev`, newest first: a member's record over several meetings,
+    # not just the last vote
+    i_prev = next((i for i, m in enumerate(ctx.meetings) if m.date == prev.date), len(ctx.meetings) - 1)
+    earlier = ctx.meetings[max(0, i_prev - HISTORY):i_prev][::-1]
     rows = []
     for p in members:
         pv = prev.votes.get(p, prev.decision)
+        hist = [(m.votes[p], m.decision) for m in earlier if p in m.votes]
+        # persistent lean: how far the member sat from the Committee's decision over the
+        # earlier meetings (excluding the last one, which prev_dev already carries),
+        # more recent meetings counting more
+        if hist:
+            wts = np.array([0.8 ** k for k in range(len(hist))])
+            hist_dev = float((wts * np.array([v - d for v, d in hist])).sum() / wts.sum())
+            dissents = sum(1 for v, d in hist if v != d) / len(hist)
+            trend = float(pv - hist[0][0])          # did the member move at the last meeting?
+            streak = next((k for k, (v, _) in enumerate(hist) if v != pv), len(hist))
+        else:
+            hist_dev, dissents, trend, streak = 0.0, 0.0, 0.0, 0
         w = member_window(ctx, p, start, end, pv)
         if surp:
             tw = w["topic_w"]
@@ -335,7 +354,11 @@ def features_for(ctx: Context, prev: Meeting, date: str, members: list[str]) -> 
         else:
             personal = 0.0
         rows.append({
+            "_hist": [{"date": m.date, "vote": m.votes[p], "decision": m.decision}
+                      for m in earlier if p in m.votes],
             "member": p, "prev_vote": pv, "prev_decision": prev.decision,
+            "hist_dev": hist_dev, "trend": trend, "dissent_rate": dissents,
+            "streak": float(min(streak, HISTORY)) / HISTORY * np.sign(pv - prev.decision or pv or 0),
             "prev_dev": pv - prev.decision, "pull": mean_prev - pv,
             "tone": w["tone"], "guidance": w["guidance"], "n_docs": w["n_docs"],
             # energy prices are data too: a 10% rise counts as half a standard surprise

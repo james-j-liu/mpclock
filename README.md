@@ -118,13 +118,18 @@ from `src/mpclock/forecast/`:
 - `inputs.py` — ONS outturns (with release dates), Brent and TTF gas, the sterling ERI,
   and the Fed and ECB policy rates (`data/processed/forecast_inputs.json`).
 - `votes.py` — an ordered logit on the change from each member's own last vote, from:
-  the Committee's last vote, the revealed pace of the cycle (every meeting vs Report
-  meetings), the member's coded guidance, data surprises against the MPR plus energy
-  prices, and Fed/ECB moves. Input groups are kept only if they lower leave-one-year-out
-  log loss; tone and sterling did not.
+  the Committee's last vote, the member's voting record over the previous six meetings
+  (how far they sat from the decision, recent meetings weighted more, and whether they
+  changed vote last time), the revealed pace of the cycle (every meeting vs Report
+  meetings), the member's coded guidance, and data surprises against the MPR plus
+  energy prices. Input groups are kept only if they lower leave-one-year-out log loss;
+  Fed/ECB, sterling and speech tone did not.
+- `data_vs_mpr.py` — the "Data vs MPR" tab: ONS outturns against each Report's
+  near-term projections, and every release since 2015 scored against the latest one.
 
-Backtest (87 meetings since mid-2015, leave-one-year-out): 77% of decisions called
-(69% for "everyone repeats their last vote"); last five years 63% (48%).
+Backtest (779 member votes at 87 meetings since mid-2015, leave-one-year-out): log loss
+0.70 vs 0.82 for "everyone repeats their last vote"; 77% of member votes and 75% of
+decisions called (69%). Last five years: 55% of decisions (48%).
 
 The **Press interviews** tab files a GitHub issue with a link and/or transcript;
 `.github/workflows/press_interview.yml` checks it against what is held (same link, same
