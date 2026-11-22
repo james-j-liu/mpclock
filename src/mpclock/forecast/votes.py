@@ -71,7 +71,7 @@ FEATURE_GROUPS = {
     "committee": ["prev_dev", "pull"],
     "record": ["hist_dev", "trend"],
     "pace": ["pace", "moved_last", "mpr_x_pace"],
-    "words": ["guidance"],
+    "words": ["guidance", "signal_level"],
     "data": ["surprise"],          # outturns vs MPR, plus half-weighted energy-price change
     "global": ["fed", "ecb"],
     "fx": ["fx"],
@@ -368,6 +368,10 @@ def features_for(ctx: Context, prev: Meeting, date: str, members: list[str]) -> 
             "fed": mk["fed"], "ecb": mk["ecb"],
             "pace": pace["pace"], "moved_last": pace["moved_last"], "mpr_x_pace": pace["mpr_x_pace"],
             "has_guidance": w["has_guidance"],
+            # the vote the member's own words point to, as a level (not just the change
+            # from their last vote): "more tightening needed" from someone who just voted
+            # to hike is news against the drift back to hold after a move
+            "signal_level": float(w["has_guidance"] * (w["guidance"] + pv)),
             "_mpr": pace["mpr"], "_surprises": surp, "_detail": detail, "_markets": mk,
             "_doc_dates": w["doc_dates"], "_docs": w["docs"], "_signal": w["signal"],
         })
