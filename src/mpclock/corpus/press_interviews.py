@@ -205,7 +205,8 @@ def find_duplicate(sub: dict, text: str, corpus, reg: list[dict]) -> tuple[str, 
     return "", None, None
 
 
-def ingest(sub: dict, corpus, issue: int | None = None, classify=True, code=True) -> tuple[dict, list]:
+def ingest(sub: dict, corpus, issue: int | None = None, classify=True, code=True,
+           request_id: str | None = None) -> tuple[dict, list]:
     """Process one submission. Returns (registry entry, corpus) — the corpus with the
     interview added or updated where that applies."""
     from ..roster_mpc import canon, is_mpc
@@ -213,7 +214,8 @@ def ingest(sub: dict, corpus, issue: int | None = None, classify=True, code=True
     from ..tenure import for_corpus
 
     reg = load_registry()
-    entry = {"submitted": dt.date.today().isoformat(), "issue": issue, "urls": sub["urls"],
+    entry = {"submitted": dt.date.today().isoformat(), "issue": issue, "request_id": request_id,
+             "urls": sub["urls"],
              "outlet": sub.get("outlet", ""), "date": sub.get("date", ""), "member": sub.get("member", "")}
 
     def done(status, reason, **kw):

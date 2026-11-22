@@ -23,13 +23,16 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--body", required=True)
     ap.add_argument("--issue", type=int, default=None)
+    ap.add_argument("--request-id", default=None, help="id the site uses to find this result")
     ap.add_argument("--summary", default="press_interview_summary.md")
     ap.add_argument("--no-llm", action="store_true", help="skip classification and coding (testing)")
     args = ap.parse_args()
     sub = parse_submission(Path(args.body).read_text(encoding="utf-8"))
     corpus = load_corpus(CORPUS)
     n0 = len(corpus)
-    entry, corpus = ingest(sub, corpus, args.issue, classify=not args.no_llm, code=not args.no_llm)
+    rid = args.request_id if args.request_id and len(args.request_id) <= 64 else None
+    entry, corpus = ingest(sub, corpus, args.issue, classify=not args.no_llm, code=not args.no_llm,
+                           request_id=rid)
     if entry["status"] in ("added", "duplicate") and (len(corpus) != n0 or entry.get("replaced_text")):
         save_corpus(corpus, CORPUS)
     sig = entry.get("signal")
