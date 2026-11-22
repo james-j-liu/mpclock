@@ -2,271 +2,161 @@
  "features": [
   "prev_dev",
   "pull",
+  "hist_dev",
+  "trend",
+  "pace",
+  "moved_last",
+  "mpr_x_pace",
   "g_rat_gap",
   "g_rat_lvl",
   "g_pol_gap",
   "g_pol_lvl",
   "g_oth_gap",
-  "g_oth_lvl"
+  "g_oth_lvl",
+  "surprise"
  ],
- "half_life": 60,
+ "half_life": 30,
  "half_life_scores": {
-  "7": 0.7245994157345645,
-  "14": 0.7236073768579816,
-  "30": 0.7230231187133341,
-  "60": 0.7228615668106969
+  "7": 0.6608720289608132,
+  "14": 0.6597212586233958,
+  "30": 0.6586480125245358,
+  "60": 0.6587098775668019
  },
- "flat_words_log_loss": 0.7228445950624819,
- "steps": [
-  {
-   "group": "last vote only",
-   "kept": true,
-   "log_loss": 0.8215
-  },
-  {
-   "group": "committee",
-   "features": [
-    "prev_dev",
-    "pull"
-   ],
-   "kept": true,
-   "log_loss": 0.767,
-   "change": -0.0545,
+ "flat_words_log_loss": 0.6586464900254354,
+ "nested_log_loss": 0.6602,
+ "report": {
+  "baseline_log_loss": 0.8215,
+  "core": {
+   "log_loss": 0.6602,
+   "change": -0.1614,
    "ci95": [
-    -0.0895,
-    -0.019
+    -0.2669,
+    -0.0584
    ],
-   "half_life_by_year": null
-  },
-  {
-   "group": "voting record",
-   "features": [
-    "hist_dev",
-    "trend"
-   ],
-   "kept": false,
-   "log_loss": 0.7382,
-   "change": -0.0288,
-   "ci95": [
-    -0.084,
-    0.0277
-   ],
-   "half_life_by_year": null
-  },
-  {
-   "group": "pace",
-   "features": [
-    "pace",
-    "moved_last",
-    "mpr_x_pace"
-   ],
-   "kept": false,
-   "log_loss": 0.7548,
-   "change": -0.0122,
-   "ci95": [
-    -0.1164,
-    0.0952
-   ],
-   "half_life_by_year": null
-  },
-  {
-   "group": "own words (split: rationale / policy-focused / other)",
-   "features": [
-    "g_rat_gap",
-    "g_rat_lvl",
-    "g_pol_gap",
-    "g_pol_lvl",
-    "g_oth_gap",
-    "g_oth_lvl"
-   ],
-   "kept": true,
-   "log_loss": 0.7231,
-   "change": -0.0439,
-   "ci95": [
-    -0.0838,
-    -0.0052
-   ],
+   "significant": true,
    "half_life_by_year": {
     "2015": 60,
     "2016": 60,
     "2017": 60,
-    "2018": 60,
+    "2018": 14,
     "2019": 60,
     "2020": 60,
     "2021": 60,
-    "2022": 60,
-    "2023": 14,
-    "2024": 60,
-    "2025": 60,
-    "2026": 60
-   }
-  },
-  {
-   "group": "data & energy",
-   "features": [
-    "surprise"
-   ],
-   "kept": false,
-   "log_loss": 0.7026,
-   "change": -0.0205,
-   "ci95": [
-    -0.0521,
-    0.0078
-   ],
-   "half_life_by_year": {
-    "2015": 60,
-    "2016": 60,
-    "2017": 60,
-    "2018": 60,
-    "2019": 60,
-    "2020": 60,
-    "2021": 60,
-    "2022": 30,
-    "2023": 14,
-    "2024": 60,
-    "2025": 30,
-    "2026": 60
-   }
-  },
-  {
-   "group": "hedged guidance",
-   "features": [
-    "signal_hedged",
-    "guidance_hedged"
-   ],
-   "kept": false,
-   "log_loss": 0.7225,
-   "change": -0.0006,
-   "ci95": [
-    -0.0032,
-    0.002
-   ],
-   "half_life_by_year": {
-    "2015": 60,
-    "2016": 60,
-    "2017": 60,
-    "2018": 60,
-    "2019": 60,
-    "2020": 60,
-    "2021": 60,
-    "2022": 30,
-    "2023": 30,
-    "2024": 60,
-    "2025": 30,
-    "2026": 60
-   }
-  },
-  {
-   "group": "votes with Governor",
-   "features": [
-    "gov_pull"
-   ],
-   "kept": false,
-   "log_loss": 0.7187,
-   "change": -0.0044,
-   "ci95": [
-    -0.021,
-    0.0123
-   ],
-   "half_life_by_year": {
-    "2015": 60,
-    "2016": 60,
-    "2017": 30,
-    "2018": 30,
-    "2019": 60,
-    "2020": 60,
-    "2021": 60,
-    "2022": 30,
+    "2022": 7,
     "2023": 60,
     "2024": 60,
-    "2025": 14,
+    "2025": 7,
     "2026": 60
-   }
+   },
+   "groups": [
+    {
+     "group": "committee",
+     "contribution": -0.0324,
+     "ci95": [
+      -0.0637,
+      0.0007
+     ],
+     "significant_alone": false
+    },
+    {
+     "group": "voting record",
+     "contribution": -0.0203,
+     "ci95": [
+      -0.0516,
+      0.0065
+     ],
+     "significant_alone": false
+    },
+    {
+     "group": "pace",
+     "contribution": -0.0086,
+     "ci95": [
+      -0.0764,
+      0.0605
+     ],
+     "significant_alone": false
+    },
+    {
+     "group": "own words",
+     "contribution": -0.0432,
+     "ci95": [
+      -0.0732,
+      -0.0184
+     ],
+     "significant_alone": true
+    },
+    {
+     "group": "data & energy",
+     "contribution": -0.0417,
+     "ci95": [
+      -0.0794,
+      -0.0083
+     ],
+     "significant_alone": true
+    }
+   ]
   },
-  {
-   "group": "Fed & ECB",
-   "features": [
-    "fed",
-    "ecb"
-   ],
-   "kept": false,
-   "log_loss": 0.7386,
-   "change": 0.0155,
+  "words_split_vs_combined": {
+   "change": -0.008,
    "ci95": [
-    -0.0083,
-    0.0482
-   ],
-   "half_life_by_year": {
-    "2015": 60,
-    "2016": 60,
-    "2017": 60,
-    "2018": 60,
-    "2019": 60,
-    "2020": 60,
-    "2021": 60,
-    "2022": 60,
-    "2023": 30,
-    "2024": 60,
-    "2025": 60,
-    "2026": 60
-   }
+    -0.0182,
+    0.0023
+   ]
   },
-  {
-   "group": "sterling",
-   "features": [
-    "fx"
-   ],
-   "kept": false,
-   "log_loss": 0.7234,
-   "change": 0.0003,
-   "ci95": [
-    -0.0139,
-    0.0144
-   ],
-   "half_life_by_year": {
-    "2015": 60,
-    "2016": 60,
-    "2017": 60,
-    "2018": 60,
-    "2019": 60,
-    "2020": 60,
-    "2021": 60,
-    "2022": 30,
-    "2023": 7,
-    "2024": 60,
-    "2025": 30,
-    "2026": 60
+  "addons": [
+   {
+    "group": "hedged guidance",
+    "log_loss": 0.6588,
+    "change": -0.0013,
+    "ci95": [
+     -0.0057,
+     0.0036
+    ],
+    "kept": false
+   },
+   {
+    "group": "votes with Governor",
+    "log_loss": 0.6668,
+    "change": 0.0066,
+    "ci95": [
+     -0.0067,
+     0.0209
+    ],
+    "kept": false
+   },
+   {
+    "group": "Fed & ECB",
+    "log_loss": 0.6696,
+    "change": 0.0094,
+    "ci95": [
+     -0.037,
+     0.0608
+    ],
+    "kept": false
+   },
+   {
+    "group": "sterling",
+    "log_loss": 0.6646,
+    "change": 0.0045,
+    "ci95": [
+     -0.0066,
+     0.018
+    ],
+    "kept": false
+   },
+   {
+    "group": "speech tone",
+    "log_loss": 0.6682,
+    "change": 0.008,
+    "ci95": [
+     0.0029,
+     0.0147
+    ],
+    "kept": false
    }
-  },
-  {
-   "group": "speech tone",
-   "features": [
-    "tone"
-   ],
-   "kept": false,
-   "log_loss": 0.7245,
-   "change": 0.0014,
-   "ci95": [
-    -0.0,
-    0.0033
-   ],
-   "half_life_by_year": {
-    "2015": 60,
-    "2016": 60,
-    "2017": 60,
-    "2018": 60,
-    "2019": 60,
-    "2020": 60,
-    "2021": 60,
-    "2022": 60,
-    "2023": 60,
-    "2024": 60,
-    "2025": 60,
-    "2026": 60
-   }
-  }
- ],
- "nested_log_loss": 0.7231,
+  ]
+ },
+ "meetings": 87,
  "selected": "2026-11-22",
- "method": "forward selection; nested leave-one-year-out; meeting-level paired bootstrap, keep if the 95% interval of the change in log loss is below zero"
+ "method": "core structure kept as a bundle if significantly better than 'repeat your last vote'; each later add-on kept only if it significantly lowers log loss. Nested leave-one-year-out (the recency half-life chosen on training years only); meeting-level paired bootstrap, 2000 draws, 95% interval."
 }
