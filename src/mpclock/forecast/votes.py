@@ -309,6 +309,18 @@ def pace_features(ctx: Context, i: int, date: str) -> dict[str, float]:
             "mpr": float(this_mpr), "cycle_dir": int(cdir) if active else 0}
 
 
+# Document weights. Tested against the backtest: removing the floor so off-topic texts
+# (a lecture on independence) count for less made it slightly worse (0.6665 -> 0.6676);
+# counting the member's own vote rationale double made it slightly better (-> 0.6662).
+FOCUS_FLOOR = 0.25      # minimum weight of a document however little it is about policy
+FOCUS_POWER = 1.0       # >1 would make low-focus documents count for even less
+RATIONALE_WEIGHT = 2.0  # the member's own vote rationale in the minutes counts double
+
+
+def _focus_weight(f) -> float:
+    return FOCUS_FLOOR + (f or 0.0) ** FOCUS_POWER
+
+
 def member_window(ctx: Context, member: str, start: str, end: str, prev_vote: int = 0):
     """A member's own words between two meetings: tone, coded guidance, emphasis."""
     docs = [d for d in ctx.docs.get(member, []) if start <= d[0] < end]
@@ -322,8 +334,9 @@ def member_window(ctx: Context, member: str, start: str, end: str, prev_vote: in
     coded = [(d, codes[d[3]]) for d in docs if d[3] in codes]
     gap, has, signal, direction = 0.0, 0.0, None, 0.0
     if coded:
-        w = np.array([(0.25 + (c.get("focus") or 0.0)) * (2.0 if i == len(coded) - 1 else 1.0)
-                      for i, (_, c) in enumerate(coded)])
+        w = np.array([_focus_weight(c.get("focus")) * (2.0 if i == len(coded) - 1 else 1.0)
+                      * (RATIONALE_WEIGHT if d[4] == "member_view" else 1.0)
+                      for i, (d, c) in enumerate(coded)])
         # the vote signalled by the policy passages where they were coded separately
         # (a long speech's guidance is often a short section at the end), else the text
         ev = np.array([c.get("ev_pass", c["ev"]) if SIGNAL_SOURCE == "passages" else c["ev"]

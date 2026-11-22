@@ -4,77 +4,77 @@
   "scenarios": [
    {
     "december_bp": 0,
-    "p_december": 0.5246,
+    "p_december": 0.5149,
     "members": {
      "Andrew Bailey": {
       "-2": 0.0001,
-      "-1": 0.009,
-      "0": 0.5728,
-      "1": 0.4153,
-      "2": 0.0029,
+      "-1": 0.0081,
+      "0": 0.5457,
+      "1": 0.4429,
+      "2": 0.0033,
       "3": 0.0
      },
      "Sarah Breeden": {
       "-2": 0.0001,
-      "-1": 0.0125,
-      "0": 0.6492,
-      "1": 0.3363,
+      "-1": 0.0124,
+      "0": 0.6493,
+      "1": 0.3364,
       "2": 0.0018,
       "3": 0.0
      },
      "Swati Dhingra": {
       "-2": 0.0001,
-      "-1": 0.0126,
+      "-1": 0.0125,
       "0": 0.6545,
-      "1": 0.331,
+      "1": 0.3311,
       "2": 0.0017,
       "3": 0.0
      },
      "Megan Greene": {
       "-2": 0.0,
       "-1": 0.0012,
-      "0": 0.1089,
-      "1": 0.8383,
-      "2": 0.0514,
+      "0": 0.1112,
+      "1": 0.8371,
+      "2": 0.0503,
       "3": 0.0001
      },
      "Clare Lombardelli": {
       "-2": 0.0,
-      "-1": 0.0024,
-      "0": 0.2399,
-      "1": 0.7396,
-      "2": 0.018,
+      "-1": 0.0023,
+      "0": 0.2314,
+      "1": 0.7472,
+      "2": 0.0191,
       "3": 0.0
      },
      "Catherine Mann": {
       "-2": 0.0,
       "-1": 0.0003,
-      "0": 0.026,
-      "1": 0.7637,
-      "2": 0.2091,
+      "0": 0.0258,
+      "1": 0.7626,
+      "2": 0.2105,
       "3": 0.001
      },
      "Huw Pill": {
       "-2": 0.0,
       "-1": 0.0013,
-      "0": 0.1178,
-      "1": 0.8337,
-      "2": 0.047,
+      "0": 0.1173,
+      "1": 0.834,
+      "2": 0.0472,
       "3": 0.0001
      },
      "Dave Ramsden": {
       "-2": 0.0001,
       "-1": 0.007,
-      "0": 0.5128,
-      "1": 0.4761,
+      "0": 0.512,
+      "1": 0.4771,
       "2": 0.0039,
       "3": 0.0
      },
      "Alan Taylor": {
       "-2": 0.0003,
       "-1": 0.0241,
-      "0": 0.7697,
-      "1": 0.2052,
+      "0": 0.7702,
+      "1": 0.2046,
       "2": 0.0008,
       "3": 0.0
      }
@@ -82,84 +82,84 @@
     "decision": {
      "-50": 0.0,
      "-25": 0.0,
-     "0": 0.2619,
-     "25": 0.7381,
+     "0": 0.2509,
+     "25": 0.7491,
      "50": 0.0,
      "75": 0.0
     }
    },
    {
     "december_bp": 25,
-    "p_december": 0.4753,
+    "p_december": 0.4851,
     "members": {
      "Andrew Bailey": {
-      "-1": 0.0708,
-      "0": 0.814,
-      "1": 0.1146,
-      "2": 0.0006,
+      "-1": 0.0639,
+      "0": 0.8078,
+      "1": 0.1276,
+      "2": 0.0007,
       "3": 0.0
      },
      "Sarah Breeden": {
-      "-1": 0.0963,
-      "0": 0.8239,
-      "1": 0.0795,
+      "-1": 0.0964,
+      "0": 0.8242,
+      "1": 0.079,
       "2": 0.0004,
       "3": 0.0
      },
      "Swati Dhingra": {
-      "-1": 0.0975,
-      "0": 0.8251,
-      "1": 0.0771,
+      "-1": 0.0976,
+      "0": 0.8254,
+      "1": 0.0766,
       "2": 0.0004,
       "3": 0.0
      },
      "Megan Greene": {
-      "-1": 0.0107,
-      "0": 0.4518,
-      "1": 0.5307,
-      "2": 0.0069,
+      "-1": 0.0108,
+      "0": 0.4561,
+      "1": 0.5263,
+      "2": 0.0068,
       "3": 0.0
      },
      "Clare Lombardelli": {
-      "-1": 0.0196,
-      "0": 0.6143,
-      "1": 0.3629,
-      "2": 0.0032,
+      "-1": 0.0189,
+      "0": 0.6055,
+      "1": 0.3724,
+      "2": 0.0033,
       "3": 0.0
      },
      "Catherine Mann": {
       "-1": 0.0023,
-      "0": 0.1668,
-      "1": 0.7974,
-      "2": 0.0334,
+      "0": 0.1658,
+      "1": 0.7982,
+      "2": 0.0336,
       "3": 0.0001
      },
      "Huw Pill": {
       "-1": 0.0115,
-      "0": 0.4703,
-      "1": 0.5117,
+      "0": 0.4694,
+      "1": 0.5128,
       "2": 0.0064,
       "3": 0.0
      },
      "Dave Ramsden": {
-      "-1": 0.0538,
-      "0": 0.7975,
-      "1": 0.1478,
+      "-1": 0.0537,
+      "0": 0.798,
+      "1": 0.1474,
       "2": 0.0009,
       "3": 0.0
      },
      "Alan Taylor": {
-      "-1": 0.1736,
-      "0": 0.7891,
-      "1": 0.0372,
+      "-1": 0.1741,
+      "0": 0.7889,
+      "1": 0.0368,
       "2": 0.0001,
       "3": 0.0
      }
     },
     "decision": {
      "-25": 0.0,
-     "0": 0.9461,
-     "25": 0.0539,
+     "0": 0.9444,
+     "25": 0.0556,
      "50": 0.0,
      "75": 0.0
     }
@@ -167,7 +167,7 @@
   ],
   "note": "Conditional on each December outcome; members' latest words carried forward; no new data or market moves assumed; February is an MPR meeting."
  },
- "generated": "2026-11-22 20:08 UTC",
+ "generated": "2026-11-22 20:16 UTC",
  "last_meeting": {
   "date": "2026-11-04",
   "decision_bp": 25,
@@ -199,9 +199,9 @@
    "prev_vote": 2,
    "probs": {
     "-1": 0.0,
-    "0": 0.0857,
+    "0": 0.0854,
     "1": 0.7884,
-    "2": 0.1251,
+    "2": 0.1254,
     "3": 0.0008
    },
    "expected_bp": 26.0,
@@ -228,15 +228,15 @@
    "surprise_data": 0.018,
    "energy": -1.677,
    "contributions": {
-    "prev_dev": 0.312,
-    "pull": -1.881,
-    "hist_dev": 0.358,
-    "trend": -0.841,
-    "pace": -0.506,
-    "moved_last": -1.039,
-    "mpr_x_pace": -0.873,
-    "guidance": -0.818,
-    "signal_level": 0.992,
+    "prev_dev": 0.309,
+    "pull": -1.876,
+    "hist_dev": 0.356,
+    "trend": -0.84,
+    "pace": -0.507,
+    "moved_last": -1.04,
+    "mpr_x_pace": -0.876,
+    "guidance": -0.822,
+    "signal_level": 1.001,
     "surprise": -0.291,
     "signal_hedged": 0.0,
     "guidance_hedged": 0.0
@@ -296,12 +296,12 @@
    "prev_vote": 1,
    "probs": {
     "-1": 0.0023,
-    "0": 0.1413,
-    "1": 0.8247,
-    "2": 0.0317,
+    "0": 0.1437,
+    "1": 0.8229,
+    "2": 0.031,
     "3": 0.0001
    },
-   "expected_bp": 22.2,
+   "expected_bp": 22.1,
    "features": {
     "prev_dev": 0.0,
     "pull": 0.111,
@@ -310,12 +310,12 @@
     "pace": 0.5,
     "moved_last": 1.0,
     "mpr_x_pace": -0.5,
-    "guidance": -0.023,
-    "signal_level": 0.977,
+    "guidance": -0.029,
+    "signal_level": 0.971,
     "direction": 1.0,
     "gov_pull": 0.0,
-    "signal_hedged": 0.489,
-    "guidance_hedged": -0.011,
+    "signal_hedged": 0.485,
+    "guidance_hedged": -0.015,
     "surprise": -0.729,
     "fed": 0.0,
     "ecb": 0.0,
@@ -327,15 +327,15 @@
    "contributions": {
     "prev_dev": 0.0,
     "pull": 0.235,
-    "hist_dev": 0.485,
+    "hist_dev": 0.483,
     "trend": -0.0,
-    "pace": -0.506,
-    "moved_last": -1.039,
-    "mpr_x_pace": -0.873,
-    "guidance": -0.032,
-    "signal_level": 0.688,
+    "pace": -0.507,
+    "moved_last": -1.04,
+    "mpr_x_pace": -0.876,
+    "guidance": -0.041,
+    "signal_level": 0.689,
     "surprise": -0.258,
-    "signal_hedged": 0.437,
+    "signal_hedged": 0.43,
     "guidance_hedged": 0.001
    },
    "n_docs": 2,
@@ -365,7 +365,7 @@
      }
     }
    ],
-   "signal": 0.9772378516624041,
+   "signal": 0.9706495395055743,
    "record": [
     {
      "date": "2026-09-16",
@@ -404,8 +404,8 @@
    "prev_vote": 1,
    "probs": {
     "-1": 0.0023,
-    "0": 0.1454,
-    "1": 0.8215,
+    "0": 0.1452,
+    "1": 0.8217,
     "2": 0.0307,
     "3": 0.0001
    },
@@ -418,12 +418,12 @@
     "pace": 0.5,
     "moved_last": 1.0,
     "mpr_x_pace": -0.5,
-    "guidance": -0.007,
-    "signal_level": 0.993,
+    "guidance": -0.005,
+    "signal_level": 0.995,
     "direction": 1.0,
-    "gov_pull": -0.49,
+    "gov_pull": -0.445,
     "signal_hedged": 0.271,
-    "guidance_hedged": -0.002,
+    "guidance_hedged": -0.001,
     "surprise": -0.654,
     "fed": 0.0,
     "ecb": 0.0,
@@ -435,15 +435,15 @@
    "contributions": {
     "prev_dev": 0.0,
     "pull": 0.235,
-    "hist_dev": 0.587,
+    "hist_dev": 0.584,
     "trend": -0.0,
-    "pace": -0.506,
-    "moved_last": -1.039,
-    "mpr_x_pace": -0.873,
-    "guidance": -0.009,
-    "signal_level": 0.699,
+    "pace": -0.507,
+    "moved_last": -1.04,
+    "mpr_x_pace": -0.876,
+    "guidance": -0.007,
+    "signal_level": 0.706,
     "surprise": -0.232,
-    "signal_hedged": 0.242,
+    "signal_hedged": 0.24,
     "guidance_hedged": 0.0
    },
    "n_docs": 2,
@@ -473,7 +473,7 @@
      }
     }
    ],
-   "signal": 0.9931617008967313,
+   "signal": 0.9948043956043957,
    "record": [
     {
      "date": "2026-09-16",
@@ -511,13 +511,13 @@
    "member": "Clare Lombardelli",
    "prev_vote": 1,
    "probs": {
-    "-1": 0.009,
-    "0": 0.3944,
-    "1": 0.5885,
-    "2": 0.0081,
+    "-1": 0.0087,
+    "0": 0.3857,
+    "1": 0.5972,
+    "2": 0.0083,
     "3": 0.0
    },
-   "expected_bp": 14.9,
+   "expected_bp": 15.1,
    "features": {
     "prev_dev": 0.0,
     "pull": 0.111,
@@ -526,12 +526,12 @@
     "pace": 0.5,
     "moved_last": 1.0,
     "mpr_x_pace": -0.5,
-    "guidance": -0.079,
-    "signal_level": 0.921,
+    "guidance": -0.063,
+    "signal_level": 0.937,
     "direction": 1.0,
-    "gov_pull": -0.49,
-    "signal_hedged": 0.461,
-    "guidance_hedged": -0.039,
+    "gov_pull": -0.445,
+    "signal_hedged": 0.468,
+    "guidance_hedged": -0.032,
     "surprise": -0.528,
     "fed": 0.0,
     "ecb": 0.0,
@@ -544,14 +544,14 @@
     "prev_dev": 0.0,
     "pull": 0.235,
     "hist_dev": 0.0,
-    "trend": -0.841,
-    "pace": -0.506,
-    "moved_last": -1.039,
-    "mpr_x_pace": -0.873,
-    "guidance": -0.109,
-    "signal_level": 0.649,
+    "trend": -0.84,
+    "pace": -0.507,
+    "moved_last": -1.04,
+    "mpr_x_pace": -0.876,
+    "guidance": -0.088,
+    "signal_level": 0.665,
     "surprise": -0.187,
-    "signal_hedged": 0.412,
+    "signal_hedged": 0.415,
     "guidance_hedged": 0.002
    },
    "n_docs": 3,
@@ -592,7 +592,7 @@
      }
     }
    ],
-   "signal": 0.921499436302142,
+   "signal": 0.9366432491767288,
    "record": [
     {
      "date": "2026-09-16",
@@ -631,8 +631,8 @@
    "prev_vote": 1,
    "probs": {
     "-1": 0.0256,
-    "0": 0.6352,
-    "1": 0.3363,
+    "0": 0.6354,
+    "1": 0.3362,
     "2": 0.0028,
     "3": 0.0
    },
@@ -648,7 +648,7 @@
     "guidance": -0.35,
     "signal_level": 0.65,
     "direction": 0.92,
-    "gov_pull": -0.49,
+    "gov_pull": -0.445,
     "signal_hedged": 0.0,
     "guidance_hedged": -0.0,
     "surprise": -0.561,
@@ -663,12 +663,12 @@
     "prev_dev": 0.0,
     "pull": 0.235,
     "hist_dev": -0.065,
-    "trend": -0.841,
-    "pace": -0.506,
-    "moved_last": -1.039,
-    "mpr_x_pace": -0.873,
-    "guidance": -0.485,
-    "signal_level": 0.457,
+    "trend": -0.84,
+    "pace": -0.507,
+    "moved_last": -1.04,
+    "mpr_x_pace": -0.876,
+    "guidance": -0.488,
+    "signal_level": 0.461,
     "surprise": -0.199,
     "signal_hedged": 0.0,
     "guidance_hedged": 0.0
@@ -727,13 +727,13 @@
    "member": "Andrew Bailey",
    "prev_vote": 1,
    "probs": {
-    "-1": 0.0297,
-    "0": 0.6642,
-    "1": 0.3037,
-    "2": 0.0024,
+    "-1": 0.027,
+    "0": 0.646,
+    "1": 0.3244,
+    "2": 0.0027,
     "3": 0.0
    },
-   "expected_bp": 7.0,
+   "expected_bp": 7.6,
    "features": {
     "prev_dev": 0.0,
     "pull": 0.111,
@@ -742,12 +742,12 @@
     "pace": 0.5,
     "moved_last": 1.0,
     "mpr_x_pace": -0.5,
-    "guidance": -0.49,
-    "signal_level": 0.51,
-    "direction": 0.848,
+    "guidance": -0.445,
+    "signal_level": 0.555,
+    "direction": 0.885,
     "gov_pull": 0.0,
-    "signal_hedged": 0.073,
-    "guidance_hedged": -0.07,
+    "signal_hedged": 0.079,
+    "guidance_hedged": -0.064,
     "surprise": -0.539,
     "fed": 0.0,
     "ecb": 0.0,
@@ -760,14 +760,14 @@
     "prev_dev": 0.0,
     "pull": 0.235,
     "hist_dev": 0.0,
-    "trend": -0.841,
-    "pace": -0.506,
-    "moved_last": -1.039,
-    "mpr_x_pace": -0.873,
-    "guidance": -0.68,
-    "signal_level": 0.359,
+    "trend": -0.84,
+    "pace": -0.507,
+    "moved_last": -1.04,
+    "mpr_x_pace": -0.876,
+    "guidance": -0.621,
+    "signal_level": 0.394,
     "surprise": -0.191,
-    "signal_hedged": 0.065,
+    "signal_hedged": 0.07,
     "guidance_hedged": 0.004
    },
    "n_docs": 3,
@@ -808,7 +808,7 @@
      }
     }
    ],
-   "signal": 0.5097322011757022,
+   "signal": 0.5545826317055569,
    "record": [
     {
      "date": "2026-09-16",
@@ -846,9 +846,9 @@
    "member": "Sarah Breeden",
    "prev_vote": 1,
    "probs": {
-    "-1": 0.0423,
-    "0": 0.7236,
-    "1": 0.2324,
+    "-1": 0.0424,
+    "0": 0.7242,
+    "1": 0.2317,
     "2": 0.0017,
     "3": 0.0
    },
@@ -864,7 +864,7 @@
     "guidance": -0.6,
     "signal_level": 0.4,
     "direction": 0.89,
-    "gov_pull": -0.49,
+    "gov_pull": -0.445,
     "signal_hedged": 0.0,
     "guidance_hedged": -0.0,
     "surprise": -0.548,
@@ -879,12 +879,12 @@
     "prev_dev": 0.0,
     "pull": 0.235,
     "hist_dev": -0.065,
-    "trend": -0.841,
-    "pace": -0.506,
-    "moved_last": -1.039,
-    "mpr_x_pace": -0.873,
-    "guidance": -0.832,
-    "signal_level": 0.282,
+    "trend": -0.84,
+    "pace": -0.507,
+    "moved_last": -1.04,
+    "mpr_x_pace": -0.876,
+    "guidance": -0.836,
+    "signal_level": 0.284,
     "surprise": -0.194,
     "signal_hedged": 0.0,
     "guidance_hedged": 0.0
@@ -943,9 +943,9 @@
    "member": "Swati Dhingra",
    "prev_vote": 1,
    "probs": {
-    "-1": 0.0462,
-    "0": 0.7359,
-    "1": 0.2163,
+    "-1": 0.0464,
+    "0": 0.7365,
+    "1": 0.2156,
     "2": 0.0015,
     "3": 0.0
    },
@@ -976,12 +976,12 @@
     "prev_dev": 0.0,
     "pull": 0.235,
     "hist_dev": -0.065,
-    "trend": -0.841,
-    "pace": -0.506,
-    "moved_last": -1.039,
-    "mpr_x_pace": -0.873,
-    "guidance": -0.832,
-    "signal_level": 0.282,
+    "trend": -0.84,
+    "pace": -0.507,
+    "moved_last": -1.04,
+    "mpr_x_pace": -0.876,
+    "guidance": -0.836,
+    "signal_level": 0.284,
     "surprise": -0.287,
     "signal_hedged": 0.0,
     "guidance_hedged": 0.0
@@ -1040,13 +1040,13 @@
    "member": "Alan Taylor",
    "prev_vote": 1,
    "probs": {
-    "-1": 0.0801,
-    "0": 0.7856,
-    "1": 0.1334,
-    "2": 0.0009,
+    "-1": 0.0806,
+    "0": 0.786,
+    "1": 0.1325,
+    "2": 0.0008,
     "3": 0.0
    },
-   "expected_bp": 1.4,
+   "expected_bp": 1.3,
    "features": {
     "prev_dev": 0.0,
     "pull": 0.111,
@@ -1073,12 +1073,12 @@
     "prev_dev": 0.0,
     "pull": 0.235,
     "hist_dev": -0.065,
-    "trend": -0.841,
-    "pace": -0.506,
-    "moved_last": -1.039,
-    "mpr_x_pace": -0.873,
-    "guidance": -1.22,
-    "signal_level": 0.084,
+    "trend": -0.84,
+    "pace": -0.507,
+    "moved_last": -1.04,
+    "mpr_x_pace": -0.876,
+    "guidance": -1.226,
+    "signal_level": 0.085,
     "surprise": -0.287,
     "signal_hedged": 0.0,
     "guidance_hedged": 0.0
@@ -1136,8 +1136,8 @@
  ],
  "decision": {
   "-25": 0.0,
-  "0": 0.5246,
-  "25": 0.4753,
+  "0": 0.5149,
+  "25": 0.4851,
   "50": 0.0,
   "75": 0.0
  },
@@ -1214,24 +1214,24 @@
    "guidance_hedged"
   ],
   "coefficients": {
-   "prev_dev": 0.312,
-   "pull": 2.116,
-   "hist_dev": 0.734,
-   "trend": -0.841,
-   "pace": -1.013,
-   "moved_last": -1.039,
-   "mpr_x_pace": 1.747,
-   "guidance": 1.387,
-   "signal_level": 0.704,
+   "prev_dev": 0.309,
+   "pull": 2.111,
+   "hist_dev": 0.73,
+   "trend": -0.84,
+   "pace": -1.014,
+   "moved_last": -1.04,
+   "mpr_x_pace": 1.751,
+   "guidance": 1.394,
+   "signal_level": 0.71,
    "surprise": 0.354,
-   "signal_hedged": 0.893,
-   "guidance_hedged": -0.057
+   "signal_hedged": 0.886,
+   "guidance_hedged": -0.069
   },
   "cutpoints": [
-   -6.954,
-   -2.649,
-   2.553,
-   8.681
+   -6.956,
+   -2.65,
+   2.554,
+   8.682
   ]
  },
  "backtest": {
@@ -1290,91 +1290,91 @@
    },
    {
     "model": "+ own guidance",
-    "log_loss": 0.7133,
-    "brier": 0.3672,
+    "log_loss": 0.7124,
+    "brier": 0.367,
     "vote_hit": 0.7561,
-    "p_actual": 0.6429,
+    "p_actual": 0.643,
     "switch_hit": 0.2439,
     "decision_hit": 0.7471,
-    "decision_p": 0.7349,
+    "decision_p": 0.7351,
     "n": 779,
     "n_switch": 205,
     "meetings": 87
    },
    {
     "model": "+ data & energy",
-    "log_loss": 0.6702,
-    "brier": 0.3482,
+    "log_loss": 0.6692,
+    "brier": 0.3479,
     "vote_hit": 0.7779,
-    "p_actual": 0.6565,
+    "p_actual": 0.6567,
     "switch_hit": 0.2683,
     "decision_hit": 0.7471,
-    "decision_p": 0.7436,
+    "decision_p": 0.7441,
     "n": 779,
     "n_switch": 205,
     "meetings": 87
    },
    {
     "model": "+ hedged guidance",
-    "log_loss": 0.6665,
-    "brier": 0.347,
+    "log_loss": 0.6662,
+    "brier": 0.3467,
     "vote_hit": 0.7779,
-    "p_actual": 0.6576,
+    "p_actual": 0.6578,
     "switch_hit": 0.2732,
     "decision_hit": 0.7471,
-    "decision_p": 0.7431,
+    "decision_p": 0.7437,
     "n": 779,
     "n_switch": 205,
     "meetings": 87
    },
    {
     "model": "+ votes with Governor",
-    "log_loss": 0.668,
-    "brier": 0.3487,
+    "log_loss": 0.6679,
+    "brier": 0.3483,
     "vote_hit": 0.7818,
-    "p_actual": 0.6582,
+    "p_actual": 0.6584,
     "switch_hit": 0.2878,
     "decision_hit": 0.7471,
-    "decision_p": 0.74,
+    "decision_p": 0.7407,
     "n": 779,
     "n_switch": 205,
     "meetings": 87
    },
    {
     "model": "+ Fed & ECB",
-    "log_loss": 0.6775,
-    "brier": 0.3461,
+    "log_loss": 0.6766,
+    "brier": 0.3457,
     "vote_hit": 0.7612,
-    "p_actual": 0.6603,
+    "p_actual": 0.6605,
     "switch_hit": 0.2634,
     "decision_hit": 0.7816,
-    "decision_p": 0.7545,
+    "decision_p": 0.7552,
     "n": 779,
     "n_switch": 205,
     "meetings": 87
    },
    {
     "model": "+ sterling",
-    "log_loss": 0.6913,
-    "brier": 0.3551,
+    "log_loss": 0.6907,
+    "brier": 0.3546,
     "vote_hit": 0.7599,
-    "p_actual": 0.6581,
+    "p_actual": 0.6583,
     "switch_hit": 0.2488,
     "decision_hit": 0.7816,
-    "decision_p": 0.7526,
+    "decision_p": 0.7532,
     "n": 779,
     "n_switch": 205,
     "meetings": 87
    },
    {
     "model": "+ speech tone",
-    "log_loss": 0.6947,
-    "brier": 0.3568,
-    "vote_hit": 0.7587,
-    "p_actual": 0.6571,
+    "log_loss": 0.6942,
+    "brier": 0.3563,
+    "vote_hit": 0.7599,
+    "p_actual": 0.6573,
     "switch_hit": 0.2488,
     "decision_hit": 0.7816,
-    "decision_p": 0.7526,
+    "decision_p": 0.7533,
     "n": 779,
     "n_switch": 205,
     "meetings": 87
@@ -1459,10 +1459,10 @@
     "date": "2016-09-14",
     "actual": 0,
     "predicted": 0,
-    "p_actual": 0.859,
+    "p_actual": 0.86,
     "dist": {
-     "-1": 0.141,
-     "0": 0.859
+     "-1": 0.14,
+     "0": 0.86
     }
    },
    {
@@ -1508,30 +1508,30 @@
     "date": "2017-08-02",
     "actual": 0,
     "predicted": 0,
-    "p_actual": 0.373,
+    "p_actual": 0.374,
     "dist": {
-     "0": 0.373,
-     "1": 0.311
+     "0": 0.374,
+     "1": 0.31
     }
    },
    {
     "date": "2017-09-13",
     "actual": 0,
     "predicted": 0,
-    "p_actual": 0.815,
+    "p_actual": 0.816,
     "dist": {
-     "0": 0.815,
-     "1": 0.185
+     "0": 0.816,
+     "1": 0.184
     }
    },
    {
     "date": "2017-11-01",
     "actual": 1,
     "predicted": 0,
-    "p_actual": 0.093,
+    "p_actual": 0.094,
     "dist": {
-     "0": 0.907,
-     "1": 0.093
+     "0": 0.906,
+     "1": 0.094
     }
    },
    {
@@ -1548,10 +1548,10 @@
     "date": "2018-02-07",
     "actual": 0,
     "predicted": 0,
-    "p_actual": 0.772,
+    "p_actual": 0.771,
     "dist": {
-     "0": 0.772,
-     "1": 0.228
+     "0": 0.771,
+     "1": 0.229
     }
    },
    {
@@ -1587,19 +1587,19 @@
     "date": "2018-08-01",
     "actual": 1,
     "predicted": 0,
-    "p_actual": 0.159,
+    "p_actual": 0.16,
     "dist": {
      "0": 0.841,
-     "1": 0.159
+     "1": 0.16
     }
    },
    {
     "date": "2018-09-12",
     "actual": 0,
     "predicted": 1,
-    "p_actual": 0.056,
+    "p_actual": 0.057,
     "dist": {
-     "0": 0.056,
+     "0": 0.057,
      "1": 0.944
     }
    },
@@ -1607,10 +1607,10 @@
     "date": "2018-10-31",
     "actual": 0,
     "predicted": 0,
-    "p_actual": 0.821,
+    "p_actual": 0.82,
     "dist": {
-     "0": 0.821,
-     "1": 0.179
+     "0": 0.82,
+     "1": 0.18
     }
    },
    {
@@ -1671,10 +1671,10 @@
     "date": "2019-09-18",
     "actual": 0,
     "predicted": 0,
-    "p_actual": 0.994,
+    "p_actual": 0.995,
     "dist": {
-     "0": 0.994,
-     "1": 0.006
+     "0": 0.995,
+     "1": 0.005
     }
    },
    {
@@ -1700,10 +1700,10 @@
     "date": "2020-03-25",
     "actual": 0,
     "predicted": 0,
-    "p_actual": 0.887,
+    "p_actual": 0.888,
     "dist": {
-     "-1": 0.113,
-     "0": 0.887
+     "-1": 0.112,
+     "0": 0.888
     }
    },
    {
@@ -1833,10 +1833,10 @@
     "date": "2021-12-15",
     "actual": 1,
     "predicted": 0,
-    "p_actual": 0.252,
+    "p_actual": 0.253,
     "dist": {
-     "0": 0.748,
-     "1": 0.252
+     "0": 0.747,
+     "1": 0.253
     }
    },
    {
@@ -1890,10 +1890,10 @@
     "date": "2022-09-21",
     "actual": 2,
     "predicted": 1,
-    "p_actual": 0.3,
+    "p_actual": 0.302,
     "dist": {
-     "1": 0.7,
-     "2": 0.3
+     "1": 0.698,
+     "2": 0.302
     }
    },
    {
@@ -1920,19 +1920,19 @@
     "date": "2023-02-01",
     "actual": 2,
     "predicted": 1,
-    "p_actual": 0.316,
+    "p_actual": 0.317,
     "dist": {
-     "1": 0.684,
-     "2": 0.316
+     "1": 0.683,
+     "2": 0.317
     }
    },
    {
     "date": "2023-03-22",
     "actual": 1,
     "predicted": 1,
-    "p_actual": 0.925,
+    "p_actual": 0.926,
     "dist": {
-     "1": 0.925,
+     "1": 0.926,
      "2": 0.073
     }
    },
@@ -1952,18 +1952,18 @@
     "predicted": 1,
     "p_actual": 0.0,
     "dist": {
-     "0": 0.317,
-     "1": 0.683
+     "0": 0.313,
+     "1": 0.687
     }
    },
    {
     "date": "2023-08-02",
     "actual": 1,
     "predicted": 1,
-    "p_actual": 0.712,
+    "p_actual": 0.711,
     "dist": {
-     "1": 0.712,
-     "2": 0.288
+     "1": 0.711,
+     "2": 0.289
     }
    },
    {
@@ -1980,10 +1980,10 @@
     "date": "2023-11-01",
     "actual": 0,
     "predicted": 1,
-    "p_actual": 0.386,
+    "p_actual": 0.388,
     "dist": {
-     "0": 0.386,
-     "1": 0.614
+     "0": 0.388,
+     "1": 0.612
     }
    },
    {
@@ -2056,50 +2056,50 @@
     "date": "2024-11-06",
     "actual": -1,
     "predicted": 0,
-    "p_actual": 0.145,
+    "p_actual": 0.146,
     "dist": {
-     "-1": 0.145,
-     "0": 0.855
+     "-1": 0.146,
+     "0": 0.854
     }
    },
    {
     "date": "2024-12-18",
     "actual": 0,
     "predicted": 0,
-    "p_actual": 0.915,
+    "p_actual": 0.914,
     "dist": {
-     "-1": 0.085,
-     "0": 0.915
+     "-1": 0.086,
+     "0": 0.914
     }
    },
    {
     "date": "2025-02-05",
     "actual": -1,
     "predicted": 0,
-    "p_actual": 0.133,
+    "p_actual": 0.136,
     "dist": {
-     "-1": 0.133,
-     "0": 0.867
+     "-1": 0.136,
+     "0": 0.864
     }
    },
    {
     "date": "2025-03-19",
     "actual": 0,
     "predicted": -1,
-    "p_actual": 0.172,
+    "p_actual": 0.173,
     "dist": {
-     "-1": 0.828,
-     "0": 0.172
+     "-1": 0.827,
+     "0": 0.173
     }
    },
    {
     "date": "2025-05-07",
     "actual": -1,
     "predicted": 0,
-    "p_actual": 0.071,
+    "p_actual": 0.072,
     "dist": {
-     "-1": 0.071,
-     "0": 0.929
+     "-1": 0.072,
+     "0": 0.928
     }
    },
    {
@@ -2116,20 +2116,20 @@
     "date": "2025-08-06",
     "actual": -1,
     "predicted": 0,
-    "p_actual": 0.348,
+    "p_actual": 0.349,
     "dist": {
-     "-1": 0.348,
-     "0": 0.652
+     "-1": 0.349,
+     "0": 0.651
     }
    },
    {
     "date": "2025-09-17",
     "actual": 0,
     "predicted": 0,
-    "p_actual": 0.69,
+    "p_actual": 0.689,
     "dist": {
-     "-1": 0.31,
-     "0": 0.69
+     "-1": 0.311,
+     "0": 0.689
     }
    },
    {
@@ -2138,7 +2138,7 @@
     "predicted": 0,
     "p_actual": 0.892,
     "dist": {
-     "-1": 0.107,
+     "-1": 0.108,
      "0": 0.892
     }
    },
@@ -2146,30 +2146,30 @@
     "date": "2025-12-17",
     "actual": -1,
     "predicted": 0,
-    "p_actual": 0.429,
+    "p_actual": 0.428,
     "dist": {
-     "-1": 0.429,
-     "0": 0.571
+     "-1": 0.428,
+     "0": 0.572
     }
    },
    {
     "date": "2026-02-04",
     "actual": 0,
     "predicted": -1,
-    "p_actual": 0.247,
+    "p_actual": 0.249,
     "dist": {
-     "-1": 0.752,
-     "0": 0.247
+     "-1": 0.751,
+     "0": 0.249
     }
    },
    {
     "date": "2026-03-18",
     "actual": 0,
     "predicted": 0,
-    "p_actual": 0.748,
+    "p_actual": 0.735,
     "dist": {
-     "-1": 0.253,
-     "0": 0.748
+     "-1": 0.265,
+     "0": 0.735
     }
    },
    {
@@ -2186,9 +2186,9 @@
     "date": "2026-06-17",
     "actual": 0,
     "predicted": 0,
-    "p_actual": 0.965,
+    "p_actual": 0.966,
     "dist": {
-     "0": 0.965,
+     "0": 0.966,
      "1": 0.035
     }
    },
@@ -2205,20 +2205,20 @@
     "date": "2026-09-16",
     "actual": 0,
     "predicted": 0,
-    "p_actual": 0.606,
+    "p_actual": 0.621,
     "dist": {
-     "0": 0.606,
-     "1": 0.395
+     "0": 0.621,
+     "1": 0.379
     }
    },
    {
     "date": "2026-11-04",
     "actual": 1,
     "predicted": 0,
-    "p_actual": 0.34,
+    "p_actual": 0.373,
     "dist": {
-     "0": 0.66,
-     "1": 0.34
+     "0": 0.627,
+     "1": 0.373
     }
    }
   ],
@@ -2226,13 +2226,13 @@
   "n": 779,
   "recent": {
    "since": "2021-11-22",
-   "log_loss": 0.9738,
-   "brier": 0.5106,
+   "log_loss": 0.9731,
+   "brier": 0.51,
    "vote_hit": 0.6518,
-   "p_actual": 0.5672,
+   "p_actual": 0.5675,
    "switch_hit": 0.277,
    "decision_hit": 0.55,
-   "decision_p": 0.5893,
+   "decision_p": 0.5904,
    "meetings": 40,
    "n": 359,
    "n_switch": 148,
@@ -2244,56 +2244,56 @@
     "date": "2015-06-03",
     "member": "Mark Carney",
     "actual": 0,
-    "p_actual": 0.857,
+    "p_actual": 0.858,
     "predicted": 0
    },
    {
     "date": "2015-06-03",
     "member": "Ben Broadbent",
     "actual": 0,
-    "p_actual": 0.857,
+    "p_actual": 0.858,
     "predicted": 0
    },
    {
     "date": "2015-06-03",
     "member": "Jon Cunliffe",
     "actual": 0,
-    "p_actual": 0.857,
+    "p_actual": 0.858,
     "predicted": 0
    },
    {
     "date": "2015-06-03",
     "member": "Nemat Shafik",
     "actual": 0,
-    "p_actual": 0.857,
+    "p_actual": 0.858,
     "predicted": 0
    },
    {
     "date": "2015-06-03",
     "member": "Kristin Forbes",
     "actual": 0,
-    "p_actual": 0.857,
+    "p_actual": 0.858,
     "predicted": 0
    },
    {
     "date": "2015-06-03",
     "member": "Andrew Haldane",
     "actual": 0,
-    "p_actual": 0.857,
+    "p_actual": 0.858,
     "predicted": 0
    },
    {
     "date": "2015-06-03",
     "member": "Ian McCafferty",
     "actual": 0,
-    "p_actual": 0.857,
+    "p_actual": 0.858,
     "predicted": 0
    },
    {
     "date": "2015-06-03",
     "member": "David Miles",
     "actual": 0,
-    "p_actual": 0.857,
+    "p_actual": 0.858,
     "predicted": 0
    },
    {
@@ -2307,14 +2307,14 @@
     "date": "2015-07-08",
     "member": "Mark Carney",
     "actual": 0,
-    "p_actual": 0.857,
+    "p_actual": 0.858,
     "predicted": 0
    },
    {
     "date": "2015-07-08",
     "member": "Ben Broadbent",
     "actual": 0,
-    "p_actual": 0.857,
+    "p_actual": 0.858,
     "predicted": 0
    },
    {
@@ -2328,14 +2328,14 @@
     "date": "2015-07-08",
     "member": "Nemat Shafik",
     "actual": 0,
-    "p_actual": 0.857,
+    "p_actual": 0.858,
     "predicted": 0
    },
    {
     "date": "2015-07-08",
     "member": "Kristin Forbes",
     "actual": 0,
-    "p_actual": 0.857,
+    "p_actual": 0.858,
     "predicted": 0
    },
    {
@@ -2349,14 +2349,14 @@
     "date": "2015-07-08",
     "member": "Ian McCafferty",
     "actual": 0,
-    "p_actual": 0.857,
+    "p_actual": 0.858,
     "predicted": 0
    },
    {
     "date": "2015-07-08",
     "member": "David Miles",
     "actual": 0,
-    "p_actual": 0.857,
+    "p_actual": 0.858,
     "predicted": 0
    },
    {
@@ -2412,7 +2412,7 @@
     "date": "2016-02-03",
     "member": "Ian McCafferty",
     "actual": 0,
-    "p_actual": 0.299,
+    "p_actual": 0.298,
     "predicted": 1
    },
    {
@@ -2601,7 +2601,7 @@
     "date": "2016-05-11",
     "member": "Ian McCafferty",
     "actual": 0,
-    "p_actual": 0.858,
+    "p_actual": 0.859,
     "predicted": 0
    },
    {
@@ -2671,7 +2671,7 @@
     "date": "2016-06-15",
     "member": "Gertjan Vlieghe",
     "actual": 0,
-    "p_actual": 0.804,
+    "p_actual": 0.803,
     "predicted": 0
    },
    {
@@ -2685,7 +2685,7 @@
     "date": "2016-08-03",
     "member": "Mark Carney",
     "actual": -1,
-    "p_actual": 0.239,
+    "p_actual": 0.238,
     "predicted": 0
    },
    {
@@ -2720,7 +2720,7 @@
     "date": "2016-08-03",
     "member": "Andrew Haldane",
     "actual": -1,
-    "p_actual": 0.497,
+    "p_actual": 0.496,
     "predicted": 0
    },
    {
@@ -2769,7 +2769,7 @@
     "date": "2016-09-14",
     "member": "Nemat Shafik",
     "actual": 0,
-    "p_actual": 0.846,
+    "p_actual": 0.847,
     "predicted": 0
    },
    {
@@ -2832,7 +2832,7 @@
     "date": "2016-11-02",
     "member": "Nemat Shafik",
     "actual": 0,
-    "p_actual": 0.558,
+    "p_actual": 0.557,
     "predicted": 0
    },
    {
@@ -3021,7 +3021,7 @@
     "date": "2017-06-14",
     "member": "Kristin Forbes",
     "actual": 1,
-    "p_actual": 0.682,
+    "p_actual": 0.681,
     "predicted": 1
    },
    {
@@ -3035,7 +3035,7 @@
     "date": "2017-06-14",
     "member": "Ian McCafferty",
     "actual": 1,
-    "p_actual": 0.292,
+    "p_actual": 0.293,
     "predicted": 0
    },
    {
@@ -3063,7 +3063,7 @@
     "date": "2017-08-02",
     "member": "Ben Broadbent",
     "actual": 0,
-    "p_actual": 0.654,
+    "p_actual": 0.655,
     "predicted": 0
    },
    {
@@ -3112,35 +3112,35 @@
     "date": "2017-09-13",
     "member": "Mark Carney",
     "actual": 0,
-    "p_actual": 0.755,
+    "p_actual": 0.756,
     "predicted": 0
    },
    {
     "date": "2017-09-13",
     "member": "Ben Broadbent",
     "actual": 0,
-    "p_actual": 0.755,
+    "p_actual": 0.756,
     "predicted": 0
    },
    {
     "date": "2017-09-13",
     "member": "Jon Cunliffe",
     "actual": 0,
-    "p_actual": 0.755,
+    "p_actual": 0.756,
     "predicted": 0
    },
    {
     "date": "2017-09-13",
     "member": "Dave Ramsden",
     "actual": 0,
-    "p_actual": 0.755,
+    "p_actual": 0.756,
     "predicted": 0
    },
    {
     "date": "2017-09-13",
     "member": "Andrew Haldane",
     "actual": 0,
-    "p_actual": 0.755,
+    "p_actual": 0.756,
     "predicted": 0
    },
    {
@@ -3161,21 +3161,21 @@
     "date": "2017-09-13",
     "member": "Silvana Tenreyro",
     "actual": 0,
-    "p_actual": 0.755,
+    "p_actual": 0.756,
     "predicted": 0
    },
    {
     "date": "2017-09-13",
     "member": "Gertjan Vlieghe",
     "actual": 0,
-    "p_actual": 0.755,
+    "p_actual": 0.756,
     "predicted": 0
    },
    {
     "date": "2017-11-01",
     "member": "Mark Carney",
     "actual": 1,
-    "p_actual": 0.335,
+    "p_actual": 0.336,
     "predicted": 0
    },
    {
@@ -3189,14 +3189,14 @@
     "date": "2017-11-01",
     "member": "Jon Cunliffe",
     "actual": 0,
-    "p_actual": 0.837,
+    "p_actual": 0.838,
     "predicted": 0
    },
    {
     "date": "2017-11-01",
     "member": "Dave Ramsden",
     "actual": 0,
-    "p_actual": 0.837,
+    "p_actual": 0.838,
     "predicted": 0
    },
    {
@@ -3210,7 +3210,7 @@
     "date": "2017-11-01",
     "member": "Ian McCafferty",
     "actual": 1,
-    "p_actual": 0.857,
+    "p_actual": 0.858,
     "predicted": 1
    },
    {
@@ -3231,7 +3231,7 @@
     "date": "2017-11-01",
     "member": "Gertjan Vlieghe",
     "actual": 1,
-    "p_actual": 0.314,
+    "p_actual": 0.315,
     "predicted": 0
    },
    {
@@ -3280,14 +3280,14 @@
     "date": "2017-12-13",
     "member": "Michael Saunders",
     "actual": 0,
-    "p_actual": 0.371,
+    "p_actual": 0.372,
     "predicted": 1
    },
    {
     "date": "2017-12-13",
     "member": "Silvana Tenreyro",
     "actual": 0,
-    "p_actual": 0.683,
+    "p_actual": 0.684,
     "predicted": 0
    },
    {
@@ -3301,7 +3301,7 @@
     "date": "2018-02-07",
     "member": "Mark Carney",
     "actual": 0,
-    "p_actual": 0.646,
+    "p_actual": 0.645,
     "predicted": 0
    },
    {
@@ -3315,7 +3315,7 @@
     "date": "2018-02-07",
     "member": "Jon Cunliffe",
     "actual": 0,
-    "p_actual": 0.824,
+    "p_actual": 0.823,
     "predicted": 0
    },
    {
@@ -3350,7 +3350,7 @@
     "date": "2018-02-07",
     "member": "Silvana Tenreyro",
     "actual": 0,
-    "p_actual": 0.432,
+    "p_actual": 0.43,
     "predicted": 1
    },
    {
@@ -3462,14 +3462,14 @@
     "date": "2018-05-09",
     "member": "Ian McCafferty",
     "actual": 1,
-    "p_actual": 0.738,
+    "p_actual": 0.739,
     "predicted": 1
    },
    {
     "date": "2018-05-09",
     "member": "Michael Saunders",
     "actual": 1,
-    "p_actual": 0.812,
+    "p_actual": 0.813,
     "predicted": 1
    },
    {
@@ -3483,7 +3483,7 @@
     "date": "2018-05-09",
     "member": "Gertjan Vlieghe",
     "actual": 0,
-    "p_actual": 0.315,
+    "p_actual": 0.313,
     "predicted": 1
    },
    {
@@ -3518,7 +3518,7 @@
     "date": "2018-06-20",
     "member": "Andrew Haldane",
     "actual": 1,
-    "p_actual": 0.086,
+    "p_actual": 0.085,
     "predicted": 0
    },
    {
@@ -3532,7 +3532,7 @@
     "date": "2018-06-20",
     "member": "Michael Saunders",
     "actual": 1,
-    "p_actual": 0.83,
+    "p_actual": 0.831,
     "predicted": 1
    },
    {
@@ -3546,7 +3546,7 @@
     "date": "2018-06-20",
     "member": "Gertjan Vlieghe",
     "actual": 0,
-    "p_actual": 0.858,
+    "p_actual": 0.859,
     "predicted": 0
    },
    {
@@ -3567,7 +3567,7 @@
     "date": "2018-08-01",
     "member": "Jon Cunliffe",
     "actual": 1,
-    "p_actual": 0.253,
+    "p_actual": 0.252,
     "predicted": 0
    },
    {
@@ -3581,7 +3581,7 @@
     "date": "2018-08-01",
     "member": "Andrew Haldane",
     "actual": 1,
-    "p_actual": 0.669,
+    "p_actual": 0.67,
     "predicted": 1
    },
    {
@@ -3595,7 +3595,7 @@
     "date": "2018-08-01",
     "member": "Michael Saunders",
     "actual": 1,
-    "p_actual": 0.852,
+    "p_actual": 0.853,
     "predicted": 1
    },
    {
@@ -3644,7 +3644,7 @@
     "date": "2018-09-12",
     "member": "Andrew Haldane",
     "actual": 0,
-    "p_actual": 0.26,
+    "p_actual": 0.261,
     "predicted": 1
    },
    {
@@ -3658,7 +3658,7 @@
     "date": "2018-09-12",
     "member": "Michael Saunders",
     "actual": 0,
-    "p_actual": 0.111,
+    "p_actual": 0.112,
     "predicted": 1
    },
    {
@@ -3679,7 +3679,7 @@
     "date": "2018-10-31",
     "member": "Mark Carney",
     "actual": 0,
-    "p_actual": 0.615,
+    "p_actual": 0.614,
     "predicted": 0
    },
    {
@@ -3707,14 +3707,14 @@
     "date": "2018-10-31",
     "member": "Andrew Haldane",
     "actual": 0,
-    "p_actual": 0.256,
+    "p_actual": 0.255,
     "predicted": 1
    },
    {
     "date": "2018-10-31",
     "member": "Jonathan Haskel",
     "actual": 0,
-    "p_actual": 0.823,
+    "p_actual": 0.822,
     "predicted": 0
    },
    {
@@ -3735,7 +3735,7 @@
     "date": "2018-10-31",
     "member": "Gertjan Vlieghe",
     "actual": 0,
-    "p_actual": 0.635,
+    "p_actual": 0.634,
     "predicted": 0
    },
    {
@@ -3756,14 +3756,14 @@
     "date": "2018-12-19",
     "member": "Jon Cunliffe",
     "actual": 0,
-    "p_actual": 0.865,
+    "p_actual": 0.866,
     "predicted": 0
    },
    {
     "date": "2018-12-19",
     "member": "Dave Ramsden",
     "actual": 0,
-    "p_actual": 0.842,
+    "p_actual": 0.843,
     "predicted": 0
    },
    {
@@ -3777,28 +3777,28 @@
     "date": "2018-12-19",
     "member": "Jonathan Haskel",
     "actual": 0,
-    "p_actual": 0.842,
+    "p_actual": 0.843,
     "predicted": 0
    },
    {
     "date": "2018-12-19",
     "member": "Michael Saunders",
     "actual": 0,
-    "p_actual": 0.78,
+    "p_actual": 0.779,
     "predicted": 0
    },
    {
     "date": "2018-12-19",
     "member": "Silvana Tenreyro",
     "actual": 0,
-    "p_actual": 0.842,
+    "p_actual": 0.843,
     "predicted": 0
    },
    {
     "date": "2018-12-19",
     "member": "Gertjan Vlieghe",
     "actual": 0,
-    "p_actual": 0.842,
+    "p_actual": 0.843,
     "predicted": 0
    },
    {
@@ -4029,7 +4029,7 @@
     "date": "2019-06-19",
     "member": "Dave Ramsden",
     "actual": 0,
-    "p_actual": 0.722,
+    "p_actual": 0.723,
     "predicted": 0
    },
    {
@@ -4078,7 +4078,7 @@
     "date": "2019-07-31",
     "member": "Andrew Haldane",
     "actual": 0,
-    "p_actual": 0.842,
+    "p_actual": 0.843,
     "predicted": 0
    },
    {
@@ -4099,7 +4099,7 @@
     "date": "2019-07-31",
     "member": "Michael Saunders",
     "actual": 0,
-    "p_actual": 0.808,
+    "p_actual": 0.807,
     "predicted": 0
    },
    {
@@ -4225,7 +4225,7 @@
     "date": "2019-12-18",
     "member": "Michael Saunders",
     "actual": -1,
-    "p_actual": 0.501,
+    "p_actual": 0.498,
     "predicted": -1
    },
    {
@@ -4274,7 +4274,7 @@
     "date": "2020-01-29",
     "member": "Jonathan Haskel",
     "actual": -1,
-    "p_actual": 0.733,
+    "p_actual": 0.734,
     "predicted": -1
    },
    {
@@ -4316,7 +4316,7 @@
     "date": "2020-03-25",
     "member": "Ben Broadbent",
     "actual": 0,
-    "p_actual": 0.781,
+    "p_actual": 0.782,
     "predicted": 0
    },
    {
@@ -4337,7 +4337,7 @@
     "date": "2020-03-25",
     "member": "Jonathan Haskel",
     "actual": 0,
-    "p_actual": 0.408,
+    "p_actual": 0.41,
     "predicted": -1
    },
    {
@@ -4351,7 +4351,7 @@
     "date": "2020-03-25",
     "member": "Michael Saunders",
     "actual": 0,
-    "p_actual": 0.099,
+    "p_actual": 0.098,
     "predicted": -1
    },
    {
@@ -4400,7 +4400,7 @@
     "date": "2020-05-06",
     "member": "Jonathan Haskel",
     "actual": 0,
-    "p_actual": 0.619,
+    "p_actual": 0.62,
     "predicted": 0
    },
    {
@@ -4414,7 +4414,7 @@
     "date": "2020-05-06",
     "member": "Michael Saunders",
     "actual": 0,
-    "p_actual": 0.619,
+    "p_actual": 0.62,
     "predicted": 0
    },
    {
@@ -4428,7 +4428,7 @@
     "date": "2020-05-06",
     "member": "Gertjan Vlieghe",
     "actual": 0,
-    "p_actual": 0.74,
+    "p_actual": 0.739,
     "predicted": 0
    },
    {
@@ -4603,7 +4603,7 @@
     "date": "2020-09-16",
     "member": "Michael Saunders",
     "actual": 0,
-    "p_actual": 0.522,
+    "p_actual": 0.524,
     "predicted": 0
    },
    {
@@ -4827,7 +4827,7 @@
     "date": "2021-03-17",
     "member": "Jon Cunliffe",
     "actual": 0,
-    "p_actual": 0.851,
+    "p_actual": 0.852,
     "predicted": 0
    },
    {
@@ -4855,14 +4855,14 @@
     "date": "2021-03-17",
     "member": "Michael Saunders",
     "actual": 0,
-    "p_actual": 0.851,
+    "p_actual": 0.852,
     "predicted": 0
    },
    {
     "date": "2021-03-17",
     "member": "Silvana Tenreyro",
     "actual": 0,
-    "p_actual": 0.851,
+    "p_actual": 0.852,
     "predicted": 0
    },
    {
@@ -4918,7 +4918,7 @@
     "date": "2021-05-05",
     "member": "Michael Saunders",
     "actual": 0,
-    "p_actual": 0.826,
+    "p_actual": 0.827,
     "predicted": 0
    },
    {
@@ -5051,7 +5051,7 @@
     "date": "2021-08-04",
     "member": "Gertjan Vlieghe",
     "actual": 0,
-    "p_actual": 0.754,
+    "p_actual": 0.755,
     "predicted": 0
    },
    {
@@ -5065,35 +5065,35 @@
     "date": "2021-09-22",
     "member": "Ben Broadbent",
     "actual": 0,
-    "p_actual": 0.662,
+    "p_actual": 0.661,
     "predicted": 0
    },
    {
     "date": "2021-09-22",
     "member": "Jon Cunliffe",
     "actual": 0,
-    "p_actual": 0.79,
+    "p_actual": 0.791,
     "predicted": 0
    },
    {
     "date": "2021-09-22",
     "member": "Jonathan Haskel",
     "actual": 0,
-    "p_actual": 0.79,
+    "p_actual": 0.791,
     "predicted": 0
    },
    {
     "date": "2021-09-22",
     "member": "Catherine Mann",
     "actual": 0,
-    "p_actual": 0.79,
+    "p_actual": 0.791,
     "predicted": 0
    },
    {
     "date": "2021-09-22",
     "member": "Huw Pill",
     "actual": 0,
-    "p_actual": 0.79,
+    "p_actual": 0.791,
     "predicted": 0
    },
    {
@@ -5107,7 +5107,7 @@
     "date": "2021-09-22",
     "member": "Michael Saunders",
     "actual": 0,
-    "p_actual": 0.79,
+    "p_actual": 0.791,
     "predicted": 0
    },
    {
@@ -5191,7 +5191,7 @@
     "date": "2021-12-15",
     "member": "Ben Broadbent",
     "actual": 1,
-    "p_actual": 0.347,
+    "p_actual": 0.348,
     "predicted": 0
    },
    {
@@ -5212,7 +5212,7 @@
     "date": "2021-12-15",
     "member": "Catherine Mann",
     "actual": 1,
-    "p_actual": 0.385,
+    "p_actual": 0.386,
     "predicted": 0
    },
    {
@@ -5233,7 +5233,7 @@
     "date": "2021-12-15",
     "member": "Michael Saunders",
     "actual": 1,
-    "p_actual": 0.782,
+    "p_actual": 0.783,
     "predicted": 1
    },
    {
@@ -5247,21 +5247,21 @@
     "date": "2022-02-02",
     "member": "Andrew Bailey",
     "actual": 1,
-    "p_actual": 0.639,
+    "p_actual": 0.641,
     "predicted": 1
    },
    {
     "date": "2022-02-02",
     "member": "Ben Broadbent",
     "actual": 1,
-    "p_actual": 0.649,
+    "p_actual": 0.65,
     "predicted": 1
    },
    {
     "date": "2022-02-02",
     "member": "Jon Cunliffe",
     "actual": 1,
-    "p_actual": 0.62,
+    "p_actual": 0.621,
     "predicted": 1
    },
    {
@@ -5282,7 +5282,7 @@
     "date": "2022-02-02",
     "member": "Huw Pill",
     "actual": 1,
-    "p_actual": 0.649,
+    "p_actual": 0.65,
     "predicted": 1
    },
    {
@@ -5324,14 +5324,14 @@
     "date": "2022-03-16",
     "member": "Jon Cunliffe",
     "actual": 0,
-    "p_actual": 0.406,
+    "p_actual": 0.409,
     "predicted": 1
    },
    {
     "date": "2022-03-16",
     "member": "Jonathan Haskel",
     "actual": 1,
-    "p_actual": 0.777,
+    "p_actual": 0.776,
     "predicted": 1
    },
    {
@@ -5345,7 +5345,7 @@
     "date": "2022-03-16",
     "member": "Huw Pill",
     "actual": 1,
-    "p_actual": 0.877,
+    "p_actual": 0.878,
     "predicted": 1
    },
    {
@@ -5359,21 +5359,21 @@
     "date": "2022-03-16",
     "member": "Michael Saunders",
     "actual": 1,
-    "p_actual": 0.51,
+    "p_actual": 0.509,
     "predicted": 1
    },
    {
     "date": "2022-03-16",
     "member": "Silvana Tenreyro",
     "actual": 1,
-    "p_actual": 0.813,
+    "p_actual": 0.814,
     "predicted": 1
    },
    {
     "date": "2022-05-04",
     "member": "Andrew Bailey",
     "actual": 1,
-    "p_actual": 0.813,
+    "p_actual": 0.814,
     "predicted": 1
    },
    {
@@ -5387,7 +5387,7 @@
     "date": "2022-05-04",
     "member": "Jon Cunliffe",
     "actual": 1,
-    "p_actual": 0.389,
+    "p_actual": 0.388,
     "predicted": 0
    },
    {
@@ -5401,7 +5401,7 @@
     "date": "2022-05-04",
     "member": "Catherine Mann",
     "actual": 2,
-    "p_actual": 0.304,
+    "p_actual": 0.303,
     "predicted": 1
    },
    {
@@ -5429,14 +5429,14 @@
     "date": "2022-05-04",
     "member": "Silvana Tenreyro",
     "actual": 1,
-    "p_actual": 0.806,
+    "p_actual": 0.807,
     "predicted": 1
    },
    {
     "date": "2022-06-15",
     "member": "Andrew Bailey",
     "actual": 1,
-    "p_actual": 0.882,
+    "p_actual": 0.883,
     "predicted": 1
    },
    {
@@ -5457,7 +5457,7 @@
     "date": "2022-06-15",
     "member": "Jonathan Haskel",
     "actual": 2,
-    "p_actual": 0.087,
+    "p_actual": 0.086,
     "predicted": 1
    },
    {
@@ -5485,35 +5485,35 @@
     "date": "2022-06-15",
     "member": "Michael Saunders",
     "actual": 2,
-    "p_actual": 0.397,
+    "p_actual": 0.398,
     "predicted": 1
    },
    {
     "date": "2022-06-15",
     "member": "Silvana Tenreyro",
     "actual": 1,
-    "p_actual": 0.769,
+    "p_actual": 0.768,
     "predicted": 1
    },
    {
     "date": "2022-08-03",
     "member": "Andrew Bailey",
     "actual": 2,
-    "p_actual": 0.182,
+    "p_actual": 0.183,
     "predicted": 1
    },
    {
     "date": "2022-08-03",
     "member": "Ben Broadbent",
     "actual": 2,
-    "p_actual": 0.06,
+    "p_actual": 0.059,
     "predicted": 1
    },
    {
     "date": "2022-08-03",
     "member": "Jon Cunliffe",
     "actual": 2,
-    "p_actual": 0.057,
+    "p_actual": 0.056,
     "predicted": 1
    },
    {
@@ -5541,7 +5541,7 @@
     "date": "2022-08-03",
     "member": "Dave Ramsden",
     "actual": 2,
-    "p_actual": 0.064,
+    "p_actual": 0.063,
     "predicted": 1
    },
    {
@@ -5562,7 +5562,7 @@
     "date": "2022-09-21",
     "member": "Andrew Bailey",
     "actual": 2,
-    "p_actual": 0.382,
+    "p_actual": 0.383,
     "predicted": 1
    },
    {
@@ -5583,7 +5583,7 @@
     "date": "2022-09-21",
     "member": "Huw Pill",
     "actual": 2,
-    "p_actual": 0.258,
+    "p_actual": 0.259,
     "predicted": 1
    },
    {
@@ -5667,7 +5667,7 @@
     "date": "2022-11-02",
     "member": "Dave Ramsden",
     "actual": 3,
-    "p_actual": 0.16,
+    "p_actual": 0.161,
     "predicted": 2
    },
    {
@@ -5681,7 +5681,7 @@
     "date": "2022-11-02",
     "member": "Silvana Tenreyro",
     "actual": 1,
-    "p_actual": 0.49,
+    "p_actual": 0.489,
     "predicted": 2
    },
    {
@@ -5723,7 +5723,7 @@
     "date": "2022-12-14",
     "member": "Catherine Mann",
     "actual": 3,
-    "p_actual": 0.508,
+    "p_actual": 0.507,
     "predicted": 3
    },
    {
@@ -5744,7 +5744,7 @@
     "date": "2022-12-14",
     "member": "Silvana Tenreyro",
     "actual": 0,
-    "p_actual": 0.061,
+    "p_actual": 0.062,
     "predicted": 1
    },
    {
@@ -5786,14 +5786,14 @@
     "date": "2023-02-01",
     "member": "Catherine Mann",
     "actual": 2,
-    "p_actual": 0.727,
+    "p_actual": 0.728,
     "predicted": 2
    },
    {
     "date": "2023-02-01",
     "member": "Huw Pill",
     "actual": 2,
-    "p_actual": 0.504,
+    "p_actual": 0.505,
     "predicted": 2
    },
    {
@@ -5821,14 +5821,14 @@
     "date": "2023-03-22",
     "member": "Ben Broadbent",
     "actual": 1,
-    "p_actual": 0.536,
+    "p_actual": 0.535,
     "predicted": 1
    },
    {
     "date": "2023-03-22",
     "member": "Jon Cunliffe",
     "actual": 1,
-    "p_actual": 0.536,
+    "p_actual": 0.535,
     "predicted": 1
    },
    {
@@ -5849,7 +5849,7 @@
     "date": "2023-03-22",
     "member": "Catherine Mann",
     "actual": 1,
-    "p_actual": 0.362,
+    "p_actual": 0.363,
     "predicted": 2
    },
    {
@@ -5863,7 +5863,7 @@
     "date": "2023-03-22",
     "member": "Dave Ramsden",
     "actual": 1,
-    "p_actual": 0.507,
+    "p_actual": 0.506,
     "predicted": 1
    },
    {
@@ -5898,7 +5898,7 @@
     "date": "2023-05-10",
     "member": "Swati Dhingra",
     "actual": 0,
-    "p_actual": 0.786,
+    "p_actual": 0.785,
     "predicted": 0
    },
    {
@@ -5919,7 +5919,7 @@
     "date": "2023-05-10",
     "member": "Huw Pill",
     "actual": 1,
-    "p_actual": 0.689,
+    "p_actual": 0.688,
     "predicted": 1
    },
    {
@@ -5982,7 +5982,7 @@
     "date": "2023-06-21",
     "member": "Huw Pill",
     "actual": 2,
-    "p_actual": 0.014,
+    "p_actual": 0.015,
     "predicted": 1
    },
    {
@@ -6003,21 +6003,21 @@
     "date": "2023-08-02",
     "member": "Andrew Bailey",
     "actual": 1,
-    "p_actual": 0.573,
+    "p_actual": 0.572,
     "predicted": 1
    },
    {
     "date": "2023-08-02",
     "member": "Ben Broadbent",
     "actual": 1,
-    "p_actual": 0.447,
+    "p_actual": 0.446,
     "predicted": 2
    },
    {
     "date": "2023-08-02",
     "member": "Jon Cunliffe",
     "actual": 1,
-    "p_actual": 0.447,
+    "p_actual": 0.446,
     "predicted": 2
    },
    {
@@ -6031,21 +6031,21 @@
     "date": "2023-08-02",
     "member": "Megan Greene",
     "actual": 1,
-    "p_actual": 0.241,
+    "p_actual": 0.24,
     "predicted": 2
    },
    {
     "date": "2023-08-02",
     "member": "Jonathan Haskel",
     "actual": 2,
-    "p_actual": 0.547,
+    "p_actual": 0.548,
     "predicted": 2
    },
    {
     "date": "2023-08-02",
     "member": "Catherine Mann",
     "actual": 2,
-    "p_actual": 0.572,
+    "p_actual": 0.573,
     "predicted": 2
    },
    {
@@ -6066,14 +6066,14 @@
     "date": "2023-09-20",
     "member": "Andrew Bailey",
     "actual": 0,
-    "p_actual": 0.164,
+    "p_actual": 0.165,
     "predicted": 1
    },
    {
     "date": "2023-09-20",
     "member": "Ben Broadbent",
     "actual": 0,
-    "p_actual": 0.188,
+    "p_actual": 0.189,
     "predicted": 1
    },
    {
@@ -6129,7 +6129,7 @@
     "date": "2023-11-01",
     "member": "Andrew Bailey",
     "actual": 0,
-    "p_actual": 0.566,
+    "p_actual": 0.567,
     "predicted": 0
    },
    {
@@ -6143,7 +6143,7 @@
     "date": "2023-11-01",
     "member": "Ben Broadbent",
     "actual": 0,
-    "p_actual": 0.566,
+    "p_actual": 0.567,
     "predicted": 0
    },
    {
@@ -6164,7 +6164,7 @@
     "date": "2023-11-01",
     "member": "Jonathan Haskel",
     "actual": 1,
-    "p_actual": 0.852,
+    "p_actual": 0.853,
     "predicted": 1
    },
    {
@@ -6178,14 +6178,14 @@
     "date": "2023-11-01",
     "member": "Huw Pill",
     "actual": 0,
-    "p_actual": 0.566,
+    "p_actual": 0.567,
     "predicted": 0
    },
    {
     "date": "2023-11-01",
     "member": "Dave Ramsden",
     "actual": 0,
-    "p_actual": 0.566,
+    "p_actual": 0.567,
     "predicted": 0
    },
    {
@@ -6332,14 +6332,14 @@
     "date": "2024-03-20",
     "member": "Swati Dhingra",
     "actual": -1,
-    "p_actual": 0.78,
+    "p_actual": 0.781,
     "predicted": -1
    },
    {
     "date": "2024-03-20",
     "member": "Megan Greene",
     "actual": 0,
-    "p_actual": 0.781,
+    "p_actual": 0.782,
     "predicted": 0
    },
    {
@@ -6409,14 +6409,14 @@
     "date": "2024-05-08",
     "member": "Jonathan Haskel",
     "actual": 0,
-    "p_actual": 0.643,
+    "p_actual": 0.644,
     "predicted": 0
    },
    {
     "date": "2024-05-08",
     "member": "Catherine Mann",
     "actual": 0,
-    "p_actual": 0.643,
+    "p_actual": 0.644,
     "predicted": 0
    },
    {
@@ -6430,35 +6430,35 @@
     "date": "2024-05-08",
     "member": "Dave Ramsden",
     "actual": -1,
-    "p_actual": 0.069,
+    "p_actual": 0.068,
     "predicted": 0
    },
    {
     "date": "2024-06-19",
     "member": "Andrew Bailey",
     "actual": 0,
-    "p_actual": 0.846,
+    "p_actual": 0.847,
     "predicted": 0
    },
    {
     "date": "2024-06-19",
     "member": "Sarah Breeden",
     "actual": 0,
-    "p_actual": 0.846,
+    "p_actual": 0.847,
     "predicted": 0
    },
    {
     "date": "2024-06-19",
     "member": "Ben Broadbent",
     "actual": 0,
-    "p_actual": 0.846,
+    "p_actual": 0.847,
     "predicted": 0
    },
    {
     "date": "2024-06-19",
     "member": "Swati Dhingra",
     "actual": -1,
-    "p_actual": 0.592,
+    "p_actual": 0.594,
     "predicted": -1
    },
    {
@@ -6486,28 +6486,28 @@
     "date": "2024-06-19",
     "member": "Huw Pill",
     "actual": 0,
-    "p_actual": 0.846,
+    "p_actual": 0.847,
     "predicted": 0
    },
    {
     "date": "2024-06-19",
     "member": "Dave Ramsden",
     "actual": -1,
-    "p_actual": 0.655,
+    "p_actual": 0.656,
     "predicted": -1
    },
    {
     "date": "2024-07-31",
     "member": "Andrew Bailey",
     "actual": -1,
-    "p_actual": 0.051,
+    "p_actual": 0.05,
     "predicted": 0
    },
    {
     "date": "2024-07-31",
     "member": "Sarah Breeden",
     "actual": -1,
-    "p_actual": 0.051,
+    "p_actual": 0.05,
     "predicted": 0
    },
    {
@@ -6535,7 +6535,7 @@
     "date": "2024-07-31",
     "member": "Clare Lombardelli",
     "actual": -1,
-    "p_actual": 0.051,
+    "p_actual": 0.05,
     "predicted": 0
    },
    {
@@ -6563,21 +6563,21 @@
     "date": "2024-09-18",
     "member": "Andrew Bailey",
     "actual": 0,
-    "p_actual": 0.47,
+    "p_actual": 0.469,
     "predicted": 1
    },
    {
     "date": "2024-09-18",
     "member": "Sarah Breeden",
     "actual": 0,
-    "p_actual": 0.873,
+    "p_actual": 0.872,
     "predicted": 0
    },
    {
     "date": "2024-09-18",
     "member": "Swati Dhingra",
     "actual": -1,
-    "p_actual": 0.442,
+    "p_actual": 0.441,
     "predicted": 0
    },
    {
@@ -6605,7 +6605,7 @@
     "date": "2024-09-18",
     "member": "Huw Pill",
     "actual": 0,
-    "p_actual": 0.687,
+    "p_actual": 0.686,
     "predicted": 0
    },
    {
@@ -6640,7 +6640,7 @@
     "date": "2024-11-06",
     "member": "Swati Dhingra",
     "actual": -1,
-    "p_actual": 0.691,
+    "p_actual": 0.693,
     "predicted": -1
    },
    {
@@ -6654,7 +6654,7 @@
     "date": "2024-11-06",
     "member": "Clare Lombardelli",
     "actual": -1,
-    "p_actual": 0.739,
+    "p_actual": 0.738,
     "predicted": -1
    },
    {
@@ -6668,7 +6668,7 @@
     "date": "2024-11-06",
     "member": "Huw Pill",
     "actual": -1,
-    "p_actual": 0.155,
+    "p_actual": 0.156,
     "predicted": 0
    },
    {
@@ -6682,14 +6682,14 @@
     "date": "2024-11-06",
     "member": "Alan Taylor",
     "actual": -1,
-    "p_actual": 0.179,
+    "p_actual": 0.18,
     "predicted": 0
    },
    {
     "date": "2024-12-18",
     "member": "Andrew Bailey",
     "actual": 0,
-    "p_actual": 0.631,
+    "p_actual": 0.63,
     "predicted": 0
    },
    {
@@ -6724,7 +6724,7 @@
     "date": "2024-12-18",
     "member": "Catherine Mann",
     "actual": 0,
-    "p_actual": 0.788,
+    "p_actual": 0.787,
     "predicted": 0
    },
    {
@@ -6759,7 +6759,7 @@
     "date": "2025-02-05",
     "member": "Sarah Breeden",
     "actual": -1,
-    "p_actual": 0.643,
+    "p_actual": 0.645,
     "predicted": -1
    },
    {
@@ -6794,14 +6794,14 @@
     "date": "2025-02-05",
     "member": "Huw Pill",
     "actual": -1,
-    "p_actual": 0.177,
+    "p_actual": 0.178,
     "predicted": 0
    },
    {
     "date": "2025-02-05",
     "member": "Dave Ramsden",
     "actual": -1,
-    "p_actual": 0.184,
+    "p_actual": 0.187,
     "predicted": 0
    },
    {
@@ -6822,7 +6822,7 @@
     "date": "2025-03-19",
     "member": "Sarah Breeden",
     "actual": 0,
-    "p_actual": 0.466,
+    "p_actual": 0.467,
     "predicted": -1
    },
    {
@@ -6843,7 +6843,7 @@
     "date": "2025-03-19",
     "member": "Clare Lombardelli",
     "actual": 0,
-    "p_actual": 0.466,
+    "p_actual": 0.467,
     "predicted": -1
    },
    {
@@ -6871,21 +6871,21 @@
     "date": "2025-03-19",
     "member": "Alan Taylor",
     "actual": 0,
-    "p_actual": 0.72,
+    "p_actual": 0.722,
     "predicted": 0
    },
    {
     "date": "2025-05-07",
     "member": "Andrew Bailey",
     "actual": -1,
-    "p_actual": 0.201,
+    "p_actual": 0.202,
     "predicted": 0
    },
    {
     "date": "2025-05-07",
     "member": "Sarah Breeden",
     "actual": -1,
-    "p_actual": 0.201,
+    "p_actual": 0.202,
     "predicted": 0
    },
    {
@@ -6899,14 +6899,14 @@
     "date": "2025-05-07",
     "member": "Clare Lombardelli",
     "actual": -1,
-    "p_actual": 0.201,
+    "p_actual": 0.202,
     "predicted": 0
    },
    {
     "date": "2025-05-07",
     "member": "Dave Ramsden",
     "actual": -1,
-    "p_actual": 0.24,
+    "p_actual": 0.241,
     "predicted": 0
    },
    {
@@ -6927,14 +6927,14 @@
     "date": "2025-05-07",
     "member": "Catherine Mann",
     "actual": 0,
-    "p_actual": 0.677,
+    "p_actual": 0.676,
     "predicted": 0
    },
    {
     "date": "2025-05-07",
     "member": "Huw Pill",
     "actual": 0,
-    "p_actual": 0.787,
+    "p_actual": 0.786,
     "predicted": 0
    },
    {
@@ -6948,14 +6948,14 @@
     "date": "2025-06-18",
     "member": "Sarah Breeden",
     "actual": 0,
-    "p_actual": 0.166,
+    "p_actual": 0.165,
     "predicted": -1
    },
    {
     "date": "2025-06-18",
     "member": "Swati Dhingra",
     "actual": -1,
-    "p_actual": 0.647,
+    "p_actual": 0.646,
     "predicted": -1
    },
    {
@@ -6969,21 +6969,21 @@
     "date": "2025-06-18",
     "member": "Clare Lombardelli",
     "actual": 0,
-    "p_actual": 0.343,
+    "p_actual": 0.342,
     "predicted": -1
    },
    {
     "date": "2025-06-18",
     "member": "Catherine Mann",
     "actual": 0,
-    "p_actual": 0.814,
+    "p_actual": 0.815,
     "predicted": 0
    },
    {
     "date": "2025-06-18",
     "member": "Huw Pill",
     "actual": 0,
-    "p_actual": 0.823,
+    "p_actual": 0.824,
     "predicted": 0
    },
    {
@@ -7004,7 +7004,7 @@
     "date": "2025-08-06",
     "member": "Andrew Bailey",
     "actual": -1,
-    "p_actual": 0.357,
+    "p_actual": 0.358,
     "predicted": 0
    },
    {
@@ -7025,7 +7025,7 @@
     "date": "2025-08-06",
     "member": "Megan Greene",
     "actual": 0,
-    "p_actual": 0.554,
+    "p_actual": 0.553,
     "predicted": 0
    },
    {
@@ -7039,7 +7039,7 @@
     "date": "2025-08-06",
     "member": "Catherine Mann",
     "actual": 0,
-    "p_actual": 0.848,
+    "p_actual": 0.847,
     "predicted": 0
    },
    {
@@ -7060,21 +7060,21 @@
     "date": "2025-08-06",
     "member": "Alan Taylor",
     "actual": -1,
-    "p_actual": 0.813,
+    "p_actual": 0.812,
     "predicted": -1
    },
    {
     "date": "2025-09-17",
     "member": "Andrew Bailey",
     "actual": 0,
-    "p_actual": 0.389,
+    "p_actual": 0.387,
     "predicted": -1
    },
    {
     "date": "2025-09-17",
     "member": "Sarah Breeden",
     "actual": 0,
-    "p_actual": 0.437,
+    "p_actual": 0.436,
     "predicted": -1
    },
    {
@@ -7116,28 +7116,28 @@
     "date": "2025-09-17",
     "member": "Dave Ramsden",
     "actual": 0,
-    "p_actual": 0.276,
+    "p_actual": 0.275,
     "predicted": -1
    },
    {
     "date": "2025-09-17",
     "member": "Alan Taylor",
     "actual": -1,
-    "p_actual": 0.774,
+    "p_actual": 0.772,
     "predicted": -1
    },
    {
     "date": "2025-11-05",
     "member": "Andrew Bailey",
     "actual": 0,
-    "p_actual": 0.752,
+    "p_actual": 0.751,
     "predicted": 0
    },
    {
     "date": "2025-11-05",
     "member": "Sarah Breeden",
     "actual": -1,
-    "p_actual": 0.37,
+    "p_actual": 0.371,
     "predicted": 0
    },
    {
@@ -7165,7 +7165,7 @@
     "date": "2025-11-05",
     "member": "Catherine Mann",
     "actual": 0,
-    "p_actual": 0.846,
+    "p_actual": 0.845,
     "predicted": 0
    },
    {
@@ -7179,56 +7179,56 @@
     "date": "2025-11-05",
     "member": "Dave Ramsden",
     "actual": -1,
-    "p_actual": 0.265,
+    "p_actual": 0.266,
     "predicted": 0
    },
    {
     "date": "2025-11-05",
     "member": "Alan Taylor",
     "actual": -1,
-    "p_actual": 0.843,
+    "p_actual": 0.842,
     "predicted": -1
    },
    {
     "date": "2025-12-17",
     "member": "Andrew Bailey",
     "actual": -1,
-    "p_actual": 0.256,
+    "p_actual": 0.255,
     "predicted": 0
    },
    {
     "date": "2025-12-17",
     "member": "Sarah Breeden",
     "actual": -1,
-    "p_actual": 0.816,
+    "p_actual": 0.817,
     "predicted": -1
    },
    {
     "date": "2025-12-17",
     "member": "Swati Dhingra",
     "actual": -1,
-    "p_actual": 0.854,
+    "p_actual": 0.85,
     "predicted": -1
    },
    {
     "date": "2025-12-17",
     "member": "Megan Greene",
     "actual": 0,
-    "p_actual": 0.834,
+    "p_actual": 0.835,
     "predicted": 0
    },
    {
     "date": "2025-12-17",
     "member": "Clare Lombardelli",
     "actual": 0,
-    "p_actual": 0.821,
+    "p_actual": 0.826,
     "predicted": 0
    },
    {
     "date": "2025-12-17",
     "member": "Catherine Mann",
     "actual": 0,
-    "p_actual": 0.839,
+    "p_actual": 0.842,
     "predicted": 0
    },
    {
@@ -7242,7 +7242,7 @@
     "date": "2025-12-17",
     "member": "Dave Ramsden",
     "actual": -1,
-    "p_actual": 0.835,
+    "p_actual": 0.838,
     "predicted": -1
    },
    {
@@ -7270,14 +7270,14 @@
     "date": "2026-02-04",
     "member": "Swati Dhingra",
     "actual": -1,
-    "p_actual": 0.84,
+    "p_actual": 0.841,
     "predicted": -1
    },
    {
     "date": "2026-02-04",
     "member": "Megan Greene",
     "actual": 0,
-    "p_actual": 0.814,
+    "p_actual": 0.816,
     "predicted": 0
    },
    {
@@ -7312,14 +7312,14 @@
     "date": "2026-02-04",
     "member": "Alan Taylor",
     "actual": -1,
-    "p_actual": 0.84,
+    "p_actual": 0.842,
     "predicted": -1
    },
    {
     "date": "2026-03-18",
     "member": "Andrew Bailey",
     "actual": 0,
-    "p_actual": 0.706,
+    "p_actual": 0.684,
     "predicted": 0
    },
    {
@@ -7340,7 +7340,7 @@
     "date": "2026-03-18",
     "member": "Megan Greene",
     "actual": 0,
-    "p_actual": 0.847,
+    "p_actual": 0.846,
     "predicted": 0
    },
    {
@@ -7361,7 +7361,7 @@
     "date": "2026-03-18",
     "member": "Huw Pill",
     "actual": 0,
-    "p_actual": 0.844,
+    "p_actual": 0.842,
     "predicted": 0
    },
    {
@@ -7375,7 +7375,7 @@
     "date": "2026-03-18",
     "member": "Alan Taylor",
     "actual": 0,
-    "p_actual": 0.093,
+    "p_actual": 0.09,
     "predicted": -1
    },
    {
@@ -7438,14 +7438,14 @@
     "date": "2026-04-29",
     "member": "Alan Taylor",
     "actual": 0,
-    "p_actual": 0.614,
+    "p_actual": 0.606,
     "predicted": 0
    },
    {
     "date": "2026-06-17",
     "member": "Andrew Bailey",
     "actual": 0,
-    "p_actual": 0.83,
+    "p_actual": 0.831,
     "predicted": 0
    },
    {
@@ -7459,14 +7459,14 @@
     "date": "2026-06-17",
     "member": "Swati Dhingra",
     "actual": 0,
-    "p_actual": 0.861,
+    "p_actual": 0.862,
     "predicted": 0
    },
    {
     "date": "2026-06-17",
     "member": "Megan Greene",
     "actual": 1,
-    "p_actual": 0.618,
+    "p_actual": 0.608,
     "predicted": 1
    },
    {
@@ -7480,7 +7480,7 @@
     "date": "2026-06-17",
     "member": "Catherine Mann",
     "actual": 0,
-    "p_actual": 0.72,
+    "p_actual": 0.696,
     "predicted": 0
    },
    {
@@ -7508,7 +7508,7 @@
     "date": "2026-07-29",
     "member": "Andrew Bailey",
     "actual": 0,
-    "p_actual": 0.845,
+    "p_actual": 0.848,
     "predicted": 0
    },
    {
@@ -7522,7 +7522,7 @@
     "date": "2026-07-29",
     "member": "Swati Dhingra",
     "actual": 0,
-    "p_actual": 0.818,
+    "p_actual": 0.82,
     "predicted": 0
    },
    {
@@ -7543,7 +7543,7 @@
     "date": "2026-07-29",
     "member": "Catherine Mann",
     "actual": 1,
-    "p_actual": 0.129,
+    "p_actual": 0.141,
     "predicted": 0
    },
    {
@@ -7564,14 +7564,14 @@
     "date": "2026-07-29",
     "member": "Alan Taylor",
     "actual": 0,
-    "p_actual": 0.791,
+    "p_actual": 0.776,
     "predicted": 0
    },
    {
     "date": "2026-09-16",
     "member": "Andrew Bailey",
     "actual": 0,
-    "p_actual": 0.644,
+    "p_actual": 0.667,
     "predicted": 0
    },
    {
@@ -7592,7 +7592,7 @@
     "date": "2026-09-16",
     "member": "Megan Greene",
     "actual": 1,
-    "p_actual": 0.859,
+    "p_actual": 0.86,
     "predicted": 1
    },
    {
@@ -7613,28 +7613,28 @@
     "date": "2026-09-16",
     "member": "Huw Pill",
     "actual": 1,
-    "p_actual": 0.807,
+    "p_actual": 0.823,
     "predicted": 1
    },
    {
     "date": "2026-09-16",
     "member": "Dave Ramsden",
     "actual": 0,
-    "p_actual": 0.763,
+    "p_actual": 0.762,
     "predicted": 0
    },
    {
     "date": "2026-09-16",
     "member": "Alan Taylor",
     "actual": 0,
-    "p_actual": 0.781,
+    "p_actual": 0.789,
     "predicted": 0
    },
    {
     "date": "2026-11-04",
     "member": "Andrew Bailey",
     "actual": 1,
-    "p_actual": 0.179,
+    "p_actual": 0.21,
     "predicted": 0
    },
    {
@@ -7655,21 +7655,21 @@
     "date": "2026-11-04",
     "member": "Megan Greene",
     "actual": 1,
-    "p_actual": 0.861,
+    "p_actual": 0.862,
     "predicted": 1
    },
    {
     "date": "2026-11-04",
     "member": "Clare Lombardelli",
     "actual": 1,
-    "p_actual": 0.503,
+    "p_actual": 0.527,
     "predicted": 1
    },
    {
     "date": "2026-11-04",
     "member": "Catherine Mann",
     "actual": 2,
-    "p_actual": 0.095,
+    "p_actual": 0.084,
     "predicted": 1
    },
    {
@@ -7683,7 +7683,7 @@
     "date": "2026-11-04",
     "member": "Dave Ramsden",
     "actual": 1,
-    "p_actual": 0.196,
+    "p_actual": 0.22,
     "predicted": 0
    },
    {
@@ -7703,15 +7703,15 @@
    },
    {
     "bin": "15%-30%",
-    "n": 420,
+    "n": 418,
     "predicted": 0.194,
-    "actual": 0.169
+    "actual": 0.17
    },
    {
     "bin": "30%-50%",
-    "n": 105,
-    "predicted": 0.38,
-    "actual": 0.371
+    "n": 107,
+    "predicted": 0.379,
+    "actual": 0.364
    },
    {
     "bin": "50%-70%",
@@ -7722,7 +7722,7 @@
    {
     "bin": "70%-100%",
     "n": 39,
-    "predicted": 0.824,
+    "predicted": 0.825,
     "actual": 0.718
    }
   ]
