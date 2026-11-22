@@ -14,6 +14,7 @@ is paid for once (~$0.0005).
 from __future__ import annotations
 
 import json
+import re
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 
@@ -69,19 +70,75 @@ def _rate_on(rate, d):
     return r
 
 
+# --- v2: the policy passages coded on their own, and the direction of the next move ---
+VERSION = 2
+DIRECTION = {"lower": -1, "unchanged": 0, "higher": 1}
+DIR_CRITERIA = {
+    "lower": "The member's next vote for a change in Bank Rate is more likely to be a cut.",
+    "unchanged": "The member expects to keep Bank Rate where it is for some time; no move is signalled either way.",
+    "higher": "The member's next vote for a change in Bank Rate is more likely to be an increase.",
+}
+DIR_INSTRUCTIONS = (
+    "Text by a member of the Bank of England's Monetary Policy Committee. Looking beyond the very "
+    "next meeting to the next few, which way does this member lean on Bank Rate? A member who "
+    "says a further increase is likely to be needed in the near term, while stressing that "
+    "decisions are conditional and gradual, leans higher even if they might hold at the next "
+    "meeting; a member who says policy is restrictive enough and they want to wait leans "
+    "unchanged; one who says rates can come down leans lower.")
+PASSAGE_NOTE = ("These are the passages about monetary policy and the outlook for Bank Rate, taken "
+                "from a longer text and joined by '…'. ")
+_POLICY_SENT = re.compile(
+    r"(?i)\bbank rate\b|\binterest rates?\b|monetary policy|policy (rate|stance|path|decision)|"
+    r"\b(tighten|loosen|eas)(ing|ed)?\b|restrictive|further (increase|rise|cut|reduction|tightening)|"
+    r"\brate (rise|cut|hike|increase)s?\b|\b(raising|cutting|raise|cut) (rates|bank rate)|"
+    r"\bhike\b|\bthe (mpc|committee) (voted|decided)|\bmy (vote|judgement|view)\b|\bnext meeting")
+_SPLIT = re.compile(r"(?<=[.!?])\s+(?=[A-Z“\"(])")
+
+
+def policy_passages(text: str, max_chars: int = 14000) -> str:
+    """The sentences about policy, each with its neighbours, in order; '' if too little."""
+    sents = [x.strip() for x in _SPLIT.split(re.sub(r"\s+", " ", text or "")) if x.strip()]
+    keep = set()
+    for i, x in enumerate(sents):
+        if _POLICY_SENT.search(x):
+            keep.update({i - 1, i, i + 1})
+    out, prev = [], -2
+    for i in sorted(k for k in keep if 0 <= k < len(sents)):
+        out.append(("" if i == prev + 1 else " … ") + sents[i])
+        prev = i
+    joined = " ".join(out).strip()
+    if len(joined) < 300:
+        return ""
+    if len(joined) > max_chars:          # keep the end: forward guidance usually closes a speech
+        joined = "… " + joined[-max_chars:]
+    return joined
+
+
+def _choice(res, q, options):
+    a = res["answers"][q]
+    p = {k: float(a.get("probabilities", {}).get(k, 0.0)) for k in options}
+    t = sum(p.values()) or 1.0
+    p = {k: v / t for k, v in p.items()}
+    return {k: round(v, 4) for k, v in p.items()}, round(sum(options[k] * v for k, v in p.items()), 4)
+
+
 def code_documents(docs, rate, max_workers: int = 8, cap: int = 90000, limit: int | None = None,
                    verbose: bool = True) -> dict:
-    """docs: Speech records. Codes those not yet in the cache; returns the cache."""
+    """Codes documents not yet coded at VERSION; returns the cache. Each document gets:
+      p / ev            next-meeting vote, whole text
+      dir / dir_ev      direction of the member's next move over the next few meetings
+      p_pass / ev_pass, dir_pass / dir_ev_pass   the same on the policy passages alone
+      focus             how much of the text is about the policy outlook"""
     import requests
     from ..judge.jev import MODEL, _Client
     from ..judge.openrouter import excerpt
 
     codes = load_codes()
-    todo = [s for s in docs if s.id not in codes and (s.text or "").strip()]
+    todo = [s for s in docs if codes.get(s.id, {}).get("v") != VERSION and (s.text or "").strip()]
     if limit:
         todo = todo[:limit]
     if verbose:
-        print(f"guidance: {len(codes)} coded, {len(todo)} to code")
+        print(f"guidance: {len(codes)} in cache, {len(todo)} to code at v{VERSION}")
     if not todo:
         return codes
     client = _Client()
@@ -89,34 +146,40 @@ def code_documents(docs, rate, max_workers: int = 8, cap: int = 90000, limit: in
     def one(s):
         state = {"date": s.date, "bank_rate_percent": _rate_on(rate, s.date),
                  "document_type": s.source_type, "speaker_role": "MPC member"}
+        vote_q = {"type": "choice", "instructions": INSTRUCTIONS, "criteria": CRITERIA}
+        dir_q = {"type": "choice", "instructions": DIR_INSTRUCTIONS, "criteria": DIR_CRITERIA}
 
         def build(c):
-            return {"model": MODEL,
-                    "state": {**state, "text": excerpt(s.text, c, s.source_type)},
-                    "questions": {
-                        "next_vote": {"type": "choice", "instructions": INSTRUCTIONS,
-                                      "criteria": CRITERIA},
-                        "focus": {"type": "score", "instructions": FOCUS_INSTRUCTIONS,
-                                  "criteria": FOCUS_LEVELS}}}
+            return {"model": MODEL, "state": {**state, "text": excerpt(s.text, c, s.source_type)},
+                    "questions": {"next_vote": vote_q, "direction": dir_q,
+                                  "focus": {"type": "score", "instructions": FOCUS_INSTRUCTIONS,
+                                            "criteria": FOCUS_LEVELS}}}
         try:
             res = client.ask_shrinking(build, cap)
         except (requests.RequestException, RuntimeError) as e:
             return s, None, str(e)[:120]
-        a = res["answers"]["next_vote"]
-        probs = {k: round(float(a.get("probabilities", {}).get(k, 0.0)), 4) for k in OPTIONS}
-        tot = sum(probs.values()) or 1.0
-        probs = {k: v / tot for k, v in probs.items()}
-        ev = sum(OPTIONS[k] * v for k, v in probs.items())
+        p, ev = _choice(res, "next_vote", OPTIONS)
+        d, dev = _choice(res, "direction", DIRECTION)
         f = res["answers"]["focus"].get("score")
-        focus = None if f is None else round(float(f) / (len(FOCUS_LEVELS) - 1), 3)
-        return s, {"date": s.date, "speaker": s.speaker, "type": s.source_type,
-                   "p": {k: round(v, 4) for k, v in probs.items()}, "ev": round(ev, 4),
-                   "focus": focus}, None
+        rec = {"v": VERSION, "date": s.date, "speaker": s.speaker, "type": s.source_type,
+               "p": p, "ev": ev, "dir": d, "dir_ev": dev,
+               "focus": None if f is None else round(float(f) / (len(FOCUS_LEVELS) - 1), 3)}
+        pas = policy_passages(s.text) if s.source_type != "member_view" else ""
+        if pas:
+            try:
+                r2 = client.post({"model": MODEL,
+                                  "state": {**state, "text": pas, "note": PASSAGE_NOTE},
+                                  "questions": {"next_vote": vote_q, "direction": dir_q}})
+                rec["p_pass"], rec["ev_pass"] = _choice(r2, "next_vote", OPTIONS)
+                rec["dir_pass"], rec["dir_ev_pass"] = _choice(r2, "direction", DIRECTION)
+                rec["pass_chars"] = len(pas)
+            except (requests.RequestException, RuntimeError):
+                pass
+        return s, rec, None
 
     done = 0
     with ThreadPoolExecutor(max_workers=max_workers) as ex:
-        futs = [ex.submit(one, s) for s in todo]
-        for fu in as_completed(futs):
+        for fu in as_completed([ex.submit(one, s) for s in todo]):
             s, rec, err = fu.result()
             if rec:
                 codes[s.id] = rec
