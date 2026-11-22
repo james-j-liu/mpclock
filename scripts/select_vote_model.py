@@ -33,13 +33,13 @@ from mpclock.schema import load_corpus
 OUT = ROOT / "data/processed/vote_model.json"
 HALF_LIVES = [7, 14, 30, 60]
 G = V.FEATURE_GROUPS
-# offered in this order; "words" is offered in two forms and the better one competes
-ORDER = [("committee", G["committee"]), ("voting record", G["record"]), ("pace", G["pace"]),
-         ("own words (one weighted signal)", G["words"]),
-         ("own words (split: rationale / policy-focused / other)", G["words_split"]),
-         ("data & energy", G["data"]), ("hedged guidance", G["hedge"]),
-         ("votes with Governor", G["governor"]), ("Fed & ECB", G["global"]),
-         ("sterling", G["fx"]), ("speech tone", G["tone"])]
+# Core structure, chosen when the model was designed (not in response to individual
+# forecasts): kept as a bundle if the bundle beats "repeat your last vote" significantly.
+CORE = [("committee", G["committee"]), ("voting record", G["record"]), ("pace", G["pace"]),
+        ("own words", G["words_split"]), ("data & energy", G["data"])]
+# Add-ons proposed later: each must clear the significance test on its own.
+ADDONS = [("hedged guidance", G["hedge"]), ("votes with Governor", G["governor"]),
+          ("Fed & ECB", G["global"]), ("sterling", G["fx"]), ("speech tone", G["tone"])]
 WORD_FEATS = set(G["words"]) | set(G["words_split"]) | set(G["hedge"]) | set(G["governor"])
 
 
@@ -113,58 +113,63 @@ def main():
     for h in HALF_LIVES + [None]:
         V.HALF_LIFE = h
         panels[h] = V.panel(ctx, "2015-06-01")
-        print(f"panel built, half-life {h}")
     ref = panels[HALF_LIVES[0]]
-    print(f"{len(ref)} member-votes at {len({r['date'] for r in ref})} meetings")
+    n_meet = len({r["date"] for r in ref})
+    print(f"{len(ref)} member-votes at {n_meet} meetings")
+    base_loss = row_loss(ref, loyo(ref, []))
 
-    cur, cur_P, cur_hl = [], loyo(ref, []), {}
-    cur_loss = row_loss(ref, cur_P)
-    steps = [{"group": "last vote only", "kept": True, "log_loss": round(float(cur_loss.mean()), 4)}]
-    words_done = False
-    for name, grp in ORDER:
-        if name.startswith("own words") and words_done:
-            continue
-        if name.startswith("own words"):
-            # offer both forms; the better one is the candidate
-            cands = [(n2, g2) for n2, g2 in ORDER if n2.startswith("own words")]
-            res = []
-            for n2, g2 in cands:
-                P, hl = nested(panels, cur + g2)
-                res.append((row_loss(ref, P).mean(), n2, g2, P, hl))
-            res.sort(key=lambda x: x[0])
-            _, name, grp, P, hl = res[0]
-            words_done = True
-            other = res[1]
-            print(f"  own words: split {'beats' if 'split' in name else 'loses to'} one weighted signal "
-                  f"({res[0][0]:.4f} vs {other[0]:.4f})")
-        else:
-            P, hl = nested(panels, cur + grp)
-        new_loss = row_loss(ref, P)
-        m, lo, hi = bootstrap(ref, new_loss, cur_loss)
-        keep = hi < 0
-        steps.append({"group": name, "features": grp, "kept": keep, "log_loss": round(float(new_loss.mean()), 4),
-                      "change": round(m, 4), "ci95": [round(lo, 4), round(hi, 4)],
-                      "half_life_by_year": hl if WORD_FEATS & set(cur + grp) else None})
-        print(f"  {'KEEP' if keep else 'drop'} {name:52} log loss {new_loss.mean():.4f}  "
-              f"change {m:+.4f}  95% CI [{lo:+.4f}, {hi:+.4f}]")
+    core = [f for _, g in CORE for f in g]
+    Pc, hl = nested(panels, core)
+    core_loss = row_loss(ref, Pc)
+    m, lo, hi = bootstrap(ref, core_loss, base_loss)
+    print(f"core vs last vote: {core_loss.mean():.4f} vs {base_loss.mean():.4f}, change {m:+.4f} [{lo:+.4f}, {hi:+.4f}]")
+    report = {"baseline_log_loss": round(float(base_loss.mean()), 4),
+              "core": {"log_loss": round(float(core_loss.mean()), 4), "change": round(m, 4),
+                       "ci95": [round(lo, 4), round(hi, 4)], "significant": hi < 0,
+                       "half_life_by_year": hl, "groups": []}}
+    if not hi < 0:
+        print("core is not significantly better than the baseline: using the baseline")
+        core, Pc, core_loss = [], loyo(ref, []), base_loss
+    # each core group's contribution, for the record
+    for name, g in CORE:
+        rest = [f for f in core if f not in g]
+        P, _ = nested(panels, rest)
+        mm, l2, h2 = bootstrap(ref, core_loss, row_loss(ref, P))
+        report["core"]["groups"].append({"group": name, "contribution": round(mm, 4),
+                                         "ci95": [round(l2, 4), round(h2, 4)], "significant_alone": h2 < 0})
+        print(f"  core {name:14} contribution {mm:+.4f} [{l2:+.4f}, {h2:+.4f}]")
+    # words: estimated split vs one hand-weighted signal, for the record
+    alt = [f for f in core if f not in G["words_split"]] + G["words"]
+    Pa, _ = nested(panels, alt)
+    mm, l2, h2 = bootstrap(ref, core_loss, row_loss(ref, Pa))
+    report["words_split_vs_combined"] = {"change": round(mm, 4), "ci95": [round(l2, 4), round(h2, 4)]}
+    print(f"  split words vs one weighted signal: {mm:+.4f} [{l2:+.4f}, {h2:+.4f}]")
+
+    cur, cur_loss = list(core), core_loss
+    report["addons"] = []
+    for name, g in ADDONS:
+        P, _ = nested(panels, cur + g)
+        nl = row_loss(ref, P)
+        mm, l2, h2 = bootstrap(ref, nl, cur_loss)
+        keep = h2 < 0
+        report["addons"].append({"group": name, "log_loss": round(float(nl.mean()), 4), "change": round(mm, 4),
+                                 "ci95": [round(l2, 4), round(h2, 4)], "kept": keep})
+        print(f"  add-on {'KEEP' if keep else 'drop'} {name:20} {mm:+.4f} [{l2:+.4f}, {h2:+.4f}]")
         if keep:
-            cur, cur_P, cur_loss, cur_hl = cur + grp, P, new_loss, hl
+            cur, cur_loss = cur + g, nl
 
-    # the live half-life: chosen by leave-one-year-out on all years
-    if WORD_FEATS & set(cur):
-        scores = {h: float(row_loss(panels[h], loyo(panels[h], cur)).mean()) for h in HALF_LIVES}
-        live_hl = min(scores, key=scores.get)
-    else:
-        scores, live_hl = {}, HALF_LIVES[1]
-    flat = float(row_loss(panels[None], loyo(panels[None], cur)).mean()) if WORD_FEATS & set(cur) else None
-    print(f"half-life scores {scores} -> {live_hl} days; all words equal (for reference): {flat}")
+    scores = {h: float(row_loss(panels[h], loyo(panels[h], cur)).mean()) for h in HALF_LIVES}
+    live_hl = min(scores, key=scores.get)
+    flat = float(row_loss(panels[None], loyo(panels[None], cur)).mean())
     out = {"features": cur, "half_life": live_hl, "half_life_scores": scores, "flat_words_log_loss": flat,
-           "steps": steps, "nested_log_loss": round(float(cur_loss.mean()), 4),
+           "nested_log_loss": round(float(cur_loss.mean()), 4), "report": report, "meetings": n_meet,
            "selected": dt.date.today().isoformat(),
-           "method": "forward selection; nested leave-one-year-out; meeting-level paired bootstrap, "
-                     "keep if the 95% interval of the change in log loss is below zero"}
+           "method": "core structure kept as a bundle if significantly better than 'repeat your last vote'; "
+                     "each later add-on kept only if it significantly lowers log loss. Nested leave-one-year-out "
+                     "(the recency half-life chosen on training years only); meeting-level paired bootstrap, "
+                     "2000 draws, 95% interval."}
     OUT.write_text(json.dumps(out, indent=1), encoding="utf-8")
-    print(f"selected: {cur}  half-life {live_hl}  -> {OUT}")
+    print(f"selected {cur}; half-life {live_hl} days {scores}; equal weights {flat:.4f}")
 
 
 if __name__ == "__main__":
