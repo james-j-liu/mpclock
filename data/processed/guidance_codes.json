@@ -839,6 +839,20 @@
 "speaker": "Michael Saunders",
 "type": "testimony"
 },
+"191f402e0a8d48e8": {
+"date": "2026-11-14",
+"ev": 0.99,
+"focus": 0.93,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.99,
+"hike_50": 0.0,
+"hold": 0.01
+},
+"speaker": "Huw Pill",
+"type": "interview"
+},
 "196859111be14748": {
 "date": "2023-11-21",
 "ev": 0.01,

@@ -14,5 +14,40 @@
   ],
   "status": "needs_info",
   "reason": "could not find the interview's date \u2014 give it"
+ },
+ {
+  "submitted": "2026-11-22",
+  "issue": null,
+  "request_id": "web-mws053c9-9gg2r",
+  "urls": [
+   "https://www.ft.com/content/014fae08-ab39-4fa2-b9d3-f0c961a6710f"
+  ],
+  "outlet": "",
+  "date": "2026-11-14",
+  "member": "Huw Pill",
+  "fetch_errors": [
+   "https://www.ft.com/content/014fae08-ab39-4fa2-b9d3-f0c961a6710f: 403 Client Error: Forbidden for url: https://www.ft.com/content/014fae08-ab39-4f"
+  ],
+  "detected": "member Huw Pill detected from the text (22 mentions)",
+  "words": 4202,
+  "text_source": "pasted",
+  "signal": {
+   "date": "2026-11-14",
+   "speaker": "Huw Pill",
+   "type": "interview",
+   "p": {
+    "cut_50": 0.0,
+    "cut_25": 0.0,
+    "hold": 0.01,
+    "hike_25": 0.99,
+    "hike_50": 0.0
+   },
+   "ev": 0.99,
+   "focus": 0.93
+  },
+  "status": "added",
+  "reason": "added to the corpus; it is scored in the next daily run",
+  "corpus_id": "191f402e0a8d48e8",
+  "title": "Interview with ft.com"
  }
 ]
