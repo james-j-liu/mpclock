@@ -137,7 +137,7 @@ class Meeting:
 @dataclass
 class Context:
     meetings: list[Meeting]
-    docs: dict[str, list[tuple[str, float | None, str]]]   # member -> [(date, tone, text)]
+    docs: dict[str, list[tuple]]     # member -> [(date, tone, text, id, type)]
     inputs: dict
     mpr_dates: list[str]
     rate: list[tuple[str, float]]
@@ -169,10 +169,12 @@ def build_context(corpus, macro: dict | None = None) -> Context:
     for s in corpus:
         if s.source_type in OWN_TYPES and s.date >= "2014-01-01":
             tone = (s.mu - 50) / 5 if s.mu is not None else None
-            docs.setdefault(canon(s.speaker), []).append((s.date, tone, s.text or ""))
+            docs.setdefault(canon(s.speaker), []).append((s.date, tone, s.text or "", s.id, s.source_type))
     for v in docs.values():
         v.sort(key=lambda x: x[0])
     inputs = load_cache()
+    from .guidance import load_codes
+    inputs["guidance"] = load_codes()
     mpr_dates = sorted(inputs.get("mpr_dates", {}).values())
     return Context(meetings, docs, inputs, mpr_dates, rate)
 
@@ -288,15 +290,31 @@ def pace_features(ctx: Context, i: int, date: str) -> dict[str, float]:
             "mpr": float(this_mpr), "cycle_dir": int(cdir) if active else 0}
 
 
-def member_window(ctx: Context, member: str, start: str, end: str):
+def member_window(ctx: Context, member: str, start: str, end: str, prev_vote: int = 0):
+    """A member's own words between two meetings: tone, coded guidance, emphasis."""
     docs = [d for d in ctx.docs.get(member, []) if start <= d[0] < end]
     prior = [d for d in ctx.docs.get(member, []) if _shift(start, -365) <= d[0] < start and d[1] is not None]
     tones = [d[1] for d in docs if d[1] is not None]
     tone = (np.mean(tones) - (np.mean([p[1] for p in prior]) if prior else np.mean(tones))) if tones else 0.0
     text = "\n".join(d[2] for d in docs)
-    g, n = guidance_score(text)
-    return {"tone": float(tone), "guidance": float(g) * (min(n, 6) / 6.0) * 3.0,
-            "n_docs": len(docs), "topic_w": topic_weights(text), "doc_dates": [d[0] for d in docs]}
+    # coded guidance: the vote each document signals, weighted by how much it is
+    # about the policy outlook and by recency (the latest word counts double)
+    codes = ctx.inputs.get("guidance", {})
+    coded = [(d, codes[d[3]]) for d in docs if d[3] in codes]
+    gap, has, signal = 0.0, 0.0, None
+    if coded:
+        w = np.array([(0.25 + (c.get("focus") or 0.0)) * (2.0 if i == len(coded) - 1 else 1.0)
+                      for i, (_, c) in enumerate(coded)])
+        ev = np.array([c["ev"] for _, c in coded])
+        signal = float((w * ev).sum() / w.sum())
+        gap, has = signal - prev_vote, 1.0
+    g_regex, _ = guidance_score(text)
+    return {"tone": float(tone), "guidance": float(gap), "has_guidance": has, "signal": signal,
+            "guidance_regex": float(g_regex), "n_docs": len(docs), "topic_w": topic_weights(text),
+            "doc_dates": [d[0] for d in docs],
+            "docs": [{"date": d[0], "type": d[4], "id": d[3],
+                      "signal": codes.get(d[3], {}).get("ev"), "p": codes.get(d[3], {}).get("p")}
+                     for d in docs]}
 
 
 def features_for(ctx: Context, prev: Meeting, date: str, members: list[str]) -> list[dict]:
@@ -309,7 +327,7 @@ def features_for(ctx: Context, prev: Meeting, date: str, members: list[str]) -> 
     rows = []
     for p in members:
         pv = prev.votes.get(p, prev.decision)
-        w = member_window(ctx, p, start, end)
+        w = member_window(ctx, p, start, end, pv)
         if surp:
             tw = w["topic_w"]
             personal = sum(tw[k] * v for k, v in surp.items()) / sum(tw[k] for k in surp)
@@ -323,8 +341,9 @@ def features_for(ctx: Context, prev: Meeting, date: str, members: list[str]) -> 
             "energy": float(np.clip(mk["energy"], -4, 4)), "fx": float(np.clip(mk["fx"], -4, 4)),
             "fed": mk["fed"], "ecb": mk["ecb"],
             "pace": pace["pace"], "moved_last": pace["moved_last"], "mpr_x_pace": pace["mpr_x_pace"],
+            "has_guidance": w["has_guidance"],
             "_mpr": pace["mpr"], "_surprises": surp, "_detail": detail, "_markets": mk,
-            "_doc_dates": w["doc_dates"],
+            "_doc_dates": w["doc_dates"], "_docs": w["docs"], "_signal": w["signal"],
         })
     return rows
 

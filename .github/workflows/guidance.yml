@@ -13,6 +13,7 @@ on:
       - "src/mpclock/forecast/guidance.py"
       - "scripts/code_guidance.py"
       - ".github/workflows/guidance.yml"
+      - "requirements.txt"
 
 permissions:
   contents: write
