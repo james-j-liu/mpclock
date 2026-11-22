@@ -1,0 +1,8122 @@
+{
+"00292ccfd11b7a91": {
+"date": "2024-04-19",
+"ev": -0.18,
+"focus": 0.458,
+"p": {
+"cut_25": 0.16,
+"cut_50": 0.01,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 0.83
+},
+"speaker": "Dave Ramsden",
+"type": "speech"
+},
+"0047bf493e3eb1b2": {
+"date": "2021-05-24",
+"ev": 0.06,
+"focus": 0.655,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.01,
+"hike_25": 0.06,
+"hike_50": 0.01,
+"hold": 0.92
+},
+"speaker": "Andrew Haldane",
+"type": "testimony"
+},
+"00995d3991143525": {
+"date": "2026-11-04",
+"ev": 0.41,
+"focus": 0.81,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.41,
+"hike_50": 0.0,
+"hold": 0.59
+},
+"speaker": "Sarah Breeden",
+"type": "member_view"
+},
+"00bc5870aee822e0": {
+"date": "2019-03-07",
+"ev": 0.0,
+"focus": 0.63,
+"p": {
+"cut_25": 0.01,
+"cut_50": 0.0,
+"hike_25": 0.01,
+"hike_50": 0.0,
+"hold": 0.98
+},
+"speaker": "Silvana Tenreyro",
+"type": "speech"
+},
+"019cde3b7e9637b2": {
+"date": "2026-04-29",
+"ev": 0.62,
+"focus": 0.858,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.6,
+"hike_50": 0.01,
+"hold": 0.39
+},
+"speaker": "Catherine Mann",
+"type": "member_view"
+},
+"0245b1213d0a8a17": {
+"date": "2023-11-21",
+"ev": 1.03,
+"focus": 0.73,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.95,
+"hike_50": 0.04,
+"hold": 0.01
+},
+"speaker": "Catherine Mann",
+"type": "testimony"
+},
+"024c551aa80b606e": {
+"date": "2021-05-27",
+"ev": 0.0,
+"focus": 0.652,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 1.0
+},
+"speaker": "Gertjan Vlieghe",
+"type": "speech"
+},
+"029408f7387b5b25": {
+"date": "2023-05-18",
+"ev": 0.84,
+"focus": 0.463,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.72,
+"hike_50": 0.06,
+"hold": 0.22
+},
+"speaker": "Ben Broadbent",
+"type": "testimony"
+},
+"02a079a4127d5c8b": {
+"date": "2014-06-24",
+"ev": 0.02,
+"focus": 0.865,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.02,
+"hike_50": 0.0,
+"hold": 0.98
+},
+"speaker": "Mark Carney",
+"type": "testimony"
+},
+"031e75c041930951": {
+"date": "2026-05-13",
+"ev": 0.15,
+"focus": 0.347,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.13,
+"hike_50": 0.01,
+"hold": 0.86
+},
+"speaker": "Catherine L. Mann",
+"type": "speech"
+},
+"037ef217a37ae7f7": {
+"date": "2025-11-05",
+"ev": -1.01,
+"focus": 0.767,
+"p": {
+"cut_25": 0.97,
+"cut_50": 0.02,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 0.01
+},
+"speaker": "Swati Dhingra",
+"type": "member_view"
+},
+"03a526762ab5806c": {
+"date": "2018-11-20",
+"ev": 0.1,
+"focus": 0.443,
+"p": {
+"cut_25": 0.15,
+"cut_50": 0.03,
+"hike_25": 0.25,
+"hike_50": 0.03,
+"hold": 0.54
+},
+"speaker": "Andrew Haldane",
+"type": "testimony"
+},
+"0436e501dd25590c": {
+"date": "2026-03-18",
+"ev": -0.08,
+"focus": 0.835,
+"p": {
+"cut_25": 0.08,
+"cut_50": 0.0,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 0.92
+},
+"speaker": "Sarah Breeden",
+"type": "member_view"
+},
+"0459aeff44eca4ee": {
+"date": "2026-06-17",
+"ev": 0.04,
+"focus": 0.745,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.04,
+"hike_50": 0.0,
+"hold": 0.96
+},
+"speaker": "Clare Lombardelli",
+"type": "member_view"
+},
+"049d081d12a753bd": {
+"date": "2014-11-25",
+"ev": -0.06,
+"focus": 0.417,
+"p": {
+"cut_25": 0.02,
+"cut_50": 0.02,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 0.96
+},
+"speaker": "Jon Cunliffe",
+"type": "testimony"
+},
+"0520556612f9b327": {
+"date": "2022-06-24",
+"ev": 0.04,
+"focus": 0.09,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.02,
+"hike_50": 0.01,
+"hold": 0.97
+},
+"speaker": "Huw Pill",
+"type": "speech"
+},
+"05a1afd6e77cb94f": {
+"date": "2021-02-26",
+"ev": 0.32,
+"focus": 0.438,
+"p": {
+"cut_25": 0.01,
+"cut_50": 0.0,
+"hike_25": 0.25,
+"hike_50": 0.04,
+"hold": 0.7
+},
+"speaker": "Andy Haldane",
+"type": "speech"
+},
+"06256125510937cf": {
+"date": "2026-06-02",
+"ev": 0.99,
+"focus": 0.72,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.95,
+"hike_50": 0.02,
+"hold": 0.03
+},
+"speaker": "Megan Greene",
+"type": "speech"
+},
+"0714e78f4e284495": {
+"date": "2018-09-04",
+"ev": 0.45,
+"focus": 0.46,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.43,
+"hike_50": 0.01,
+"hold": 0.56
+},
+"speaker": "Andrew Haldane",
+"type": "testimony"
+},
+"07154b2349b96a48": {
+"date": "2026-02-24",
+"ev": -0.01,
+"focus": 0.66,
+"p": {
+"cut_25": 0.01,
+"cut_50": 0.0,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 0.99
+},
+"speaker": "Megan Greene",
+"type": "testimony"
+},
+"076e77d648361f4f": {
+"date": "2018-02-21",
+"ev": 0.23,
+"focus": 0.24,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.21,
+"hike_50": 0.01,
+"hold": 0.78
+},
+"speaker": "Silvana Tenreyro",
+"type": "testimony"
+},
+"07d3e8fdbf0be9a3": {
+"date": "2025-12-09",
+"ev": -0.85,
+"focus": 0.578,
+"p": {
+"cut_25": 0.85,
+"cut_50": 0.0,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 0.15
+},
+"speaker": "Dave Ramsden",
+"type": "testimony"
+},
+"0834a2ee37ee2865": {
+"date": "2018-09-25",
+"ev": 0.08,
+"focus": 0.307,
+"p": {
+"cut_25": 0.01,
+"cut_50": 0.0,
+"hike_25": 0.07,
+"hike_50": 0.01,
+"hold": 0.91
+},
+"speaker": "Gertjan Vlieghe",
+"type": "speech"
+},
+"088c790263ecc80f": {
+"date": "2025-11-05",
+"ev": 0.03,
+"focus": 0.812,
+"p": {
+"cut_25": 0.01,
+"cut_50": 0.0,
+"hike_25": 0.04,
+"hike_50": 0.0,
+"hold": 0.95
+},
+"speaker": "Catherine Mann",
+"type": "member_view"
+},
+"08f7ee3c469d0b96": {
+"date": "2015-05-21",
+"ev": -0.06,
+"focus": 0.435,
+"p": {
+"cut_25": 0.04,
+"cut_50": 0.01,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 0.95
+},
+"speaker": "Martin Weale",
+"type": "speech"
+},
+"09658b11c5f564f8": {
+"date": "2022-02-23",
+"ev": 1.44,
+"focus": 0.62,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.52,
+"hike_50": 0.46,
+"hold": 0.02
+},
+"speaker": "Andrew Bailey",
+"type": "testimony"
+},
+"0aeb9dd525febde9": {
+"date": "2022-09-07",
+"ev": 0.73,
+"focus": 0.743,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.73,
+"hike_50": 0.0,
+"hold": 0.27
+},
+"speaker": "Silvana Tenreyro",
+"type": "testimony"
+},
+"0c0217249d3268d7": {
+"date": "2021-07-01",
+"ev": 0.0,
+"focus": 0.417,
+"p": {
+"cut_25": 0.01,
+"cut_50": 0.0,
+"hike_25": 0.01,
+"hike_50": 0.0,
+"hold": 0.98
+},
+"speaker": "Andrew Bailey",
+"type": "speech"
+},
+"0c143fc00f36e855": {
+"date": "2024-05-17",
+"ev": 0.0,
+"focus": 0.18,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 1.0
+},
+"speaker": "Catherine L. Mann",
+"type": "speech"
+},
+"0c1c6e095a020997": {
+"date": "2023-08-31",
+"ev": 0.24,
+"focus": 0.522,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.2,
+"hike_50": 0.02,
+"hold": 0.78
+},
+"speaker": "Huw Pill",
+"type": "speech"
+},
+"0c7d4efdff56cc86": {
+"date": "2023-11-20",
+"ev": 0.24,
+"focus": 0.525,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.24,
+"hike_50": 0.0,
+"hold": 0.76
+},
+"speaker": "Andrew Bailey",
+"type": "speech"
+},
+"0cca0f65cd3171f1": {
+"date": "2021-05-18",
+"ev": 0.02,
+"focus": 0.275,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.02,
+"hike_50": 0.0,
+"hold": 0.98
+},
+"speaker": "Dave Ramsden",
+"type": "testimony"
+},
+"0df5076a4f6fba63": {
+"date": "2021-11-26",
+"ev": 0.91,
+"focus": 0.882,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.89,
+"hike_50": 0.01,
+"hold": 0.1
+},
+"speaker": "Huw Pill",
+"type": "speech"
+},
+"0e23155e09c60b94": {
+"date": "2018-11-20",
+"ev": 0.41,
+"focus": 0.545,
+"p": {
+"cut_25": 0.02,
+"cut_50": 0.0,
+"hike_25": 0.37,
+"hike_50": 0.03,
+"hold": 0.58
+},
+"speaker": "Mark Carney",
+"type": "testimony"
+},
+"0e5ce7316a4ab74d": {
+"date": "2023-03-02",
+"ev": 0.94,
+"focus": 0.282,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.68,
+"hike_50": 0.13,
+"hold": 0.19
+},
+"speaker": "Huw Pill",
+"type": "speech"
+},
+"0ee1e9cfe7e9e57e": {
+"date": "2017-01-16",
+"ev": -0.14,
+"focus": 0.507,
+"p": {
+"cut_25": 0.15,
+"cut_50": 0.0,
+"hike_25": 0.01,
+"hike_50": 0.0,
+"hold": 0.84
+},
+"speaker": "Mark Carney",
+"type": "speech"
+},
+"0f1999d7d27f4fcb": {
+"date": "2022-05-09",
+"ev": 1.81,
+"focus": 0.728,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.17,
+"hike_50": 0.82,
+"hold": 0.01
+},
+"speaker": "Michael Saunders",
+"type": "speech"
+},
+"0f3c36a5d6515e35": {
+"date": "2019-07-12",
+"ev": 0.28,
+"focus": 0.605,
+"p": {
+"cut_25": 0.04,
+"cut_50": 0.01,
+"hike_25": 0.3,
+"hike_50": 0.02,
+"hold": 0.63
+},
+"speaker": "Gertjan Vlieghe",
+"type": "speech"
+},
+"0f4a2fc869f92c3d": {
+"date": "2025-10-09",
+"ev": 0.0,
+"focus": 0.53,
+"p": {
+"cut_25": 0.01,
+"cut_50": 0.0,
+"hike_25": 0.01,
+"hike_50": 0.0,
+"hold": 0.98
+},
+"speaker": "Catherine L Mann",
+"type": "speech"
+},
+"0f4d337656da743f": {
+"date": "2014-11-25",
+"ev": 0.9,
+"focus": 0.595,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.88,
+"hike_50": 0.01,
+"hold": 0.11
+},
+"speaker": "Ian McCafferty",
+"type": "testimony"
+},
+"101215935a021aed": {
+"date": "2017-11-16",
+"ev": 0.02,
+"focus": 0.217,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.02,
+"hike_50": 0.0,
+"hold": 0.98
+},
+"speaker": "Mark Carney",
+"type": "speech"
+},
+"10d5b9a20f911327": {
+"date": "2014-09-10",
+"ev": 0.17,
+"focus": 0.665,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.15,
+"hike_50": 0.01,
+"hold": 0.84
+},
+"speaker": "Mark Carney",
+"type": "testimony"
+},
+"11e171e39a6cd402": {
+"date": "2022-03-30",
+"ev": 0.0,
+"focus": 0.095,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 1.0
+},
+"speaker": "Ben Broadbent",
+"type": "speech"
+},
+"122dfc1eea44f02a": {
+"date": "2026-03-18",
+"ev": 0.54,
+"focus": 0.505,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.52,
+"hike_50": 0.01,
+"hold": 0.47
+},
+"speaker": "Clare Lombardelli",
+"type": "member_view"
+},
+"1304d298ef06eefd": {
+"date": "2026-09-16",
+"ev": 0.5,
+"focus": 0.67,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.5,
+"hike_50": 0.0,
+"hold": 0.5
+},
+"speaker": "Dave Ramsden",
+"type": "member_view"
+},
+"13f96aac46012a1b": {
+"date": "2014-06-18",
+"ev": 0.39,
+"focus": 0.595,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.37,
+"hike_50": 0.01,
+"hold": 0.62
+},
+"speaker": "Martin Weale",
+"type": "speech"
+},
+"14d0b8dc15edfb36": {
+"date": "2017-11-27",
+"ev": 0.08,
+"focus": 0.193,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.06,
+"hike_50": 0.01,
+"hold": 0.93
+},
+"speaker": "Andy Haldane",
+"type": "speech"
+},
+"15136aa8aaf6f587": {
+"date": "2025-03-05",
+"ev": -0.7,
+"focus": 0.715,
+"p": {
+"cut_25": 0.68,
+"cut_50": 0.01,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 0.31
+},
+"speaker": "Megan Greene",
+"type": "testimony"
+},
+"1576a2f16ff87146": {
+"date": "2023-03-08",
+"ev": 0.01,
+"focus": 0.613,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.01,
+"hike_50": 0.0,
+"hold": 0.99
+},
+"speaker": "Swati Dhingra",
+"type": "speech"
+},
+"15f689feaceeb461": {
+"date": "2014-09-09",
+"ev": 0.16,
+"focus": 0.72,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.16,
+"hike_50": 0.0,
+"hold": 0.84
+},
+"speaker": "Mark Carney",
+"type": "speech"
+},
+"16492988e95d8192": {
+"date": "2026-01-01",
+"ev": 0.01,
+"focus": 0.087,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.01,
+"hike_50": 0.0,
+"hold": 0.99
+},
+"speaker": "Megan Greene",
+"type": "speech"
+},
+"16a4d6eda0eb6f77": {
+"date": "2020-05-20",
+"ev": -0.03,
+"focus": 0.207,
+"p": {
+"cut_25": 0.01,
+"cut_50": 0.01,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 0.98
+},
+"speaker": "Jon Cunliffe",
+"type": "testimony"
+},
+"1704360617411f1f": {
+"date": "2020-05-20",
+"ev": -0.06,
+"focus": 0.647,
+"p": {
+"cut_25": 0.02,
+"cut_50": 0.02,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 0.96
+},
+"speaker": "Andrew Bailey",
+"type": "testimony"
+},
+"1750272ebdcb5f40": {
+"date": "2018-11-20",
+"ev": 0.71,
+"focus": 0.63,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.69,
+"hike_50": 0.01,
+"hold": 0.3
+},
+"speaker": "Michael Saunders",
+"type": "testimony"
+},
+"175d45a01e404529": {
+"date": "2024-04-23",
+"ev": -0.01,
+"focus": 0.887,
+"p": {
+"cut_25": 0.01,
+"cut_50": 0.0,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 0.99
+},
+"speaker": "Huw Pill",
+"type": "speech"
+},
+"177b2a83ee64ad78": {
+"date": "2023-05-23",
+"ev": 0.58,
+"focus": 0.67,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.56,
+"hike_50": 0.01,
+"hold": 0.43
+},
+"speaker": "Andrew Bailey",
+"type": "testimony"
+},
+"178bb5f9714a5989": {
+"date": "2026-09-16",
+"ev": 0.84,
+"focus": 0.767,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.84,
+"hike_50": 0.0,
+"hold": 0.16
+},
+"speaker": "Clare Lombardelli",
+"type": "member_view"
+},
+"17a8b219e589b07e": {
+"date": "2021-01-11",
+"ev": -0.59,
+"focus": 0.487,
+"p": {
+"cut_25": 0.29,
+"cut_50": 0.15,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 0.56
+},
+"speaker": "Silvana Tenreyro",
+"type": "speech"
+},
+"18d2649de475bfc5": {
+"date": "2025-10-08",
+"ev": 0.05,
+"focus": 0.21,
+"p": {
+"cut_25": 0.01,
+"cut_50": 0.0,
+"hike_25": 0.04,
+"hike_50": 0.01,
+"hold": 0.94
+},
+"speaker": "Huw Pill",
+"type": "speech"
+},
+"18de460d0c01e519": {
+"date": "2017-11-21",
+"ev": 0.62,
+"focus": 0.738,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.6,
+"hike_50": 0.01,
+"hold": 0.39
+},
+"speaker": "Michael Saunders",
+"type": "testimony"
+},
+"196859111be14748": {
+"date": "2023-11-21",
+"ev": 0.01,
+"focus": 0.802,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.01,
+"hike_50": 0.0,
+"hold": 0.99
+},
+"speaker": "Andrew Bailey",
+"type": "testimony"
+},
+"19bc7a255843dcf0": {
+"date": "2025-06-24",
+"ev": -0.75,
+"focus": 0.657,
+"p": {
+"cut_25": 0.73,
+"cut_50": 0.01,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 0.26
+},
+"speaker": "Andrew Bailey",
+"type": "testimony"
+},
+"19bcd730c4381e9f": {
+"date": "2022-10-24",
+"ev": 1.84,
+"focus": 0.477,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.1,
+"hike_50": 0.87,
+"hold": 0.03
+},
+"speaker": "Dave Ramsden",
+"type": "testimony"
+},
+"1b5010f16ffec09c": {
+"date": "2015-09-18",
+"ev": -0.04,
+"focus": 0.515,
+"p": {
+"cut_25": 0.04,
+"cut_50": 0.0,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 0.96
+},
+"speaker": "Andrew Haldane",
+"type": "speech"
+},
+"1be1b9d7d467319f": {
+"date": "2016-04-20",
+"ev": 0.01,
+"focus": 0.88,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.01,
+"hike_50": 0.0,
+"hold": 0.99
+},
+"speaker": "Ian McCafferty",
+"type": "speech"
+},
+"1c05d40389bcadb2": {
+"date": "2018-02-23",
+"ev": 0.45,
+"focus": 0.305,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.43,
+"hike_50": 0.01,
+"hold": 0.56
+},
+"speaker": "Dave Ramsden",
+"type": "speech"
+},
+"1c37f66fff3d1d6d": {
+"date": "2019-10-18",
+"ev": -0.14,
+"focus": 0.247,
+"p": {
+"cut_25": 0.12,
+"cut_50": 0.02,
+"hike_25": 0.02,
+"hike_50": 0.0,
+"hold": 0.84
+},
+"speaker": "Mark Carney",
+"type": "speech"
+},
+"1c9ae4910bd0eb55": {
+"date": "2017-11-21",
+"ev": 0.87,
+"focus": 0.667,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.83,
+"hike_50": 0.02,
+"hold": 0.15
+},
+"speaker": "Gertjan Vlieghe",
+"type": "testimony"
+},
+"1f419860377b3c42": {
+"date": "2026-03-18",
+"ev": 0.23,
+"focus": 0.598,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.21,
+"hike_50": 0.01,
+"hold": 0.78
+},
+"speaker": "Andrew Bailey",
+"type": "member_view"
+},
+"1f4c67652c7992ee": {
+"date": "2023-05-23",
+"ev": 1.12,
+"focus": 0.56,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.5,
+"hike_50": 0.31,
+"hold": 0.19
+},
+"speaker": "Catherine Mann",
+"type": "testimony"
+},
+"2006c6a046e42b50": {
+"date": "2016-05-24",
+"ev": 0.36,
+"focus": 0.662,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.32,
+"hike_50": 0.02,
+"hold": 0.66
+},
+"speaker": "Mark Carney",
+"type": "testimony"
+},
+"20486a43d610e984": {
+"date": "2023-04-13",
+"ev": 0.78,
+"focus": 0.3,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.66,
+"hike_50": 0.06,
+"hold": 0.28
+},
+"speaker": "Huw Pill",
+"type": "speech"
+},
+"20b6d75f76719fb1": {
+"date": "2025-12-17",
+"ev": -1.0,
+"focus": 0.625,
+"p": {
+"cut_25": 0.98,
+"cut_50": 0.01,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 0.01
+},
+"speaker": "Swati Dhingra",
+"type": "member_view"
+},
+"20d8deb68653a2ff": {
+"date": "2016-11-28",
+"ev": 0.0,
+"focus": 0.66,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 1.0
+},
+"speaker": "Gertjan Vlieghe",
+"type": "speech"
+},
+"20df2b3af06055ce": {
+"date": "2023-12-18",
+"ev": 0.0,
+"focus": 0.105,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 1.0
+},
+"speaker": "Ben Broadbent",
+"type": "speech"
+},
+"213691dfe89c88c3": {
+"date": "2014-11-13",
+"ev": 0.01,
+"focus": 0.64,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.01,
+"hike_50": 0.0,
+"hold": 0.99
+},
+"speaker": "David Miles",
+"type": "speech"
+},
+"215aed8d87a38ece": {
+"date": "2017-04-21",
+"ev": 0.09,
+"focus": 0.46,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.09,
+"hike_50": 0.0,
+"hold": 0.91
+},
+"speaker": "Michael Saunders",
+"type": "speech"
+},
+"22056068483cae30": {
+"date": "2020-11-23",
+"ev": -0.01,
+"focus": 0.482,
+"p": {
+"cut_25": 0.01,
+"cut_50": 0.0,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 0.99
+},
+"speaker": "Michael Saunders",
+"type": "testimony"
+},
+"2217ec27ad302af8": {
+"date": "2022-05-16",
+"ev": 1.34,
+"focus": 0.708,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.64,
+"hike_50": 0.35,
+"hold": 0.01
+},
+"speaker": "Michael Saunders",
+"type": "testimony"
+},
+"221fda55cba30107": {
+"date": "2016-12-20",
+"ev": 0.02,
+"focus": 0.637,
+"p": {
+"cut_25": 0.02,
+"cut_50": 0.0,
+"hike_25": 0.04,
+"hike_50": 0.0,
+"hold": 0.94
+},
+"speaker": "Ian McCafferty",
+"type": "speech"
+},
+"223243ed552cc645": {
+"date": "2018-05-24",
+"ev": 0.49,
+"focus": 0.765,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.47,
+"hike_50": 0.01,
+"hold": 0.52
+},
+"speaker": "Mark Carney",
+"type": "speech"
+},
+"234cf4a79b70179e": {
+"date": "2021-02-05",
+"ev": -0.09,
+"focus": 0.328,
+"p": {
+"cut_25": 0.05,
+"cut_50": 0.02,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 0.93
+},
+"speaker": "Andrew Bailey",
+"type": "speech"
+},
+"2355c2845eac0290": {
+"date": "2021-09-08",
+"ev": 0.04,
+"focus": 0.595,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.04,
+"hike_50": 0.0,
+"hold": 0.96
+},
+"speaker": "Silvana Tenreyro",
+"type": "testimony"
+},
+"235ba52d89868a33": {
+"date": "2024-09-25",
+"ev": -0.06,
+"focus": 0.65,
+"p": {
+"cut_25": 0.06,
+"cut_50": 0.0,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 0.94
+},
+"speaker": "Megan Greene",
+"type": "speech"
+},
+"2397f7c98aaf4f87": {
+"date": "2016-11-23",
+"ev": 0.27,
+"focus": 0.535,
+"p": {
+"cut_25": 0.02,
+"cut_50": 0.0,
+"hike_25": 0.27,
+"hike_50": 0.01,
+"hold": 0.7
+},
+"speaker": "Kristin Forbes",
+"type": "speech"
+},
+"2398751ee2fc7ff9": {
+"date": "2026-07-29",
+"ev": 0.71,
+"focus": 0.79,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.69,
+"hike_50": 0.01,
+"hold": 0.3
+},
+"speaker": "Catherine Mann",
+"type": "member_view"
+},
+"23a6e8e5b58449bf": {
+"date": "2021-03-05",
+"ev": -0.03,
+"focus": 0.485,
+"p": {
+"cut_25": 0.01,
+"cut_50": 0.01,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 0.98
+},
+"speaker": "Jonathan Haskel",
+"type": "speech"
+},
+"23ac557150ff4017": {
+"date": "2014-06-24",
+"ev": 0.01,
+"focus": 0.61,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.01,
+"hike_50": 0.0,
+"hold": 0.99
+},
+"speaker": "Charles Bean",
+"type": "testimony"
+},
+"2456b29387516d6e": {
+"date": "2026-06-17",
+"ev": -0.04,
+"focus": 0.723,
+"p": {
+"cut_25": 0.04,
+"cut_50": 0.0,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 0.96
+},
+"speaker": "Dave Ramsden",
+"type": "member_view"
+},
+"24f269a0ebdf4343": {
+"date": "2016-10-05",
+"ev": -0.23,
+"focus": 0.738,
+"p": {
+"cut_25": 0.21,
+"cut_50": 0.01,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 0.78
+},
+"speaker": "Michael Saunders",
+"type": "speech"
+},
+"251a34204bf20fc2": {
+"date": "2026-04-29",
+"ev": -0.3,
+"focus": 0.912,
+"p": {
+"cut_25": 0.3,
+"cut_50": 0.02,
+"hike_25": 0.04,
+"hike_50": 0.0,
+"hold": 0.64
+},
+"speaker": "Swati Dhingra",
+"type": "member_view"
+},
+"25c2011c70b490c5": {
+"date": "2016-12-05",
+"ev": 0.01,
+"focus": 0.542,
+"p": {
+"cut_25": 0.01,
+"cut_50": 0.0,
+"hike_25": 0.02,
+"hike_50": 0.0,
+"hold": 0.97
+},
+"speaker": "Mark Carney",
+"type": "speech"
+},
+"2692bee087d6a05b": {
+"date": "2026-02-04",
+"ev": -0.98,
+"focus": 0.815,
+"p": {
+"cut_25": 0.98,
+"cut_50": 0.0,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 0.02
+},
+"speaker": "Swati Dhingra",
+"type": "member_view"
+},
+"26b6f6f7e7a51f21": {
+"date": "2025-09-03",
+"ev": -1.76,
+"focus": 0.863,
+"p": {
+"cut_25": 0.22,
+"cut_50": 0.77,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 0.01
+},
+"speaker": "Alan Taylor",
+"type": "testimony"
+},
+"27452b2bd8645527": {
+"date": "2025-06-24",
+"ev": 0.0,
+"focus": 0.087,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 1.0
+},
+"speaker": "Andrew Bailey",
+"type": "speech"
+},
+"27546b3332970de8": {
+"date": "2026-09-16",
+"ev": 0.67,
+"focus": 0.73,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.59,
+"hike_50": 0.04,
+"hold": 0.37
+},
+"speaker": "Catherine Mann",
+"type": "member_view"
+},
+"2789f483a217f066": {
+"date": "2023-02-10",
+"ev": 0.34,
+"focus": 0.095,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.26,
+"hike_50": 0.04,
+"hold": 0.7
+},
+"speaker": "Huw Pill",
+"type": "speech"
+},
+"279772c56cda3e3c": {
+"date": "2016-05-19",
+"ev": -0.54,
+"focus": 0.472,
+"p": {
+"cut_25": 0.42,
+"cut_50": 0.06,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 0.52
+},
+"speaker": "Gertjan Vlieghe",
+"type": "speech"
+},
+"27b28c2f4eb25cee": {
+"date": "2022-05-20",
+"ev": 1.01,
+"focus": 0.755,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.97,
+"hike_50": 0.02,
+"hold": 0.01
+},
+"speaker": "Huw Pill",
+"type": "speech"
+},
+"27be38a47584eeb1": {
+"date": "2024-09-01",
+"ev": 0.49,
+"focus": 0.765,
+"p": {
+"cut_25": 0.01,
+"cut_50": 0.0,
+"hike_25": 0.46,
+"hike_50": 0.02,
+"hold": 0.51
+},
+"speaker": "Sarah Breeden",
+"type": "speech"
+},
+"281f2db99420e341": {
+"date": "2019-07-23",
+"ev": 0.04,
+"focus": 0.672,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.04,
+"hike_50": 0.0,
+"hold": 0.96
+},
+"speaker": "Andy Haldane",
+"type": "speech"
+},
+"28b1d5f016eeba49": {
+"date": "2023-05-23",
+"ev": 1.2,
+"focus": 0.468,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.74,
+"hike_50": 0.23,
+"hold": 0.03
+},
+"speaker": "Huw Pill",
+"type": "testimony"
+},
+"29939c26be9a6e11": {
+"date": "2018-09-04",
+"ev": 0.79,
+"focus": 0.635,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.79,
+"hike_50": 0.0,
+"hold": 0.21
+},
+"speaker": "Mark Carney",
+"type": "testimony"
+},
+"2ac424bd38b5fb37": {
+"date": "2025-02-11",
+"ev": -0.33,
+"focus": 0.86,
+"p": {
+"cut_25": 0.07,
+"cut_50": 0.15,
+"hike_25": 0.02,
+"hike_50": 0.01,
+"hold": 0.75
+},
+"speaker": "Catherine L. Mann",
+"type": "speech"
+},
+"2b10c25d13a5848c": {
+"date": "2016-11-16",
+"ev": 0.02,
+"focus": 0.43,
+"p": {
+"cut_25": 0.09,
+"cut_50": 0.02,
+"hike_25": 0.11,
+"hike_50": 0.02,
+"hold": 0.76
+},
+"speaker": "Jon Cunliffe",
+"type": "speech"
+},
+"2b1e9fc36aee3291": {
+"date": "2025-08-01",
+"ev": -0.04,
+"focus": 0.743,
+"p": {
+"cut_25": 0.03,
+"cut_50": 0.01,
+"hike_25": 0.01,
+"hike_50": 0.0,
+"hold": 0.95
+},
+"speaker": "Catherine L. Mann",
+"type": "speech"
+},
+"2b3882e253a6fb86": {
+"date": "2022-07-19",
+"ev": 1.5,
+"focus": 0.755,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.48,
+"hike_50": 0.51,
+"hold": 0.01
+},
+"speaker": "Andrew Bailey",
+"type": "speech"
+},
+"2b91bf258f84fe07": {
+"date": "2023-02-09",
+"ev": 0.84,
+"focus": 0.682,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.72,
+"hike_50": 0.06,
+"hold": 0.22
+},
+"speaker": "Andrew Bailey",
+"type": "testimony"
+},
+"2c6afb1cd0bb290a": {
+"date": "2026-02-04",
+"ev": 0.02,
+"focus": 0.93,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.02,
+"hike_50": 0.0,
+"hold": 0.98
+},
+"speaker": "Megan Greene",
+"type": "member_view"
+},
+"2c785c41d5f56241": {
+"date": "2026-03-18",
+"ev": -0.41,
+"focus": 0.922,
+"p": {
+"cut_25": 0.35,
+"cut_50": 0.03,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 0.62
+},
+"speaker": "Swati Dhingra",
+"type": "member_view"
+},
+"2c7b50430387f6c8": {
+"date": "2026-04-29",
+"ev": -0.01,
+"focus": 0.93,
+"p": {
+"cut_25": 0.01,
+"cut_50": 0.0,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 0.99
+},
+"speaker": "Alan Taylor",
+"type": "member_view"
+},
+"2ca6875916338478": {
+"date": "2018-08-24",
+"ev": 0.0,
+"focus": 0.188,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 1.0
+},
+"speaker": "Andy Haldane",
+"type": "speech"
+},
+"2ca9fcc07c2e0251": {
+"date": "2015-12-14",
+"ev": 0.0,
+"focus": 0.935,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 1.0
+},
+"speaker": "Minouche Shafik",
+"type": "speech"
+},
+"2d1c7e3968bfef9b": {
+"date": "2022-09-07",
+"ev": 1.09,
+"focus": 0.422,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.35,
+"hike_50": 0.37,
+"hold": 0.28
+},
+"speaker": "Huw Pill",
+"type": "testimony"
+},
+"2d5afe9a9ef65f8b": {
+"date": "2025-09-03",
+"ev": -0.79,
+"focus": 0.64,
+"p": {
+"cut_25": 0.79,
+"cut_50": 0.0,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 0.21
+},
+"speaker": "Andrew Bailey",
+"type": "testimony"
+},
+"2d6f2e4bd379a350": {
+"date": "2014-07-03",
+"ev": 0.01,
+"focus": 0.2,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.01,
+"hike_50": 0.0,
+"hold": 0.99
+},
+"speaker": "Jon Cunliffe",
+"type": "speech"
+},
+"2f31d55aa8dee9b4": {
+"date": "2023-02-16",
+"ev": 0.74,
+"focus": 0.338,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.44,
+"hike_50": 0.15,
+"hold": 0.41
+},
+"speaker": "Huw Pill",
+"type": "speech"
+},
+"2f7410c666a7f660": {
+"date": "2020-09-04",
+"ev": -0.91,
+"focus": 0.535,
+"p": {
+"cut_25": 0.71,
+"cut_50": 0.1,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 0.19
+},
+"speaker": "Michael Saunders",
+"type": "speech"
+},
+"2fba1b7cfa63e0d1": {
+"date": "2021-05-24",
+"ev": 0.13,
+"focus": 0.362,
+"p": {
+"cut_25": 0.01,
+"cut_50": 0.0,
+"hike_25": 0.1,
+"hike_50": 0.02,
+"hold": 0.87
+},
+"speaker": "Jon Cunliffe",
+"type": "testimony"
+},
+"2fe2bb0d63b1189d": {
+"date": "2021-09-08",
+"ev": 0.04,
+"focus": 0.627,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.04,
+"hike_50": 0.0,
+"hold": 0.96
+},
+"speaker": "Dave Ramsden",
+"type": "testimony"
+},
+"2fe93c2489423f72": {
+"date": "2023-07-01",
+"ev": 0.53,
+"focus": 0.215,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.29,
+"hike_50": 0.12,
+"hold": 0.59
+},
+"speaker": "Dave Ramsden",
+"type": "speech"
+},
+"3010edb81b4f8a4b": {
+"date": "2018-03-23",
+"ev": 0.94,
+"focus": 0.575,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.94,
+"hike_50": 0.0,
+"hold": 0.06
+},
+"speaker": "Gertjan Vlieghe",
+"type": "speech"
+},
+"304659dc86ecd98f": {
+"date": "2026-02-24",
+"ev": -0.39,
+"focus": 0.685,
+"p": {
+"cut_25": 0.37,
+"cut_50": 0.01,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 0.62
+},
+"speaker": "Andrew Bailey",
+"type": "testimony"
+},
+"3095b826330da116": {
+"date": "2024-02-20",
+"ev": -1.03,
+"focus": 0.925,
+"p": {
+"cut_25": 0.95,
+"cut_50": 0.04,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 0.01
+},
+"speaker": "Swati Dhingra",
+"type": "testimony"
+},
+"31792dd7d1997680": {
+"date": "2019-06-26",
+"ev": 0.53,
+"focus": 0.598,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.53,
+"hike_50": 0.0,
+"hold": 0.47
+},
+"speaker": "Silvana Tenreyro",
+"type": "testimony"
+},
+"31af53a90450d490": {
+"date": "2023-07-19",
+"ev": 0.51,
+"focus": 0.445,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.19,
+"hike_50": 0.16,
+"hold": 0.65
+},
+"speaker": "Dave Ramsden",
+"type": "speech"
+},
+"31f13836e42cf557": {
+"date": "2026-02-08",
+"ev": 0.0,
+"focus": 0.102,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 1.0
+},
+"speaker": "Andrew Bailey",
+"type": "speech"
+},
+"33339c3b1641e193": {
+"date": "2018-06-26",
+"ev": 0.87,
+"focus": 0.618,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.87,
+"hike_50": 0.0,
+"hold": 0.13
+},
+"speaker": "Ian McCafferty",
+"type": "speech"
+},
+"33df33bca8821259": {
+"date": "2022-01-21",
+"ev": 0.94,
+"focus": 0.583,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.86,
+"hike_50": 0.04,
+"hold": 0.1
+},
+"speaker": "Catherine L Mann",
+"type": "speech"
+},
+"33e0d9c430cb8e07": {
+"date": "2021-03-26",
+"ev": -0.04,
+"focus": 0.532,
+"p": {
+"cut_25": 0.02,
+"cut_50": 0.01,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 0.97
+},
+"speaker": "Michael Saunders",
+"type": "speech"
+},
+"344b318a13a220c1": {
+"date": "2017-06-28",
+"ev": 0.03,
+"focus": 0.6,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.03,
+"hike_50": 0.0,
+"hold": 0.97
+},
+"speaker": "Mark Carney",
+"type": "speech"
+},
+"34bdaef6f6468e76": {
+"date": "2022-11-29",
+"ev": 1.38,
+"focus": 0.623,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.6,
+"hike_50": 0.39,
+"hold": 0.01
+},
+"speaker": "Andrew Bailey",
+"type": "testimony"
+},
+"34c7182b424747c1": {
+"date": "2024-10-01",
+"ev": -0.01,
+"focus": 0.868,
+"p": {
+"cut_25": 0.01,
+"cut_50": 0.0,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 0.99
+},
+"speaker": "Huw Pill",
+"type": "speech"
+},
+"3587c202e038d430": {
+"date": "2023-05-18",
+"ev": 0.86,
+"focus": 0.328,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.6,
+"hike_50": 0.13,
+"hold": 0.27
+},
+"speaker": "Andrew Bailey",
+"type": "testimony"
+},
+"35b02913b5b5b6b4": {
+"date": "2016-10-05",
+"ev": -0.06,
+"focus": 0.282,
+"p": {
+"cut_25": 0.06,
+"cut_50": 0.0,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 0.94
+},
+"speaker": "Ben Broadbent",
+"type": "speech"
+},
+"36af4ada143d8cbe": {
+"date": "2016-09-22",
+"ev": -0.05,
+"focus": 0.485,
+"p": {
+"cut_25": 0.05,
+"cut_50": 0.0,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 0.95
+},
+"speaker": "Kristin Forbes",
+"type": "speech"
+},
+"36d465f11ecd9af8": {
+"date": "2025-01-15",
+"ev": 0.0,
+"focus": 0.03,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 1.0
+},
+"speaker": "Alan Taylor",
+"type": "speech"
+},
+"371c5f42ce34ff9d": {
+"date": "2026-11-04",
+"ev": 0.15,
+"focus": 0.925,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.15,
+"hike_50": 0.0,
+"hold": 0.85
+},
+"speaker": "Alan Taylor",
+"type": "member_view"
+},
+"375fb7a9f874378e": {
+"date": "2016-05-24",
+"ev": -0.17,
+"focus": 0.672,
+"p": {
+"cut_25": 0.17,
+"cut_50": 0.05,
+"hike_25": 0.08,
+"hike_50": 0.01,
+"hold": 0.69
+},
+"speaker": "Ben Broadbent",
+"type": "testimony"
+},
+"381fc84ce6bf333f": {
+"date": "2026-09-08",
+"ev": 0.01,
+"focus": 0.532,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.01,
+"hike_50": 0.0,
+"hold": 0.99
+},
+"speaker": "Alan Taylor",
+"type": "testimony"
+},
+"38cafbdc2b4639bc": {
+"date": "2025-02-01",
+"ev": -0.03,
+"focus": 0.74,
+"p": {
+"cut_25": 0.02,
+"cut_50": 0.01,
+"hike_25": 0.01,
+"hike_50": 0.0,
+"hold": 0.96
+},
+"speaker": "Megan Greene",
+"type": "speech"
+},
+"396f100fb0693fde": {
+"date": "2023-11-21",
+"ev": 0.22,
+"focus": 0.515,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.2,
+"hike_50": 0.01,
+"hold": 0.79
+},
+"speaker": "Jonathan Haskel",
+"type": "testimony"
+},
+"39bbc237f1957d21": {
+"date": "2023-02-09",
+"ev": -0.85,
+"focus": 0.76,
+"p": {
+"cut_25": 0.71,
+"cut_50": 0.07,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 0.22
+},
+"speaker": "Silvana Tenreyro",
+"type": "testimony"
+},
+"39cdd69426272d8c": {
+"date": "2026-11-18",
+"ev": 0.48,
+"focus": 0.482,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.46,
+"hike_50": 0.01,
+"hold": 0.53
+},
+"speaker": "Andrew Bailey",
+"type": "speech"
+},
+"3a0b80b94afb0274": {
+"date": "2026-09-16",
+"ev": 0.37,
+"focus": 0.725,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.37,
+"hike_50": 0.0,
+"hold": 0.63
+},
+"speaker": "Sarah Breeden",
+"type": "member_view"
+},
+"3aacd092ce5e9edf": {
+"date": "2026-10-01",
+"ev": 1.0,
+"focus": 0.75,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 1.0,
+"hike_50": 0.0,
+"hold": 0.0
+},
+"speaker": "Catherine L. Mann",
+"type": "speech"
+},
+"3b694254682afadf": {
+"date": "2016-01-26",
+"ev": 0.01,
+"focus": 0.585,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.01,
+"hike_50": 0.0,
+"hold": 0.99
+},
+"speaker": "Kristin Forbes",
+"type": "speech"
+},
+"3b7fb4442a2db7d9": {
+"date": "2022-11-16",
+"ev": 0.98,
+"focus": 0.56,
+"p": {
+"cut_25": 0.01,
+"cut_50": 0.0,
+"hike_25": 0.61,
+"hike_50": 0.19,
+"hold": 0.19
+},
+"speaker": "Swati Dhingra",
+"type": "testimony"
+},
+"3b85a0a881cd0dbb": {
+"date": "2020-11-23",
+"ev": 0.0,
+"focus": 0.445,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 1.0
+},
+"speaker": "Andrew Bailey",
+"type": "testimony"
+},
+"3b921b47449b6459": {
+"date": "2018-02-21",
+"ev": 0.07,
+"focus": 0.757,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.07,
+"hike_50": 0.0,
+"hold": 0.93
+},
+"speaker": "Mark Carney",
+"type": "testimony"
+},
+"3bbd909460bf9c38": {
+"date": "2025-11-05",
+"ev": -0.99,
+"focus": 0.858,
+"p": {
+"cut_25": 0.99,
+"cut_50": 0.0,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 0.01
+},
+"speaker": "Alan Taylor",
+"type": "member_view"
+},
+"3c276a4318c7521c": {
+"date": "2018-10-10",
+"ev": 0.64,
+"focus": 0.517,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.64,
+"hike_50": 0.0,
+"hold": 0.36
+},
+"speaker": "Andy Haldane",
+"type": "speech"
+},
+"3caa733043ec3877": {
+"date": "2025-11-05",
+"ev": -0.93,
+"focus": 0.828,
+"p": {
+"cut_25": 0.93,
+"cut_50": 0.0,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 0.07
+},
+"speaker": "Sarah Breeden",
+"type": "member_view"
+},
+"3ce59714e4175eff": {
+"date": "2020-05-20",
+"ev": -0.09,
+"focus": 0.26,
+"p": {
+"cut_25": 0.03,
+"cut_50": 0.03,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 0.94
+},
+"speaker": "Jonathan Haskel",
+"type": "testimony"
+},
+"3d88069c43154504": {
+"date": "2014-10-15",
+"ev": 0.98,
+"focus": 0.595,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.98,
+"hike_50": 0.0,
+"hold": 0.02
+},
+"speaker": "Martin Weale",
+"type": "speech"
+},
+"3df27079f40dc70d": {
+"date": "2015-07-16",
+"ev": 0.11,
+"focus": 0.738,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.07,
+"hike_50": 0.02,
+"hold": 0.91
+},
+"speaker": "Mark Carney",
+"type": "speech"
+},
+"3f605cf9c00866cb": {
+"date": "2020-11-23",
+"ev": 0.02,
+"focus": 0.333,
+"p": {
+"cut_25": 0.01,
+"cut_50": 0.0,
+"hike_25": 0.01,
+"hike_50": 0.01,
+"hold": 0.97
+},
+"speaker": "Andrew Haldane",
+"type": "testimony"
+},
+"3fe5571b8ffc8396": {
+"date": "2026-09-16",
+"ev": 0.01,
+"focus": 0.9,
+"p": {
+"cut_25": 0.01,
+"cut_50": 0.0,
+"hike_25": 0.02,
+"hike_50": 0.0,
+"hold": 0.97
+},
+"speaker": "Swati Dhingra",
+"type": "member_view"
+},
+"40153c398f25d5f2": {
+"date": "2017-11-14",
+"ev": 0.03,
+"focus": 0.562,
+"p": {
+"cut_25": 0.01,
+"cut_50": 0.0,
+"hike_25": 0.04,
+"hike_50": 0.0,
+"hold": 0.95
+},
+"speaker": "Jon Cunliffe",
+"type": "speech"
+},
+"409f81be23bf59a9": {
+"date": "2016-02-23",
+"ev": 0.36,
+"focus": 0.64,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.32,
+"hike_50": 0.02,
+"hold": 0.66
+},
+"speaker": "Mark Carney",
+"type": "testimony"
+},
+"41e638bdcecc847b": {
+"date": "2022-02-23",
+"ev": 1.12,
+"focus": 0.73,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.8,
+"hike_50": 0.16,
+"hold": 0.04
+},
+"speaker": "Silvana Tenreyro",
+"type": "testimony"
+},
+"42247fe92fe83c5e": {
+"date": "2022-05-16",
+"ev": 1.34,
+"focus": 0.57,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.58,
+"hike_50": 0.38,
+"hold": 0.04
+},
+"speaker": "Andrew Bailey",
+"type": "testimony"
+},
+"4256fc367e669126": {
+"date": "2016-07-18",
+"ev": -0.06,
+"focus": 0.748,
+"p": {
+"cut_25": 0.06,
+"cut_50": 0.0,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 0.94
+},
+"speaker": "Martin Weale",
+"type": "speech"
+},
+"42596ba536d77343": {
+"date": "2023-01-09",
+"ev": 1.17,
+"focus": 0.62,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.79,
+"hike_50": 0.19,
+"hold": 0.02
+},
+"speaker": "Huw Pill",
+"type": "speech"
+},
+"436128d43139fed6": {
+"date": "2017-10-05",
+"ev": 0.89,
+"focus": 0.507,
+"p": {
+"cut_25": 0.01,
+"cut_50": 0.0,
+"hike_25": 0.9,
+"hike_50": 0.0,
+"hold": 0.09
+},
+"speaker": "Ian McCafferty",
+"type": "speech"
+},
+"43e7a50ad7d009be": {
+"date": "2019-09-04",
+"ev": -0.18,
+"focus": 0.365,
+"p": {
+"cut_25": 0.22,
+"cut_50": 0.02,
+"hike_25": 0.06,
+"hike_50": 0.01,
+"hold": 0.69
+},
+"speaker": "Andrew Haldane",
+"type": "testimony"
+},
+"44961ceab4b47ed0": {
+"date": "2016-11-15",
+"ev": -0.02,
+"focus": 0.522,
+"p": {
+"cut_25": 0.03,
+"cut_50": 0.0,
+"hike_25": 0.01,
+"hike_50": 0.0,
+"hold": 0.96
+},
+"speaker": "Ian McCafferty",
+"type": "testimony"
+},
+"44e697f7a6e0cf85": {
+"date": "2024-11-01",
+"ev": -0.05,
+"focus": 0.743,
+"p": {
+"cut_25": 0.03,
+"cut_50": 0.01,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 0.96
+},
+"speaker": "Catherine L. Mann",
+"type": "speech"
+},
+"456f2bad1a389d5d": {
+"date": "2021-02-22",
+"ev": -0.21,
+"focus": 0.76,
+"p": {
+"cut_25": 0.13,
+"cut_50": 0.04,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 0.83
+},
+"speaker": "Gertjan Vlieghe",
+"type": "speech"
+},
+"45fcaa8a575e60c1": {
+"date": "2024-11-14",
+"ev": 0.0,
+"focus": 0.168,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 1.0
+},
+"speaker": "Andrew Bailey",
+"type": "speech"
+},
+"482acf639933ad78": {
+"date": "2024-11-25",
+"ev": 0.01,
+"focus": 0.27,
+"p": {
+"cut_25": 0.06,
+"cut_50": 0.0,
+"hike_25": 0.07,
+"hike_50": 0.0,
+"hold": 0.87
+},
+"speaker": "Swati Dhingra",
+"type": "speech"
+},
+"486856c35667ee3c": {
+"date": "2025-12-09",
+"ev": 0.01,
+"focus": 0.728,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.01,
+"hike_50": 0.0,
+"hold": 0.99
+},
+"speaker": "Catherine Mann",
+"type": "testimony"
+},
+"489ef83276f27ce2": {
+"date": "2023-11-01",
+"ev": 1.11,
+"focus": 0.705,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.85,
+"hike_50": 0.13,
+"hold": 0.02
+},
+"speaker": "Jonathan Haskel",
+"type": "speech"
+},
+"48f2db5af26ace02": {
+"date": "2025-06-03",
+"ev": -1.74,
+"focus": 0.555,
+"p": {
+"cut_25": 0.22,
+"cut_50": 0.76,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 0.02
+},
+"speaker": "Swati Dhingra",
+"type": "testimony"
+},
+"493df09fe49a45c0": {
+"date": "2026-06-24",
+"ev": 0.0,
+"focus": 0.275,
+"p": {
+"cut_25": 0.02,
+"cut_50": 0.0,
+"hike_25": 0.02,
+"hike_50": 0.0,
+"hold": 0.96
+},
+"speaker": "Swati Dhingra",
+"type": "speech"
+},
+"497a97f72a5c42c2": {
+"date": "2023-02-09",
+"ev": 1.08,
+"focus": 0.652,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.9,
+"hike_50": 0.09,
+"hold": 0.01
+},
+"speaker": "Jonathan Haskel",
+"type": "testimony"
+},
+"499c9ef63b21e3cb": {
+"date": "2021-11-15",
+"ev": 0.31,
+"focus": 0.81,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.31,
+"hike_50": 0.0,
+"hold": 0.69
+},
+"speaker": "Andrew Bailey",
+"type": "testimony"
+},
+"49e09aca5fbde6f9": {
+"date": "2018-02-21",
+"ev": 0.59,
+"focus": 0.723,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.59,
+"hike_50": 0.0,
+"hold": 0.41
+},
+"speaker": "Andrew Haldane",
+"type": "testimony"
+},
+"4ad64fab1f044d7a": {
+"date": "2025-12-17",
+"ev": -0.91,
+"focus": 0.812,
+"p": {
+"cut_25": 0.91,
+"cut_50": 0.0,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 0.09
+},
+"speaker": "Dave Ramsden",
+"type": "member_view"
+},
+"4b50e9d50a282069": {
+"date": "2017-08-31",
+"ev": 0.95,
+"focus": 0.795,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.95,
+"hike_50": 0.0,
+"hold": 0.05
+},
+"speaker": "Michael Saunders",
+"type": "speech"
+},
+"4c049b9c8eed4d35": {
+"date": "2015-03-19",
+"ev": -0.15,
+"focus": 0.72,
+"p": {
+"cut_25": 0.11,
+"cut_50": 0.02,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 0.87
+},
+"speaker": "Andrew Haldane",
+"type": "speech"
+},
+"4e61f75480a086a7": {
+"date": "2017-02-08",
+"ev": 0.02,
+"focus": 0.228,
+"p": {
+"cut_25": 0.01,
+"cut_50": 0.0,
+"hike_25": 0.03,
+"hike_50": 0.0,
+"hold": 0.96
+},
+"speaker": "Sir Jon Cunliffe",
+"type": "speech"
+},
+"4e76ce2ddd86f325": {
+"date": "2023-06-28",
+"ev": 0.19,
+"focus": 0.145,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.17,
+"hike_50": 0.01,
+"hold": 0.82
+},
+"speaker": "Huw Pill",
+"type": "speech"
+},
+"4e7962dbf0520f64": {
+"date": "2019-03-06",
+"ev": 0.02,
+"focus": 0.477,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.02,
+"hike_50": 0.0,
+"hold": 0.98
+},
+"speaker": "Michael Saunders",
+"type": "speech"
+},
+"4e9a578ad57da321": {
+"date": "2025-12-17",
+"ev": -0.98,
+"focus": 0.777,
+"p": {
+"cut_25": 0.96,
+"cut_50": 0.01,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 0.03
+},
+"speaker": "Alan Taylor",
+"type": "member_view"
+},
+"4f25718c3895cd57": {
+"date": "2020-09-30",
+"ev": 0.0,
+"focus": 0.47,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 1.0
+},
+"speaker": "Andy Haldane",
+"type": "speech"
+},
+"4f52d877f9d651d4": {
+"date": "2018-07-23",
+"ev": 0.07,
+"focus": 0.46,
+"p": {
+"cut_25": 0.01,
+"cut_50": 0.0,
+"hike_25": 0.06,
+"hike_50": 0.01,
+"hold": 0.92
+},
+"speaker": "Ben Broadbent",
+"type": "speech"
+},
+"4f5f2a2e7b20c026": {
+"date": "2026-04-29",
+"ev": 0.0,
+"focus": 0.835,
+"p": {
+"cut_25": 0.01,
+"cut_50": 0.0,
+"hike_25": 0.01,
+"hike_50": 0.0,
+"hold": 0.98
+},
+"speaker": "Andrew Bailey",
+"type": "member_view"
+},
+"4fb4fe725a8ed165": {
+"date": "2026-07-29",
+"ev": 0.03,
+"focus": 0.51,
+"p": {
+"cut_25": 0.01,
+"cut_50": 0.0,
+"hike_25": 0.04,
+"hike_50": 0.0,
+"hold": 0.95
+},
+"speaker": "Sarah Breeden",
+"type": "member_view"
+},
+"50862b7534e7716f": {
+"date": "2020-05-20",
+"ev": -0.03,
+"focus": 0.357,
+"p": {
+"cut_25": 0.01,
+"cut_50": 0.01,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 0.98
+},
+"speaker": "Ben Broadbent",
+"type": "testimony"
+},
+"5120953f05334691": {
+"date": "2019-05-30",
+"ev": 0.7,
+"focus": 0.542,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.68,
+"hike_50": 0.01,
+"hold": 0.31
+},
+"speaker": "Dave Ramsden",
+"type": "speech"
+},
+"518ffd1b72d5d07a": {
+"date": "2022-01-19",
+"ev": 0.7,
+"focus": 0.565,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.66,
+"hike_50": 0.02,
+"hold": 0.32
+},
+"speaker": "Andrew Bailey",
+"type": "testimony"
+},
+"51f1afba361e83f2": {
+"date": "2025-06-24",
+"ev": -0.58,
+"focus": 0.505,
+"p": {
+"cut_25": 0.56,
+"cut_50": 0.01,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 0.43
+},
+"speaker": "Megan Greene",
+"type": "speech"
+},
+"526d501a8dd97902": {
+"date": "2021-07-15",
+"ev": 0.05,
+"focus": 0.733,
+"p": {
+"cut_25": 0.01,
+"cut_50": 0.0,
+"hike_25": 0.06,
+"hike_50": 0.0,
+"hold": 0.93
+},
+"speaker": "Michael Saunders",
+"type": "speech"
+},
+"526ea2cb5a0a2471": {
+"date": "2014-11-20",
+"ev": 0.0,
+"focus": 0.188,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 1.0
+},
+"speaker": "Ian McCafferty",
+"type": "speech"
+},
+"5273cc9f640c681d": {
+"date": "2021-09-08",
+"ev": 0.08,
+"focus": 0.64,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.06,
+"hike_50": 0.01,
+"hold": 0.93
+},
+"speaker": "Andrew Bailey",
+"type": "testimony"
+},
+"528ea9e0df6b00a7": {
+"date": "2024-02-20",
+"ev": -0.01,
+"focus": 0.892,
+"p": {
+"cut_25": 0.01,
+"cut_50": 0.0,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 0.99
+},
+"speaker": "Megan Greene",
+"type": "testimony"
+},
+"52d71d4b5598093f": {
+"date": "2016-09-28",
+"ev": -0.48,
+"focus": 0.62,
+"p": {
+"cut_25": 0.46,
+"cut_50": 0.01,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 0.53
+},
+"speaker": "Minouche Shafik",
+"type": "speech"
+},
+"530ae7e8f0f2f948": {
+"date": "2025-03-05",
+"ev": -0.9,
+"focus": 0.675,
+"p": {
+"cut_25": 0.9,
+"cut_50": 0.0,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 0.1
+},
+"speaker": "Andrew Bailey",
+"type": "testimony"
+},
+"530f309e9bc29b8a": {
+"date": "2024-05-21",
+"ev": 0.0,
+"focus": 0.2,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 1.0
+},
+"speaker": "Andrew Bailey",
+"type": "speech"
+},
+"53adb2fba4f616dd": {
+"date": "2014-07-23",
+"ev": 0.04,
+"focus": 0.615,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.04,
+"hike_50": 0.0,
+"hold": 0.96
+},
+"speaker": "Mark Carney",
+"type": "speech"
+},
+"53d62578c1069b24": {
+"date": "2020-07-20",
+"ev": -0.16,
+"focus": 0.588,
+"p": {
+"cut_25": 0.1,
+"cut_50": 0.03,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 0.87
+},
+"speaker": "Andrew Haldane",
+"type": "testimony"
+},
+"53dd5ec07d960f15": {
+"date": "2019-08-23",
+"ev": -0.24,
+"focus": 0.537,
+"p": {
+"cut_25": 0.22,
+"cut_50": 0.04,
+"hike_25": 0.06,
+"hike_50": 0.0,
+"hold": 0.68
+},
+"speaker": "Mark Carney",
+"type": "speech"
+},
+"549a434e96a9f1d6": {
+"date": "2025-11-05",
+"ev": 0.01,
+"focus": 0.907,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.01,
+"hike_50": 0.0,
+"hold": 0.99
+},
+"speaker": "Megan Greene",
+"type": "member_view"
+},
+"5580188273f79f72": {
+"date": "2016-01-20",
+"ev": 0.35,
+"focus": 0.35,
+"p": {
+"cut_25": 0.02,
+"cut_50": 0.01,
+"hike_25": 0.37,
+"hike_50": 0.01,
+"hold": 0.59
+},
+"speaker": "Martin Weale",
+"type": "speech"
+},
+"558a3bcc90daeff1": {
+"date": "2017-03-23",
+"ev": 0.0,
+"focus": 0.142,
+"p": {
+"cut_25": 0.02,
+"cut_50": 0.0,
+"hike_25": 0.02,
+"hike_50": 0.0,
+"hold": 0.96
+},
+"speaker": "Ben Broadbent",
+"type": "speech"
+},
+"55c4b6bb410e8781": {
+"date": "2026-11-04",
+"ev": 0.69,
+"focus": 0.588,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.69,
+"hike_50": 0.0,
+"hold": 0.31
+},
+"speaker": "Dave Ramsden",
+"type": "member_view"
+},
+"56ae9433f10bf5aa": {
+"date": "2014-06-24",
+"ev": 0.02,
+"focus": 0.688,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.02,
+"hike_50": 0.0,
+"hold": 0.98
+},
+"speaker": "David Miles",
+"type": "testimony"
+},
+"5774416ee52fdf24": {
+"date": "2016-06-30",
+"ev": -1.01,
+"focus": 0.64,
+"p": {
+"cut_25": 0.91,
+"cut_50": 0.05,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 0.04
+},
+"speaker": "Mark Carney",
+"type": "speech"
+},
+"579de3461e4666c3": {
+"date": "2023-11-28",
+"ev": 0.9,
+"focus": 0.685,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.84,
+"hike_50": 0.03,
+"hold": 0.13
+},
+"speaker": "Jonathan Haskel",
+"type": "speech"
+},
+"585e13f6e95fb72a": {
+"date": "2024-09-20",
+"ev": -0.04,
+"focus": 0.743,
+"p": {
+"cut_25": 0.02,
+"cut_50": 0.01,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 0.97
+},
+"speaker": "Catherine L. Mann",
+"type": "speech"
+},
+"586e7bb17e20a46d": {
+"date": "2024-11-01",
+"ev": -0.24,
+"focus": 0.525,
+"p": {
+"cut_25": 0.23,
+"cut_50": 0.02,
+"hike_25": 0.03,
+"hike_50": 0.0,
+"hold": 0.72
+},
+"speaker": "Clare Lombardelli",
+"type": "speech"
+},
+"5993727d688cacc5": {
+"date": "2025-10-14",
+"ev": -1.04,
+"focus": 0.59,
+"p": {
+"cut_25": 0.92,
+"cut_50": 0.06,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 0.02
+},
+"speaker": "Alan Taylor",
+"type": "speech"
+},
+"59b775a5c4227fc2": {
+"date": "2016-10-25",
+"ev": -0.21,
+"focus": 0.655,
+"p": {
+"cut_25": 0.18,
+"cut_50": 0.02,
+"hike_25": 0.01,
+"hike_50": 0.0,
+"hold": 0.79
+},
+"speaker": "Mark Carney",
+"type": "testimony"
+},
+"59ce527be009b93b": {
+"date": "2022-07-12",
+"ev": 0.03,
+"focus": 0.215,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.01,
+"hike_50": 0.01,
+"hold": 0.98
+},
+"speaker": "Andrew Bailey",
+"type": "speech"
+},
+"59d58be5b4854143": {
+"date": "2018-09-14",
+"ev": 0.11,
+"focus": 0.393,
+"p": {
+"cut_25": 0.01,
+"cut_50": 0.0,
+"hike_25": 0.1,
+"hike_50": 0.01,
+"hold": 0.88
+},
+"speaker": "Mark Carney",
+"type": "speech"
+},
+"5a087f13161bfeb1": {
+"date": "2020-09-02",
+"ev": -0.03,
+"focus": 0.485,
+"p": {
+"cut_25": 0.01,
+"cut_50": 0.01,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 0.98
+},
+"speaker": "Gertjan Vlieghe",
+"type": "testimony"
+},
+"5a3558da4b9d37d6": {
+"date": "2026-11-10",
+"ev": 0.09,
+"focus": 0.675,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.07,
+"hike_50": 0.01,
+"hold": 0.92
+},
+"speaker": "Clare Lombardelli",
+"type": "speech"
+},
+"5a36764ed1623ffd": {
+"date": "2018-06-07",
+"ev": 0.65,
+"focus": 0.73,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.63,
+"hike_50": 0.01,
+"hold": 0.36
+},
+"speaker": "Dave Ramsden",
+"type": "speech"
+},
+"5a6537af784f64da": {
+"date": "2015-01-22",
+"ev": 0.06,
+"focus": 0.613,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.06,
+"hike_50": 0.0,
+"hold": 0.94
+},
+"speaker": "Kristin Forbes",
+"type": "speech"
+},
+"5a6573e1b0a87aa7": {
+"date": "2024-02-27",
+"ev": 0.0,
+"focus": 0.463,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 1.0
+},
+"speaker": "Dave Ramsden",
+"type": "speech"
+},
+"5a83d4a7e37a532d": {
+"date": "2022-05-16",
+"ev": 1.02,
+"focus": 0.728,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.88,
+"hike_50": 0.07,
+"hold": 0.05
+},
+"speaker": "Dave Ramsden",
+"type": "testimony"
+},
+"5b27463eb87d08c7": {
+"date": "2026-06-17",
+"ev": -0.01,
+"focus": 0.725,
+"p": {
+"cut_25": 0.02,
+"cut_50": 0.0,
+"hike_25": 0.01,
+"hike_50": 0.0,
+"hold": 0.97
+},
+"speaker": "Sarah Breeden",
+"type": "member_view"
+},
+"5c5d3751d52b4efd": {
+"date": "2025-10-18",
+"ev": 0.0,
+"focus": 0.185,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 1.0
+},
+"speaker": "Andrew Bailey",
+"type": "speech"
+},
+"5ce86801e32dc60e": {
+"date": "2015-07-14",
+"ev": 0.94,
+"focus": 0.675,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.92,
+"hike_50": 0.01,
+"hold": 0.07
+},
+"speaker": "David Miles",
+"type": "speech"
+},
+"5cf7fd2218860c8b": {
+"date": "2024-07-10",
+"ev": -0.18,
+"focus": 0.66,
+"p": {
+"cut_25": 0.16,
+"cut_50": 0.01,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 0.83
+},
+"speaker": "Huw Pill",
+"type": "speech"
+},
+"5d71180f22f28efa": {
+"date": "2015-10-10",
+"ev": 0.01,
+"focus": 0.247,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.01,
+"hike_50": 0.0,
+"hold": 0.99
+},
+"speaker": "Minouche Shafik",
+"type": "speech"
+},
+"5da7b50619b95905": {
+"date": "2026-02-04",
+"ev": -0.96,
+"focus": 0.672,
+"p": {
+"cut_25": 0.94,
+"cut_50": 0.01,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 0.05
+},
+"speaker": "Dave Ramsden",
+"type": "member_view"
+},
+"5f1842f664d625b4": {
+"date": "2021-01-12",
+"ev": -0.11,
+"focus": 0.367,
+"p": {
+"cut_25": 0.05,
+"cut_50": 0.03,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 0.92
+},
+"speaker": "Ben Broadbent",
+"type": "speech"
+},
+"5f991f2f8ef44241": {
+"date": "2026-09-28",
+"ev": 0.15,
+"focus": 0.495,
+"p": {
+"cut_25": 0.03,
+"cut_50": 0.01,
+"hike_25": 0.18,
+"hike_50": 0.01,
+"hold": 0.77
+},
+"speaker": "Dave Ramsden",
+"type": "speech"
+},
+"5fe8235a78b99997": {
+"date": "2026-07-29",
+"ev": 0.64,
+"focus": 0.725,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.58,
+"hike_50": 0.03,
+"hold": 0.39
+},
+"speaker": "Huw Pill",
+"type": "member_view"
+},
+"607e3118d8f33fdb": {
+"date": "2026-03-02",
+"ev": 0.0,
+"focus": 0.228,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 1.0
+},
+"speaker": "Alan Taylor",
+"type": "speech"
+},
+"611ce96bfde0ecc4": {
+"date": "2020-03-04",
+"ev": 0.08,
+"focus": 0.217,
+"p": {
+"cut_25": 0.02,
+"cut_50": 0.0,
+"hike_25": 0.08,
+"hike_50": 0.01,
+"hold": 0.89
+},
+"speaker": "Ben Broadbent",
+"type": "speech"
+},
+"62681e7627da5f23": {
+"date": "2026-07-29",
+"ev": -0.01,
+"focus": 0.92,
+"p": {
+"cut_25": 0.01,
+"cut_50": 0.0,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 0.99
+},
+"speaker": "Swati Dhingra",
+"type": "member_view"
+},
+"62ca3b8422096f93": {
+"date": "2018-05-22",
+"ev": 0.01,
+"focus": 0.105,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.01,
+"hike_50": 0.0,
+"hold": 0.99
+},
+"speaker": "Gertjan Vlieghe",
+"type": "testimony"
+},
+"634783164e472757": {
+"date": "2015-09-16",
+"ev": 0.08,
+"focus": 0.667,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.08,
+"hike_50": 0.0,
+"hold": 0.92
+},
+"speaker": "Mark Carney",
+"type": "testimony"
+},
+"637a65f267d6f05d": {
+"date": "2026-09-16",
+"ev": 0.63,
+"focus": 0.688,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.63,
+"hike_50": 0.0,
+"hold": 0.37
+},
+"speaker": "Andrew Bailey",
+"type": "member_view"
+},
+"63abe95396e77e9a": {
+"date": "2020-06-30",
+"ev": 0.0,
+"focus": 0.535,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 1.0
+},
+"speaker": "Andy Haldane",
+"type": "speech"
+},
+"6405c762755b6b61": {
+"date": "2021-11-15",
+"ev": 0.91,
+"focus": 0.718,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.87,
+"hike_50": 0.02,
+"hold": 0.11
+},
+"speaker": "Michael Saunders",
+"type": "testimony"
+},
+"64ae69d9a5fbdb32": {
+"date": "2019-02-26",
+"ev": 0.38,
+"focus": 0.555,
+"p": {
+"cut_25": 0.02,
+"cut_50": 0.0,
+"hike_25": 0.4,
+"hike_50": 0.0,
+"hold": 0.58
+},
+"speaker": "Mark Carney",
+"type": "testimony"
+},
+"64f5dd393d0edf85": {
+"date": "2021-09-08",
+"ev": 0.4,
+"focus": 0.517,
+"p": {
+"cut_25": 0.01,
+"cut_50": 0.0,
+"hike_25": 0.35,
+"hike_50": 0.03,
+"hold": 0.61
+},
+"speaker": "Ben Broadbent",
+"type": "testimony"
+},
+"65628d1a350c884b": {
+"date": "2017-04-05",
+"ev": 0.0,
+"focus": 0.637,
+"p": {
+"cut_25": 0.01,
+"cut_50": 0.0,
+"hike_25": 0.01,
+"hike_50": 0.0,
+"hold": 0.98
+},
+"speaker": "Gertjan Vlieghe",
+"type": "speech"
+},
+"65c03f6dd65d630a": {
+"date": "2015-07-14",
+"ev": 0.11,
+"focus": 0.682,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.11,
+"hike_50": 0.0,
+"hold": 0.89
+},
+"speaker": "Mark Carney",
+"type": "testimony"
+},
+"65cb4ae3b6c52460": {
+"date": "2015-06-17",
+"ev": -0.02,
+"focus": 0.302,
+"p": {
+"cut_25": 0.02,
+"cut_50": 0.01,
+"hike_25": 0.02,
+"hike_50": 0.0,
+"hold": 0.95
+},
+"speaker": "Kristin Forbes",
+"type": "speech"
+},
+"6620db1e04534518": {
+"date": "2024-05-10",
+"ev": -0.01,
+"focus": 0.217,
+"p": {
+"cut_25": 0.02,
+"cut_50": 0.0,
+"hike_25": 0.01,
+"hike_50": 0.0,
+"hold": 0.97
+},
+"speaker": "Swati Dhingra",
+"type": "speech"
+},
+"6622f89ea1906b3c": {
+"date": "2026-07-29",
+"ev": -0.13,
+"focus": 0.795,
+"p": {
+"cut_25": 0.13,
+"cut_50": 0.0,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 0.87
+},
+"speaker": "Alan Taylor",
+"type": "member_view"
+},
+"6671b92b086e0da4": {
+"date": "2026-07-29",
+"ev": 0.65,
+"focus": 0.757,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.61,
+"hike_50": 0.02,
+"hold": 0.37
+},
+"speaker": "Megan Greene",
+"type": "member_view"
+},
+"67c4bd77b1b37a53": {
+"date": "2025-12-17",
+"ev": -0.84,
+"focus": 0.72,
+"p": {
+"cut_25": 0.84,
+"cut_50": 0.0,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 0.16
+},
+"speaker": "Andrew Bailey",
+"type": "member_view"
+},
+"67e862d1b529cd18": {
+"date": "2022-04-04",
+"ev": 0.3,
+"focus": 0.595,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.28,
+"hike_50": 0.01,
+"hold": 0.71
+},
+"speaker": "Jon Cunliffe",
+"type": "speech"
+},
+"680b912bd83dadfc": {
+"date": "2020-07-20",
+"ev": -0.07,
+"focus": 0.485,
+"p": {
+"cut_25": 0.03,
+"cut_50": 0.02,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 0.95
+},
+"speaker": "Silvana Tenreyro",
+"type": "testimony"
+},
+"685f535bda07953e": {
+"date": "2015-06-22",
+"ev": 0.3,
+"focus": 0.39,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.28,
+"hike_50": 0.01,
+"hold": 0.71
+},
+"speaker": "Sir Jon Cunliffe",
+"type": "speech"
+},
+"6885ea8ff18dfa26": {
+"date": "2026-06-17",
+"ev": 0.05,
+"focus": 0.89,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.05,
+"hike_50": 0.0,
+"hold": 0.95
+},
+"speaker": "Swati Dhingra",
+"type": "member_view"
+},
+"68f6951fd691e5b3": {
+"date": "2020-10-13",
+"ev": 0.0,
+"focus": 0.588,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 1.0
+},
+"speaker": "Andrew Bailey",
+"type": "testimony"
+},
+"690ba9a83cf58d1c": {
+"date": "2026-02-04",
+"ev": -0.34,
+"focus": 0.92,
+"p": {
+"cut_25": 0.32,
+"cut_50": 0.01,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 0.67
+},
+"speaker": "Catherine Mann",
+"type": "member_view"
+},
+"694121eb9a77f661": {
+"date": "2015-11-12",
+"ev": 0.0,
+"focus": 0.53,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 1.0
+},
+"speaker": "Andy Haldane",
+"type": "speech"
+},
+"6a400470fc1f56a8": {
+"date": "2016-04-19",
+"ev": -0.12,
+"focus": 0.383,
+"p": {
+"cut_25": 0.06,
+"cut_50": 0.03,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 0.91
+},
+"speaker": "Mark Carney",
+"type": "testimony"
+},
+"6a705043a0305443": {
+"date": "2014-11-18",
+"ev": 0.0,
+"focus": 0.22,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 1.0
+},
+"speaker": "Kristin Forbes",
+"type": "speech"
+},
+"6af6b9e1259dc5ab": {
+"date": "2020-09-02",
+"ev": -0.01,
+"focus": 0.193,
+"p": {
+"cut_25": 0.01,
+"cut_50": 0.0,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 0.99
+},
+"speaker": "Ben Broadbent",
+"type": "speech"
+},
+"6b34350b517c07a9": {
+"date": "2026-01-14",
+"ev": -1.04,
+"focus": 0.505,
+"p": {
+"cut_25": 0.9,
+"cut_50": 0.07,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 0.03
+},
+"speaker": "Alan Taylor",
+"type": "speech"
+},
+"6b7a0ea217aa417a": {
+"date": "2021-07-19",
+"ev": 0.0,
+"focus": 0.507,
+"p": {
+"cut_25": 0.01,
+"cut_50": 0.0,
+"hike_25": 0.01,
+"hike_50": 0.0,
+"hold": 0.98
+},
+"speaker": "Catherine Mann",
+"type": "testimony"
+},
+"6b940b4e6f488280": {
+"date": "2024-03-01",
+"ev": 0.0,
+"focus": 0.578,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 1.0
+},
+"speaker": "Huw Pill",
+"type": "speech"
+},
+"6cdbf284f00c337b": {
+"date": "2015-06-30",
+"ev": -0.06,
+"focus": 0.645,
+"p": {
+"cut_25": 0.04,
+"cut_50": 0.01,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 0.95
+},
+"speaker": "Andy Haldane",
+"type": "speech"
+},
+"6d750366d123424d": {
+"date": "2023-02-09",
+"ev": 0.75,
+"focus": 0.585,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.63,
+"hike_50": 0.06,
+"hold": 0.31
+},
+"speaker": "Huw Pill",
+"type": "testimony"
+},
+"6da94976f2400e44": {
+"date": "2026-04-29",
+"ev": 0.0,
+"focus": 0.818,
+"p": {
+"cut_25": 0.01,
+"cut_50": 0.0,
+"hike_25": 0.01,
+"hike_50": 0.0,
+"hold": 0.98
+},
+"speaker": "Sarah Breeden",
+"type": "member_view"
+},
+"6e916e6b17cd0809": {
+"date": "2019-06-11",
+"ev": 0.18,
+"focus": 0.517,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.16,
+"hike_50": 0.01,
+"hold": 0.83
+},
+"speaker": "Ben Broadbent",
+"type": "testimony"
+},
+"6fe5a12d58bee8e5": {
+"date": "2023-11-01",
+"ev": -0.49,
+"focus": 0.475,
+"p": {
+"cut_25": 0.4,
+"cut_50": 0.06,
+"hike_25": 0.01,
+"hike_50": 0.01,
+"hold": 0.52
+},
+"speaker": "Megan Greene",
+"type": "speech"
+},
+"702c956a65f3861d": {
+"date": "2025-05-20",
+"ev": -0.11,
+"focus": 0.825,
+"p": {
+"cut_25": 0.11,
+"cut_50": 0.0,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 0.89
+},
+"speaker": "Huw Pill",
+"type": "speech"
+},
+"7057548a943eea71": {
+"date": "2025-06-03",
+"ev": -0.12,
+"focus": 0.74,
+"p": {
+"cut_25": 0.09,
+"cut_50": 0.05,
+"hike_25": 0.01,
+"hike_50": 0.03,
+"hold": 0.82
+},
+"speaker": "Catherine Mann",
+"type": "testimony"
+},
+"70a39a9320212720": {
+"date": "2021-05-24",
+"ev": 0.0,
+"focus": 0.542,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 1.0
+},
+"speaker": "Andrew Bailey",
+"type": "testimony"
+},
+"70d3a6d926f6dff4": {
+"date": "2026-03-18",
+"ev": 0.2,
+"focus": 0.915,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.2,
+"hike_50": 0.0,
+"hold": 0.8
+},
+"speaker": "Catherine Mann",
+"type": "member_view"
+},
+"71610ed727f0b235": {
+"date": "2020-11-23",
+"ev": -0.03,
+"focus": 0.367,
+"p": {
+"cut_25": 0.01,
+"cut_50": 0.01,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 0.98
+},
+"speaker": "Silvana Tenreyro",
+"type": "testimony"
+},
+"72282217623064b4": {
+"date": "2014-08-23",
+"ev": 0.01,
+"focus": 0.383,
+"p": {
+"cut_25": 0.02,
+"cut_50": 0.0,
+"hike_25": 0.03,
+"hike_50": 0.0,
+"hold": 0.95
+},
+"speaker": "Ben Broadbent",
+"type": "speech"
+},
+"72ec70407cc423fd": {
+"date": "2024-05-01",
+"ev": 0.0,
+"focus": 0.163,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 1.0
+},
+"speaker": "Ben Broadbent",
+"type": "speech"
+},
+"734be6d7df22cdf6": {
+"date": "2019-10-15",
+"ev": -0.3,
+"focus": 0.537,
+"p": {
+"cut_25": 0.29,
+"cut_50": 0.01,
+"hike_25": 0.01,
+"hike_50": 0.0,
+"hold": 0.69
+},
+"speaker": "Gertjan Vlieghe",
+"type": "speech"
+},
+"745169a595eb2c0e": {
+"date": "2022-03-01",
+"ev": 1.56,
+"focus": 0.745,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.44,
+"hike_50": 0.56,
+"hold": 0.0
+},
+"speaker": "Michael Saunders",
+"type": "speech"
+},
+"74e903ea4e7b0426": {
+"date": "2023-12-19",
+"ev": 0.05,
+"focus": 0.718,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.05,
+"hike_50": 0.0,
+"hold": 0.95
+},
+"speaker": "Sarah Breeden",
+"type": "speech"
+},
+"75ae925e80d9e9af": {
+"date": "2022-05-01",
+"ev": 0.21,
+"focus": 0.268,
+"p": {
+"cut_25": 0.08,
+"cut_50": 0.01,
+"hike_25": 0.27,
+"hike_50": 0.02,
+"hold": 0.62
+},
+"speaker": "Huw Pill",
+"type": "speech"
+},
+"7655eb19854a5caf": {
+"date": "2015-10-12",
+"ev": 0.0,
+"focus": 0.04,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 1.0
+},
+"speaker": "Martin Weale",
+"type": "speech"
+},
+"77e5cef5df452fb6": {
+"date": "2026-11-09",
+"ev": 0.0,
+"focus": 0.237,
+"p": {
+"cut_25": 0.01,
+"cut_50": 0.0,
+"hike_25": 0.01,
+"hike_50": 0.0,
+"hold": 0.98
+},
+"speaker": "Andrew Bailey",
+"type": "speech"
+},
+"78ea445335372739": {
+"date": "2026-04-29",
+"ev": 0.88,
+"focus": 0.8,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.86,
+"hike_50": 0.01,
+"hold": 0.13
+},
+"speaker": "Megan Greene",
+"type": "member_view"
+},
+"7973dcb417962249": {
+"date": "2025-11-05",
+"ev": 0.0,
+"focus": 0.835,
+"p": {
+"cut_25": 0.01,
+"cut_50": 0.0,
+"hike_25": 0.01,
+"hike_50": 0.0,
+"hold": 0.98
+},
+"speaker": "Huw Pill",
+"type": "member_view"
+},
+"797d47890eeb204a": {
+"date": "2025-06-01",
+"ev": 0.01,
+"focus": 0.35,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.01,
+"hike_50": 0.0,
+"hold": 0.99
+},
+"speaker": "Catherine L. Mann",
+"type": "speech"
+},
+"7a34e778c40da4e3": {
+"date": "2021-12-06",
+"ev": 0.55,
+"focus": 0.412,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.47,
+"hike_50": 0.04,
+"hold": 0.49
+},
+"speaker": "Ben Broadbent",
+"type": "speech"
+},
+"7b2bf449bdecc4aa": {
+"date": "2026-07-14",
+"ev": -0.16,
+"focus": 0.273,
+"p": {
+"cut_25": 0.15,
+"cut_50": 0.02,
+"hike_25": 0.03,
+"hike_50": 0.0,
+"hold": 0.8
+},
+"speaker": "Andrew Bailey",
+"type": "speech"
+},
+"7b380084bc0003e5": {
+"date": "2026-02-04",
+"ev": 0.08,
+"focus": 0.833,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.06,
+"hike_50": 0.01,
+"hold": 0.93
+},
+"speaker": "Huw Pill",
+"type": "member_view"
+},
+"7bb5b0c75c8819c2": {
+"date": "2024-02-01",
+"ev": 1.09,
+"focus": 0.715,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.85,
+"hike_50": 0.12,
+"hold": 0.03
+},
+"speaker": "Catherine L. Mann",
+"type": "speech"
+},
+"7c4d11c27913f829": {
+"date": "2023-05-25",
+"ev": 0.99,
+"focus": 0.458,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.87,
+"hike_50": 0.06,
+"hold": 0.07
+},
+"speaker": "Jonathan Haskel",
+"type": "speech"
+},
+"7e1225559d5b5ab2": {
+"date": "2014-10-01",
+"ev": 0.01,
+"focus": 0.468,
+"p": {
+"cut_25": 0.02,
+"cut_50": 0.0,
+"hike_25": 0.03,
+"hike_50": 0.0,
+"hold": 0.95
+},
+"speaker": "Kristin Forbes",
+"type": "speech"
+},
+"7e4c277da25626d1": {
+"date": "2024-02-07",
+"ev": -0.01,
+"focus": 0.688,
+"p": {
+"cut_25": 0.01,
+"cut_50": 0.0,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 0.99
+},
+"speaker": "Sarah Breeden",
+"type": "speech"
+},
+"7e6dbb9681b951df": {
+"date": "2026-06-17",
+"ev": 0.74,
+"focus": 0.828,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.62,
+"hike_50": 0.06,
+"hold": 0.32
+},
+"speaker": "Catherine Mann",
+"type": "member_view"
+},
+"7f56bc26307d0cea": {
+"date": "2026-07-02",
+"ev": 0.32,
+"focus": 0.8,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.14,
+"hike_50": 0.09,
+"hold": 0.77
+},
+"speaker": "Catherine L. Mann",
+"type": "speech"
+},
+"80344a8cc78d15cd": {
+"date": "2018-12-04",
+"ev": 0.19,
+"focus": 0.29,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.17,
+"hike_50": 0.01,
+"hold": 0.82
+},
+"speaker": "Mark Carney",
+"type": "testimony"
+},
+"812fe999ec661af7": {
+"date": "2017-11-21",
+"ev": 0.91,
+"focus": 0.677,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.91,
+"hike_50": 0.0,
+"hold": 0.09
+},
+"speaker": "Ian McCafferty",
+"type": "testimony"
+},
+"81e93f5dec0e9e30": {
+"date": "2019-06-26",
+"ev": 0.52,
+"focus": 0.728,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.5,
+"hike_50": 0.01,
+"hold": 0.49
+},
+"speaker": "Mark Carney",
+"type": "testimony"
+},
+"8237591c4d7c2639": {
+"date": "2018-11-20",
+"ev": 0.24,
+"focus": 0.22,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.22,
+"hike_50": 0.01,
+"hold": 0.77
+},
+"speaker": "Jon Cunliffe",
+"type": "testimony"
+},
+"825813f42ab624f0": {
+"date": "2020-11-28",
+"ev": -0.01,
+"focus": 0.253,
+"p": {
+"cut_25": 0.01,
+"cut_50": 0.0,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 0.99
+},
+"speaker": "Andy Haldane",
+"type": "speech"
+},
+"82afa3cf47a7f927": {
+"date": "2020-05-28",
+"ev": -0.01,
+"focus": 0.588,
+"p": {
+"cut_25": 0.01,
+"cut_50": 0.0,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 0.99
+},
+"speaker": "Michael Saunders",
+"type": "speech"
+},
+"82d5840965cd2fe2": {
+"date": "2015-07-14",
+"ev": 0.03,
+"focus": 0.615,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.03,
+"hike_50": 0.0,
+"hold": 0.97
+},
+"speaker": "David Miles",
+"type": "testimony"
+},
+"82e62a9d5ddce28b": {
+"date": "2025-05-12",
+"ev": -0.95,
+"focus": 0.59,
+"p": {
+"cut_25": 0.95,
+"cut_50": 0.0,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 0.05
+},
+"speaker": "Clare Lombardelli",
+"type": "speech"
+},
+"82e7781cfb6646f1": {
+"date": "2017-11-15",
+"ev": 0.49,
+"focus": 0.723,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.47,
+"hike_50": 0.01,
+"hold": 0.52
+},
+"speaker": "Ben Broadbent",
+"type": "speech"
+},
+"82f36059d7926a1b": {
+"date": "2021-02-24",
+"ev": -0.04,
+"focus": 0.55,
+"p": {
+"cut_25": 0.02,
+"cut_50": 0.01,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 0.97
+},
+"speaker": "Ben Broadbent",
+"type": "testimony"
+},
+"8364f0c7456a5401": {
+"date": "2022-11-16",
+"ev": 1.77,
+"focus": 0.505,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.21,
+"hike_50": 0.78,
+"hold": 0.01
+},
+"speaker": "Catherine Mann",
+"type": "testimony"
+},
+"838d6d375bd18ba7": {
+"date": "2014-12-10",
+"ev": 0.82,
+"focus": 0.765,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.8,
+"hike_50": 0.01,
+"hold": 0.19
+},
+"speaker": "Ian McCafferty",
+"type": "speech"
+},
+"8412168d251a4019": {
+"date": "2016-02-23",
+"ev": -0.36,
+"focus": 0.757,
+"p": {
+"cut_25": 0.32,
+"cut_50": 0.04,
+"hike_25": 0.04,
+"hike_50": 0.0,
+"hold": 0.6
+},
+"speaker": "Gertjan Vlieghe",
+"type": "testimony"
+},
+"84a20bd8b080fa6c": {
+"date": "2026-09-08",
+"ev": 0.73,
+"focus": 0.565,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.71,
+"hike_50": 0.01,
+"hold": 0.28
+},
+"speaker": "Megan Greene",
+"type": "testimony"
+},
+"857527024b074c8d": {
+"date": "2018-05-22",
+"ev": 0.06,
+"focus": 0.677,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.06,
+"hike_50": 0.0,
+"hold": 0.94
+},
+"speaker": "Gertjan Vlieghe",
+"type": "testimony"
+},
+"85da6297f426ec9f": {
+"date": "2024-02-20",
+"ev": -0.03,
+"focus": 0.748,
+"p": {
+"cut_25": 0.16,
+"cut_50": 0.01,
+"hike_25": 0.13,
+"hike_50": 0.01,
+"hold": 0.69
+},
+"speaker": "Ben Broadbent",
+"type": "testimony"
+},
+"861ed74e78adbd7f": {
+"date": "2025-09-03",
+"ev": 0.07,
+"focus": 0.463,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.07,
+"hike_50": 0.0,
+"hold": 0.93
+},
+"speaker": "Clare Lombardelli",
+"type": "testimony"
+},
+"869deb8ac3c256f5": {
+"date": "2015-03-27",
+"ev": -0.01,
+"focus": 0.355,
+"p": {
+"cut_25": 0.02,
+"cut_50": 0.0,
+"hike_25": 0.01,
+"hike_50": 0.0,
+"hold": 0.97
+},
+"speaker": "Ben Broadbent",
+"type": "speech"
+},
+"86c7167a7921ffb8": {
+"date": "2025-03-24",
+"ev": 0.0,
+"focus": 0.2,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 1.0
+},
+"speaker": "Andrew Bailey",
+"type": "speech"
+},
+"8854472f50abc363": {
+"date": "2022-05-23",
+"ev": 1.12,
+"focus": 0.532,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.84,
+"hike_50": 0.14,
+"hold": 0.02
+},
+"speaker": "Andrew Bailey",
+"type": "speech"
+},
+"88b0878e772ed645": {
+"date": "2019-09-27",
+"ev": -0.92,
+"focus": 0.6,
+"p": {
+"cut_25": 0.92,
+"cut_50": 0.0,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 0.08
+},
+"speaker": "Michael Saunders",
+"type": "speech"
+},
+"88fd34aeeab84b17": {
+"date": "2022-11-16",
+"ev": 1.17,
+"focus": 0.522,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.57,
+"hike_50": 0.3,
+"hold": 0.13
+},
+"speaker": "Ben Broadbent",
+"type": "testimony"
+},
+"890edba4a6285a4f": {
+"date": "2024-07-08",
+"ev": 0.02,
+"focus": 0.585,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.02,
+"hike_50": 0.0,
+"hold": 0.98
+},
+"speaker": "Jonathan Haskel",
+"type": "speech"
+},
+"8952a14d6c1f69a9": {
+"date": "2026-05-29",
+"ev": 0.01,
+"focus": 0.615,
+"p": {
+"cut_25": 0.01,
+"cut_50": 0.0,
+"hike_25": 0.02,
+"hike_50": 0.0,
+"hold": 0.97
+},
+"speaker": "Andrew Bailey",
+"type": "speech"
+},
+"899b8b34b3cf9b1d": {
+"date": "2015-05-22",
+"ev": 0.0,
+"focus": 0.393,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 1.0
+},
+"speaker": "Minouche Shafik",
+"type": "speech"
+},
+"89bd295fabeb6bd2": {
+"date": "2025-01-09",
+"ev": -0.82,
+"focus": 0.637,
+"p": {
+"cut_25": 0.76,
+"cut_50": 0.03,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 0.21
+},
+"speaker": "Sarah Breeden",
+"type": "speech"
+},
+"89ca6a3e1b83b268": {
+"date": "2020-04-23",
+"ev": -0.26,
+"focus": 0.29,
+"p": {
+"cut_25": 0.1,
+"cut_50": 0.08,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 0.82
+},
+"speaker": "Gertjan Vlieghe",
+"type": "speech"
+},
+"8aa699151e483788": {
+"date": "2026-04-29",
+"ev": 0.06,
+"focus": 0.8,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.06,
+"hike_50": 0.0,
+"hold": 0.94
+},
+"speaker": "Dave Ramsden",
+"type": "member_view"
+},
+"8acaa3d88174f7f5": {
+"date": "2017-11-21",
+"ev": 0.02,
+"focus": 0.63,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.02,
+"hike_50": 0.0,
+"hold": 0.98
+},
+"speaker": "Jon Cunliffe",
+"type": "testimony"
+},
+"8b119a7b591f20e8": {
+"date": "2026-03-18",
+"ev": -0.17,
+"focus": 0.752,
+"p": {
+"cut_25": 0.17,
+"cut_50": 0.0,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 0.83
+},
+"speaker": "Dave Ramsden",
+"type": "member_view"
+},
+"8b5bcc5c246c1134": {
+"date": "2025-12-17",
+"ev": 0.0,
+"focus": 0.823,
+"p": {
+"cut_25": 0.01,
+"cut_50": 0.0,
+"hike_25": 0.01,
+"hike_50": 0.0,
+"hold": 0.98
+},
+"speaker": "Clare Lombardelli",
+"type": "member_view"
+},
+"8bd8d18dfa6d3fba": {
+"date": "2021-07-14",
+"ev": 0.04,
+"focus": 0.685,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.04,
+"hike_50": 0.0,
+"hold": 0.96
+},
+"speaker": "Dave Ramsden",
+"type": "speech"
+},
+"8c0b40544cdca226": {
+"date": "2020-01-15",
+"ev": -0.92,
+"focus": 0.718,
+"p": {
+"cut_25": 0.92,
+"cut_50": 0.0,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 0.08
+},
+"speaker": "Michael Saunders",
+"type": "speech"
+},
+"8c0cde2399babae3": {
+"date": "2019-02-12",
+"ev": -0.17,
+"focus": 0.33,
+"p": {
+"cut_25": 0.15,
+"cut_50": 0.02,
+"hike_25": 0.02,
+"hike_50": 0.0,
+"hold": 0.81
+},
+"speaker": "Mark Carney",
+"type": "speech"
+},
+"8cd782ed2ee02380": {
+"date": "2022-11-16",
+"ev": 1.59,
+"focus": 0.703,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.37,
+"hike_50": 0.61,
+"hold": 0.02
+},
+"speaker": "Andrew Bailey",
+"type": "testimony"
+},
+"8d4a9d9fdaf27194": {
+"date": "2025-05-19",
+"ev": 0.0,
+"focus": 0.142,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 1.0
+},
+"speaker": "Clare Lombardelli",
+"type": "speech"
+},
+"8d6e244352779fbc": {
+"date": "2015-01-22",
+"ev": 0.0,
+"focus": 0.455,
+"p": {
+"cut_25": 0.02,
+"cut_50": 0.0,
+"hike_25": 0.02,
+"hike_50": 0.0,
+"hold": 0.96
+},
+"speaker": "David Miles",
+"type": "speech"
+},
+"8e173aea34439044": {
+"date": "2016-06-30",
+"ev": -1.22,
+"focus": 0.675,
+"p": {
+"cut_25": 0.76,
+"cut_50": 0.23,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 0.01
+},
+"speaker": "Andy Haldane",
+"type": "speech"
+},
+"8e6a9a36ccc73f45": {
+"date": "2026-03-24",
+"ev": 0.46,
+"focus": 0.525,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.42,
+"hike_50": 0.02,
+"hold": 0.56
+},
+"speaker": "Huw Pill",
+"type": "speech"
+},
+"8e71499f4951e4bd": {
+"date": "2022-05-16",
+"ev": 0.95,
+"focus": 0.335,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.73,
+"hike_50": 0.11,
+"hold": 0.16
+},
+"speaker": "Jonathan Haskel",
+"type": "testimony"
+},
+"8eeda20304ec4965": {
+"date": "2014-11-25",
+"ev": 0.35,
+"focus": 0.735,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.27,
+"hike_50": 0.04,
+"hold": 0.69
+},
+"speaker": "Mark Carney",
+"type": "testimony"
+},
+"8f61be7ffab950bc": {
+"date": "2015-09-23",
+"ev": 0.01,
+"focus": 0.19,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.01,
+"hike_50": 0.0,
+"hold": 0.99
+},
+"speaker": "Ben Broadbent",
+"type": "speech"
+},
+"90090bae2c326325": {
+"date": "2022-09-07",
+"ev": 1.38,
+"focus": 0.4,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.52,
+"hike_50": 0.43,
+"hold": 0.05
+},
+"speaker": "Andrew Bailey",
+"type": "testimony"
+},
+"90b34d63647d1362": {
+"date": "2023-02-23",
+"ev": 1.37,
+"focus": 0.618,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.63,
+"hike_50": 0.37,
+"hold": 0.0
+},
+"speaker": "Catherine L. Mann",
+"type": "speech"
+},
+"90cd851d79b8877e": {
+"date": "2015-11-24",
+"ev": 0.02,
+"focus": 0.71,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.02,
+"hike_50": 0.0,
+"hold": 0.98
+},
+"speaker": "Gertjan Vlieghe",
+"type": "testimony"
+},
+"911ae6932b15d917": {
+"date": "2017-02-21",
+"ev": 0.01,
+"focus": 0.258,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.01,
+"hike_50": 0.0,
+"hold": 0.99
+},
+"speaker": "Gertjan Vlieghe",
+"type": "testimony"
+},
+"926267c9a3e52d03": {
+"date": "2015-02-25",
+"ev": 0.0,
+"focus": 0.138,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 1.0
+},
+"speaker": "Mark Carney",
+"type": "speech"
+},
+"929ba32e5bc144c7": {
+"date": "2025-05-12",
+"ev": 0.02,
+"focus": 0.393,
+"p": {
+"cut_25": 0.05,
+"cut_50": 0.0,
+"hike_25": 0.07,
+"hike_50": 0.0,
+"hold": 0.88
+},
+"speaker": "Megan Greene",
+"type": "speech"
+},
+"92c51ebe583b2919": {
+"date": "2024-10-14",
+"ev": 0.0,
+"focus": 0.207,
+"p": {
+"cut_25": 0.02,
+"cut_50": 0.0,
+"hike_25": 0.02,
+"hike_50": 0.0,
+"hold": 0.96
+},
+"speaker": "Swati Dhingra",
+"type": "speech"
+},
+"92d5676d78a457e8": {
+"date": "2026-05-20",
+"ev": 0.02,
+"focus": 0.515,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.02,
+"hike_50": 0.0,
+"hold": 0.98
+},
+"speaker": "Andrew Bailey",
+"type": "testimony"
+},
+"94a5c67448539033": {
+"date": "2018-04-10",
+"ev": 0.0,
+"focus": 0.113,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 1.0
+},
+"speaker": "Andy Haldane",
+"type": "speech"
+},
+"94bf736af2fc90a7": {
+"date": "2018-02-21",
+"ev": 0.73,
+"focus": 0.527,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.73,
+"hike_50": 0.0,
+"hold": 0.27
+},
+"speaker": "Ben Broadbent",
+"type": "testimony"
+},
+"94c8b6ac1cb4f21d": {
+"date": "2022-06-20",
+"ev": 1.93,
+"focus": 0.708,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.03,
+"hike_50": 0.95,
+"hold": 0.02
+},
+"speaker": "Catherine L. Mann",
+"type": "speech"
+},
+"9538436144555f26": {
+"date": "2023-04-12",
+"ev": 0.12,
+"focus": 0.25,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.1,
+"hike_50": 0.01,
+"hold": 0.89
+},
+"speaker": "Andrew Bailey",
+"type": "speech"
+},
+"9673bf96a6ae73f1": {
+"date": "2026-06-17",
+"ev": 0.03,
+"focus": 0.812,
+"p": {
+"cut_25": 0.01,
+"cut_50": 0.0,
+"hike_25": 0.04,
+"hike_50": 0.0,
+"hold": 0.95
+},
+"speaker": "Andrew Bailey",
+"type": "member_view"
+},
+"96a3992f1a793e0b": {
+"date": "2024-11-26",
+"ev": 0.01,
+"focus": 0.347,
+"p": {
+"cut_25": 0.04,
+"cut_50": 0.01,
+"hike_25": 0.07,
+"hike_50": 0.0,
+"hold": 0.88
+},
+"speaker": "Huw Pill",
+"type": "testimony"
+},
+"979723c2a85ba671": {
+"date": "2014-09-30",
+"ev": 0.01,
+"focus": 0.66,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.01,
+"hike_50": 0.0,
+"hold": 0.99
+},
+"speaker": "David Miles",
+"type": "speech"
+},
+"98182336641f9d13": {
+"date": "2020-11-17",
+"ev": 0.0,
+"focus": 0.525,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 1.0
+},
+"speaker": "Dave Ramsden",
+"type": "speech"
+},
+"98892affe541f55c": {
+"date": "2016-02-23",
+"ev": 0.11,
+"focus": 0.627,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.09,
+"hike_50": 0.01,
+"hold": 0.9
+},
+"speaker": "Martin Weale",
+"type": "testimony"
+},
+"98f9c302cb7bb9cb": {
+"date": "2024-02-01",
+"ev": 0.0,
+"focus": 0.603,
+"p": {
+"cut_25": 0.01,
+"cut_50": 0.0,
+"hike_25": 0.01,
+"hike_50": 0.0,
+"hold": 0.98
+},
+"speaker": "Megan Greene",
+"type": "speech"
+},
+"991ab0d50fd4e9d1": {
+"date": "2025-09-30",
+"ev": -0.28,
+"focus": 0.583,
+"p": {
+"cut_25": 0.26,
+"cut_50": 0.01,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 0.73
+},
+"speaker": "Sarah Breeden",
+"type": "speech"
+},
+"9a30a3b66c43ba97": {
+"date": "2022-11-11",
+"ev": -0.02,
+"focus": 0.752,
+"p": {
+"cut_25": 0.06,
+"cut_50": 0.0,
+"hike_25": 0.04,
+"hike_50": 0.0,
+"hold": 0.9
+},
+"speaker": "Silvana Tenreyro",
+"type": "speech"
+},
+"9a46f10cc1de36ca": {
+"date": "2017-10-17",
+"ev": 0.7,
+"focus": 0.598,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.7,
+"hike_50": 0.0,
+"hold": 0.3
+},
+"speaker": "Mark Carney",
+"type": "testimony"
+},
+"9ae4e867963adc4e": {
+"date": "2025-11-05",
+"ev": -0.31,
+"focus": 0.905,
+"p": {
+"cut_25": 0.29,
+"cut_50": 0.01,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 0.7
+},
+"speaker": "Andrew Bailey",
+"type": "member_view"
+},
+"9b156a8a287ae4a1": {
+"date": "2021-07-19",
+"ev": 0.0,
+"focus": 0.603,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 1.0
+},
+"speaker": "Jonathan Haskel",
+"type": "speech"
+},
+"9b3822801ff65ffe": {
+"date": "2026-04-29",
+"ev": 0.92,
+"focus": 0.65,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.84,
+"hike_50": 0.04,
+"hold": 0.12
+},
+"speaker": "Huw Pill",
+"type": "member_view"
+},
+"9bdc637fcbc3eb46": {
+"date": "2025-05-09",
+"ev": -0.09,
+"focus": 0.292,
+"p": {
+"cut_25": 0.09,
+"cut_50": 0.01,
+"hike_25": 0.02,
+"hike_50": 0.0,
+"hold": 0.88
+},
+"speaker": "Andrew Bailey",
+"type": "speech"
+},
+"9c5f40ac0742e152": {
+"date": "2026-11-04",
+"ev": 1.44,
+"focus": 0.812,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.28,
+"hike_50": 0.58,
+"hold": 0.14
+},
+"speaker": "Catherine Mann",
+"type": "member_view"
+},
+"9c917326ae98b0ac": {
+"date": "2019-02-26",
+"ev": 0.33,
+"focus": 0.708,
+"p": {
+"cut_25": 0.04,
+"cut_50": 0.01,
+"hike_25": 0.37,
+"hike_50": 0.01,
+"hold": 0.57
+},
+"speaker": "Dave Ramsden",
+"type": "testimony"
+},
+"9d2731a3faee6612": {
+"date": "2026-05-20",
+"ev": 0.24,
+"focus": 0.677,
+"p": {
+"cut_25": 0.01,
+"cut_50": 0.0,
+"hike_25": 0.19,
+"hike_50": 0.03,
+"hold": 0.77
+},
+"speaker": "Catherine Mann",
+"type": "testimony"
+},
+"9d40296d08af2788": {
+"date": "2014-09-10",
+"ev": 0.84,
+"focus": 0.743,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.82,
+"hike_50": 0.01,
+"hold": 0.17
+},
+"speaker": "Martin Weale",
+"type": "testimony"
+},
+"9d78852c022a52ff": {
+"date": "2021-10-25",
+"ev": 0.07,
+"focus": 0.105,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.05,
+"hike_50": 0.01,
+"hold": 0.94
+},
+"speaker": "Silvana Tenreyro",
+"type": "speech"
+},
+"9e948e6e95818a82": {
+"date": "2022-02-23",
+"ev": 0.78,
+"focus": 0.703,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.74,
+"hike_50": 0.02,
+"hold": 0.24
+},
+"speaker": "Silvana Tenreyro",
+"type": "speech"
+},
+"9ea464b93a382ef1": {
+"date": "2025-02-01",
+"ev": 0.39,
+"focus": 0.33,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.37,
+"hike_50": 0.01,
+"hold": 0.62
+},
+"speaker": "Dave Ramsden",
+"type": "speech"
+},
+"9ea4aee0bd19cbb9": {
+"date": "2016-01-26",
+"ev": 0.0,
+"focus": 0.492,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 1.0
+},
+"speaker": "Mark Carney",
+"type": "testimony"
+},
+"9f9f1f3c8efc83ef": {
+"date": "2026-11-04",
+"ev": 1.0,
+"focus": 0.838,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.98,
+"hike_50": 0.01,
+"hold": 0.01
+},
+"speaker": "Huw Pill",
+"type": "member_view"
+},
+"9ffb108744253e97": {
+"date": "2026-07-29",
+"ev": 0.0,
+"focus": 0.465,
+"p": {
+"cut_25": 0.01,
+"cut_50": 0.0,
+"hike_25": 0.01,
+"hike_50": 0.0,
+"hold": 0.98
+},
+"speaker": "Andrew Bailey",
+"type": "member_view"
+},
+"a0000ccabd8ee3d4": {
+"date": "2014-06-18",
+"ev": 0.01,
+"focus": 0.76,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.01,
+"hike_50": 0.0,
+"hold": 0.99
+},
+"speaker": "Andrew Haldane",
+"type": "speech"
+},
+"a04fa6c8d9974fff": {
+"date": "2023-09-11",
+"ev": 1.13,
+"focus": 0.708,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.85,
+"hike_50": 0.14,
+"hold": 0.01
+},
+"speaker": "Catherine L. Mann",
+"type": "speech"
+},
+"a086f3151098b655": {
+"date": "2014-11-25",
+"ev": 0.01,
+"focus": 0.595,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.01,
+"hike_50": 0.0,
+"hold": 0.99
+},
+"speaker": "Kristin Forbes",
+"type": "testimony"
+},
+"a169719438fcae08": {
+"date": "2025-12-17",
+"ev": 0.07,
+"focus": 0.797,
+"p": {
+"cut_25": 0.01,
+"cut_50": 0.0,
+"hike_25": 0.08,
+"hike_50": 0.0,
+"hold": 0.91
+},
+"speaker": "Huw Pill",
+"type": "member_view"
+},
+"a24f6cd7d67b1716": {
+"date": "2018-01-17",
+"ev": 0.66,
+"focus": 0.47,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.66,
+"hike_50": 0.0,
+"hold": 0.34
+},
+"speaker": "Michael Saunders",
+"type": "speech"
+},
+"a24fa61488b008b3": {
+"date": "2023-09-06",
+"ev": 0.24,
+"focus": 0.682,
+"p": {
+"cut_25": 0.01,
+"cut_50": 0.0,
+"hike_25": 0.21,
+"hike_50": 0.02,
+"hold": 0.76
+},
+"speaker": "Andrew Bailey",
+"type": "testimony"
+},
+"a251b578c3b2fd80": {
+"date": "2017-06-20",
+"ev": 0.0,
+"focus": 0.453,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 1.0
+},
+"speaker": "Mark Carney",
+"type": "speech"
+},
+"a2880f94aefaded9": {
+"date": "2026-03-18",
+"ev": -0.16,
+"focus": 0.92,
+"p": {
+"cut_25": 0.14,
+"cut_50": 0.01,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 0.85
+},
+"speaker": "Alan Taylor",
+"type": "member_view"
+},
+"a31c8ddab8dfbdaa": {
+"date": "2018-12-04",
+"ev": 0.08,
+"focus": 0.035,
+"p": {
+"cut_25": 0.02,
+"cut_50": 0.0,
+"hike_25": 0.08,
+"hike_50": 0.01,
+"hold": 0.89
+},
+"speaker": "Ben Broadbent",
+"type": "testimony"
+},
+"a38ab77c88d37b9c": {
+"date": "2018-04-12",
+"ev": 0.0,
+"focus": 0.145,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 1.0
+},
+"speaker": "Ben Broadbent",
+"type": "speech"
+},
+"a3ab3c78f894c7bc": {
+"date": "2026-05-20",
+"ev": 0.02,
+"focus": 0.608,
+"p": {
+"cut_25": 0.02,
+"cut_50": 0.0,
+"hike_25": 0.02,
+"hike_50": 0.01,
+"hold": 0.95
+},
+"speaker": "Sarah Breeden",
+"type": "testimony"
+},
+"a45db48251731976": {
+"date": "2016-02-26",
+"ev": -0.28,
+"focus": 0.228,
+"p": {
+"cut_25": 0.21,
+"cut_50": 0.04,
+"hike_25": 0.01,
+"hike_50": 0.0,
+"hold": 0.74
+},
+"speaker": "Mark Carney",
+"type": "speech"
+},
+"a51f43ea01c0fe30": {
+"date": "2025-03-06",
+"ev": -1.27,
+"focus": 0.598,
+"p": {
+"cut_25": 0.17,
+"cut_50": 0.57,
+"hike_25": 0.02,
+"hike_50": 0.01,
+"hold": 0.23
+},
+"speaker": "Catherine L. Mann",
+"type": "speech"
+},
+"a5851bc4e28a6f8b": {
+"date": "2019-06-18",
+"ev": 0.03,
+"focus": 0.193,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.03,
+"hike_50": 0.0,
+"hold": 0.97
+},
+"speaker": "Mark Carney",
+"type": "speech"
+},
+"a591962c01994508": {
+"date": "2015-02-24",
+"ev": 0.3,
+"focus": 0.657,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.28,
+"hike_50": 0.01,
+"hold": 0.71
+},
+"speaker": "Martin Weale",
+"type": "testimony"
+},
+"a5b23dc4677c93f1": {
+"date": "2021-12-01",
+"ev": 0.07,
+"focus": 0.242,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.05,
+"hike_50": 0.01,
+"hold": 0.94
+},
+"speaker": "Michael Saunders",
+"type": "speech"
+},
+"a68d8cdaab7b5866": {
+"date": "2015-02-24",
+"ev": 0.01,
+"focus": 0.637,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.01,
+"hike_50": 0.0,
+"hold": 0.99
+},
+"speaker": "Kristin Forbes",
+"type": "speech"
+},
+"a6be2d815bdf9a7e": {
+"date": "2022-09-05",
+"ev": 1.94,
+"focus": 0.573,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.06,
+"hike_50": 0.94,
+"hold": 0.0
+},
+"speaker": "Catherine L. Mann",
+"type": "speech"
+},
+"a779b678a886d19b": {
+"date": "2016-12-02",
+"ev": 0.0,
+"focus": 0.58,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 1.0
+},
+"speaker": "Andy Haldane",
+"type": "speech"
+},
+"a82af2c8772b95e9": {
+"date": "2026-06-17",
+"ev": 0.34,
+"focus": 0.688,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.3,
+"hike_50": 0.02,
+"hold": 0.68
+},
+"speaker": "Huw Pill",
+"type": "member_view"
+},
+"a8b3bf49647f852e": {
+"date": "2026-03-26",
+"ev": -0.14,
+"focus": 0.748,
+"p": {
+"cut_25": 0.12,
+"cut_50": 0.01,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 0.87
+},
+"speaker": "Alan Taylor",
+"type": "speech"
+},
+"a8f1781c3a95b755": {
+"date": "2014-12-08",
+"ev": 0.08,
+"focus": 0.287,
+"p": {
+"cut_25": 0.01,
+"cut_50": 0.0,
+"hike_25": 0.07,
+"hike_50": 0.01,
+"hold": 0.91
+},
+"speaker": "Martin Weale",
+"type": "speech"
+},
+"a9257f052ee8424f": {
+"date": "2018-01-15",
+"ev": 0.44,
+"focus": 0.502,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.42,
+"hike_50": 0.01,
+"hold": 0.57
+},
+"speaker": "Silvana Tenreyro",
+"type": "speech"
+},
+"a9a530618d17e4f3": {
+"date": "2018-05-22",
+"ev": 0.04,
+"focus": 0.51,
+"p": {
+"cut_25": 0.01,
+"cut_50": 0.0,
+"hike_25": 0.05,
+"hike_50": 0.0,
+"hold": 0.94
+},
+"speaker": "Dave Ramsden",
+"type": "testimony"
+},
+"aad013ba0bd2d6f3": {
+"date": "2014-06-12",
+"ev": 0.07,
+"focus": 0.688,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.07,
+"hike_50": 0.0,
+"hold": 0.93
+},
+"speaker": "Mark Carney",
+"type": "speech"
+},
+"ab8ccb0bce5b2346": {
+"date": "2021-11-15",
+"ev": 0.51,
+"focus": 0.455,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.45,
+"hike_50": 0.03,
+"hold": 0.52
+},
+"speaker": "Huw Pill",
+"type": "testimony"
+},
+"ada5002d702f485c": {
+"date": "2016-11-15",
+"ev": 0.0,
+"focus": 0.667,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 1.0
+},
+"speaker": "Mark Carney",
+"type": "testimony"
+},
+"ade29dfc733398c7": {
+"date": "2015-11-24",
+"ev": 0.42,
+"focus": 0.625,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.4,
+"hike_50": 0.01,
+"hold": 0.59
+},
+"speaker": "Kristin Forbes",
+"type": "testimony"
+},
+"adf7d3d80549897c": {
+"date": "2022-02-23",
+"ev": 0.93,
+"focus": 0.637,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.89,
+"hike_50": 0.02,
+"hold": 0.09
+},
+"speaker": "Ben Broadbent",
+"type": "testimony"
+},
+"ae00440c96f2582b": {
+"date": "2025-12-17",
+"ev": -0.65,
+"focus": 0.693,
+"p": {
+"cut_25": 0.65,
+"cut_50": 0.0,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 0.35
+},
+"speaker": "Sarah Breeden",
+"type": "member_view"
+},
+"ae3e8de9c621f265": {
+"date": "2019-09-04",
+"ev": -0.69,
+"focus": 0.502,
+"p": {
+"cut_25": 0.62,
+"cut_50": 0.04,
+"hike_25": 0.01,
+"hike_50": 0.0,
+"hold": 0.33
+},
+"speaker": "Mark Carney",
+"type": "testimony"
+},
+"ae7cebd89facd7d6": {
+"date": "2025-02-28",
+"ev": -0.41,
+"focus": 0.632,
+"p": {
+"cut_25": 0.41,
+"cut_50": 0.0,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 0.59
+},
+"speaker": "Dave Ramsden",
+"type": "speech"
+},
+"afb51e4ae54228c5": {
+"date": "2015-10-20",
+"ev": 0.9,
+"focus": 0.49,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.9,
+"hike_50": 0.0,
+"hold": 0.1
+},
+"speaker": "Ian McCafferty",
+"type": "speech"
+},
+"afff7f5782c7f677": {
+"date": "2016-08-26",
+"ev": -0.15,
+"focus": 0.235,
+"p": {
+"cut_25": 0.15,
+"cut_50": 0.0,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 0.85
+},
+"speaker": "Minouche Shafik",
+"type": "speech"
+},
+"b1bee5ff2a068aa4": {
+"date": "2016-03-08",
+"ev": 0.73,
+"focus": 0.372,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.65,
+"hike_50": 0.04,
+"hold": 0.31
+},
+"speaker": "Martin Weale",
+"type": "speech"
+},
+"b253683837886ee3": {
+"date": "2022-10-20",
+"ev": 0.01,
+"focus": 0.215,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.01,
+"hike_50": 0.0,
+"hold": 0.99
+},
+"speaker": "Ben Broadbent",
+"type": "speech"
+},
+"b2aeafa01aeb0364": {
+"date": "2015-11-24",
+"ev": 0.7,
+"focus": 0.708,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.68,
+"hike_50": 0.01,
+"hold": 0.31
+},
+"speaker": "Mark Carney",
+"type": "testimony"
+},
+"b2f3e568a91d3ca5": {
+"date": "2023-04-04",
+"ev": 0.32,
+"focus": 0.225,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.26,
+"hike_50": 0.03,
+"hold": 0.71
+},
+"speaker": "Huw Pill",
+"type": "speech"
+},
+"b31bd1c3cf16e27b": {
+"date": "2023-08-26",
+"ev": 0.24,
+"focus": 0.515,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.2,
+"hike_50": 0.02,
+"hold": 0.78
+},
+"speaker": "Ben Broadbent",
+"type": "speech"
+},
+"b349a42b41bb31c2": {
+"date": "2017-09-15",
+"ev": 0.67,
+"focus": 0.537,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.67,
+"hike_50": 0.0,
+"hold": 0.33
+},
+"speaker": "Gertjan Vlieghe",
+"type": "speech"
+},
+"b361eec27c0cb394": {
+"date": "2022-10-12",
+"ev": 1.88,
+"focus": 0.75,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.12,
+"hike_50": 0.88,
+"hold": 0.0
+},
+"speaker": "Huw Pill",
+"type": "speech"
+},
+"b3716f37c9c90800": {
+"date": "2015-09-11",
+"ev": 0.34,
+"focus": 0.472,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.32,
+"hike_50": 0.01,
+"hold": 0.67
+},
+"speaker": "Kristin Forbes",
+"type": "speech"
+},
+"b4e03000c402a2cc": {
+"date": "2017-02-21",
+"ev": 0.04,
+"focus": 0.667,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.04,
+"hike_50": 0.0,
+"hold": 0.96
+},
+"speaker": "Mark Carney",
+"type": "testimony"
+},
+"b519c1d49d1daa3c": {
+"date": "2016-12-15",
+"ev": 0.22,
+"focus": 0.265,
+"p": {
+"cut_25": 0.01,
+"cut_50": 0.0,
+"hike_25": 0.19,
+"hike_50": 0.02,
+"hold": 0.78
+},
+"speaker": "Kristin Forbes",
+"type": "speech"
+},
+"b55d14a5c3f7584b": {
+"date": "2016-01-18",
+"ev": 0.0,
+"focus": 0.657,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 1.0
+},
+"speaker": "Gertjan Vlieghe",
+"type": "speech"
+},
+"b5c2706734d3c048": {
+"date": "2026-06-23",
+"ev": -0.01,
+"focus": 0.225,
+"p": {
+"cut_25": 0.06,
+"cut_50": 0.02,
+"hike_25": 0.07,
+"hike_50": 0.01,
+"hold": 0.84
+},
+"speaker": "Alan Taylor",
+"type": "speech"
+},
+"b7770232922254f6": {
+"date": "2021-03-26",
+"ev": 0.0,
+"focus": 0.557,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 1.0
+},
+"speaker": "Silvana Tenreyro",
+"type": "speech"
+},
+"b79ad67307994888": {
+"date": "2018-04-20",
+"ev": 0.63,
+"focus": 0.975,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.63,
+"hike_50": 0.0,
+"hold": 0.37
+},
+"speaker": "Michael Saunders",
+"type": "speech"
+},
+"b7b788e37f975233": {
+"date": "2016-02-24",
+"ev": -0.01,
+"focus": 0.56,
+"p": {
+"cut_25": 0.01,
+"cut_50": 0.0,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 0.99
+},
+"speaker": "Jon Cunliffe",
+"type": "speech"
+},
+"b7fba2022a70dbfc": {
+"date": "2018-05-22",
+"ev": 0.14,
+"focus": 0.655,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.12,
+"hike_50": 0.01,
+"hold": 0.87
+},
+"speaker": "Mark Carney",
+"type": "testimony"
+},
+"b8954efb7578033d": {
+"date": "2024-11-19",
+"ev": 0.13,
+"focus": 0.745,
+"p": {
+"cut_25": 0.01,
+"cut_50": 0.02,
+"hike_25": 0.1,
+"hike_50": 0.04,
+"hold": 0.83
+},
+"speaker": "Catherine Mann",
+"type": "testimony"
+},
+"b8d1c4733753a538": {
+"date": "2024-11-19",
+"ev": -0.74,
+"focus": 0.682,
+"p": {
+"cut_25": 0.72,
+"cut_50": 0.01,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 0.27
+},
+"speaker": "Andrew Bailey",
+"type": "testimony"
+},
+"ba525b2d86fdc265": {
+"date": "2021-03-08",
+"ev": 0.0,
+"focus": 0.552,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 1.0
+},
+"speaker": "Andrew Bailey",
+"type": "speech"
+},
+"ba52975b084fb89f": {
+"date": "2023-09-06",
+"ev": 0.58,
+"focus": 0.755,
+"p": {
+"cut_25": 0.02,
+"cut_50": 0.01,
+"hike_25": 0.18,
+"hike_50": 0.22,
+"hold": 0.57
+},
+"speaker": "Jon Cunliffe",
+"type": "testimony"
+},
+"baa2b7d868fae66f": {
+"date": "2025-09-01",
+"ev": 0.9,
+"focus": 0.675,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.86,
+"hike_50": 0.02,
+"hold": 0.12
+},
+"speaker": "Megan Greene",
+"type": "speech"
+},
+"baf6597cb3d79d81": {
+"date": "2023-06-13",
+"ev": 0.01,
+"focus": 0.06,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.01,
+"hike_50": 0.0,
+"hold": 0.99
+},
+"speaker": "Swati Dhingra",
+"type": "speech"
+},
+"bb4fb36b000b80a7": {
+"date": "2015-03-11",
+"ev": 0.67,
+"focus": 0.797,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.67,
+"hike_50": 0.0,
+"hold": 0.33
+},
+"speaker": "Martin Weale",
+"type": "speech"
+},
+"bc83bac4cb2a0042": {
+"date": "2021-11-15",
+"ev": 0.56,
+"focus": 0.505,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.54,
+"hike_50": 0.01,
+"hold": 0.45
+},
+"speaker": "Catherine Mann",
+"type": "testimony"
+},
+"bcf9a652833b4211": {
+"date": "2023-11-21",
+"ev": 0.07,
+"focus": 0.652,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.05,
+"hike_50": 0.01,
+"hold": 0.94
+},
+"speaker": "Dave Ramsden",
+"type": "testimony"
+},
+"bd3bd49b6346d7fd": {
+"date": "2016-11-15",
+"ev": 0.1,
+"focus": 0.36,
+"p": {
+"cut_25": 0.01,
+"cut_50": 0.0,
+"hike_25": 0.09,
+"hike_50": 0.01,
+"hold": 0.89
+},
+"speaker": "Michael Saunders",
+"type": "testimony"
+},
+"bd640bfe51b3eb92": {
+"date": "2023-04-04",
+"ev": -0.36,
+"focus": 0.54,
+"p": {
+"cut_25": 0.26,
+"cut_50": 0.05,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 0.69
+},
+"speaker": "Silvana Tenreyro",
+"type": "speech"
+},
+"be4d730b9368660b": {
+"date": "2018-09-04",
+"ev": 0.85,
+"focus": 0.608,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.83,
+"hike_50": 0.01,
+"hold": 0.16
+},
+"speaker": "Silvana Tenreyro",
+"type": "testimony"
+},
+"be4e772a67f21537": {
+"date": "2018-05-22",
+"ev": 0.81,
+"focus": 0.725,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.81,
+"hike_50": 0.0,
+"hold": 0.19
+},
+"speaker": "Michael Saunders",
+"type": "testimony"
+},
+"bed6464f5178bb90": {
+"date": "2025-03-05",
+"ev": -0.05,
+"focus": 0.45,
+"p": {
+"cut_25": 0.07,
+"cut_50": 0.0,
+"hike_25": 0.02,
+"hike_50": 0.0,
+"hold": 0.91
+},
+"speaker": "Alan Taylor",
+"type": "testimony"
+},
+"bf054f2029eb83ea": {
+"date": "2025-12-17",
+"ev": -0.06,
+"focus": 0.767,
+"p": {
+"cut_25": 0.06,
+"cut_50": 0.0,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 0.94
+},
+"speaker": "Megan Greene",
+"type": "member_view"
+},
+"bf1565e0560cf78e": {
+"date": "2023-11-01",
+"ev": 0.98,
+"focus": 0.575,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.82,
+"hike_50": 0.08,
+"hold": 0.1
+},
+"speaker": "Catherine L. Mann",
+"type": "speech"
+},
+"bf20feead468f027": {
+"date": "2025-07-04",
+"ev": -1.01,
+"focus": 0.682,
+"p": {
+"cut_25": 0.97,
+"cut_50": 0.02,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 0.01
+},
+"speaker": "Alan Taylor",
+"type": "speech"
+},
+"bf3af60e50937800": {
+"date": "2019-02-14",
+"ev": 0.02,
+"focus": 0.682,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.02,
+"hike_50": 0.0,
+"hold": 0.98
+},
+"speaker": "Gertjan Vlieghe",
+"type": "speech"
+},
+"bf8b22316d3f59ac": {
+"date": "2026-09-08",
+"ev": 0.31,
+"focus": 0.575,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.27,
+"hike_50": 0.02,
+"hold": 0.71
+},
+"speaker": "Andrew Bailey",
+"type": "testimony"
+},
+"c01574a71da1d1c1": {
+"date": "2026-09-03",
+"ev": 1.0,
+"focus": 0.953,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.98,
+"hike_50": 0.01,
+"hold": 0.01
+},
+"speaker": "Huw Pill",
+"type": "speech"
+},
+"c06cb1103151556d": {
+"date": "2015-03-12",
+"ev": 0.1,
+"focus": 0.662,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.1,
+"hike_50": 0.0,
+"hold": 0.9
+},
+"speaker": "Mark Carney",
+"type": "speech"
+},
+"c11bb5e153612f89": {
+"date": "2017-06-22",
+"ev": 0.99,
+"focus": 0.78,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.99,
+"hike_50": 0.0,
+"hold": 0.01
+},
+"speaker": "Kristin Forbes",
+"type": "speech"
+},
+"c1a7a7f2cbd7bc9c": {
+"date": "2025-03-05",
+"ev": -0.74,
+"focus": 0.703,
+"p": {
+"cut_25": 0.71,
+"cut_50": 0.02,
+"hike_25": 0.01,
+"hike_50": 0.0,
+"hold": 0.26
+},
+"speaker": "Huw Pill",
+"type": "testimony"
+},
+"c1adaf05d7a7fa7f": {
+"date": "2026-07-29",
+"ev": 0.0,
+"focus": 0.66,
+"p": {
+"cut_25": 0.02,
+"cut_50": 0.0,
+"hike_25": 0.02,
+"hike_50": 0.0,
+"hold": 0.96
+},
+"speaker": "Clare Lombardelli",
+"type": "member_view"
+},
+"c21c17857b319c5c": {
+"date": "2026-03-18",
+"ev": 0.25,
+"focus": 0.667,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.21,
+"hike_50": 0.02,
+"hold": 0.77
+},
+"speaker": "Megan Greene",
+"type": "member_view"
+},
+"c25614c6b3426ea1": {
+"date": "2026-06-02",
+"ev": 0.08,
+"focus": 0.512,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.06,
+"hike_50": 0.01,
+"hold": 0.93
+},
+"speaker": "Andrew Bailey",
+"type": "testimony"
+},
+"c2c3e0c9e382ef49": {
+"date": "2023-02-24",
+"ev": 0.25,
+"focus": 0.57,
+"p": {
+"cut_25": 0.03,
+"cut_50": 0.01,
+"hike_25": 0.22,
+"hike_50": 0.04,
+"hold": 0.7
+},
+"speaker": "Silvana Tenreyro",
+"type": "speech"
+},
+"c31f45f8595ee50c": {
+"date": "2025-12-17",
+"ev": 0.02,
+"focus": 0.728,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.02,
+"hike_50": 0.0,
+"hold": 0.98
+},
+"speaker": "Catherine Mann",
+"type": "member_view"
+},
+"c32eaadfd121b189": {
+"date": "2026-07-29",
+"ev": 0.01,
+"focus": 0.815,
+"p": {
+"cut_25": 0.01,
+"cut_50": 0.0,
+"hike_25": 0.02,
+"hike_50": 0.0,
+"hold": 0.97
+},
+"speaker": "Dave Ramsden",
+"type": "member_view"
+},
+"c37d1b25f53df96c": {
+"date": "2023-04-25",
+"ev": 0.35,
+"focus": 0.26,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.23,
+"hike_50": 0.06,
+"hold": 0.71
+},
+"speaker": "Ben Broadbent",
+"type": "speech"
+},
+"c3d4eb84d98006a8": {
+"date": "2023-07-10",
+"ev": 1.06,
+"focus": 0.463,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.82,
+"hike_50": 0.12,
+"hold": 0.06
+},
+"speaker": "Andrew Bailey",
+"type": "speech"
+},
+"c3f44a202ed1ad54": {
+"date": "2022-11-24",
+"ev": 1.72,
+"focus": 0.723,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.28,
+"hike_50": 0.72,
+"hold": 0.0
+},
+"speaker": "Dave Ramsden",
+"type": "speech"
+},
+"c4a7fcd88a806de9": {
+"date": "2017-11-20",
+"ev": 0.01,
+"focus": 0.615,
+"p": {
+"cut_25": 0.01,
+"cut_50": 0.0,
+"hike_25": 0.02,
+"hike_50": 0.0,
+"hold": 0.97
+},
+"speaker": "Dave Ramsden",
+"type": "speech"
+},
+"c4bf1dcef6b2560f": {
+"date": "2015-03-10",
+"ev": 0.0,
+"focus": 0.632,
+"p": {
+"cut_25": 0.02,
+"cut_50": 0.0,
+"hike_25": 0.02,
+"hike_50": 0.0,
+"hold": 0.96
+},
+"speaker": "Ian McCafferty",
+"type": "speech"
+},
+"c4e344a95d5064a0": {
+"date": "2026-06-17",
+"ev": 0.33,
+"focus": 0.877,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.29,
+"hike_50": 0.02,
+"hold": 0.69
+},
+"speaker": "Megan Greene",
+"type": "member_view"
+},
+"c55eb6abf4b69b70": {
+"date": "2025-05-15",
+"ev": 0.04,
+"focus": 0.205,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.04,
+"hike_50": 0.0,
+"hold": 0.96
+},
+"speaker": "Swati Dhingra",
+"type": "speech"
+},
+"c57a0eb00f64fe4b": {
+"date": "2020-07-15",
+"ev": -0.04,
+"focus": 0.475,
+"p": {
+"cut_25": 0.02,
+"cut_50": 0.01,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 0.97
+},
+"speaker": "Silvana Tenreyro",
+"type": "speech"
+},
+"c587a4acdbc28143": {
+"date": "2017-02-21",
+"ev": 0.01,
+"focus": 0.315,
+"p": {
+"cut_25": 0.04,
+"cut_50": 0.0,
+"hike_25": 0.05,
+"hike_50": 0.0,
+"hold": 0.91
+},
+"speaker": "Andrew Haldane",
+"type": "testimony"
+},
+"c689cee49c577c7d": {
+"date": "2026-04-29",
+"ev": 0.26,
+"focus": 0.72,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.24,
+"hike_50": 0.01,
+"hold": 0.75
+},
+"speaker": "Clare Lombardelli",
+"type": "member_view"
+},
+"c69f75999c65b700": {
+"date": "2018-07-13",
+"ev": 0.26,
+"focus": 0.745,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.26,
+"hike_50": 0.0,
+"hold": 0.74
+},
+"speaker": "Jon Cunliffe",
+"type": "speech"
+},
+"c6ae8bbb8705ecef": {
+"date": "2022-10-06",
+"ev": 0.48,
+"focus": 0.263,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.34,
+"hike_50": 0.07,
+"hold": 0.59
+},
+"speaker": "Jonathan Haskel",
+"type": "speech"
+},
+"c88a1f74ae61dedf": {
+"date": "2019-06-26",
+"ev": 0.25,
+"focus": 0.575,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.25,
+"hike_50": 0.0,
+"hold": 0.75
+},
+"speaker": "Michael Saunders",
+"type": "testimony"
+},
+"c8a3e38a1f98e15e": {
+"date": "2023-05-18",
+"ev": 0.83,
+"focus": 0.362,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.77,
+"hike_50": 0.03,
+"hold": 0.2
+},
+"speaker": "Dave Ramsden",
+"type": "testimony"
+},
+"c92b4079351926fc": {
+"date": "2016-07-12",
+"ev": -0.05,
+"focus": 0.215,
+"p": {
+"cut_25": 0.04,
+"cut_50": 0.01,
+"hike_25": 0.01,
+"hike_50": 0.0,
+"hold": 0.94
+},
+"speaker": "Jon Cunliffe",
+"type": "testimony"
+},
+"c965267f765baa01": {
+"date": "2021-07-22",
+"ev": 0.01,
+"focus": 0.512,
+"p": {
+"cut_25": 0.01,
+"cut_50": 0.0,
+"hike_25": 0.02,
+"hike_50": 0.0,
+"hold": 0.97
+},
+"speaker": "Ben Broadbent",
+"type": "speech"
+},
+"c9d19fc105223a4e": {
+"date": "2014-10-23",
+"ev": 0.01,
+"focus": 0.34,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.01,
+"hike_50": 0.0,
+"hold": 0.99
+},
+"speaker": "Ben Broadbent",
+"type": "speech"
+},
+"cb84c3892ecc0a7d": {
+"date": "2020-09-02",
+"ev": 0.0,
+"focus": 0.527,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 1.0
+},
+"speaker": "Andrew Bailey",
+"type": "testimony"
+},
+"cbfa19fab2ad3d5e": {
+"date": "2020-12-04",
+"ev": -0.39,
+"focus": 0.875,
+"p": {
+"cut_25": 0.37,
+"cut_50": 0.01,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 0.62
+},
+"speaker": "Michael Saunders",
+"type": "speech"
+},
+"ccde89ecf3facdf0": {
+"date": "2023-05-23",
+"ev": -0.06,
+"focus": 0.693,
+"p": {
+"cut_25": 0.04,
+"cut_50": 0.01,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 0.95
+},
+"speaker": "Silvana Tenreyro",
+"type": "testimony"
+},
+"ccefb512fbcc0fe5": {
+"date": "2023-05-17",
+"ev": 0.83,
+"focus": 0.618,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.83,
+"hike_50": 0.0,
+"hold": 0.17
+},
+"speaker": "Andrew Bailey",
+"type": "speech"
+},
+"cdcb22efda812b38": {
+"date": "2025-06-03",
+"ev": -0.97,
+"focus": 0.642,
+"p": {
+"cut_25": 0.97,
+"cut_50": 0.0,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 0.03
+},
+"speaker": "Andrew Bailey",
+"type": "testimony"
+},
+"cdefba6248bad949": {
+"date": "2017-09-18",
+"ev": 0.85,
+"focus": 0.637,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.85,
+"hike_50": 0.0,
+"hold": 0.15
+},
+"speaker": "Mark Carney",
+"type": "speech"
+},
+"ce1657f255927a95": {
+"date": "2021-02-17",
+"ev": 0.0,
+"focus": 0.515,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 1.0
+},
+"speaker": "Dave Ramsden",
+"type": "speech"
+},
+"ce4f9a987165f0c2": {
+"date": "2017-02-08",
+"ev": 0.7,
+"focus": 0.703,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.7,
+"hike_50": 0.0,
+"hold": 0.3
+},
+"speaker": "Kristin Forbes",
+"type": "speech"
+},
+"cec33d22df041c96": {
+"date": "2021-05-24",
+"ev": 0.0,
+"focus": 0.723,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 1.0
+},
+"speaker": "Michael Saunders",
+"type": "testimony"
+},
+"cedf2fa007aea3f8": {
+"date": "2025-06-26",
+"ev": -0.24,
+"focus": 0.647,
+"p": {
+"cut_25": 0.22,
+"cut_50": 0.01,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 0.77
+},
+"speaker": "Andrew Bailey",
+"type": "speech"
+},
+"cf217100504008a7": {
+"date": "2026-06-17",
+"ev": -0.38,
+"focus": 0.895,
+"p": {
+"cut_25": 0.34,
+"cut_50": 0.02,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 0.64
+},
+"speaker": "Alan Taylor",
+"type": "member_view"
+},
+"cf2d3a659b4497d4": {
+"date": "2024-11-20",
+"ev": -0.8,
+"focus": 0.565,
+"p": {
+"cut_25": 0.78,
+"cut_50": 0.01,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 0.21
+},
+"speaker": "Dave Ramsden",
+"type": "speech"
+},
+"cf9c1c1c8a7639b2": {
+"date": "2020-10-20",
+"ev": -0.64,
+"focus": 0.562,
+"p": {
+"cut_25": 0.46,
+"cut_50": 0.09,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 0.45
+},
+"speaker": "Gertjan Vlieghe",
+"type": "speech"
+},
+"cfb936113ee9ebdc": {
+"date": "2020-01-09",
+"ev": -0.19,
+"focus": 0.525,
+"p": {
+"cut_25": 0.21,
+"cut_50": 0.01,
+"hike_25": 0.04,
+"hike_50": 0.0,
+"hold": 0.74
+},
+"speaker": "Mark Carney",
+"type": "speech"
+},
+"d030b2605832b650": {
+"date": "2015-06-11",
+"ev": 0.01,
+"focus": 0.74,
+"p": {
+"cut_25": 0.01,
+"cut_50": 0.0,
+"hike_25": 0.02,
+"hike_50": 0.0,
+"hold": 0.97
+},
+"speaker": "Ian McCafferty",
+"type": "speech"
+},
+"d031e66424b21832": {
+"date": "2022-11-23",
+"ev": 1.2,
+"focus": 0.745,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.78,
+"hike_50": 0.21,
+"hold": 0.01
+},
+"speaker": "Huw Pill",
+"type": "speech"
+},
+"d096046cff61af49": {
+"date": "2025-09-03",
+"ev": -0.34,
+"focus": 0.72,
+"p": {
+"cut_25": 0.32,
+"cut_50": 0.01,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 0.67
+},
+"speaker": "Megan Greene",
+"type": "testimony"
+},
+"d09712d9393ffbcb": {
+"date": "2020-08-28",
+"ev": -0.01,
+"focus": 0.403,
+"p": {
+"cut_25": 0.01,
+"cut_50": 0.0,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 0.99
+},
+"speaker": "Andrew Bailey",
+"type": "speech"
+},
+"d0ab0a71f182f5f6": {
+"date": "2020-02-11",
+"ev": -0.18,
+"focus": 0.282,
+"p": {
+"cut_25": 0.41,
+"cut_50": 0.07,
+"hike_25": 0.35,
+"hike_50": 0.01,
+"hold": 0.16
+},
+"speaker": "Jonathan Haskel",
+"type": "speech"
+},
+"d1b737aaaed4bf64": {
+"date": "2025-12-09",
+"ev": -1.08,
+"focus": 0.588,
+"p": {
+"cut_25": 0.84,
+"cut_50": 0.12,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 0.04
+},
+"speaker": "Swati Dhingra",
+"type": "testimony"
+},
+"d1d7530b749bd92a": {
+"date": "2015-06-28",
+"ev": 0.23,
+"focus": 0.205,
+"p": {
+"cut_25": 0.01,
+"cut_50": 0.0,
+"hike_25": 0.18,
+"hike_50": 0.03,
+"hold": 0.78
+},
+"speaker": "Martin Weale",
+"type": "speech"
+},
+"d291da85381d609b": {
+"date": "2019-03-11",
+"ev": -0.11,
+"focus": 0.235,
+"p": {
+"cut_25": 0.09,
+"cut_50": 0.01,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 0.9
+},
+"speaker": "Jonathan Haskel",
+"type": "speech"
+},
+"d378fdbff0afbcb0": {
+"date": "2017-02-21",
+"ev": 0.15,
+"focus": 0.47,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.15,
+"hike_50": 0.0,
+"hold": 0.85
+},
+"speaker": "Ian McCafferty",
+"type": "testimony"
+},
+"d515dce00a8054b2": {
+"date": "2026-09-16",
+"ev": -0.01,
+"focus": 0.925,
+"p": {
+"cut_25": 0.01,
+"cut_50": 0.0,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 0.99
+},
+"speaker": "Alan Taylor",
+"type": "member_view"
+},
+"d52eace22fc0c1fc": {
+"date": "2026-02-04",
+"ev": -1.0,
+"focus": 0.74,
+"p": {
+"cut_25": 0.96,
+"cut_50": 0.02,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 0.02
+},
+"speaker": "Sarah Breeden",
+"type": "member_view"
+},
+"d5a196cd5475a479": {
+"date": "2025-12-09",
+"ev": -0.06,
+"focus": 0.685,
+"p": {
+"cut_25": 0.06,
+"cut_50": 0.0,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 0.94
+},
+"speaker": "Clare Lombardelli",
+"type": "testimony"
+},
+"d5a799692a9824b1": {
+"date": "2022-04-21",
+"ev": 1.16,
+"focus": 0.865,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.66,
+"hike_50": 0.25,
+"hold": 0.09
+},
+"speaker": "Catherine L Mann",
+"type": "speech"
+},
+"d6497efc3b42056d": {
+"date": "2021-07-26",
+"ev": 0.0,
+"focus": 0.445,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 1.0
+},
+"speaker": "Gertjan Vlieghe",
+"type": "speech"
+},
+"d6a455e1f2cb4fa8": {
+"date": "2026-02-13",
+"ev": -0.01,
+"focus": 0.297,
+"p": {
+"cut_25": 0.05,
+"cut_50": 0.0,
+"hike_25": 0.04,
+"hike_50": 0.0,
+"hold": 0.91
+},
+"speaker": "Huw Pill",
+"type": "speech"
+},
+"d6feaca89e744635": {
+"date": "2019-07-10",
+"ev": 0.01,
+"focus": 0.545,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.01,
+"hike_50": 0.0,
+"hold": 0.99
+},
+"speaker": "Silvana Tenreyro",
+"type": "speech"
+},
+"d722e7ad499e4506": {
+"date": "2022-02-23",
+"ev": 1.16,
+"focus": 0.693,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.8,
+"hike_50": 0.18,
+"hold": 0.02
+},
+"speaker": "Jonathan Haskel",
+"type": "testimony"
+},
+"d7dbaea44dd6e221": {
+"date": "2025-06-24",
+"ev": -0.93,
+"focus": 0.672,
+"p": {
+"cut_25": 0.93,
+"cut_50": 0.0,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 0.07
+},
+"speaker": "Dave Ramsden",
+"type": "speech"
+},
+"d8d55a5b619d87db": {
+"date": "2026-03-18",
+"ev": 0.4,
+"focus": 0.67,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.4,
+"hike_50": 0.0,
+"hold": 0.6
+},
+"speaker": "Huw Pill",
+"type": "member_view"
+},
+"d9d432ea031339de": {
+"date": "2021-09-27",
+"ev": 0.41,
+"focus": 0.745,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.41,
+"hike_50": 0.0,
+"hold": 0.59
+},
+"speaker": "Andrew Bailey",
+"type": "speech"
+},
+"da60969599d0a6c7": {
+"date": "2025-11-05",
+"ev": 0.04,
+"focus": 0.87,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.04,
+"hike_50": 0.0,
+"hold": 0.96
+},
+"speaker": "Clare Lombardelli",
+"type": "member_view"
+},
+"dac76389ea0afe9e": {
+"date": "2021-05-18",
+"ev": 0.02,
+"focus": 0.623,
+"p": {
+"cut_25": 0.01,
+"cut_50": 0.0,
+"hike_25": 0.03,
+"hike_50": 0.0,
+"hold": 0.96
+},
+"speaker": "Ben Broadbent",
+"type": "testimony"
+},
+"dac9ce85e950d0d9": {
+"date": "2014-10-17",
+"ev": -0.01,
+"focus": 0.713,
+"p": {
+"cut_25": 0.01,
+"cut_50": 0.0,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 0.99
+},
+"speaker": "Andy Haldane",
+"type": "speech"
+},
+"db437a7368e2da77": {
+"date": "2017-06-20",
+"ev": 0.4,
+"focus": 0.757,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.4,
+"hike_50": 0.0,
+"hold": 0.6
+},
+"speaker": "Andy Haldane",
+"type": "speech"
+},
+"dba82345505ad40b": {
+"date": "2020-07-23",
+"ev": -0.28,
+"focus": 0.282,
+"p": {
+"cut_25": 0.14,
+"cut_50": 0.07,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 0.79
+},
+"speaker": "Jonathan Haskel",
+"type": "speech"
+},
+"dc5cdb4f9aa5baaa": {
+"date": "2016-03-02",
+"ev": 0.0,
+"focus": 0.052,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 1.0
+},
+"speaker": "Ben Broadbent",
+"type": "speech"
+},
+"dc67ae107bbd3abd": {
+"date": "2026-02-24",
+"ev": -1.01,
+"focus": 0.833,
+"p": {
+"cut_25": 0.91,
+"cut_50": 0.05,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 0.04
+},
+"speaker": "Alan Taylor",
+"type": "testimony"
+},
+"ddf50456cb47c31e": {
+"date": "2026-09-08",
+"ev": -0.01,
+"focus": 0.515,
+"p": {
+"cut_25": 0.02,
+"cut_50": 0.0,
+"hike_25": 0.01,
+"hike_50": 0.0,
+"hold": 0.97
+},
+"speaker": "Dave Ramsden",
+"type": "testimony"
+},
+"de61e24768867474": {
+"date": "2016-01-19",
+"ev": 0.0,
+"focus": 0.88,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 1.0
+},
+"speaker": "Mark Carney",
+"type": "speech"
+},
+"de6dfccf95e9c5f1": {
+"date": "2026-02-04",
+"ev": -0.59,
+"focus": 0.795,
+"p": {
+"cut_25": 0.57,
+"cut_50": 0.01,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 0.42
+},
+"speaker": "Andrew Bailey",
+"type": "member_view"
+},
+"dfc927f12217a87f": {
+"date": "2019-06-26",
+"ev": 0.36,
+"focus": 0.557,
+"p": {
+"cut_25": 0.01,
+"cut_50": 0.0,
+"hike_25": 0.35,
+"hike_50": 0.01,
+"hold": 0.63
+},
+"speaker": "Jon Cunliffe",
+"type": "testimony"
+},
+"dff1e542e31b5260": {
+"date": "2014-11-17",
+"ev": -0.4,
+"focus": 0.217,
+"p": {
+"cut_25": 0.27,
+"cut_50": 0.07,
+"hike_25": 0.01,
+"hike_50": 0.0,
+"hold": 0.65
+},
+"speaker": "Andrew Haldane",
+"type": "speech"
+},
+"e01795d159c32284": {
+"date": "2023-06-29",
+"ev": -0.05,
+"focus": 0.535,
+"p": {
+"cut_25": 0.05,
+"cut_50": 0.02,
+"hike_25": 0.02,
+"hike_50": 0.01,
+"hold": 0.9
+},
+"speaker": "Silvana Tenreyro",
+"type": "speech"
+},
+"e02a3440078e1ae1": {
+"date": "2016-05-13",
+"ev": 0.01,
+"focus": 0.3,
+"p": {
+"cut_25": 0.04,
+"cut_50": 0.01,
+"hike_25": 0.05,
+"hike_50": 0.01,
+"hold": 0.89
+},
+"speaker": "Martin Weale",
+"type": "speech"
+},
+"e086e698ded79ee6": {
+"date": "2015-11-18",
+"ev": -0.08,
+"focus": 0.618,
+"p": {
+"cut_25": 0.06,
+"cut_50": 0.02,
+"hike_25": 0.02,
+"hike_50": 0.0,
+"hold": 0.9
+},
+"speaker": "Ben Broadbent",
+"type": "speech"
+},
+"e136af3fa7334220": {
+"date": "2026-02-04",
+"ev": 0.0,
+"focus": 0.865,
+"p": {
+"cut_25": 0.01,
+"cut_50": 0.0,
+"hike_25": 0.01,
+"hike_50": 0.0,
+"hold": 0.98
+},
+"speaker": "Clare Lombardelli",
+"type": "member_view"
+},
+"e15bedc3ea031724": {
+"date": "2026-05-21",
+"ev": 0.0,
+"focus": 0.018,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 1.0
+},
+"speaker": "Andrew Bailey",
+"type": "speech"
+},
+"e39aecef98c2aee5": {
+"date": "2025-11-05",
+"ev": -0.97,
+"focus": 0.743,
+"p": {
+"cut_25": 0.97,
+"cut_50": 0.0,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 0.03
+},
+"speaker": "Dave Ramsden",
+"type": "member_view"
+},
+"e3f3a6ec74219aaa": {
+"date": "2026-11-04",
+"ev": 0.41,
+"focus": 0.838,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.41,
+"hike_50": 0.0,
+"hold": 0.59
+},
+"speaker": "Swati Dhingra",
+"type": "member_view"
+},
+"e425d69d9617d460": {
+"date": "2025-06-03",
+"ev": -0.99,
+"focus": 0.71,
+"p": {
+"cut_25": 0.97,
+"cut_50": 0.01,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 0.02
+},
+"speaker": "Sarah Breeden",
+"type": "testimony"
+},
+"e42a1e531bf7f83f": {
+"date": "2026-05-20",
+"ev": 0.01,
+"focus": 0.655,
+"p": {
+"cut_25": 0.03,
+"cut_50": 0.0,
+"hike_25": 0.04,
+"hike_50": 0.0,
+"hold": 0.93
+},
+"speaker": "Swati Dhingra",
+"type": "testimony"
+},
+"e458cfa7fcdacc8a": {
+"date": "2020-10-21",
+"ev": 0.0,
+"focus": 0.65,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 1.0
+},
+"speaker": "Dave Ramsden",
+"type": "speech"
+},
+"e486a284fd987eaf": {
+"date": "2025-02-01",
+"ev": 0.01,
+"focus": 0.265,
+"p": {
+"cut_25": 0.04,
+"cut_50": 0.0,
+"hike_25": 0.05,
+"hike_50": 0.0,
+"hold": 0.91
+},
+"speaker": "Swati Dhingra",
+"type": "speech"
+},
+"e50a8eb35547fd92": {
+"date": "2025-10-17",
+"ev": -0.04,
+"focus": 0.608,
+"p": {
+"cut_25": 0.04,
+"cut_50": 0.0,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 0.96
+},
+"speaker": "Huw Pill",
+"type": "speech"
+},
+"e518b3c3e9bc11d0": {
+"date": "2026-09-16",
+"ev": 0.85,
+"focus": 0.73,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.75,
+"hike_50": 0.05,
+"hold": 0.2
+},
+"speaker": "Megan Greene",
+"type": "member_view"
+},
+"e523d072e2534bad": {
+"date": "2019-06-10",
+"ev": 0.3,
+"focus": 0.64,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.3,
+"hike_50": 0.0,
+"hold": 0.7
+},
+"speaker": "Michael Saunders",
+"type": "speech"
+},
+"e5f2d484d7045070": {
+"date": "2020-07-01",
+"ev": 0.0,
+"focus": 0.47,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 1.0
+},
+"speaker": "Jonathan Haskel",
+"type": "speech"
+},
+"e771d3c9b30ed4e5": {
+"date": "2024-02-20",
+"ev": -0.15,
+"focus": 0.945,
+"p": {
+"cut_25": 0.12,
+"cut_50": 0.02,
+"hike_25": 0.01,
+"hike_50": 0.0,
+"hold": 0.85
+},
+"speaker": "Andrew Bailey",
+"type": "testimony"
+},
+"e7bf2b3a764438fb": {
+"date": "2024-05-16",
+"ev": 0.11,
+"focus": 0.258,
+"p": {
+"cut_25": 0.01,
+"cut_50": 0.0,
+"hike_25": 0.1,
+"hike_50": 0.01,
+"hold": 0.88
+},
+"speaker": "Megan Greene",
+"type": "speech"
+},
+"e80141aae576c4d9": {
+"date": "2020-04-16",
+"ev": -0.09,
+"focus": 0.375,
+"p": {
+"cut_25": 0.03,
+"cut_50": 0.03,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 0.94
+},
+"speaker": "Silvana Tenreyro",
+"type": "speech"
+},
+"e8152b852bf92a85": {
+"date": "2024-11-01",
+"ev": 0.07,
+"focus": 0.693,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.07,
+"hike_50": 0.0,
+"hold": 0.93
+},
+"speaker": "Dave Ramsden",
+"type": "speech"
+},
+"e870000782bd70e0": {
+"date": "2018-06-04",
+"ev": 0.13,
+"focus": 0.64,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.13,
+"hike_50": 0.0,
+"hold": 0.87
+},
+"speaker": "Silvana Tenreyro",
+"type": "speech"
+},
+"e9ac5d74e7948358": {
+"date": "2014-09-10",
+"ev": -0.03,
+"focus": 0.253,
+"p": {
+"cut_25": 0.02,
+"cut_50": 0.01,
+"hike_25": 0.01,
+"hike_50": 0.0,
+"hold": 0.96
+},
+"speaker": "David Miles",
+"type": "testimony"
+},
+"eaf4b4379d8417c8": {
+"date": "2023-02-06",
+"ev": 0.0,
+"focus": 0.193,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 1.0
+},
+"speaker": "Catherine L. Mann",
+"type": "speech"
+},
+"eaf6864060e7a876": {
+"date": "2026-09-17",
+"ev": 0.04,
+"focus": 0.797,
+"p": {
+"cut_25": 0.01,
+"cut_50": 0.0,
+"hike_25": 0.05,
+"hike_50": 0.0,
+"hold": 0.94
+},
+"speaker": "Andrew Bailey",
+"type": "interview"
+},
+"ebb98f0ff507a055": {
+"date": "2015-02-24",
+"ev": 0.15,
+"focus": 0.733,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.13,
+"hike_50": 0.01,
+"hold": 0.86
+},
+"speaker": "Mark Carney",
+"type": "testimony"
+},
+"ebec439179343e6d": {
+"date": "2015-01-28",
+"ev": -0.29,
+"focus": 0.522,
+"p": {
+"cut_25": 0.18,
+"cut_50": 0.06,
+"hike_25": 0.01,
+"hike_50": 0.0,
+"hold": 0.75
+},
+"speaker": "Mark Carney",
+"type": "speech"
+},
+"ec847c53cb2421a5": {
+"date": "2017-09-28",
+"ev": -0.02,
+"focus": 0.29,
+"p": {
+"cut_25": 0.04,
+"cut_50": 0.01,
+"hike_25": 0.04,
+"hike_50": 0.0,
+"hold": 0.91
+},
+"speaker": "Mark Carney",
+"type": "speech"
+},
+"eca8fb3a6c9583bc": {
+"date": "2026-11-04",
+"ev": 1.0,
+"focus": 0.78,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 1.0,
+"hike_50": 0.0,
+"hold": 0.0
+},
+"speaker": "Clare Lombardelli",
+"type": "member_view"
+},
+"ecb486cf4ff4b2e7": {
+"date": "2025-09-23",
+"ev": 0.0,
+"focus": 0.265,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 1.0
+},
+"speaker": "Huw Pill",
+"type": "speech"
+},
+"edc8913256520f26": {
+"date": "2022-02-09",
+"ev": 0.01,
+"focus": 0.083,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.01,
+"hike_50": 0.0,
+"hold": 0.99
+},
+"speaker": "Huw Pill",
+"type": "speech"
+},
+"edcfc34383bee05e": {
+"date": "2026-09-16",
+"ev": 0.68,
+"focus": 0.632,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.66,
+"hike_50": 0.01,
+"hold": 0.33
+},
+"speaker": "Huw Pill",
+"type": "member_view"
+},
+"edfcdf8e3e66a4b5": {
+"date": "2022-09-07",
+"ev": 1.98,
+"focus": 0.547,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.02,
+"hike_50": 0.98,
+"hold": 0.0
+},
+"speaker": "Catherine Mann",
+"type": "testimony"
+},
+"eec2d9a20e25a6a2": {
+"date": "2015-11-24",
+"ev": 0.0,
+"focus": 0.665,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 1.0
+},
+"speaker": "Andrew Haldane",
+"type": "testimony"
+},
+"ef32ec0cb88f3596": {
+"date": "2016-11-18",
+"ev": -0.05,
+"focus": 0.427,
+"p": {
+"cut_25": 0.05,
+"cut_50": 0.01,
+"hike_25": 0.02,
+"hike_50": 0.0,
+"hold": 0.92
+},
+"speaker": "Ben Broadbent",
+"type": "speech"
+},
+"ef4854b777f94c12": {
+"date": "2026-09-29",
+"ev": -0.03,
+"focus": 0.62,
+"p": {
+"cut_25": 0.03,
+"cut_50": 0.0,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 0.97
+},
+"speaker": "Alan Taylor",
+"type": "speech"
+},
+"ef638958003e1aa2": {
+"date": "2022-09-29",
+"ev": 1.46,
+"focus": 0.623,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.52,
+"hike_50": 0.47,
+"hold": 0.01
+},
+"speaker": "Huw Pill",
+"type": "speech"
+},
+"ef7cace1065af5aa": {
+"date": "2022-10-07",
+"ev": 1.98,
+"focus": 0.67,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.02,
+"hike_50": 0.98,
+"hold": 0.0
+},
+"speaker": "Dave Ramsden",
+"type": "speech"
+},
+"efeed505b189f13f": {
+"date": "2026-09-24",
+"ev": 0.58,
+"focus": 0.715,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.56,
+"hike_50": 0.01,
+"hold": 0.43
+},
+"speaker": "Clare Lombardelli",
+"type": "speech"
+},
+"f00f4b448ff2f72e": {
+"date": "2015-08-29",
+"ev": 0.08,
+"focus": 0.565,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.08,
+"hike_50": 0.0,
+"hold": 0.92
+},
+"speaker": "Mark Carney",
+"type": "speech"
+},
+"f0943bd81438d512": {
+"date": "2025-07-10",
+"ev": 0.01,
+"focus": 0.203,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.01,
+"hike_50": 0.0,
+"hold": 0.99
+},
+"speaker": "Sarah Breeden",
+"type": "speech"
+},
+"f131f269f13159c7": {
+"date": "2021-05-18",
+"ev": 0.01,
+"focus": 0.5,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.01,
+"hike_50": 0.0,
+"hold": 0.99
+},
+"speaker": "Andrew Bailey",
+"type": "testimony"
+},
+"f195afdcbdba663d": {
+"date": "2023-11-17",
+"ev": 0.08,
+"focus": 0.698,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.08,
+"hike_50": 0.0,
+"hold": 0.92
+},
+"speaker": "Dave Ramsden",
+"type": "speech"
+},
+"f2195881a3601cdb": {
+"date": "2015-02-24",
+"ev": 0.04,
+"focus": 0.695,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.04,
+"hike_50": 0.0,
+"hold": 0.96
+},
+"speaker": "David Miles",
+"type": "testimony"
+},
+"f26d87c47403b113": {
+"date": "2026-11-04",
+"ev": 0.95,
+"focus": 0.748,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.93,
+"hike_50": 0.01,
+"hold": 0.06
+},
+"speaker": "Megan Greene",
+"type": "member_view"
+},
+"f329eb444eec6504": {
+"date": "2025-07-02",
+"ev": -0.02,
+"focus": 0.263,
+"p": {
+"cut_25": 0.06,
+"cut_50": 0.02,
+"hike_25": 0.06,
+"hike_50": 0.01,
+"hold": 0.85
+},
+"speaker": "Alan Taylor",
+"type": "speech"
+},
+"f3c15f9c64e65f3d": {
+"date": "2026-11-04",
+"ev": 0.73,
+"focus": 0.85,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.73,
+"hike_50": 0.0,
+"hold": 0.27
+},
+"speaker": "Andrew Bailey",
+"type": "member_view"
+},
+"f3de6437317ac32d": {
+"date": "2026-04-13",
+"ev": 0.01,
+"focus": 0.18,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.01,
+"hike_50": 0.0,
+"hold": 0.99
+},
+"speaker": "Alan Taylor",
+"type": "speech"
+},
+"f500dc1829a8789f": {
+"date": "2022-10-15",
+"ev": 1.67,
+"focus": 0.593,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.33,
+"hike_50": 0.67,
+"hold": 0.0
+},
+"speaker": "Andrew Bailey",
+"type": "speech"
+},
+"f5066967c72d3e97": {
+"date": "2026-02-24",
+"ev": -0.04,
+"focus": 0.67,
+"p": {
+"cut_25": 0.04,
+"cut_50": 0.0,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 0.96
+},
+"speaker": "Huw Pill",
+"type": "testimony"
+},
+"f5474a06a3336ab7": {
+"date": "2015-09-16",
+"ev": 0.79,
+"focus": 0.67,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.77,
+"hike_50": 0.01,
+"hold": 0.22
+},
+"speaker": "Kristin Forbes",
+"type": "testimony"
+},
+"f5623fed782d9e37": {
+"date": "2026-02-04",
+"ev": -1.03,
+"focus": 0.802,
+"p": {
+"cut_25": 0.93,
+"cut_50": 0.05,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 0.02
+},
+"speaker": "Alan Taylor",
+"type": "member_view"
+},
+"f572ea1908cc49e9": {
+"date": "2026-10-08",
+"ev": 0.08,
+"focus": 0.285,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.08,
+"hike_50": 0.0,
+"hold": 0.92
+},
+"speaker": "Andrew Bailey",
+"type": "speech"
+},
+"f5d49f4f719b8c27": {
+"date": "2024-02-21",
+"ev": -0.98,
+"focus": 0.897,
+"p": {
+"cut_25": 0.96,
+"cut_50": 0.01,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 0.03
+},
+"speaker": "Swati Dhingra",
+"type": "speech"
+},
+"f67a7ecca47b3a9d": {
+"date": "2014-09-10",
+"ev": 0.0,
+"focus": 0.677,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 1.0
+},
+"speaker": "Nemat Shafik",
+"type": "testimony"
+},
+"f6f116a7b348f6c7": {
+"date": "2014-10-28",
+"ev": -0.01,
+"focus": 0.677,
+"p": {
+"cut_25": 0.01,
+"cut_50": 0.0,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 0.99
+},
+"speaker": "Sir Jon Cunliffe",
+"type": "speech"
+},
+"f70dbb892756866e": {
+"date": "2021-02-24",
+"ev": 0.0,
+"focus": 0.427,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 1.0
+},
+"speaker": "Andrew Bailey",
+"type": "testimony"
+},
+"f75ee1546db61903": {
+"date": "2023-03-27",
+"ev": 0.4,
+"focus": 0.515,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.36,
+"hike_50": 0.02,
+"hold": 0.62
+},
+"speaker": "Andrew Bailey",
+"type": "speech"
+},
+"f8187084509ab72f": {
+"date": "2019-07-02",
+"ev": 0.25,
+"focus": 0.635,
+"p": {
+"cut_25": 0.03,
+"cut_50": 0.01,
+"hike_25": 0.28,
+"hike_50": 0.01,
+"hold": 0.67
+},
+"speaker": "Mark Carney",
+"type": "speech"
+},
+"f86c5f00f6af9281": {
+"date": "2021-11-23",
+"ev": 0.25,
+"focus": 0.613,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.23,
+"hike_50": 0.01,
+"hold": 0.76
+},
+"speaker": "Jonathan Haskel",
+"type": "speech"
+},
+"f87c5b5f09e0348d": {
+"date": "2016-07-12",
+"ev": -0.35,
+"focus": 0.3,
+"p": {
+"cut_25": 0.17,
+"cut_50": 0.09,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 0.74
+},
+"speaker": "Mark Carney",
+"type": "testimony"
+},
+"f88f30e836132687": {
+"date": "2019-12-20",
+"ev": -0.71,
+"focus": 0.82,
+"p": {
+"cut_25": 0.67,
+"cut_50": 0.02,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 0.31
+},
+"speaker": "Jonathan Haskel",
+"type": "speech"
+},
+"f9626da18aee867e": {
+"date": "2025-05-12",
+"ev": -0.02,
+"focus": 0.347,
+"p": {
+"cut_25": 0.02,
+"cut_50": 0.0,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 0.98
+},
+"speaker": "Catherine L Mann",
+"type": "speech"
+},
+"f966a925f5ce4d66": {
+"date": "2017-03-31",
+"ev": 0.0,
+"focus": 0.18,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 1.0
+},
+"speaker": "Andy Haldane",
+"type": "speech"
+},
+"f9a1e75bf7c01b4b": {
+"date": "2026-06-18",
+"ev": 0.01,
+"focus": 0.55,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.01,
+"hike_50": 0.0,
+"hold": 0.99
+},
+"speaker": "Andrew Bailey",
+"type": "interview"
+},
+"fa627f52759c17d0": {
+"date": "2026-10-20",
+"ev": 0.98,
+"focus": 0.718,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.94,
+"hike_50": 0.02,
+"hold": 0.04
+},
+"speaker": "Megan Greene",
+"type": "speech"
+},
+"fbfadb9f24a5972d": {
+"date": "2022-11-13",
+"ev": 1.82,
+"focus": 0.517,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.08,
+"hike_50": 0.87,
+"hold": 0.05
+},
+"speaker": "Jonathan Haskel",
+"type": "speech"
+},
+"fc54737d6d6bc38a": {
+"date": "2025-11-18",
+"ev": -0.01,
+"focus": 0.275,
+"p": {
+"cut_25": 0.01,
+"cut_50": 0.0,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 0.99
+},
+"speaker": "Swati Dhingra",
+"type": "speech"
+},
+"fcfa7ab6f06501de": {
+"date": "2022-07-07",
+"ev": 0.97,
+"focus": 0.522,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.51,
+"hike_50": 0.23,
+"hold": 0.26
+},
+"speaker": "Huw Pill",
+"type": "speech"
+},
+"fdcd3ae65d829c76": {
+"date": "2024-08-01",
+"ev": 0.86,
+"focus": 0.693,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.7,
+"hike_50": 0.08,
+"hold": 0.22
+},
+"speaker": "Andrew Bailey",
+"type": "speech"
+},
+"fdf67a4505584b1f": {
+"date": "2024-11-19",
+"ev": -0.84,
+"focus": 0.75,
+"p": {
+"cut_25": 0.81,
+"cut_50": 0.03,
+"hike_25": 0.03,
+"hike_50": 0.0,
+"hold": 0.13
+},
+"speaker": "Alan Taylor",
+"type": "testimony"
+},
+"fe5408fbc97db530": {
+"date": "2023-03-01",
+"ev": 0.58,
+"focus": 0.593,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.48,
+"hike_50": 0.05,
+"hold": 0.47
+},
+"speaker": "Andrew Bailey",
+"type": "speech"
+}
+}
