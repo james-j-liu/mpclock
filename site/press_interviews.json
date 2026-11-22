@@ -1,1 +1,18 @@
-[]
+[
+ {
+  "submitted": "2026-11-22",
+  "issue": null,
+  "request_id": "web-mwrzwldq-jvhjr",
+  "urls": [
+   "https://www.ft.com/content/014fae08-ab39-4fa2-b9d3-f0c961a6710f"
+  ],
+  "outlet": "",
+  "date": "auto",
+  "member": "auto",
+  "fetch_errors": [
+   "https://www.ft.com/content/014fae08-ab39-4fa2-b9d3-f0c961a6710f: 403 Client Error: Forbidden for url: https://www.ft.com/content/014fae08-ab39-4f"
+  ],
+  "status": "needs_info",
+  "reason": "could not find the interview's date \u2014 give it"
+ }
+]
