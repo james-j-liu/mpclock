@@ -128,7 +128,7 @@ from `src/mpclock/forecast/`:
   near-term projections, and every release since 2015 scored against the latest one.
 
 Backtest (779 member votes at 87 meetings since mid-2015, leave-one-year-out): log loss
-0.70 vs 0.82 for "everyone repeats their last vote"; 77% of member votes and 75% of
+0.68 vs 0.82 for "everyone repeats their last vote"; 77% of member votes and 75% of
 decisions called (69%). Last five years: 55% of decisions (48%).
 
 The **Press interviews** tab files a GitHub issue with a link and/or transcript;
