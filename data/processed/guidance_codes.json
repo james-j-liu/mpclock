@@ -1061,6 +1061,42 @@
 "type": "testimony",
 "v": 2
 },
+"0ce04c78617e0863": {
+"date": "2022-07-06",
+"dir": {
+"higher": 1.0,
+"lower": 0.0,
+"unchanged": 0.0
+},
+"dir_ev": 1.0,
+"dir_ev_pass": 1.0,
+"dir_pass": {
+"higher": 1.0,
+"lower": 0.0,
+"unchanged": 0.0
+},
+"ev": 0.96,
+"ev_pass": 0.87,
+"focus": 0.72,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.7,
+"hike_50": 0.13,
+"hold": 0.17
+},
+"p_pass": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.71,
+"hike_50": 0.08,
+"hold": 0.21
+},
+"pass_chars": 14002,
+"speaker": "Huw Pill",
+"type": "speech",
+"v": 2
+},
 "0df5076a4f6fba63": {
 "date": "2021-11-26",
 "dir": {
