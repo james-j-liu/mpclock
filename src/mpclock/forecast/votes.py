@@ -67,11 +67,12 @@ VOTE_OVERRIDES = {
 
 FEATURE_GROUPS = {
     "committee": ["prev_dev", "pull"],
-    "words": ["tone", "guidance"],
-    "data": ["surprise"],
-    "markets": ["energy", "fx"],
-    "global": ["fed", "ecb"],
     "pace": ["pace", "moved_last", "mpr_x_pace"],
+    "words": ["guidance"],
+    "data": ["surprise"],          # outturns vs MPR, plus half-weighted energy-price change
+    "global": ["fed", "ecb"],
+    "fx": ["fx"],
+    "tone": ["tone"],
 }
 
 # --- forward guidance lexicon --------------------------------------------------
@@ -337,7 +338,9 @@ def features_for(ctx: Context, prev: Meeting, date: str, members: list[str]) -> 
             "member": p, "prev_vote": pv, "prev_decision": prev.decision,
             "prev_dev": pv - prev.decision, "pull": mean_prev - pv,
             "tone": w["tone"], "guidance": w["guidance"], "n_docs": w["n_docs"],
-            "surprise": float(np.clip(personal, -4, 4)),
+            # energy prices are data too: a 10% rise counts as half a standard surprise
+            "surprise": float(np.clip(personal + 0.5 * np.clip(mk["energy"], -4, 4), -5, 5)),
+            "surprise_data": float(np.clip(personal, -4, 4)),
             "energy": float(np.clip(mk["energy"], -4, 4)), "fx": float(np.clip(mk["fx"], -4, 4)),
             "fed": mk["fed"], "ecb": mk["ecb"],
             "pace": pace["pace"], "moved_last": pace["moved_last"], "mpr_x_pace": pace["mpr_x_pace"],

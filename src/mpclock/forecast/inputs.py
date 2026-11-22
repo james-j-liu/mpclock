@@ -250,7 +250,9 @@ def refresh(corpus=None, mpr_dir: Path | None = None) -> dict:
             mpr_dates[tag] = min(mpr_dates.get(tag, s_.date), s_.date)
             reports.append((s_.date, f"https://www.bankofengland.co.uk/{base}/{y}/{month}-{y}"))
         have = {p.name for p in MPR_DIR_CACHE.iterdir()} if MPR_DIR_CACHE.exists() else set()
-        fetch_mpr_chartdata(sorted(set(reports)), have | set(mpr))
+        tried = set(c.setdefault("mpr_tried", []))
+        got = fetch_mpr_chartdata(sorted(set(reports)), have | set(mpr) | tried)
+        c["mpr_tried"] = sorted(tried | set(got))
     d = mpr_dir or MPR_DIR_CACHE
     if d.exists():
         for tag, ser in read_mprs(str(d), verbose=False).items():

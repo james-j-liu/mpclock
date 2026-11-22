@@ -39,6 +39,14 @@ jobs:
           OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
           JUDGE_MODEL: google/gemini-2.5-flash-lite
         run: python -u scripts/daily_update.py
+      - name: Vote forecast
+        # refreshes ONS outturns, energy/FX/Fed/ECB, new MPR projections, codes new
+        # member documents for forward guidance, re-runs the backtest and writes
+        # site/forecast.json. A failure here leaves yesterday's forecast in place.
+        continue-on-error: true
+        env:
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+        run: python -u scripts/vote_forecast.py --refresh
       - name: Commit updated state and data
         # a rejected commit (e.g. corpus.jsonl outgrowing GitHub's file limit) is
         # a state problem, not a reason to stop publishing the site
@@ -47,6 +55,7 @@ jobs:
           git config user.name "mpclock-bot"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add data/processed/corpus.jsonl data/processed/tournament_log.jsonl data/processed/roster_state.json data/processed/scrape_misses.json site/data.json site/macro.json
+          git add data/processed/forecast_inputs.json data/processed/guidance_codes.json site/forecast.json site/press_interviews.json || true
           git commit -m "daily update $(date -u +%F)" || echo "no changes to commit"
           git push
       - name: Upload site for Pages

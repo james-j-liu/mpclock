@@ -29,17 +29,17 @@ import numpy as np
 from mpclock.forecast import votes as V
 from mpclock.schema import load_corpus
 
+_G = V.FEATURE_GROUPS
 LADDER = [
     ("last vote only", []),
-    ("+ committee", V.FEATURE_GROUPS["committee"]),
-    ("+ pace", V.FEATURE_GROUPS["committee"] + V.FEATURE_GROUPS["pace"]),
-    ("+ words", V.FEATURE_GROUPS["committee"] + V.FEATURE_GROUPS["pace"] + V.FEATURE_GROUPS["words"]),
-    ("+ data surprises", V.FEATURE_GROUPS["committee"] + V.FEATURE_GROUPS["pace"] + V.FEATURE_GROUPS["words"]
-     + V.FEATURE_GROUPS["data"]),
-    ("+ energy & FX", V.FEATURE_GROUPS["committee"] + V.FEATURE_GROUPS["pace"] + V.FEATURE_GROUPS["words"]
-     + V.FEATURE_GROUPS["data"] + V.FEATURE_GROUPS["markets"]),
-    ("+ Fed & ECB", V.FEATURE_GROUPS["committee"] + V.FEATURE_GROUPS["pace"] + V.FEATURE_GROUPS["words"]
-     + V.FEATURE_GROUPS["data"] + V.FEATURE_GROUPS["markets"] + V.FEATURE_GROUPS["global"]),
+    ("+ committee", _G["committee"]),
+    ("+ pace", _G["committee"] + _G["pace"]),
+    ("+ own guidance", _G["committee"] + _G["pace"] + _G["words"]),
+    ("+ data & energy", _G["committee"] + _G["pace"] + _G["words"] + _G["data"]),
+    ("+ Fed & ECB", _G["committee"] + _G["pace"] + _G["words"] + _G["data"] + _G["global"]),
+    ("+ sterling", _G["committee"] + _G["pace"] + _G["words"] + _G["data"] + _G["global"] + _G["fx"]),
+    ("+ speech tone", _G["committee"] + _G["pace"] + _G["words"] + _G["data"] + _G["global"] + _G["fx"]
+     + _G["tone"]),
 ]
 
 
@@ -103,16 +103,32 @@ def next_meeting(corpus, last_date: str) -> str:
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--no-backtest", action="store_true")
-    ap.add_argument("--since", default="2021-01-01")
+    ap.add_argument("--refresh", action="store_true",
+                    help="first refresh ONS/market/MPR inputs and code new member documents (daily run)")
+    ap.add_argument("--since", default="2015-06-01")
+    ap.add_argument("--recent", default=None, help="also report meetings from this date (default: last 5 years)")
     ap.add_argument("--out", default=str(ROOT / "site/forecast.json"))
     args = ap.parse_args()
     warnings.filterwarnings("ignore")
 
     corpus = load_corpus(ROOT / "data/processed/corpus.jsonl")
+    if args.refresh:
+        from mpclock.forecast import inputs
+        try:
+            inputs.refresh(corpus)
+        except Exception as e:  # noqa: BLE001 - a data outage must not stop the forecast
+            print(f"[warn] input refresh failed: {e}")
+        try:
+            from mpclock.forecast.guidance import code_documents, member_documents
+            rate = [(d, float(r)) for d, r in
+                    json.loads((ROOT / "site/macro.json").read_text())["series"]["bank_rate"]["data"]]
+            code_documents(member_documents(corpus), rate)
+        except Exception as e:  # noqa: BLE001 - no key / API down: forecast on existing codes
+            print(f"[warn] guidance coding skipped: {e}")
     ctx = V.build_context(corpus)
     rows = V.panel(ctx, args.since)
     full = LADDER[-1][1]
-    chosen = LADDER[-2][1]          # default model; replaced below by the best CV ladder step
+    chosen = LADDER[5][1]           # default (data & energy + Fed/ECB); replaced by the best CV step
 
     report = {}
     if not args.no_backtest:
@@ -140,6 +156,19 @@ def main():
         # per-meeting detail for the site
         P = cv_predict(rows, chosen)
         ev = evaluate(rows, P)
+        recent = args.recent or (dt.date.today() - dt.timedelta(days=5 * 365 + 1)).isoformat()
+        idx = [i for i, r in enumerate(rows) if r["date"] >= recent]
+        evr = evaluate([rows[i] for i in idx], P[idx])
+        report["recent"] = {"since": recent, **{k: round(float(evr[k]), 4) for k in
+                            ("log_loss", "brier", "vote_hit", "p_actual", "switch_hit", "decision_hit", "decision_p")},
+                            "meetings": evr["meetings"], "n": evr["n"], "n_switch": evr["n_switch"]}
+        print(f"  last five years (since {recent}): {evr['n']} votes, member votes called {evr['vote_hit']:.1%}, "
+              f"vote changes called {evr['switch_hit']:.1%} of {evr['n_switch']}, decisions called "
+              f"{evr['decision_hit']:.1%} of {evr['meetings']}, avg P(actual decision) {evr['decision_p']:.1%}")
+        # the same window under the naive "everyone repeats their last vote" model
+        evn = evaluate([rows[i] for i in idx], cv_predict(rows, [])[idx])
+        report["recent"]["naive_decision_hit"] = round(float(evn["decision_hit"]), 4)
+        report["recent"]["naive_vote_hit"] = round(float(evn["vote_hit"]), 4)
         report["member_calls"] = [
             {"date": r["date"], "member": r["member"], "actual": r["y_vote"],
              "p_actual": round(vp.get(r["y_vote"], 0.0), 3),
@@ -178,11 +207,11 @@ def main():
         members.append({"member": r["member"], "prev_vote": r["prev_vote"],
                         "probs": {str(k): round(v, 4) for k, v in vp.items()},
                         "expected_bp": round(25 * sum(k * v for k, v in vp.items()), 1),
-                        "features": {f: round(float(r[f]), 3) for f in V.FEATURE_GROUPS["committee"]
-                                     + V.FEATURE_GROUPS["words"] + V.FEATURE_GROUPS["data"]
-                                     + V.FEATURE_GROUPS["markets"] + V.FEATURE_GROUPS["global"]
-                                     + V.FEATURE_GROUPS["pace"]},
-                        "contributions": contrib, "n_docs": r["n_docs"], "doc_dates": r["_doc_dates"]})
+                        "features": {f: round(float(r[f]), 3) for g in V.FEATURE_GROUPS.values() for f in g},
+                        "surprise_data": round(r["surprise_data"], 3), "energy": round(r["energy"], 3),
+                        "contributions": contrib, "n_docs": r["n_docs"], "doc_dates": r["_doc_dates"],
+                        "docs": [{k: d[k] for k in ("date", "type", "signal")} for d in r["_docs"]],
+                        "signal": r["_signal"]})
     dist = V.decision_distribution([{int(k): v for k, v in m["probs"].items()} for m in members])
     out = {
         "generated": dt.datetime.utcnow().strftime("%Y-%m-%d %H:%M UTC"),
@@ -200,6 +229,9 @@ def main():
         "backtest": report,
     }
     Path(args.out).write_text(json.dumps(out, indent=1), encoding="utf-8")
+    reg = ROOT / "data/processed/press_interviews.json"      # the Press interviews tab reads this
+    (ROOT / "site/press_interviews.json").write_text(reg.read_text(encoding="utf-8") if reg.exists() else "[]",
+                                                     encoding="utf-8")
     print(f"\nnext meeting {nxt} (as of {asof}); wrote {args.out}")
     print("  decision: " + ", ".join(f"{int(k):+d}bp {v:.0%}" for k, v in out["decision"].items() if v >= .005))
     for m in out["members"]:
