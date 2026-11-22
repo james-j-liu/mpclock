@@ -212,7 +212,7 @@ def main():
                         "features": {f: round(float(r[f]), 3) for g in V.FEATURE_GROUPS.values() for f in g},
                         "surprise_data": round(r["surprise_data"], 3), "energy": round(r["energy"], 3),
                         "contributions": contrib, "n_docs": r["n_docs"], "doc_dates": r["_doc_dates"],
-                        "docs": [{k: d[k] for k in ("date", "type", "signal")} for d in r["_docs"]],
+                        "docs": [{k: d.get(k) for k in ("date", "type", "signal", "dir")} for d in r["_docs"]],
                         "signal": r["_signal"],
                         "record": r["_hist"]})
     dist = V.decision_distribution([{int(k): v for k, v in m["probs"].items()} for m in members])

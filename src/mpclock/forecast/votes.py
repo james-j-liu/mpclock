@@ -65,7 +65,8 @@ VOTE_OVERRIDES = {
                    "Alan Taylor": -2, "Catherine Mann": 0, "Huw Pill": 0},
 }
 
-SIGNAL_SOURCE = "passages"   # "passages" or "text": which coded vote feeds the guidance inputs
+SIGNAL_SOURCE = "text"   # "text" or "passages": which coded vote feeds the guidance inputs
+                         # (backtested: whole text 0.670 log loss, passages alone 0.680)
 HISTORY = 6       # meetings of each member's voting record used, beyond the last one
 
 FEATURE_GROUPS = {
@@ -325,7 +326,8 @@ def member_window(ctx: Context, member: str, start: str, end: str, prev_vote: in
             "guidance_regex": float(g_regex), "n_docs": len(docs), "topic_w": topic_weights(text),
             "doc_dates": [d[0] for d in docs],
             "docs": [{"date": d[0], "type": d[4], "id": d[3],
-                      "signal": codes.get(d[3], {}).get("ev"), "p": codes.get(d[3], {}).get("p")}
+                      "signal": codes.get(d[3], {}).get("ev"), "p": codes.get(d[3], {}).get("p"),
+                      "dir": codes.get(d[3], {}).get("dir")}
                      for d in docs]}
 
 

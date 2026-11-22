@@ -879,11 +879,12 @@ function renderForecast(){
       return '<span title="'+esc(fmtDate(r.date))+': voted '+esc(bpLabel(v))+', decision '+esc(bpLabel(r.decision*25))+'" class="'+(d>0?"pos":(d<0?"neg":""))+'">'+(v>0?"+":"")+v+'</span>';}).join(" ")+'</td>';
     const c=Object.entries(m.contributions).filter(([k,v])=>Math.abs(v)>=0.05).sort((a,b)=>Math.abs(b[1])-Math.abs(a[1])).slice(0,4);
     h+='<td class="l">'+c.map(([k,v])=>'<span class="'+(v>0?"pos":"neg")+'">'+esc(FEAT_LABEL[k]||k)+' '+(v>0?"+":"")+v.toFixed(2)+'</span>').join(", ")+'</td>';
-    const docs=(m.docs||[]).map(d=>{const sig=d.signal==null?"":" → "+(d.signal>0?"+":"")+(25*d.signal).toFixed(0)+"bp";
-      return esc(fmtDate(d.date))+' '+esc(d.type.replace("_"," "))+esc(sig);});
+    const docs=(m.docs||[]).map(d=>{const sig=(d.signal==null?"":" → "+(d.signal>0?"+":"")+(25*d.signal).toFixed(0)+"bp")+
+      (d.dir?' <span title="Which way the next move leans over the next few meetings">(next move: '+(d.dir.higher>=0.5?"up "+pct(d.dir.higher):d.dir.lower>=0.5?"down "+pct(d.dir.lower):"none signalled")+')</span>':"");
+      return esc(fmtDate(d.date))+' '+esc(d.type.replace("_"," "))+sig;});
     h+='<td class="l note">'+(docs.length?docs.join("<br>"):"none")+'</td></tr>';
   }
-  h+='</tbody></table></div><p class="note">Each member\'s odds come from an ordered logit on the change from their own last vote. "Own words → Nbp" is the vote a document signals, as coded by the Jev decision model (probability-weighted, 25bp per step).</p></div>';
+  h+='</tbody></table></div><p class="note">Each member\'s odds come from an ordered logit on the change from their own last vote. "Own words → Nbp" is the vote a document signals for the next meeting, as coded by the Jev decision model (probability-weighted, 25bp per step); "next move" is which way it leans over the next few meetings.</p></div>';
 
   // inputs
   const inp=f.inputs||{};
