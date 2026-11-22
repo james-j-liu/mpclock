@@ -24,3 +24,8 @@ classify*.log
 !data/processed/roster_state.json
 !data/processed/scrape_misses.json
 !data/processed/tournament_log_gemini_20k.jsonl
+# vote forecast state: extracted MPR projections + market/ONS inputs, guidance codes,
+# pasted press interviews
+!data/processed/forecast_inputs.json
+!data/processed/guidance_codes.json
+!data/processed/press_interviews.json

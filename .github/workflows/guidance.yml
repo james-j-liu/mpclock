@@ -1,0 +1,45 @@
+name: Code forward guidance (backfill)
+
+# Codes every sitting member's document for the vote it signals at the next meeting
+# (scripts/code_guidance.py) and commits data/processed/guidance_codes.json back to
+# the branch it ran on. The daily run codes new documents itself; this exists for
+# the one-off backfill and for re-coding after a prompt change (delete the file and
+# run it again).
+on:
+  workflow_dispatch: {}
+  push:
+    branches: ["claude/**"]
+    paths:
+      - "src/mpclock/forecast/guidance.py"
+      - "scripts/code_guidance.py"
+      - ".github/workflows/guidance.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: guidance-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  code:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install -r requirements.txt
+      - name: Code documents
+        env:
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+        run: python -u scripts/code_guidance.py --since 2014-06-01
+      - name: Commit codes
+        run: |
+          git config user.name "mpclock-bot"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/processed/guidance_codes.json
+          git commit -m "code forward guidance $(date -u +%F)" || echo "nothing new"
+          git pull --rebase origin "${GITHUB_REF_NAME}" && git push origin "HEAD:${GITHUB_REF_NAME}"
