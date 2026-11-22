@@ -209,10 +209,17 @@ def main():
             code_documents(member_documents(corpus), rate)
         except Exception as e:  # noqa: BLE001 - no key / API down: forecast on existing codes
             print(f"[warn] guidance coding skipped: {e}")
+    # inputs and recency half-life come from scripts/select_vote_model.py, which keeps the
+    # core structure only if it beats "repeat your last vote" significantly and each later
+    # add-on only if it clears the same test on its own
+    sel_path = ROOT / "data/processed/vote_model.json"
+    selection = json.loads(sel_path.read_text(encoding="utf-8")) if sel_path.exists() else None
+    if selection:
+        V.HALF_LIFE = selection.get("half_life", V.HALF_LIFE)
     ctx = V.build_context(corpus)
     rows = V.panel(ctx, args.since)
-    full = LADDER[-1][1]
-    chosen = LADDER[6][1]           # default (… + hedged guidance); replaced by the best CV step
+    chosen = selection["features"] if selection else LADDER[6][1]
+    ladder = [("last vote only", []), ("selected model", chosen)]
 
     report = {}
     if not args.no_backtest:
@@ -222,7 +229,7 @@ def main():
               f"{'switch hit':>11} {'decision hit':>13} {'P(decision)':>11}")
         best = None
         ladder_out = []
-        for name, feats in LADDER:
+        for name, feats in ladder:
             ev = evaluate(rows, cv_predict(rows, feats))
             print(f"  {name:20} {ev['log_loss']:8.4f} {ev['brier']:7.4f} {ev['vote_hit']:9.1%} "
                   f"{ev['p_actual']:9.1%} {ev['switch_hit']:11.1%} {ev['decision_hit']:13.1%} "
@@ -231,12 +238,10 @@ def main():
                                                   if k in ("log_loss", "brier", "vote_hit", "p_actual",
                                                            "switch_hit", "decision_hit", "decision_p")},
                                "n": ev["n"], "n_switch": ev["n_switch"], "meetings": ev["meetings"]})
-            if best is None or ev["log_loss"] < best[1]["log_loss"] - 1e-4:
-                best = (name, ev, feats)
-        chosen = best[2]
-        print(f"chosen model (lowest out-of-sample log loss): {best[0]}")
-        report = {"ladder": ladder_out, "chosen": best[0], "decisions": best[1]["decisions"],
-                  "since": args.since, "n": len(rows)}
+            best = (name, ev, feats)
+        print(f"selected inputs: {chosen}; half-life {V.HALF_LIFE} days")
+        report = {"ladder": ladder_out, "chosen": "selected model", "decisions": best[1]["decisions"],
+                  "since": args.since, "n": len(rows), "selection": selection}
         # per-meeting detail for the site
         P = cv_predict(rows, chosen)
         ev = evaluate(rows, P)

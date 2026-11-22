@@ -842,7 +842,7 @@ const esc=s=>String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"&lt;").rep
 const bpLabel=b=>{b=+b; return b===0?"No change":(b>0?"Hike ":"Cut ")+Math.abs(b)+"bp";};
 const pct=(x,d=0)=>(x==null?"—":(100*x).toFixed(d)+"%");
 const optColor=b=>{b=+b; return b>0?(b>=50?"#b8432f":"#e05d44"):(b<0?(b<=-50?"#2f5d8a":"#4477aa"):"#6e7681");};
-const FEAT_LABEL={prev_dev:"Dissent last time",hist_dev:"Voting record (6 meetings)",trend:"Changed vote last time",pull:"Pull of colleagues",tone:"Tone of own words",
+const FEAT_LABEL={g_rat_gap:"Own vote rationale vs last vote",g_rat_lvl:"Vote own rationale points to",g_pol_gap:"Policy speeches vs last vote",g_pol_lvl:"Vote policy speeches point to",g_oth_gap:"Other speeches vs last vote",g_oth_lvl:"Vote other speeches point to",prev_dev:"Dissent last time",hist_dev:"Voting record (6 meetings)",trend:"Changed vote last time",pull:"Pull of colleagues",tone:"Tone of own words",
   guidance:"Own words vs last vote",signal_level:"Vote own words point to",signal_hedged:"Hedged guidance",guidance_hedged:"Hedged guidance (change)",gov_pull:"Governor\'s signal (internal members)",surprise:"Data vs MPR",energy:"Energy prices",fx:"Sterling",
   fed:"Fed",ecb:"ECB",pace:"Cycle pace",moved_last:"Moved last meeting",mpr_x_pace:"MPR-meeting pace"};
 function fmtDate(d){ if(!d) return "—"; const t=new Date(d+"T00:00:00Z");
@@ -939,10 +939,23 @@ function renderForecast(){
   const bt=f.backtest||{};
   h+='<div class="card"><h3>Backtest — how good is this?</h3>';
   if(bt.ladder){
-    h+='<p>Every meeting since '+esc(bt.since)+' ('+bt.n+' member-votes) predicted by a model fitted on the other years only. Rows add one group of inputs at a time; the forecast above uses <b>'+esc(bt.chosen)+'</b> (lowest out-of-sample log loss).</p>';
+    h+='<p>Every meeting since '+esc(bt.since)+' ('+bt.n+' member-votes) predicted by a model fitted on the other years only. The table compares the selected model with simply repeating each member\'s last vote; how the inputs were selected is set out below it.</p>';
     h+='<div class="scroll"><table class="t"><thead><tr><th class="l">Model</th><th>Log loss</th><th>Brier</th><th>Member votes called</th><th>Avg P(actual vote)</th><th>Vote changes called</th><th>Decisions called</th><th>Avg P(actual decision)</th></tr></thead><tbody>';
     for(const r of bt.ladder) h+='<tr'+(r.model===bt.chosen?' style="background:#1f2a1f"':'')+'><td class="l">'+esc(r.model)+'</td><td>'+r.log_loss.toFixed(3)+'</td><td>'+r.brier.toFixed(3)+'</td><td>'+pct(r.vote_hit)+'</td><td>'+pct(r.p_actual)+'</td><td>'+pct(r.switch_hit)+' of '+r.n_switch+'</td><td>'+pct(r.decision_hit)+' of '+r.meetings+'</td><td>'+pct(r.decision_p)+'</td></tr>';
     h+='</tbody></table></div>';
+    const sel=bt.selection;
+    if(sel && sel.report){ const R=sel.report, ci=c=>'['+(c[0]>0?"+":"")+c[0].toFixed(3)+', '+(c[1]>0?"+":"")+c[1].toFixed(3)+']';
+      h+='<h4 style="margin:14px 0 6px;font-size:13px;color:var(--ink)">How the inputs were chosen (significance-checked)</h4>';
+      h+='<p class="note">'+esc(sel.method)+' Change = out-of-sample log loss per vote (negative is better); [95% interval] from resampling meetings. Selected '+esc(sel.selected)+'.</p>';
+      h+='<table class="t"><thead><tr><th class="l">Step</th><th>Log loss</th><th>Change</th><th>95% interval</th><th class="l">Result</th></tr></thead><tbody>';
+      h+='<tr><td class="l">Each member repeats their last vote</td><td>'+R.baseline_log_loss.toFixed(3)+'</td><td></td><td></td><td class="l note">baseline</td></tr>';
+      h+='<tr><td class="l"><b>Core model</b> (committee, voting record, pace, own words, data &amp; energy)</td><td>'+R.core.log_loss.toFixed(3)+'</td><td>'+R.core.change.toFixed(3)+'</td><td>'+ci(R.core.ci95)+'</td><td class="l">'+(R.core.significant?'<span class="ok">significantly better — kept</span>':'<span class="warn">not significant</span>')+'</td></tr>';
+      for(const g of R.core.groups) h+='<tr><td class="l note">&nbsp;&nbsp;of which '+esc(g.group)+'</td><td></td><td class="note">'+g.contribution.toFixed(3)+'</td><td class="note">'+ci(g.ci95)+'</td><td class="l note">'+(g.significant_alone?'significant on its own':'helps, not significant on its own')+'</td></tr>';
+      if(R.words_split_vs_combined) h+='<tr><td class="l note">&nbsp;&nbsp;own words split by kind (vs one hand-weighted signal)</td><td></td><td class="note">'+R.words_split_vs_combined.change.toFixed(3)+'</td><td class="note">'+ci(R.words_split_vs_combined.ci95)+'</td><td class="l note">weights estimated by the model, not set by hand</td></tr>';
+      for(const a of (R.addons||[])) h+='<tr><td class="l">+ '+esc(a.group)+'</td><td>'+a.log_loss.toFixed(3)+'</td><td>'+a.change.toFixed(3)+'</td><td>'+ci(a.ci95)+'</td><td class="l">'+(a.kept?'<span class="ok">kept</span>':'<span class="note">dropped — not significant</span>')+'</td></tr>';
+      h+='</tbody></table>';
+      if(sel.half_life_scores) h+='<p class="note">Recency: a member\'s words lose half their weight every <b>'+sel.half_life+' days</b> before the meeting (chosen from '+Object.keys(sel.half_life_scores).join("/")+' days: '+Object.entries(sel.half_life_scores).map(([k,v])=>k+'d '+v.toFixed(4)).join(", ")+'; all words equal '+(sel.flat_words_log_loss!=null?sel.flat_words_log_loss.toFixed(4):"—")+').</p>';
+    }
     if(bt.recent){ const r=bt.recent;
       h+='<p><b>Last five years only</b> (meetings since '+esc(r.since)+'): member votes called '+pct(r.vote_hit)+', decisions called '+pct(r.decision_hit)+' of '+r.meetings+', average probability on the actual decision '+pct(r.decision_p)+'.</p>'; }
     if(bt.calibration_move){ h+='<p class="note">Calibration of P(member changes their vote): '+bt.calibration_move.map(c=>esc(c.bin)+' → '+pct(c.actual)+' (n='+c.n+')').join(" · ")+'</p>'; }

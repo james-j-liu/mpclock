@@ -118,18 +118,25 @@ from `src/mpclock/forecast/`:
 - `inputs.py` — ONS outturns (with release dates), Brent and TTF gas, the sterling ERI,
   and the Fed and ECB policy rates (`data/processed/forecast_inputs.json`).
 - `votes.py` — an ordered logit on the change from each member's own last vote, from:
-  the Committee's last vote, the member's voting record over the previous six meetings
-  (how far they sat from the decision, recent meetings weighted more, and whether they
-  changed vote last time), the revealed pace of the cycle (every meeting vs Report
-  meetings), the member's coded guidance, and data surprises against the MPR plus
-  energy prices. Input groups are kept only if they lower leave-one-year-out log loss;
-  Fed/ECB, sterling and speech tone did not.
-- `data_vs_mpr.py` — the "Data vs MPR" tab: ONS outturns against each Report's
-  near-term projections, and every release since 2015 scored against the latest one.
+  the Committee's last vote, the member's voting record over the previous six meetings,
+  the revealed pace of the cycle, the member's own words since the last meeting (vote
+  rationale, policy-focused speeches and other texts as separate inputs whose weights the
+  model estimates; recent words count more, with a 30-day half-life chosen in the
+  backtest), and data surprises against the MPR plus energy prices.
+- `scripts/select_vote_model.py` — how those inputs were chosen: the core structure is
+  kept only if it beats "repeat your last vote" significantly, and every later add-on
+  (hedged guidance, votes with the Governor, Fed/ECB, sterling, speech tone) only if it
+  clears the same test on its own — nested leave-one-year-out, meeting-level paired
+  bootstrap, 95% interval. None of the add-ons passed. Writes `data/processed/vote_model.json`,
+  which the daily forecast uses; re-run it when the model changes.
+- `data_vs_mpr.py` — the "Data vs MPR" tab.
 
 Backtest (779 member votes at 87 meetings since mid-2015, leave-one-year-out): log loss
-0.67 vs 0.82 for "everyone repeats their last vote"; 77% of member votes and 75% of
-decisions called (69%). Last five years: 55% of decisions (48%).
+0.66 vs 0.82 for "everyone repeats their last vote" (95% interval of the improvement
+-0.27 to -0.06); 78% of member votes and 75% of decisions called (69%). It is strong on
+continuity (97% of unchanged decisions) and weak at turning points (26% of changed
+decisions); member-level probabilities are well calibrated, Committee-level odds are too
+sharp because members are simulated independently.
 
 The **Press interviews** tab files a GitHub issue with a link and/or transcript;
 `.github/workflows/press_interview.yml` checks it against what is held (same link, same

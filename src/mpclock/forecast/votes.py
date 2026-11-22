@@ -84,6 +84,7 @@ FEATURE_GROUPS = {
     "record": ["hist_dev", "trend"],
     "pace": ["pace", "moved_last", "mpr_x_pace"],
     "words": ["guidance", "signal_level"],
+    "words_split": ["g_rat_gap", "g_rat_lvl", "g_pol_gap", "g_pol_lvl", "g_oth_gap", "g_oth_lvl"],
     "direction": ["direction"],
     "governor": ["gov_pull"],
     "hedge": ["signal_hedged", "guidance_hedged"],
@@ -315,6 +316,9 @@ def pace_features(ctx: Context, i: int, date: str) -> dict[str, float]:
 FOCUS_FLOOR = 0.25      # minimum weight of a document however little it is about policy
 FOCUS_POWER = 1.0       # >1 would make low-focus documents count for even less
 RATIONALE_WEIGHT = 2.0  # the member's own vote rationale in the minutes counts double
+HALF_LIFE = 14          # days: a document's weight halves every HALF_LIFE days before the meeting
+                        # (chosen in the backtest from 7/14/30/60; None = all words count equally)
+FOCUS_SPLIT = 0.5       # documents at least this much about policy are "policy-focused"
 
 
 def _focus_weight(f) -> float:
@@ -328,30 +332,50 @@ def member_window(ctx: Context, member: str, start: str, end: str, prev_vote: in
     tones = [d[1] for d in docs if d[1] is not None]
     tone = (np.mean(tones) - (np.mean([p[1] for p in prior]) if prior else np.mean(tones))) if tones else 0.0
     text = "\n".join(d[2] for d in docs)
-    # coded guidance: the vote each document signals, weighted by how much it is
-    # about the policy outlook and by recency (the latest word counts double)
+    # coded guidance: the vote each document signals. Recent words count more: each
+    # document's weight halves every HALF_LIFE days before the meeting (None = equal).
     codes = ctx.inputs.get("guidance", {})
     coded = [(d, codes[d[3]]) for d in docs if d[3] in codes]
+
+    def decay(d):
+        if HALF_LIFE is None:
+            return 1.0
+        age = (dt.date.fromisoformat(end) - dt.date.fromisoformat(d[0])).days
+        return 0.5 ** (max(age, 0) / HALF_LIFE)
+
+    def avg(items, wfun):
+        if not items:
+            return None
+        w = np.array([wfun(d, c) for d, c in items])
+        return float((w * np.array([c["ev"] for _, c in items])).sum() / w.sum())
+
     gap, has, signal, direction = 0.0, 0.0, None, 0.0
+    comp = {}
     if coded:
-        w = np.array([_focus_weight(c.get("focus")) * (2.0 if i == len(coded) - 1 else 1.0)
-                      * (RATIONALE_WEIGHT if d[4] == "member_view" else 1.0)
-                      for i, (d, c) in enumerate(coded)])
-        # the vote signalled by the policy passages where they were coded separately
-        # (a long speech's guidance is often a short section at the end), else the text
-        ev = np.array([c.get("ev_pass", c["ev"]) if SIGNAL_SOURCE == "passages" else c["ev"]
-                       for _, c in coded])
-        signal = float((w * ev).sum() / w.sum())
+        # combined signal: weighted by focus and recency, the vote rationale double
+        def wcomb(d, c):
+            return (_focus_weight(c.get("focus")) * decay(d)
+                    * (RATIONALE_WEIGHT if d[4] == "member_view" else 1.0))
+        signal = avg(coded, wcomb)
         gap, has = signal - prev_vote, 1.0
-        dv = np.array([c.get("dir_ev_pass", c.get("dir_ev", 0.0)) for _, c in coded])
+        w = np.array([wcomb(d, c) for d, c in coded])
+        dv = np.array([c.get("dir_ev", 0.0) for _, c in coded])
         direction = float((w * dv).sum() / w.sum())
+    # the same split by kind of document, so the model can estimate how much each counts
+    rat = [(d, c) for d, c in coded if d[4] == "member_view"]
+    pol = [(d, c) for d, c in coded if d[4] != "member_view" and (c.get("focus") or 0) >= FOCUS_SPLIT]
+    oth = [(d, c) for d, c in coded if d[4] != "member_view" and (c.get("focus") or 0) < FOCUS_SPLIT]
+    for key, items in (("rat", rat), ("pol", pol), ("oth", oth)):
+        sg = avg(items, lambda d, c: decay(d))
+        comp[key] = sg
     g_regex, _ = guidance_score(text)
     # how conditional is the guidance: hedging phrases per policy sentence in the window
     from .guidance import policy_passages
     pas = " ".join(policy_passages(d[2], 20000) for d in docs if d[4] != "member_view")
     n_pol = max(1, len(re.findall(r"(?i)bank rate|interest rates?|tighten|restrictive|further increase|cut", pas)))
     hedge = float(min(1.0, len(_HEDGE.findall(pas)) / n_pol)) if pas else 0.0
-    return {"hedge": hedge,"tone": float(tone), "guidance": float(gap), "has_guidance": has, "signal": signal,
+    return {"hedge": hedge, "comp": comp,
+            "tone": float(tone), "guidance": float(gap), "has_guidance": has, "signal": signal,
             "direction": direction,
             "guidance_regex": float(g_regex), "n_docs": len(docs), "topic_w": topic_weights(text),
             "doc_dates": [d[0] for d in docs],
@@ -422,6 +446,9 @@ def features_for(ctx: Context, prev: Meeting, date: str, members: list[str],
             "fed": mk["fed"], "ecb": mk["ecb"],
             "pace": pace["pace"], "moved_last": pace["moved_last"], "mpr_x_pace": pace["mpr_x_pace"],
             "has_guidance": w["has_guidance"],
+            # split by kind of document: change from last vote (gap) and level, each 0 if none
+            **{f"g_{k}_gap": float(0.0 if w["comp"].get(k) is None else w["comp"][k] - pv) for k in ("rat", "pol", "oth")},
+            **{f"g_{k}_lvl": float(0.0 if w["comp"].get(k) is None else w["comp"][k]) for k in ("rat", "pol", "oth")},
             # the vote the member's own words point to, as a level (not just the change
             # from their last vote): "more tightening needed" from someone who just voted
             # to hike is news against the drift back to hold after a move

@@ -29,3 +29,4 @@ classify*.log
 !data/processed/forecast_inputs.json
 !data/processed/guidance_codes.json
 !data/processed/press_interviews.json
+!data/processed/vote_model.json
