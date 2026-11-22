@@ -90,7 +90,9 @@ def _candidates(rows, title):
                 continue
             got = {}
             for r in rows[hi + 1:]:
-                lab = next((c for c in reversed(r[:j]) if isinstance(c, str) and c.strip()), None)
+                # the row label: the nearest cell to the left that names a projected
+                # period (cells reading 'n.a.' sit between them in multi-series charts)
+                lab = next((c for c in reversed(r[:j]) if isinstance(c, str) and _PROJ.search(c)), None)
                 if not (lab and _PROJ.search(lab)):
                     continue
                 p = _period(lab)

@@ -88,6 +88,7 @@
   <button data-tab="rankings">Rankings</button>
   <button data-tab="speaker">Speaker Detail</button>
   <button data-tab="data">Data</button>
+  <button data-tab="datampr">Data vs MPR</button>
   <button data-tab="forecast">Vote forecast</button>
   <button data-tab="press">Press interviews</button>
   <button data-tab="methodology">Methodology</button>
@@ -165,6 +166,24 @@
       <span id="dt-info"></span>
     </div>
     <div id="dt-wrap"><table id="dt-table"></table></div>
+  </section>
+
+  <section id="datampr" class="hidden">
+    <div class="controls">
+      <label>Series <select id="dm-series"><option value="cpi">CPI inflation</option>
+        <option value="services">Services CPI</option><option value="pay">Private regular pay</option>
+        <option value="unemp">Unemployment rate</option></select></label>
+      <label>From <select id="dm-from"><option value="2019-01">2019</option><option value="2021-01" selected>2021</option>
+        <option value="2023-01">2023</option><option value="2025-01">2025</option><option value="2015-01">2015</option></select></label>
+      <label>Reports shown <select id="dm-n"><option>4</option><option selected>8</option><option>16</option><option value="99">all</option></select></label>
+    </div>
+    <div class="fc-grid">
+      <div class="card"><h3>Latest outturns vs the Bank's expectation</h3><div class="scroll" id="dm-latest"></div></div>
+      <div class="card"><h3 id="dm-title">Outturns and Bank staff near-term projections</h3><div id="dm-plot" style="height:430px"></div>
+        <p class="note" id="dm-note"></p></div>
+      <div class="card"><h3>Surprise at each release (outturn minus the latest Report's projection)</h3><div id="dm-bars" style="height:300px"></div></div>
+      <div class="card"><h3>What the Bank expects next (latest Report)</h3><div class="scroll" id="dm-next"></div></div>
+    </div>
   </section>
 
   <section id="forecast" class="hidden">
@@ -823,7 +842,7 @@ const esc=s=>String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"&lt;").rep
 const bpLabel=b=>{b=+b; return b===0?"No change":(b>0?"Hike ":"Cut ")+Math.abs(b)+"bp";};
 const pct=(x,d=0)=>(x==null?"—":(100*x).toFixed(d)+"%");
 const optColor=b=>{b=+b; return b>0?(b>=50?"#b8432f":"#e05d44"):(b<0?(b<=-50?"#2f5d8a":"#4477aa"):"#6e7681");};
-const FEAT_LABEL={prev_dev:"Dissent last time",pull:"Pull of colleagues",tone:"Tone of own words",
+const FEAT_LABEL={prev_dev:"Dissent last time",hist_dev:"Voting record (6 meetings)",trend:"Changed vote last time",pull:"Pull of colleagues",tone:"Tone of own words",
   guidance:"Own forward guidance",surprise:"Data vs MPR",energy:"Energy prices",fx:"Sterling",
   fed:"Fed",ecb:"ECB",pace:"Cycle pace",moved_last:"Moved last meeting",mpr_x_pace:"MPR-meeting pace"};
 function fmtDate(d){ if(!d) return "—"; const t=new Date(d+"T00:00:00Z");
@@ -849,12 +868,15 @@ function renderForecast(){
   // members
   h+='<div class="card"><h3>Members — probability of each vote</h3><div class="scroll"><table class="t"><thead><tr><th class="l">Member</th><th>Last vote</th>';
   for(const o of opts) h+='<th>'+esc(bpLabel(o))+'</th>';
-  h+='<th>Expected</th><th class="l">Biggest drivers (log-odds of a tighter vote)</th><th class="l">Own words since last meeting</th></tr></thead><tbody>';
+  h+='<th>Expected</th><th class="l">Recent votes (oldest → last)</th><th class="l">Biggest drivers (log-odds of a tighter vote)</th><th class="l">Own words since last meeting</th></tr></thead><tbody>';
   for(const m of f.members){
     h+='<tr><td class="l">'+esc(m.member)+'</td><td>'+esc(bpLabel(m.prev_vote*25))+'</td>';
     for(const o of opts){const p=m.probs[String(+o/25)]||0;
       h+='<td class="pcell"><span class="bar" style="width:'+(100*p)+'%;background:'+optColor(o)+'"></span><span class="v">'+pct(p,p<0.1&&p>0?1:0)+'</span></td>';}
     h+='<td>'+(m.expected_bp>0?"+":"")+m.expected_bp.toFixed(1)+'bp</td>';
+    const rec=(m.record||[]).slice().reverse().concat([{date:f.last_meeting.date,vote:m.prev_vote,decision:f.last_meeting.decision_bp/25}]);
+    h+='<td class="l note" style="white-space:nowrap">'+rec.map(r=>{const v=r.vote*25, d=r.vote-r.decision;
+      return '<span title="'+esc(fmtDate(r.date))+': voted '+esc(bpLabel(v))+', decision '+esc(bpLabel(r.decision*25))+'" class="'+(d>0?"pos":(d<0?"neg":""))+'">'+(v>0?"+":"")+v+'</span>';}).join(" ")+'</td>';
     const c=Object.entries(m.contributions).filter(([k,v])=>Math.abs(v)>=0.05).sort((a,b)=>Math.abs(b[1])-Math.abs(a[1])).slice(0,4);
     h+='<td class="l">'+c.map(([k,v])=>'<span class="'+(v>0?"pos":"neg")+'">'+esc(FEAT_LABEL[k]||k)+' '+(v>0?"+":"")+v.toFixed(2)+'</span>').join(", ")+'</td>';
     const docs=(m.docs||[]).map(d=>{const sig=d.signal==null?"":" → "+(d.signal>0?"+":"")+(25*d.signal).toFixed(0)+"bp";
@@ -909,7 +931,7 @@ function renderForecast(){
     '(2) <b>data versus the Bank\'s own expectations, and energy</b> — CPI, services CPI, private regular pay and unemployment outturns published since the last meeting, against the Bank staff near-term projection in the latest Monetary Policy Report, weighted for each member by how much they talk about each, plus the change in Brent and gas prices (a 10% move counts as half a standard surprise); '+
     '(3) <b>other central banks and sterling</b> — changes in the Fed and ECB policy rates since the last meeting, and the sterling ERI (tested; it does not help); '+
     '(4) <b>pace</b> — whether this cycle has moved at every meeting or only at Report meetings, whether the Bank moved last time and whether this is a Report meeting; '+
-    '(5) <b>the Committee</b> — whether the member dissented last time and where the rest of the Committee voted. '+
+    '(5) <b>the member\'s voting record and the Committee</b> — how far they have sat from the Committee\'s decisions over the last seven meetings (recent ones weighted more), whether they changed their vote last time, and where the rest of the Committee voted. '+
     'Input groups that do not improve the out-of-sample fit are left out of the live model; the backtest table shows which.</p></div>';
   root.innerHTML=h;
 }
@@ -1114,13 +1136,77 @@ document.getElementById("pi-add").onclick=async()=>{
   btn.disabled=false;
 };
 
+// ---------------- Data vs MPR tab ----------------
+let DM=null;
+const dmMpr=t=>{const m=t.replace("mpr-","").split("-"); return m[0].charAt(0).toUpperCase()+m[0].slice(1,3)+" "+m[1];};
+const dmPeriod=p=>{const [y,m]=p.split("-"); return new Date(Date.UTC(+y,+m-1,1)).toLocaleDateString("en-GB",{month:"short",year:"numeric",timeZone:"UTC"});};
+function renderDataMpr(){
+  if(!DM){ fetch("data_vs_mpr.json",{cache:"no-store"}).then(r=>{if(!r.ok)throw new Error(r.status);return r.json();})
+      .then(j=>{DM=j; renderDataMpr();})
+      .catch(e=>{document.getElementById("dm-latest").innerHTML='<div class="note">No data yet ('+esc(e)+'). It is written by the daily run.</div>';});
+    return; }
+  const key=document.getElementById("dm-series").value, from=document.getElementById("dm-from").value,
+        nrep=+document.getElementById("dm-n").value, S=DM.series[key];
+  // latest table: newest release per series
+  let h='<table class="t"><thead><tr><th class="l">Series</th><th>Period</th><th>Released</th><th>Outturn</th><th>Expected</th><th>Difference</th><th>Surprise (z)</th><th class="l">Expected in</th></tr></thead><tbody>';
+  for(const [k,v] of Object.entries(DM.series)){
+    const r=v.releases[v.releases.length-1]; if(!r) continue;
+    const cls=r.z>0?"pos":(r.z<0?"neg":"");
+    h+='<tr><td class="l">'+esc(v.label)+'</td><td>'+esc(dmPeriod(r.period))+'</td><td>'+esc(fmtDate(r.released))+'</td><td>'+r.actual.toFixed(1)+'%</td><td>'+r.expected.toFixed(2)+'%</td><td class="'+cls+'">'+(r.diff>0?"+":"")+r.diff.toFixed(2)+'pp</td><td class="'+cls+'">'+(r.z>0?"+":"")+r.z.toFixed(2)+'</td><td class="l note">'+esc(dmMpr(r.mpr))+' Report</td></tr>';
+  }
+  document.getElementById("dm-latest").innerHTML=h+'</tbody></table><p class="note">Positive z = hawkish news: inflation or pay above, unemployment below, what the Bank expected. One unit = 0.2pp for CPI, 0.3pp for services and pay, 0.15pp for unemployment.</p>';
+  // main chart
+  const obs=S.outturns.filter(([p])=>p>=from);
+  const traces=[{x:obs.map(o=>o[0]+"-01"),y:obs.map(o=>o[1]),name:"Outturn ("+S.source+")",mode:"lines+markers",
+    line:{color:"#e6edf3",width:2},marker:{size:4}}];
+  const projs=S.projections.filter(p=>p.date>=from).slice(-nrep);
+  projs.forEach((pr,i)=>{
+    const a=projs.length>1?i/(projs.length-1):1;
+    const col="rgba("+Math.round(68+(224-68)*a)+","+Math.round(119+(93-119)*a)+","+Math.round(170+(68-170)*a)+",0.95)";
+    traces.push({x:pr.points.map(q=>q[0]+"-01"),y:pr.points.map(q=>q[1]),name:dmMpr(pr.mpr)+" Report",mode:"lines+markers",
+      line:{color:col,dash:"dot",width:1.6},marker:{size:5,symbol:"diamond"}});
+  });
+  const lay={paper_bgcolor:"rgba(0,0,0,0)",plot_bgcolor:"rgba(0,0,0,0)",font:{color:"#8b949e",family:"JetBrains Mono, monospace",size:11},
+    margin:{l:50,r:10,t:10,b:40},xaxis:{gridcolor:"#21262d"},yaxis:{gridcolor:"#21262d",title:S.unit,zeroline:false},
+    legend:{orientation:"h",y:-0.15},hovermode:"x unified"};
+  document.getElementById("dm-title").textContent=S.label+": outturns and Bank staff near-term projections";
+  if(window.Plotly) Plotly.react("dm-plot",traces,lay,{displayModeBar:false,responsive:true});
+  document.getElementById("dm-note").textContent="Dotted lines: each Monetary Policy Report's near-term projection (older reports bluer, newer redder). "+
+    (key==="pay"?"Pay projections are only charted in some Reports. ":"")+(key==="services"?"Services projections are charted from 2023. ":"")+"Source: ONS; Bank of England MPR chart data.";
+  // surprises
+  const rel=S.releases.filter(r=>r.period>=from);
+  if(window.Plotly) Plotly.react("dm-bars",[{x:rel.map(r=>r.period+"-01"),y:rel.map(r=>r.diff),type:"bar",
+      marker:{color:rel.map(r=>r.z>0?"#e05d44":"#4477aa")},
+      hovertext:rel.map(r=>dmPeriod(r.period)+": "+r.actual.toFixed(1)+"% vs "+r.expected.toFixed(2)+"% expected ("+dmMpr(r.mpr)+" Report)"),hoverinfo:"text"}],
+    {...lay,yaxis:{gridcolor:"#21262d",title:"pp",zeroline:true,zerolinecolor:"#8b949e"},showlegend:false,hovermode:"closest"},{displayModeBar:false,responsive:true});
+  // what the Bank expects next
+  let n='<table class="t"><thead><tr><th class="l">Series</th><th class="l">Report</th>';
+  const lastRep=DM.reports[DM.reports.length-1];
+  const rows=[]; const periods=new Set();
+  for(const [k,v] of Object.entries(DM.series)){
+    const pr=v.projections[v.projections.length-1]; if(!pr) continue;
+    const have=new Set(v.outturns.map(o=>o[0]));
+    const fut=pr.points.filter(q=>!have.has(q[0])); fut.forEach(q=>periods.add(q[0]));
+    rows.push([v.label,pr.mpr,fut]);
+  }
+  const ps=[...periods].sort();
+  n+=ps.map(p=>'<th>'+esc(dmPeriod(p))+'</th>').join("")+'</tr></thead><tbody>';
+  for(const [lab,mpr,fut] of rows){
+    const m=Object.fromEntries(fut);
+    n+='<tr><td class="l">'+esc(lab)+'</td><td class="l note">'+esc(dmMpr(mpr))+'</td>'+ps.map(p=>'<td>'+(m[p]!=null?m[p].toFixed(2)+'%':'')+'</td>').join("")+'</tr>';
+  }
+  document.getElementById("dm-next").innerHTML=n+'</tbody></table><p class="note">Months not yet published, as projected in the latest Report that charts each series. Releases against these drive the vote forecast\'s data input.</p>';
+}
+["dm-series","dm-from","dm-n"].forEach(id=>document.getElementById(id).onchange=renderDataMpr);
+
 document.querySelectorAll("nav button").forEach(b=>b.onclick=()=>{
   document.querySelectorAll("nav button").forEach(x=>x.classList.remove("active"));
   b.classList.add("active");
   const tab=b.dataset.tab;
-  for(const s of ["timeline","rankings","speaker","data","forecast","press","methodology"])
+  for(const s of ["timeline","rankings","speaker","data","datampr","forecast","press","methodology"])
     document.getElementById(s).classList.toggle("hidden",s!==tab);
   if(tab==="forecast")renderForecast();
+  if(tab==="datampr")renderDataMpr();
   if(tab==="press")renderPress();
   if(tab==="timeline")renderTimeline();
   if(tab==="rankings")renderRankings();

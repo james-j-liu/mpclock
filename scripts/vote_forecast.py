@@ -33,13 +33,15 @@ _G = V.FEATURE_GROUPS
 LADDER = [
     ("last vote only", []),
     ("+ committee", _G["committee"]),
-    ("+ pace", _G["committee"] + _G["pace"]),
-    ("+ own guidance", _G["committee"] + _G["pace"] + _G["words"]),
-    ("+ data & energy", _G["committee"] + _G["pace"] + _G["words"] + _G["data"]),
-    ("+ Fed & ECB", _G["committee"] + _G["pace"] + _G["words"] + _G["data"] + _G["global"]),
-    ("+ sterling", _G["committee"] + _G["pace"] + _G["words"] + _G["data"] + _G["global"] + _G["fx"]),
-    ("+ speech tone", _G["committee"] + _G["pace"] + _G["words"] + _G["data"] + _G["global"] + _G["fx"]
-     + _G["tone"]),
+    ("+ voting record", _G["committee"] + _G["record"]),
+    ("+ pace", _G["committee"] + _G["record"] + _G["pace"]),
+    ("+ own guidance", _G["committee"] + _G["record"] + _G["pace"] + _G["words"]),
+    ("+ data & energy", _G["committee"] + _G["record"] + _G["pace"] + _G["words"] + _G["data"]),
+    ("+ Fed & ECB", _G["committee"] + _G["record"] + _G["pace"] + _G["words"] + _G["data"] + _G["global"]),
+    ("+ sterling", _G["committee"] + _G["record"] + _G["pace"] + _G["words"] + _G["data"] + _G["global"]
+     + _G["fx"]),
+    ("+ speech tone", _G["committee"] + _G["record"] + _G["pace"] + _G["words"] + _G["data"] + _G["global"]
+     + _G["fx"] + _G["tone"]),
 ]
 
 
@@ -128,7 +130,7 @@ def main():
     ctx = V.build_context(corpus)
     rows = V.panel(ctx, args.since)
     full = LADDER[-1][1]
-    chosen = LADDER[5][1]           # default (data & energy + Fed/ECB); replaced by the best CV step
+    chosen = LADDER[6][1]           # default (… + Fed/ECB); replaced by the best CV step
 
     report = {}
     if not args.no_backtest:
@@ -211,7 +213,8 @@ def main():
                         "surprise_data": round(r["surprise_data"], 3), "energy": round(r["energy"], 3),
                         "contributions": contrib, "n_docs": r["n_docs"], "doc_dates": r["_doc_dates"],
                         "docs": [{k: d[k] for k in ("date", "type", "signal")} for d in r["_docs"]],
-                        "signal": r["_signal"]})
+                        "signal": r["_signal"],
+                        "record": r["_hist"]})
     dist = V.decision_distribution([{int(k): v for k, v in m["probs"].items()} for m in members])
     out = {
         "generated": dt.datetime.utcnow().strftime("%Y-%m-%d %H:%M UTC"),
@@ -229,6 +232,8 @@ def main():
         "backtest": report,
     }
     Path(args.out).write_text(json.dumps(out, indent=1), encoding="utf-8")
+    from mpclock.forecast.data_vs_mpr import build as build_dvm
+    (ROOT / "site/data_vs_mpr.json").write_text(json.dumps(build_dvm(ctx.inputs)), encoding="utf-8")
     reg = ROOT / "data/processed/press_interviews.json"      # the Press interviews tab reads this
     (ROOT / "site/press_interviews.json").write_text(reg.read_text(encoding="utf-8") if reg.exists() else "[]",
                                                      encoding="utf-8")
