@@ -49,5 +49,37 @@
   "reason": "added to the corpus; it is scored in the next daily run",
   "corpus_id": "191f402e0a8d48e8",
   "title": "Interview with ft.com"
+ },
+ {
+  "submitted": "2026-11-22",
+  "issue": null,
+  "request_id": "web-mws074gr-ksjdc",
+  "urls": [
+   "https://www.theguardian.com/business/2026/nov/10/young-people-uk-economy-bank-of-england-clare-lombardelli"
+  ],
+  "outlet": "",
+  "date": "2026-11-10",
+  "member": "Clare Lombardelli",
+  "detected": "member Clare Lombardelli detected from the text (12 mentions)",
+  "words": 846,
+  "text_source": "https://www.theguardian.com/business/2026/nov/10/young-people-uk-economy-bank-of-england-clare-lombardelli",
+  "signal": {
+   "date": "2026-11-10",
+   "speaker": "Clare Lombardelli",
+   "type": "interview",
+   "p": {
+    "cut_50": 0.0,
+    "cut_25": 0.0,
+    "hold": 0.16,
+    "hike_25": 0.84,
+    "hike_50": 0.0
+   },
+   "ev": 0.84,
+   "focus": 0.605
+  },
+  "status": "added",
+  "reason": "added to the corpus; it is scored in the next daily run",
+  "corpus_id": "d25406a6253ad8e9",
+  "title": "Interview with theguardian.com"
  }
 ]

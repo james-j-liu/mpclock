@@ -6803,6 +6803,20 @@
 "speaker": "Martin Weale",
 "type": "speech"
 },
+"d25406a6253ad8e9": {
+"date": "2026-11-10",
+"ev": 0.84,
+"focus": 0.605,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.84,
+"hike_50": 0.0,
+"hold": 0.16
+},
+"speaker": "Clare Lombardelli",
+"type": "interview"
+},
 "d291da85381d609b": {
 "date": "2019-03-11",
 "ev": -0.11,
