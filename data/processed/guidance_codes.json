@@ -7811,6 +7811,20 @@
 "speaker": "Alan Taylor",
 "type": "speech"
 },
+"f4687c40227b87d9": {
+"date": "2026-11-14",
+"ev": 0.99,
+"focus": 0.823,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.99,
+"hike_50": 0.0,
+"hold": 0.01
+},
+"speaker": "Megan Greene",
+"type": "interview"
+},
 "f500dc1829a8789f": {
 "date": "2022-10-15",
 "ev": 1.67,

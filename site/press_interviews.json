@@ -98,5 +98,40 @@
   "status": "duplicate",
   "reason": "this link is already held",
   "duplicate_of": "d25406a6253ad8e9"
+ },
+ {
+  "submitted": "2026-11-22",
+  "issue": null,
+  "request_id": "web-mws14pod-y90re",
+  "urls": [
+   "https://www.reuters.com/business/finance/boes-greene-says-acting-proactively-now-inflation-would-screw-things-up-least-2026-11-14/"
+  ],
+  "outlet": "",
+  "date": "2026-11-14",
+  "member": "Megan Greene",
+  "fetch_errors": [
+   "https://www.reuters.com/business/finance/boes-greene-says-acting-proactively-now-inflation-would-screw-things-up-least-2026-11-14/: 401 Client Error: HTTP Forbidden for url: https://www.reuters.com/business/finan"
+  ],
+  "detected": "member Megan Greene detected from the text (9 mentions)",
+  "words": 365,
+  "text_source": "pasted",
+  "signal": {
+   "date": "2026-11-14",
+   "speaker": "Megan Greene",
+   "type": "interview",
+   "p": {
+    "cut_50": 0.0,
+    "cut_25": 0.0,
+    "hold": 0.01,
+    "hike_25": 0.99,
+    "hike_50": 0.0
+   },
+   "ev": 0.99,
+   "focus": 0.823
+  },
+  "status": "added",
+  "reason": "added to the corpus; it is scored in the next daily run",
+  "corpus_id": "f4687c40227b87d9",
+  "title": "Interview with reuters.com"
  }
 ]
