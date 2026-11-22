@@ -843,7 +843,7 @@ const bpLabel=b=>{b=+b; return b===0?"No change":(b>0?"Hike ":"Cut ")+Math.abs(b
 const pct=(x,d=0)=>(x==null?"—":(100*x).toFixed(d)+"%");
 const optColor=b=>{b=+b; return b>0?(b>=50?"#b8432f":"#e05d44"):(b<0?(b<=-50?"#2f5d8a":"#4477aa"):"#6e7681");};
 const FEAT_LABEL={prev_dev:"Dissent last time",hist_dev:"Voting record (6 meetings)",trend:"Changed vote last time",pull:"Pull of colleagues",tone:"Tone of own words",
-  guidance:"Own words vs last vote",signal_level:"Vote own words point to",surprise:"Data vs MPR",energy:"Energy prices",fx:"Sterling",
+  guidance:"Own words vs last vote",signal_level:"Vote own words point to",signal_hedged:"Hedged guidance",guidance_hedged:"Hedged guidance (change)",gov_pull:"Governor\'s signal (internal members)",surprise:"Data vs MPR",energy:"Energy prices",fx:"Sterling",
   fed:"Fed",ecb:"ECB",pace:"Cycle pace",moved_last:"Moved last meeting",mpr_x_pace:"MPR-meeting pace"};
 function fmtDate(d){ if(!d) return "—"; const t=new Date(d+"T00:00:00Z");
   return t.toLocaleDateString("en-GB",{day:"numeric",month:"short",year:"numeric",timeZone:"UTC"}); }
@@ -886,6 +886,34 @@ function renderForecast(){
   }
   h+='</tbody></table></div><p class="note">Each member\'s odds come from an ordered logit on the change from their own last vote. "Own words → Nbp" is the vote a document signals for the next meeting, as coded by the Jev decision model (probability-weighted, 25bp per step); "next move" is which way it leans over the next few meetings.</p></div>';
 
+  // second meeting, conditional on the next
+  const sm=f.second_meeting;
+  if(sm && sm.scenarios && sm.scenarios.length){
+    h+='<div class="card"><h3>Following meeting: '+fmtDate(sm.date)+' — conditional on December</h3>';
+    h+='<p>Each member\'s vote at the meeting after next, given each of the two most likely December outcomes. Their latest words are carried forward and no new data or market moves are assumed — those cannot be known yet, so read these as a starting point that the data between now and then will move. '+(sm.note.includes("MPR")?"February is a Monetary Policy Report meeting.":"")+'</p>';
+    // combined February decision
+    const comb={};
+    const tot=sm.scenarios.reduce((a,sc)=>a+sc.p_december,0);
+    for(const sc of sm.scenarios) for(const [k,v] of Object.entries(sc.decision)) comb[k]=(comb[k]||0)+v*sc.p_december/tot;
+    h+='<table class="t"><thead><tr><th class="l">Committee decision on '+fmtDate(sm.date)+'</th>'+
+      Object.keys(comb).sort((a,b)=>a-b).filter(k=>sm.scenarios.some(sc=>(sc.decision[k]||0)>=0.005)).map(k=>'<th>'+esc(bpLabel(k))+'</th>').join("")+'</tr></thead><tbody>';
+    const ks=Object.keys(comb).sort((a,b)=>a-b).filter(k=>sm.scenarios.some(sc=>(sc.decision[k]||0)>=0.005));
+    for(const sc of sm.scenarios) h+='<tr><td class="l">If December is '+esc(bpLabel(sc.december_bp)).toLowerCase()+' ('+pct(sc.p_december)+' likely)</td>'+ks.map(k=>'<td>'+pct(sc.decision[k]||0)+'</td>').join("")+'</tr>';
+    h+='<tr><td class="l"><b>Either way</b> (weighted by December odds)</td>'+ks.map(k=>'<td><b>'+pct(comb[k]||0)+'</b></td>').join("")+'</tr></tbody></table>';
+    // members
+    const names=Object.keys(sm.scenarios[0].members);
+    h+='<div class="scroll" style="margin-top:10px"><table class="t"><thead><tr><th class="l">Member</th>';
+    const colsets=sm.scenarios.map(sc=>{const ks=new Set(); for(const m of Object.values(sc.members)) for(const [k,v] of Object.entries(m)) if(v>=0.01) ks.add(+k); return [...ks].sort((a,b)=>a-b);});
+    sm.scenarios.forEach((sc,i)=>{ h+=colsets[i].map((k,j)=>'<th'+(j===0?' style="border-left:1px solid var(--line)"':'')+'>'+(j===0?'<span class="note">Dec '+esc(bpLabel(sc.december_bp)).toLowerCase()+':</span> ':'')+esc(bpLabel(k*25))+'</th>').join(""); });
+    h+='</tr></thead><tbody>';
+    for(const nm of names){
+      h+='<tr><td class="l">'+esc(nm)+'</td>';
+      sm.scenarios.forEach((sc,i)=>{ h+=colsets[i].map((k,j)=>{const p=sc.members[nm][String(k)]||0;
+        return '<td class="pcell"'+(j===0?' style="border-left:1px solid var(--line)"':'')+'><span class="bar" style="width:'+(100*p)+'%;background:'+optColor(k*25)+'"></span><span class="v">'+pct(p)+'</span></td>';}).join(""); });
+      h+='</tr>';
+    }
+    h+='</tbody></table></div></div>';
+  }
   // inputs
   const inp=f.inputs||{};
   h+='<div class="card"><h3>Data since the last meeting vs the last MPR</h3>';

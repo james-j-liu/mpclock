@@ -37,11 +37,15 @@ LADDER = [
     ("+ pace", _G["committee"] + _G["record"] + _G["pace"]),
     ("+ own guidance", _G["committee"] + _G["record"] + _G["pace"] + _G["words"]),
     ("+ data & energy", _G["committee"] + _G["record"] + _G["pace"] + _G["words"] + _G["data"]),
-    ("+ Fed & ECB", _G["committee"] + _G["record"] + _G["pace"] + _G["words"] + _G["data"] + _G["global"]),
-    ("+ sterling", _G["committee"] + _G["record"] + _G["pace"] + _G["words"] + _G["data"] + _G["global"]
-     + _G["fx"]),
-    ("+ speech tone", _G["committee"] + _G["record"] + _G["pace"] + _G["words"] + _G["data"] + _G["global"]
-     + _G["fx"] + _G["tone"]),
+    ("+ hedged guidance", _G["committee"] + _G["record"] + _G["pace"] + _G["words"] + _G["data"] + _G["hedge"]),
+    ("+ votes with Governor", _G["committee"] + _G["record"] + _G["pace"] + _G["words"] + _G["data"]
+     + _G["hedge"] + _G["governor"]),
+    ("+ Fed & ECB", _G["committee"] + _G["record"] + _G["pace"] + _G["words"] + _G["data"] + _G["hedge"]
+     + _G["governor"] + _G["global"]),
+    ("+ sterling", _G["committee"] + _G["record"] + _G["pace"] + _G["words"] + _G["data"] + _G["hedge"]
+     + _G["governor"] + _G["global"] + _G["fx"]),
+    ("+ speech tone", _G["committee"] + _G["record"] + _G["pace"] + _G["words"] + _G["data"] + _G["hedge"]
+     + _G["governor"] + _G["global"] + _G["fx"] + _G["tone"]),
 ]
 
 
@@ -102,6 +106,84 @@ def next_meeting(corpus, last_date: str) -> str:
     return (dt.date.fromisoformat(last_date) + dt.timedelta(days=42)).isoformat()
 
 
+def upcoming_dates(after: str) -> list[str]:
+    """Meeting end dates (the day before each announcement) after `after`, from the
+    Bank's published schedule; falls back to ~6-weekly spacing."""
+    import requests
+    try:
+        html = requests.get("https://www.bankofengland.co.uk/monetary-policy/upcoming-mpc-dates",
+                            headers={"User-Agent": "Mozilla/5.0"}, timeout=30).text
+        import html as _html
+        txt = re.sub(r"\s+", " ", _html.unescape(re.sub(r"<[^>]+>", " ", html)).replace("\xa0", " "))
+        out = []
+        for blk in re.finditer(r"(20\d\d) confirmed dates(.*?)(?=20\d\d confirmed dates|$)", txt):
+            y = int(blk.group(1))
+            for m in re.finditer(r"(?:Monday|Tuesday|Wednesday|Thursday|Friday) (\d{1,2}) ([A-Z][a-z]+)", blk.group(2)):
+                d = dt.datetime.strptime(f"{m.group(1)} {m.group(2)} {y}", "%d %B %Y").date() - dt.timedelta(days=1)
+                if d.isoformat() > after:
+                    out.append(d.isoformat())
+        if out:
+            return sorted(set(out))
+    except Exception:  # noqa: BLE001
+        pass
+    return [(dt.date.fromisoformat(after) + dt.timedelta(days=42 * k)).isoformat() for k in (1, 2)]
+
+
+def second_meeting(ctx, model, chosen, last, members_out, dec_dist, nxt):
+    """Each member's vote at the meeting after next, conditional on the two most likely
+    outcomes of the next one. Members' December votes are drawn given that December
+    outcome; their latest words are carried forward; no new data or market news is
+    assumed (it cannot be known yet). February is a Report meeting, so the pace inputs
+    differ from December's."""
+    dates = [d for d in upcoming_dates(nxt) if d > nxt]
+    if not dates:
+        return None
+    feb = dates[0]
+    rng = np.random.default_rng(1)
+    names = [m["member"] for m in members_out]
+    opts = sorted(int(k) for k in members_out[0]["probs"])
+    n = 40000
+    draws = np.vstack([rng.choice(opts, size=n, p=np.array([m["probs"][str(o)] for o in opts]) /
+                                  sum(m["probs"][str(o)] for o in opts)) for m in members_out])
+    dec = np.median(draws, axis=0)
+    top = sorted(dec_dist.items(), key=lambda kv: -kv[1])[:2]
+    scen = []
+    for s, p_s in top:
+        sel = draws[:, dec == s]
+        if sel.shape[1] < 50:
+            continue
+        mean_vote = float(sel.mean())
+        mem = {}
+        for i, nm in enumerate(names):
+            vals, cnt = np.unique(sel[i], return_counts=True)
+            mix = {}
+            for v, c in zip(vals, cnt):
+                w = c / sel.shape[1]
+                if w < 0.02:
+                    continue
+                votes = {k: int(round(np.median(sel[j]))) for j, k in enumerate(names)}
+                votes[nm] = int(v)
+                syn = V.Meeting(nxt, votes, int(s), last.rate_after + 0.25 * s)
+                ctx.meetings.append(syn)
+                try:
+                    r = V.features_for(ctx, syn, feb, [nm], words_since=last.date, freeze_data=True)[0]
+                finally:
+                    ctx.meetings.pop()
+                r["pull"] = mean_vote - int(v)
+                pr = model.predict([r])[0]
+                fo = list(range(min(opts) - (1 if s <= 0 else 0), max(opts) + 1))
+                for k2, q in V.vote_distribution(pr, int(v), fo).items():
+                    mix[k2] = mix.get(k2, 0.0) + w * q
+            tot = sum(mix.values()) or 1.0
+            mem[nm] = {str(k): round(q / tot, 4) for k, q in sorted(mix.items())}
+        fdist = V.decision_distribution([{int(k): v for k, v in mem[nm].items()} for nm in names])
+        scen.append({"december_bp": int(s) * 25, "p_december": round(float(p_s), 4),
+                     "members": mem, "decision": {str(int(k) * 25): round(v, 4) for k, v in fdist.items()}})
+    return {"date": feb, "scenarios": scen,
+            "note": "Conditional on each December outcome; members' latest words carried forward; "
+                    "no new data or market moves assumed; February is an MPR meeting."}
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--no-backtest", action="store_true")
@@ -130,7 +212,7 @@ def main():
     ctx = V.build_context(corpus)
     rows = V.panel(ctx, args.since)
     full = LADDER[-1][1]
-    chosen = LADDER[6][1]           # default (… + Fed/ECB); replaced by the best CV step
+    chosen = LADDER[6][1]           # default (… + hedged guidance); replaced by the best CV step
 
     report = {}
     if not args.no_backtest:
@@ -216,7 +298,9 @@ def main():
                         "signal": r["_signal"],
                         "record": r["_hist"]})
     dist = V.decision_distribution([{int(k): v for k, v in m["probs"].items()} for m in members])
+    second = second_meeting(ctx, model, chosen, last, members, dist, nxt)
     out = {
+        "second_meeting": second,
         "generated": dt.datetime.utcnow().strftime("%Y-%m-%d %H:%M UTC"),
         "last_meeting": {"date": last.date, "decision_bp": last.decision * 25, "bank_rate": last.rate_after,
                          "votes": {k: v * 25 for k, v in last.votes.items()}},
