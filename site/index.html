@@ -177,14 +177,14 @@
         <h3>Add a press interview</h3>
         <p>Paste a link to an interview an MPC member gave to the press (newspaper, broadcaster,
         podcast), and — if the article is paywalled — the transcript or article text. Submitting
-        opens a pre-filled GitHub issue; when you file it, the intake job checks it against
+        opens a pre-filled GitHub issue; leave the member and date on auto and they are read from the article. When you file it, the intake job checks it against
         everything already held (the same link, the same interview reported by another outlet,
         or an article that only reports a speech), classifies it for monetary-policy relevance,
         adds it to the corpus if relevant and codes the vote it signals. The result is posted on
         the issue, and the forecast refreshes.</p>
         <div class="pi-form">
           <label for="pi-member">Member</label><select id="pi-member"></select>
-          <label for="pi-date">Date</label><input id="pi-date" type="date">
+          <label for="pi-date">Date</label><div><input id="pi-date" type="date"><div class="note" style="margin-top:3px">leave blank to take it from the article</div></div>
           <label for="pi-outlet">Outlet</label><input id="pi-outlet" placeholder="e.g. The Guardian">
           <label for="pi-urls">Link(s)</label><textarea id="pi-urls" placeholder="one per line — every outlet's report of the same interview can go here"></textarea>
           <label for="pi-text">Transcript / text</label><textarea id="pi-text" style="min-height:180px" placeholder="optional if the link is readable; needed for paywalled articles"></textarea>
@@ -908,18 +908,17 @@ function renderPress(){
     const cur=(FC&&FC.last_meeting)?Object.keys(FC.last_meeting.votes):
       (META&&META.roster&&META.roster.current)||[];
     const names=(cur.length?cur:[...new Set(ALL.map(d=>d.a))]).slice().sort();
-    sel.innerHTML=names.map(n=>'<option>'+esc(n)+'</option>').join("");
+    sel.innerHTML='<option value="auto" selected>Auto-detect from the text</option>'+names.map(n=>'<option>'+esc(n)+'</option>').join("");
     if(!FC) fetch("forecast.json",{cache:"no-store"}).then(r=>r.ok?r.json():null).then(j=>{ if(j){FC=j; sel.innerHTML=""; renderPress();} }).catch(()=>{});
-    document.getElementById("pi-date").value=new Date().toISOString().slice(0,10);
   }
   if(PI===null){ fetch("press_interviews.json",{cache:"no-store"}).then(r=>r.ok?r.json():[]).catch(()=>[])
       .then(j=>{PI=j||[]; renderPress();}); return; }
-  const ST={added:"added",duplicate:"duplicate",speech_report:"report of a speech",not_policy:"not policy-relevant",needs_text:"needs transcript",rejected:"rejected"};
+  const ST={needs_info:"needs member/date",added:"added",duplicate:"duplicate",speech_report:"report of a speech",not_policy:"not policy-relevant",needs_text:"needs transcript",rejected:"rejected"};
   let h='<thead><tr><th class="l">Submitted</th><th class="l">Member</th><th>Date</th><th class="l">Outlet</th><th class="l">Outcome</th><th class="l">Links</th></tr></thead><tbody>';
   if(!PI.length) h+='<tr><td class="l note" colspan="6">None yet.</td></tr>';
   for(const e of PI.slice().reverse()){
     h+='<tr><td class="l">'+esc(e.submitted)+(e.issue?' <a href="https://github.com/'+REPO+'/issues/'+e.issue+'" target="_blank" rel="noopener">#'+e.issue+'</a>':'')+'</td><td class="l">'+esc(e.member)+'</td><td>'+esc(e.date)+'</td><td class="l">'+esc(e.outlet)+
-      '</td><td class="l"><b>'+esc(ST[e.status]||e.status)+'</b> — <span class="note">'+esc(e.reason)+'</span></td><td class="l">'+
+      '</td><td class="l"><b>'+esc(ST[e.status]||e.status)+'</b> — <span class="note">'+esc(e.reason)+(e.detected?' ('+esc(e.detected)+')':'')+'</span></td><td class="l">'+
       (e.urls||[]).map(u=>'<a href="'+esc(u)+'" target="_blank" rel="noopener">'+esc(u.replace(/^https?:\/\/(www\.)?/,"").slice(0,40))+'</a>').join("<br>")+'</td></tr>';
   }
   document.getElementById("pi-table").innerHTML=h+'</tbody>';
@@ -934,10 +933,10 @@ function piDuplicates(s){
   const out=[]; const day=d=>new Date(d+"T00:00:00Z").getTime()/864e5;
   for(const e of (PI||[])){
     if(s.urls.some(u=>(e.urls||[]).includes(u))) out.push("This link was already submitted on "+e.submitted+" ("+(e.status||"")+").");
-    else if(e.member===s.member && e.date && Math.abs(day(e.date)-day(s.date))<=4 && ["added","duplicate"].includes(e.status))
+    else if(s.member!=="auto" && s.date && e.member===s.member && e.date && Math.abs(day(e.date)-day(s.date))<=4 && ["added","duplicate"].includes(e.status))
       out.push("An interview by "+e.member+" on "+e.date+" ("+(e.outlet||"")+") is already held — if this is the same interview it will be linked to it, not added twice.");
   }
-  for(const d of ALL){
+  for(const d of (s.member==="auto"||!s.date)?[]:ALL){
     if(d.a!==s.member || !d.d || Math.abs(day(d.d)-day(s.date))>4) continue;
     if(d.st==="interview") out.push("Corpus already has an interview by "+d.a+" on "+d.d+": "+d.tt);
     if(d.st==="speech" && Math.abs(day(d.d)-day(s.date))<=2) out.push("Speech by "+d.a+" on "+d.d+" ("+d.tt+") — if the article only reports this speech it will not be added.");
@@ -946,13 +945,14 @@ function piDuplicates(s){
 }
 document.getElementById("pi-check").onclick=()=>{
   const s=piCollect(), d=piDuplicates(s), box=document.getElementById("pi-dups");
-  box.innerHTML=d.length?d.map(x=>'<div class="warn">'+esc(x)+'</div>').join(""):'<div class="ok">Nothing similar held for '+esc(s.member)+' around '+esc(s.date)+'.</div>';
+  const auto=s.member==="auto"||!s.date;
+  box.innerHTML=d.length?d.map(x=>'<div class="warn">'+esc(x)+'</div>').join(""):'<div class="ok">'+(auto?'None of these links is held yet. With the member or date on auto, the full check (same interview elsewhere, speech reports) runs after you submit.':'Nothing similar held for '+esc(s.member)+' around '+esc(s.date)+'.')+'</div>';
 };
 document.getElementById("pi-submit").onclick=()=>{
   const s=piCollect(), msg=document.getElementById("pi-msg");
   if(!s.urls.length && s.text.split(/\s+/).length<80){ msg.innerHTML='<span class="warn">Add a link or paste the text (80+ words).</span>'; return; }
-  const title="[press-interview] "+s.member+" — "+s.date+(s.outlet?" — "+s.outlet:"");
-  const body="Member: "+s.member+"\nDate: "+s.date+"\nOutlet: "+s.outlet+"\nURLs: "+s.urls.join(" ")+"\n\nTranscript:\n"+s.text+"\n";
+  const title="[press-interview] "+(s.member==="auto"?"member auto":s.member)+" — "+(s.date||"date auto")+(s.outlet?" — "+s.outlet:"");
+  const body="Member: "+s.member+"\nDate: "+(s.date||"auto")+"\nOutlet: "+s.outlet+"\nURLs: "+s.urls.join(" ")+"\n\nTranscript:\n"+s.text+"\n";
   let url="https://github.com/"+REPO+"/issues/new?title="+encodeURIComponent(title)+"&body=";
   if(encodeURIComponent(body).length<6500){ window.open(url+encodeURIComponent(body),"_blank","noopener");
     msg.innerHTML='<span class="ok">Opened a pre-filled issue — press "Create" there to submit.</span>'; }
