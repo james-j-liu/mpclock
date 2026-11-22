@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-22 15:42 UTC",
+ "generated": "2026-11-22 15:51 UTC",
  "last_meeting": {
   "date": "2026-11-04",
   "decision_bp": 25,
@@ -233,6 +233,68 @@
    "signal": 0.69
   },
   {
+   "member": "Clare Lombardelli",
+   "prev_vote": 1,
+   "probs": {
+    "-1": 0.0256,
+    "0": 0.5972,
+    "1": 0.3729,
+    "2": 0.0043,
+    "3": 0.0
+   },
+   "expected_bp": 8.9,
+   "features": {
+    "prev_dev": 0.0,
+    "pull": 0.111,
+    "pace": 0.5,
+    "moved_last": 1.0,
+    "mpr_x_pace": -0.5,
+    "guidance": -0.304,
+    "surprise": -0.666,
+    "fed": 0.0,
+    "ecb": 0.0,
+    "fx": 0.265,
+    "tone": 0.072
+   },
+   "surprise_data": 0.173,
+   "energy": -1.677,
+   "contributions": {
+    "prev_dev": 0.0,
+    "pull": 0.195,
+    "pace": -0.286,
+    "moved_last": -1.523,
+    "mpr_x_pace": -0.844,
+    "guidance": -0.461,
+    "surprise": -0.183,
+    "fed": 0.0,
+    "ecb": 0.0
+   },
+   "n_docs": 3,
+   "doc_dates": [
+    "2026-11-04",
+    "2026-11-10",
+    "2026-11-10"
+   ],
+   "docs": [
+    {
+     "date": "2026-11-04",
+     "type": "member_view",
+     "signal": 1.0
+    },
+    {
+     "date": "2026-11-10",
+     "type": "speech",
+     "signal": 0.09
+    },
+    {
+     "date": "2026-11-10",
+     "type": "interview",
+     "signal": 0.84
+    }
+   ],
+   "signal": 0.695675306957708
+  },
+  {
    "member": "Andrew Bailey",
    "prev_vote": 1,
    "probs": {
@@ -345,62 +407,6 @@
    "signal": 0.41
   },
   {
-   "member": "Clare Lombardelli",
-   "prev_vote": 1,
-   "probs": {
-    "-1": 0.0387,
-    "0": 0.6781,
-    "1": 0.2804,
-    "2": 0.0028,
-    "3": 0.0
-   },
-   "expected_bp": 6.2,
-   "features": {
-    "prev_dev": 0.0,
-    "pull": 0.111,
-    "pace": 0.5,
-    "moved_last": 1.0,
-    "mpr_x_pace": -0.5,
-    "guidance": -0.585,
-    "surprise": -0.676,
-    "fed": 0.0,
-    "ecb": 0.0,
-    "fx": 0.265,
-    "tone": 0.034
-   },
-   "surprise_data": 0.163,
-   "energy": -1.677,
-   "contributions": {
-    "prev_dev": 0.0,
-    "pull": 0.195,
-    "pace": -0.286,
-    "moved_last": -1.523,
-    "mpr_x_pace": -0.844,
-    "guidance": -0.885,
-    "surprise": -0.186,
-    "fed": 0.0,
-    "ecb": 0.0
-   },
-   "n_docs": 2,
-   "doc_dates": [
-    "2026-11-04",
-    "2026-11-10"
-   ],
-   "docs": [
-    {
-     "date": "2026-11-04",
-     "type": "member_view",
-     "signal": 1.0
-    },
-    {
-     "date": "2026-11-10",
-     "type": "speech",
-     "signal": 0.09
-    }
-   ],
-   "signal": 0.41545138888888894
-  },
-  {
    "member": "Swati Dhingra",
    "prev_vote": 1,
    "probs": {
@@ -503,8 +509,8 @@
  ],
  "decision": {
   "-25": 0.0,
-  "0": 0.7627,
-  "25": 0.2374,
+  "0": 0.7399,
+  "25": 0.2601,
   "50": 0.0,
   "75": 0.0
  },
