@@ -106,6 +106,61 @@ def next_meeting(corpus, last_date: str) -> str:
     return (dt.date.fromisoformat(last_date) + dt.timedelta(days=42)).isoformat()
 
 
+def calibrate_correlation(rows, P, grid=(0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8)):
+    """Pick how strongly members' votes move together: the value whose simulated
+    Committee decisions give the actual decisions the highest probability."""
+    by = {}
+    for i, r in enumerate(rows):
+        by.setdefault(r["date"], []).append((V.vote_distribution(P[i], r["prev_vote"], r["options"]), r))
+    scores = {}
+    for rho in grid:
+        ll = []
+        for d, lst in by.items():
+            dist = V.decision_distribution([vp for vp, _ in lst], n_sims=3000, rho=rho)
+            ll.append(-np.log(max(dist.get(lst[0][1]["decision"], 0.0), 1e-3)))
+        scores[rho] = round(float(np.mean(ll)), 4)
+    best = min(scores, key=scores.get)
+    # calibration of the modal decision probability, independent vs chosen
+    cal = {}
+    for rho in (0.0, best):
+        bins = {}
+        for d, lst in by.items():
+            dist = V.decision_distribution([vp for vp, _ in lst], n_sims=3000, rho=rho)
+            mode = max(dist, key=dist.get)
+            pm = dist[mode]
+            key = next(b for b in ((0, .6), (.6, .8), (.8, .95), (.95, 1.01)) if b[0] <= pm < b[1])
+            bins.setdefault(key, []).append((pm, mode == lst[0][1]["decision"]))
+        cal[str(rho)] = [{"bin": f"{a:.0%}-{min(b, 1):.0%}", "n": len(v), "predicted": round(float(np.mean([x for x, _ in v])), 3),
+                          "right": round(float(np.mean([y for _, y in v])), 3)} for (a, b), v in sorted(bins.items())]
+    return best, {str(k): v for k, v in scores.items()}, cal
+
+
+def bootstrap_ranges(rows, feats, frows, opts, n=200, seed=0):
+    """80% ranges for each member's vote probabilities and for the Committee decision:
+    refit the model on histories resampled meeting by meeting and forecast again. This
+    is parameter uncertainty only — it does not include news still to come."""
+    meets = {}
+    for r in rows:
+        meets.setdefault(r["date"], []).append(r)
+    dates = sorted(meets)
+    rng = np.random.default_rng(seed)
+    mem = {r["member"]: {o: [] for o in opts} for r in frows}
+    dec = {o: [] for o in opts}
+    for b in range(n):
+        sub = [r for d in rng.choice(dates, len(dates)) for r in meets[d]]
+        m = V.OrderedLogit(feats).fit(sub)
+        vps = [V.vote_distribution(p, r["prev_vote"], opts) for r, p in zip(frows, m.predict(frows))]
+        for r, vp in zip(frows, vps):
+            for o in opts:
+                mem[r["member"]][o].append(vp.get(o, 0.0))
+        dd = V.decision_distribution(vps, n_sims=2000, seed=b)
+        for o in opts:
+            dec[o].append(dd.get(o, 0.0))
+    pr = lambda v: [round(float(np.percentile(v, 10)), 3), round(float(np.percentile(v, 90)), 3)]
+    return ({k: {str(o): pr(v) for o, v in d.items()} for k, d in mem.items()},
+            {str(o * 25): pr(v) for o, v in dec.items()})
+
+
 def upcoming_dates(after: str) -> list[str]:
     """Meeting end dates (the day before each announcement) after `after`, from the
     Bank's published schedule; falls back to ~6-weekly spacing."""
@@ -139,12 +194,10 @@ def second_meeting(ctx, model, chosen, last, members_out, dec_dist, nxt):
     if not dates:
         return None
     feb = dates[0]
-    rng = np.random.default_rng(1)
     names = [m["member"] for m in members_out]
-    opts = sorted(int(k) for k in members_out[0]["probs"])
-    n = 40000
-    draws = np.vstack([rng.choice(opts, size=n, p=np.array([m["probs"][str(o)] for o in opts]) /
-                                  sum(m["probs"][str(o)] for o in opts)) for m in members_out])
+    # December votes drawn jointly (correlated, as for the December odds)
+    opts, draws = V.simulate_votes([{int(k): v for k, v in m["probs"].items()} for m in members_out],
+                                   n_sims=40000, seed=1)
     dec = np.median(draws, axis=0)
     top = sorted(dec_dist.items(), key=lambda kv: -kv[1])[:2]
     scen = []
@@ -227,6 +280,12 @@ def main():
               f"since {args.since}, leave-one-year-out")
         print(f"  {'model':20} {'logloss':>8} {'Brier':>7} {'vote hit':>9} {'P(actual)':>9} "
               f"{'switch hit':>11} {'decision hit':>13} {'P(decision)':>11}")
+        # how strongly members move together: chosen so the simulated Committee decision
+        # best predicts the actual one at past meetings (out-of-sample member odds)
+        rho, rho_scores, cal_dec = calibrate_correlation(rows, cv_predict(rows, chosen))
+        V.CORRELATION = rho
+        print(f"  correlation between members' votes: {rho} (decision log loss by rho: "
+              + ", ".join(f"{k}: {v:.3f}" for k, v in rho_scores.items()) + ")")
         best = None
         ladder_out = []
         for name, feats in ladder:
@@ -241,7 +300,8 @@ def main():
             best = (name, ev, feats)
         print(f"selected inputs: {chosen}; half-life {V.HALF_LIFE} days")
         report = {"ladder": ladder_out, "chosen": "selected model", "decisions": best[1]["decisions"],
-                  "since": args.since, "n": len(rows), "selection": selection}
+                  "since": args.since, "n": len(rows), "selection": selection,
+                  "correlation": {"rho": rho, "scores": rho_scores, "calibration": cal_dec}}
         # per-meeting detail for the site
         P = cv_predict(rows, chosen)
         ev = evaluate(rows, P)
@@ -303,6 +363,10 @@ def main():
                         "signal": r["_signal"],
                         "record": r["_hist"]})
     dist = V.decision_distribution([{int(k): v for k, v in m["probs"].items()} for m in members])
+    # 80% ranges: refit on resampled histories (whole meetings), re-forecast
+    mem_rng, dec_rng = bootstrap_ranges(rows, chosen, frows, opts, n=200)
+    for m in members:
+        m["ranges"] = mem_rng[m["member"]]
     second = second_meeting(ctx, model, chosen, last, members, dist, nxt)
     out = {
         "second_meeting": second,
@@ -312,6 +376,7 @@ def main():
         "next_meeting": nxt, "as_of": asof, "options_bp": [o * 25 for o in opts],
         "members": sorted(members, key=lambda m: -m["expected_bp"]),
         "decision": {str(k * 25): round(v, 4) for k, v in dist.items()},
+        "decision_range": dec_rng, "correlation": V.CORRELATION,
         "inputs": {"surprises": frows[0]["_surprises"], "surprise_detail": frows[0]["_detail"],
                    "markets": {k: round(v, 3) for k, v in frows[0]["_markets"].items()},
                    "mpr_meeting": bool(frows[0]["_mpr"]), "pace": frows[0]["pace"],
