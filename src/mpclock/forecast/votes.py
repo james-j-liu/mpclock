@@ -65,6 +65,8 @@ VOTE_OVERRIDES = {
                    "Alan Taylor": -2, "Catherine Mann": 0, "Huw Pill": 0},
 }
 
+SIGNAL_SOURCE = "text"   # "text" or "passages": which coded vote feeds the guidance inputs
+                         # (backtested: whole text 0.670 log loss, passages alone 0.680)
 HISTORY = 6       # meetings of each member's voting record used, beyond the last one
 
 FEATURE_GROUPS = {
@@ -72,6 +74,7 @@ FEATURE_GROUPS = {
     "record": ["hist_dev", "trend"],
     "pace": ["pace", "moved_last", "mpr_x_pace"],
     "words": ["guidance", "signal_level"],
+    "direction": ["direction"],
     "data": ["surprise"],          # outturns vs MPR, plus half-weighted energy-price change
     "global": ["fed", "ecb"],
     "fx": ["fx"],
@@ -305,19 +308,26 @@ def member_window(ctx: Context, member: str, start: str, end: str, prev_vote: in
     # about the policy outlook and by recency (the latest word counts double)
     codes = ctx.inputs.get("guidance", {})
     coded = [(d, codes[d[3]]) for d in docs if d[3] in codes]
-    gap, has, signal = 0.0, 0.0, None
+    gap, has, signal, direction = 0.0, 0.0, None, 0.0
     if coded:
         w = np.array([(0.25 + (c.get("focus") or 0.0)) * (2.0 if i == len(coded) - 1 else 1.0)
                       for i, (_, c) in enumerate(coded)])
-        ev = np.array([c["ev"] for _, c in coded])
+        # the vote signalled by the policy passages where they were coded separately
+        # (a long speech's guidance is often a short section at the end), else the text
+        ev = np.array([c.get("ev_pass", c["ev"]) if SIGNAL_SOURCE == "passages" else c["ev"]
+                       for _, c in coded])
         signal = float((w * ev).sum() / w.sum())
         gap, has = signal - prev_vote, 1.0
+        dv = np.array([c.get("dir_ev_pass", c.get("dir_ev", 0.0)) for _, c in coded])
+        direction = float((w * dv).sum() / w.sum())
     g_regex, _ = guidance_score(text)
     return {"tone": float(tone), "guidance": float(gap), "has_guidance": has, "signal": signal,
+            "direction": direction,
             "guidance_regex": float(g_regex), "n_docs": len(docs), "topic_w": topic_weights(text),
             "doc_dates": [d[0] for d in docs],
             "docs": [{"date": d[0], "type": d[4], "id": d[3],
-                      "signal": codes.get(d[3], {}).get("ev"), "p": codes.get(d[3], {}).get("p")}
+                      "signal": codes.get(d[3], {}).get("ev"), "p": codes.get(d[3], {}).get("p"),
+                      "dir": codes.get(d[3], {}).get("dir")}
                      for d in docs]}
 
 
@@ -372,6 +382,8 @@ def features_for(ctx: Context, prev: Meeting, date: str, members: list[str]) -> 
             # from their last vote): "more tightening needed" from someone who just voted
             # to hike is news against the drift back to hold after a move
             "signal_level": float(w["has_guidance"] * (w["guidance"] + pv)),
+            # which way the member's next move leans over the next few meetings (+1 up, -1 down)
+            "direction": float(w["direction"]),
             "_mpr": pace["mpr"], "_surprises": surp, "_detail": detail, "_markets": mk,
             "_doc_dates": w["doc_dates"], "_docs": w["docs"], "_signal": w["signal"],
         })

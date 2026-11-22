@@ -73,9 +73,51 @@ def _abs(u: str) -> str:
     return u if u.startswith("http") else BASE + u
 
 
-def _pdf_link(html: str) -> str | None:
-    m = _PDF_RE.search(html)
-    return _abs(m.group(1)) if m else None
+_STOP = {"speech", "speeches", "by", "at", "the", "of", "and", "to", "in", "on", "a", "for", "bank",
+         "england", "remarks", "given", "lecture", "conference", "pdf"}
+
+
+def _tokens(s: str) -> set[str]:
+    return {t for t in re.split(r"[^a-z0-9]+", s.lower()) if len(t) > 2 and t not in _STOP and not t.isdigit()}
+
+
+_NOT_TEXT = re.compile(r"(?i)annex|chart|slide|q-and-a|q-a-|transcript|appendix|handout|references")
+
+
+def _page_title(html: str) -> str:
+    m = re.search(r'<meta[^>]+property="og:title"[^>]+content="([^"]+)"', html, re.I) or \
+        re.search(r"<title>(.*?)</title>", html, re.I | re.S)
+    return m.group(1) if m else ""
+
+
+def _pdf_link(html: str, page_url: str = "") -> str | None:
+    """The PDF of THIS speech, if the page has one.
+
+    Newer speech pages carry their full text in the HTML and have no PDF of their own,
+    but they still link the PDFs of speeches they cite — taking the first PDF on the
+    page once replaced Clare Lombardelli's November 2026 speech with Andy Haldane's
+    2019 one. A PDF is accepted only if it is filed under the page's year, is not an
+    annex/charts/slides/Q&A file, and its file name shares words with the page's
+    address or title (the speaker or the speech's title)."""
+    links = [_abs(m.group(1)) for m in _PDF_RE.finditer(html)]
+    if not links:
+        return None
+    if not page_url:
+        return links[0]
+    y = re.search(r"/speech/(\d{4})/", page_url)
+    page_tok = _tokens(page_url.rsplit("/", 1)[-1]) | _tokens(_page_title(html))
+    best, best_n = None, 0
+    for u in dict.fromkeys(links):
+        name = u.rsplit("/", 1)[-1]
+        if (y and f"/{y.group(1)}/" not in u) or _NOT_TEXT.search(name):
+            continue
+        ft = _tokens(name)
+        n = len(page_tok & ft)
+        # a title-named file must match most of its words, not one common one
+        if n >= 2 or (n >= 1 and len(ft) <= 2) or (ft and n / len(ft) >= 0.5):
+            if n > best_n:
+                best, best_n = u, n
+    return best
 
 
 def _clean_pdf_text(text: str) -> str:
@@ -244,7 +286,7 @@ def extract_speech(url: str, min_chars: int = 800) -> Speech | None:
         return None
     html_text = (meta.get("text") or "").strip()
 
-    pdf_url = _pdf_link(html)
+    pdf_url = _pdf_link(html, url)
     text = _pdf_text(pdf_url) if pdf_url else ""
     if len(text) < min_chars and len(html_text) > len(text):
         text = html_text                     # full-HTML speech (no/thin PDF)
