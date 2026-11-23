@@ -4,26 +4,26 @@
   "scenarios": [
    {
     "december_bp": 25,
-    "p_december": 0.6096,
+    "p_december": 0.6093,
     "members": {
      "Andrew Bailey": {
       "-1": 0.0032,
-      "0": 0.2491,
-      "1": 0.7296,
+      "0": 0.2492,
+      "1": 0.7295,
       "2": 0.018,
       "3": 0.0
      },
      "Sarah Breeden": {
       "-1": 0.0057,
-      "0": 0.3477,
-      "1": 0.6326,
+      "0": 0.3478,
+      "1": 0.6325,
       "2": 0.014,
       "3": 0.0
      },
      "Swati Dhingra": {
       "-1": 0.006,
-      "0": 0.3658,
-      "1": 0.6149,
+      "0": 0.3659,
+      "1": 0.6148,
       "2": 0.0133,
       "3": 0.0
      },
@@ -31,7 +31,7 @@
       "-1": 0.0006,
       "0": 0.0551,
       "1": 0.8561,
-      "2": 0.0879,
+      "2": 0.0878,
       "3": 0.0002
      },
      "Clare Lombardelli": {
@@ -57,15 +57,15 @@
      },
      "Dave Ramsden": {
       "-1": 0.0046,
-      "0": 0.3001,
+      "0": 0.3,
       "1": 0.6781,
       "2": 0.0172,
       "3": 0.0
      },
      "Alan Taylor": {
       "-1": 0.0076,
-      "0": 0.4234,
-      "1": 0.5586,
+      "0": 0.4235,
+      "1": 0.5585,
       "2": 0.0104,
       "3": 0.0
      }
@@ -80,7 +80,7 @@
    },
    {
     "december_bp": 0,
-    "p_december": 0.3807,
+    "p_december": 0.381,
     "members": {
      "Andrew Bailey": {
       "-2": 0.0,
@@ -93,16 +93,16 @@
      "Sarah Breeden": {
       "-2": 0.0001,
       "-1": 0.0081,
-      "0": 0.5617,
-      "1": 0.4279,
+      "0": 0.5616,
+      "1": 0.428,
       "2": 0.0022,
       "3": 0.0
      },
      "Swati Dhingra": {
       "-2": 0.0001,
       "-1": 0.0086,
-      "0": 0.5733,
-      "1": 0.4164,
+      "0": 0.5732,
+      "1": 0.4165,
       "2": 0.0016,
       "3": 0.0
      },
@@ -117,8 +117,8 @@
      "Clare Lombardelli": {
       "-2": 0.0,
       "-1": 0.0005,
-      "0": 0.0752,
-      "1": 0.8842,
+      "0": 0.0751,
+      "1": 0.8843,
       "2": 0.04,
       "3": 0.0001
      },
@@ -149,8 +149,8 @@
      "Alan Taylor": {
       "-2": 0.0001,
       "-1": 0.0103,
-      "0": 0.6108,
-      "1": 0.3774,
+      "0": 0.6107,
+      "1": 0.3775,
       "2": 0.0014,
       "3": 0.0
      }
@@ -158,8 +158,8 @@
     "decision": {
      "-50": 0.0,
      "-25": 0.0009,
-     "0": 0.2891,
-     "25": 0.7041,
+     "0": 0.289,
+     "25": 0.7042,
      "50": 0.0059,
      "75": 0.0
     }
@@ -167,7 +167,7 @@
   ],
   "note": "Conditional on each December outcome; members' latest words carried forward; no new data or market moves assumed; February is an MPR meeting."
  },
- "generated": "2026-11-23 20:05 UTC",
+ "generated": "2026-11-23 20:11 UTC",
  "last_meeting": {
   "date": "2026-11-04",
   "decision_bp": 25,
@@ -199,9 +199,9 @@
    "prev_vote": 2,
    "probs": {
     "-1": 0.0,
-    "0": 0.0603,
-    "1": 0.7805,
-    "2": 0.1583,
+    "0": 0.0604,
+    "1": 0.7806,
+    "2": 0.158,
     "3": 0.001
    },
    "expected_bp": 27.5,
@@ -235,7 +235,7 @@
     "gov_pull": 0.0,
     "signal_hedged": 0.0,
     "guidance_hedged": -0.0,
-    "surprise": -0.795,
+    "surprise": -0.8,
     "fed": 0.0,
     "ecb": 0.0,
     "fx": 0.331,
@@ -246,13 +246,13 @@
     "steady": 0.0
    },
    "surprise_data": 0.018,
-   "energy": -1.626,
+   "energy": -1.636,
    "contributions": {
     "prev_dev": 0.384,
     "pull": -1.912,
     "hist_dev": 0.33,
-    "trend": -0.874,
-    "pace": -0.031,
+    "trend": -0.873,
+    "pace": -0.03,
     "moved_last": -1.351,
     "mpr_x_pace": -0.397,
     "g_rat_gap": -0.299,
@@ -261,7 +261,7 @@
     "g_pol_lvl": 0.0,
     "g_oth_gap": 0.0,
     "g_oth_lvl": 0.0,
-    "surprise": -0.291
+    "surprise": -0.292
    },
    "n_docs": 1,
    "doc_dates": [
@@ -319,7 +319,7 @@
     ],
     "0": [
      0.008,
-     0.198
+     0.199
     ],
     "1": [
      0.446,
@@ -340,9 +340,9 @@
    "prev_vote": 1,
    "probs": {
     "-1": 0.0011,
-    "0": 0.0835,
+    "0": 0.0836,
     "1": 0.8607,
-    "2": 0.0546,
+    "2": 0.0545,
     "3": 0.0001
    },
    "expected_bp": 24.2,
@@ -376,7 +376,7 @@
     "gov_pull": -0.449,
     "signal_hedged": 0.272,
     "guidance_hedged": -0.001,
-    "surprise": -0.629,
+    "surprise": -0.634,
     "fed": 0.0,
     "ecb": 0.0,
     "fx": 0.331,
@@ -387,13 +387,13 @@
     "steady": 0.0
    },
    "surprise_data": 0.184,
-   "energy": -1.626,
+   "energy": -1.636,
    "contributions": {
     "prev_dev": 0.0,
     "pull": 0.239,
     "hist_dev": 0.541,
     "trend": -0.0,
-    "pace": -0.031,
+    "pace": -0.03,
     "moved_last": -1.351,
     "mpr_x_pace": -0.397,
     "g_rat_gap": 0.0,
@@ -402,7 +402,7 @@
     "g_pol_lvl": 0.877,
     "g_oth_gap": 0.0,
     "g_oth_lvl": 0.0,
-    "surprise": -0.23
+    "surprise": -0.232
    },
    "n_docs": 2,
    "doc_dates": [
@@ -492,9 +492,9 @@
    "prev_vote": 1,
    "probs": {
     "-1": 0.0013,
-    "0": 0.0956,
+    "0": 0.0957,
     "1": 0.8556,
-    "2": 0.0474,
+    "2": 0.0473,
     "3": 0.0001
    },
    "expected_bp": 23.7,
@@ -528,7 +528,7 @@
     "gov_pull": 0.0,
     "signal_hedged": 0.482,
     "guidance_hedged": -0.018,
-    "surprise": -0.703,
+    "surprise": -0.708,
     "fed": 0.0,
     "ecb": 0.0,
     "fx": 0.331,
@@ -539,13 +539,13 @@
     "steady": 0.0
    },
    "surprise_data": 0.11,
-   "energy": -1.626,
+   "energy": -1.636,
    "contributions": {
     "prev_dev": 0.0,
     "pull": 0.239,
     "hist_dev": 0.447,
     "trend": -0.0,
-    "pace": -0.031,
+    "pace": -0.03,
     "moved_last": -1.351,
     "mpr_x_pace": -0.397,
     "g_rat_gap": -0.025,
@@ -554,7 +554,7 @@
     "g_pol_lvl": 0.877,
     "g_oth_gap": 0.0,
     "g_oth_lvl": 0.0,
-    "surprise": -0.257
+    "surprise": -0.259
    },
    "n_docs": 2,
    "doc_dates": [
@@ -644,8 +644,8 @@
    "prev_vote": 1,
    "probs": {
     "-1": 0.0053,
-    "0": 0.2983,
-    "1": 0.6844,
+    "0": 0.2986,
+    "1": 0.684,
     "2": 0.0121,
     "3": 0.0
    },
@@ -680,7 +680,7 @@
     "gov_pull": -0.449,
     "signal_hedged": 0.478,
     "guidance_hedged": -0.022,
-    "surprise": -0.503,
+    "surprise": -0.508,
     "fed": 0.0,
     "ecb": 0.0,
     "fx": 0.331,
@@ -691,13 +691,13 @@
     "steady": 0.0
    },
    "surprise_data": 0.31,
-   "energy": -1.626,
+   "energy": -1.636,
    "contributions": {
     "prev_dev": 0.0,
     "pull": 0.239,
     "hist_dev": 0.0,
-    "trend": -0.874,
-    "pace": -0.031,
+    "trend": -0.873,
+    "pace": -0.03,
     "moved_last": -1.351,
     "mpr_x_pace": -0.397,
     "g_rat_gap": -0.005,
@@ -706,7 +706,7 @@
     "g_pol_lvl": 0.815,
     "g_oth_gap": 0.0,
     "g_oth_lvl": 0.0,
-    "surprise": -0.184
+    "surprise": -0.185
    },
    "n_docs": 3,
    "doc_dates": [
@@ -785,12 +785,12 @@
      0.014
     ],
     "0": [
-     0.102,
+     0.103,
      0.542
     ],
     "1": [
      0.437,
-     0.856
+     0.855
     ],
     "2": [
      0.003,
@@ -806,9 +806,9 @@
    "member": "Andrew Bailey",
    "prev_vote": 1,
    "probs": {
-    "-1": 0.0126,
-    "0": 0.5001,
-    "1": 0.4823,
+    "-1": 0.0127,
+    "0": 0.5005,
+    "1": 0.4818,
     "2": 0.005,
     "3": 0.0
    },
@@ -843,7 +843,7 @@
     "gov_pull": 0.0,
     "signal_hedged": 0.079,
     "guidance_hedged": -0.064,
-    "surprise": -0.514,
+    "surprise": -0.519,
     "fed": 0.0,
     "ecb": 0.0,
     "fx": 0.331,
@@ -854,13 +854,13 @@
     "steady": 1.0
    },
    "surprise_data": 0.299,
-   "energy": -1.626,
+   "energy": -1.636,
    "contributions": {
     "prev_dev": 0.0,
     "pull": 0.239,
     "hist_dev": 0.0,
-    "trend": -0.874,
-    "pace": -0.031,
+    "trend": -0.873,
+    "pace": -0.03,
     "moved_last": -1.351,
     "mpr_x_pace": -0.397,
     "g_rat_gap": -0.162,
@@ -869,7 +869,7 @@
     "g_pol_lvl": 0.0,
     "g_oth_gap": -0.524,
     "g_oth_lvl": 0.506,
-    "surprise": -0.188
+    "surprise": -0.19
    },
    "n_docs": 3,
    "doc_dates": [
@@ -952,7 +952,7 @@
      0.697
     ],
     "1": [
-     0.277,
+     0.276,
      0.725
     ],
     "2": [
@@ -970,8 +970,8 @@
    "prev_vote": 1,
    "probs": {
     "-1": 0.0135,
-    "0": 0.516,
-    "1": 0.4658,
+    "0": 0.5164,
+    "1": 0.4653,
     "2": 0.0047,
     "3": 0.0
    },
@@ -1006,7 +1006,7 @@
     "gov_pull": -0.449,
     "signal_hedged": 0.0,
     "guidance_hedged": -0.0,
-    "surprise": -0.535,
+    "surprise": -0.54,
     "fed": 0.0,
     "ecb": 0.0,
     "fx": 0.331,
@@ -1017,13 +1017,13 @@
     "steady": 0.0
    },
    "surprise_data": 0.278,
-   "energy": -1.626,
+   "energy": -1.636,
    "contributions": {
     "prev_dev": 0.0,
     "pull": 0.239,
     "hist_dev": -0.06,
-    "trend": -0.874,
-    "pace": -0.031,
+    "trend": -0.873,
+    "pace": -0.03,
     "moved_last": -1.351,
     "mpr_x_pace": -0.397,
     "g_rat_gap": -0.177,
@@ -1032,7 +1032,7 @@
     "g_pol_lvl": 0.0,
     "g_oth_gap": 0.0,
     "g_oth_lvl": 0.0,
-    "surprise": -0.196
+    "surprise": -0.197
    },
    "n_docs": 1,
    "doc_dates": [
@@ -1090,10 +1090,10 @@
     ],
     "0": [
      0.284,
-     0.68
+     0.681
     ],
     "1": [
-     0.283,
+     0.282,
      0.696
     ],
     "2": [
@@ -1111,8 +1111,8 @@
    "prev_vote": 1,
    "probs": {
     "-1": 0.0155,
-    "0": 0.5482,
-    "1": 0.4322,
+    "0": 0.5486,
+    "1": 0.4318,
     "2": 0.0041,
     "3": 0.0
    },
@@ -1147,7 +1147,7 @@
     "gov_pull": -0.449,
     "signal_hedged": 0.0,
     "guidance_hedged": -0.0,
-    "surprise": -0.523,
+    "surprise": -0.528,
     "fed": 0.0,
     "ecb": 0.0,
     "fx": 0.331,
@@ -1158,13 +1158,13 @@
     "steady": 0.0
    },
    "surprise_data": 0.29,
-   "energy": -1.626,
+   "energy": -1.636,
    "contributions": {
     "prev_dev": 0.0,
     "pull": 0.239,
     "hist_dev": -0.06,
-    "trend": -0.874,
-    "pace": -0.031,
+    "trend": -0.873,
+    "pace": -0.03,
     "moved_last": -1.351,
     "mpr_x_pace": -0.397,
     "g_rat_gap": -0.304,
@@ -1173,7 +1173,7 @@
     "g_pol_lvl": 0.0,
     "g_oth_gap": 0.0,
     "g_oth_lvl": 0.0,
-    "surprise": -0.191
+    "surprise": -0.193
    },
    "n_docs": 1,
    "doc_dates": [
@@ -1234,7 +1234,7 @@
      0.692
     ],
     "1": [
-     0.282,
+     0.281,
      0.622
     ],
     "2": [
@@ -1252,8 +1252,8 @@
    "prev_vote": 1,
    "probs": {
     "-1": 0.017,
-    "0": 0.5701,
-    "1": 0.4091,
+    "0": 0.5705,
+    "1": 0.4087,
     "2": 0.0037,
     "3": 0.0
    },
@@ -1288,7 +1288,7 @@
     "gov_pull": 0.0,
     "signal_hedged": 0.0,
     "guidance_hedged": -0.0,
-    "surprise": -0.785,
+    "surprise": -0.79,
     "fed": 0.0,
     "ecb": 0.0,
     "fx": 0.331,
@@ -1299,13 +1299,13 @@
     "steady": 0.0
    },
    "surprise_data": 0.028,
-   "energy": -1.626,
+   "energy": -1.636,
    "contributions": {
     "prev_dev": 0.0,
     "pull": 0.239,
     "hist_dev": -0.06,
-    "trend": -0.874,
-    "pace": -0.031,
+    "trend": -0.873,
+    "pace": -0.03,
     "moved_last": -1.351,
     "mpr_x_pace": -0.397,
     "g_rat_gap": -0.304,
@@ -1314,7 +1314,7 @@
     "g_pol_lvl": 0.0,
     "g_oth_gap": 0.0,
     "g_oth_lvl": 0.0,
-    "surprise": -0.287
+    "surprise": -0.289
    },
    "n_docs": 1,
    "doc_dates": [
@@ -1375,8 +1375,8 @@
      0.711
     ],
     "1": [
-     0.263,
-     0.604
+     0.262,
+     0.603
     ],
     "2": [
      0.001,
@@ -1393,12 +1393,12 @@
    "prev_vote": 1,
    "probs": {
     "-1": 0.0199,
-    "0": 0.6053,
-    "1": 0.3716,
+    "0": 0.6057,
+    "1": 0.3712,
     "2": 0.0032,
     "3": 0.0
    },
-   "expected_bp": 9.0,
+   "expected_bp": 8.9,
    "features": {
     "prev_dev": 0.0,
     "pull": 0.111,
@@ -1429,7 +1429,7 @@
     "gov_pull": 0.0,
     "signal_hedged": 0.0,
     "guidance_hedged": -0.0,
-    "surprise": -0.785,
+    "surprise": -0.79,
     "fed": 0.0,
     "ecb": 0.0,
     "fx": 0.331,
@@ -1440,13 +1440,13 @@
     "steady": 0.0
    },
    "surprise_data": 0.028,
-   "energy": -1.626,
+   "energy": -1.636,
    "contributions": {
     "prev_dev": 0.0,
     "pull": 0.239,
     "hist_dev": -0.06,
-    "trend": -0.874,
-    "pace": -0.031,
+    "trend": -0.873,
+    "pace": -0.03,
     "moved_last": -1.351,
     "mpr_x_pace": -0.397,
     "g_rat_gap": -0.446,
@@ -1455,7 +1455,7 @@
     "g_pol_lvl": 0.0,
     "g_oth_gap": 0.0,
     "g_oth_lvl": 0.0,
-    "surprise": -0.287
+    "surprise": -0.289
    },
    "n_docs": 1,
    "doc_dates": [
@@ -1513,11 +1513,11 @@
     ],
     "0": [
      0.419,
-     0.746
+     0.747
     ],
     "1": [
      0.219,
-     0.568
+     0.567
     ],
     "2": [
      0.001,
@@ -1532,8 +1532,8 @@
  ],
  "decision": {
   "-25": 0.0043,
-  "0": 0.3807,
-  "25": 0.6096,
+  "0": 0.381,
+  "25": 0.6093,
   "50": 0.0054,
   "75": 0.0
  },
@@ -1543,12 +1543,12 @@
    0.01
   ],
   "0": [
-   0.176,
+   0.175,
    0.586
   ],
   "25": [
    0.398,
-   0.802
+   0.801
   ],
   "50": [
    0.001,
@@ -1606,9 +1606,9 @@
    }
   ],
   "markets": {
-   "brent": -19.648,
+   "brent": -19.843,
    "gas": -12.877,
-   "energy": -1.626,
+   "energy": -1.636,
    "fx": 0.331,
    "fed": 0.0,
    "ecb": 0.0
@@ -1638,11 +1638,11 @@
    "prev_dev": 0.384,
    "pull": 2.151,
    "hist_dev": 0.676,
-   "trend": -0.874,
+   "trend": -0.873,
    "pace": -0.061,
    "moved_last": -1.351,
-   "mpr_x_pace": 0.794,
-   "g_rat_gap": 0.506,
+   "mpr_x_pace": 0.795,
+   "g_rat_gap": 0.507,
    "g_rat_lvl": 0.064,
    "g_pol_gap": 1.649,
    "g_pol_lvl": 0.886,
@@ -1651,8 +1651,8 @@
    "surprise": 0.365
   },
   "cutpoints": [
-   -7.097,
-   -2.686,
+   -7.096,
+   -2.687,
    2.545,
    8.661
   ]
@@ -1725,10 +1725,10 @@
     "date": "2016-03-16",
     "actual": 0,
     "predicted": 0,
-    "p_actual": 0.895,
+    "p_actual": 0.894,
     "dist": {
      "-1": 0.056,
-     "0": 0.895,
+     "0": 0.894,
      "1": 0.049
     }
    },
@@ -1736,10 +1736,10 @@
     "date": "2016-04-13",
     "actual": 0,
     "predicted": 0,
-    "p_actual": 0.893,
+    "p_actual": 0.892,
     "dist": {
      "-1": 0.046,
-     "0": 0.893,
+     "0": 0.892,
      "1": 0.061
     }
    },
@@ -2443,10 +2443,10 @@
     "date": "2024-09-18",
     "actual": 0,
     "predicted": 0,
-    "p_actual": 0.868,
+    "p_actual": 0.867,
     "dist": {
      "-1": 0.108,
-     "0": 0.868,
+     "0": 0.867,
      "1": 0.024
     }
    },
@@ -2454,10 +2454,10 @@
     "date": "2024-11-06",
     "actual": -1,
     "predicted": 0,
-    "p_actual": 0.307,
+    "p_actual": 0.308,
     "dist": {
-     "-1": 0.307,
-     "0": 0.684,
+     "-1": 0.308,
+     "0": 0.683,
      "1": 0.005
     }
    },
@@ -2830,12 +2830,12 @@
    "rho": 0.8,
    "scores": {
     "0.0": 0.7267,
-    "0.1": 0.6853,
+    "0.1": 0.6852,
     "0.2": 0.6451,
     "0.3": 0.6304,
     "0.4": 0.6187,
     "0.5": 0.6112,
-    "0.6": 0.6099,
+    "0.6": 0.6098,
     "0.7": 0.6101,
     "0.8": 0.6081
    },
@@ -2844,7 +2844,7 @@
      {
       "bin": "0%-60%",
       "n": 5,
-      "predicted": 0.527,
+      "predicted": 0.526,
       "right": 0.4
      },
      {
@@ -4056,7 +4056,7 @@
     "date": "2018-03-21",
     "member": "Andrew Haldane",
     "actual": 0,
-    "p_actual": 0.752,
+    "p_actual": 0.751,
     "predicted": 0
    },
    {
@@ -4287,7 +4287,7 @@
     "date": "2018-09-12",
     "member": "Ben Broadbent",
     "actual": 0,
-    "p_actual": 0.348,
+    "p_actual": 0.349,
     "predicted": 1
    },
    {
@@ -4336,7 +4336,7 @@
     "date": "2018-09-12",
     "member": "Gertjan Vlieghe",
     "actual": 0,
-    "p_actual": 0.348,
+    "p_actual": 0.349,
     "predicted": 1
    },
    {
@@ -4665,7 +4665,7 @@
     "date": "2019-06-19",
     "member": "Ben Broadbent",
     "actual": 0,
-    "p_actual": 0.849,
+    "p_actual": 0.85,
     "predicted": 0
    },
    {
@@ -6079,7 +6079,7 @@
     "date": "2022-05-04",
     "member": "Dave Ramsden",
     "actual": 1,
-    "p_actual": 0.886,
+    "p_actual": 0.887,
     "predicted": 1
    },
    {
@@ -6247,7 +6247,7 @@
     "date": "2022-09-21",
     "member": "Huw Pill",
     "actual": 2,
-    "p_actual": 0.532,
+    "p_actual": 0.533,
     "predicted": 2
    },
    {
@@ -6436,7 +6436,7 @@
     "date": "2023-02-01",
     "member": "Swati Dhingra",
     "actual": 0,
-    "p_actual": 0.752,
+    "p_actual": 0.751,
     "predicted": 0
    },
    {
@@ -6926,7 +6926,7 @@
     "date": "2024-01-31",
     "member": "Ben Broadbent",
     "actual": 0,
-    "p_actual": 0.842,
+    "p_actual": 0.841,
     "predicted": 0
    },
    {
@@ -7318,7 +7318,7 @@
     "date": "2024-11-06",
     "member": "Clare Lombardelli",
     "actual": -1,
-    "p_actual": 0.71,
+    "p_actual": 0.711,
     "predicted": -1
    },
    {
@@ -7332,14 +7332,14 @@
     "date": "2024-11-06",
     "member": "Huw Pill",
     "actual": -1,
-    "p_actual": 0.172,
+    "p_actual": 0.173,
     "predicted": 0
    },
    {
     "date": "2024-11-06",
     "member": "Dave Ramsden",
     "actual": -1,
-    "p_actual": 0.376,
+    "p_actual": 0.377,
     "predicted": 0
    },
    {
@@ -7591,7 +7591,7 @@
     "date": "2025-05-07",
     "member": "Catherine Mann",
     "actual": 0,
-    "p_actual": 0.62,
+    "p_actual": 0.621,
     "predicted": 0
    },
    {
@@ -7689,7 +7689,7 @@
     "date": "2025-08-06",
     "member": "Megan Greene",
     "actual": 0,
-    "p_actual": 0.464,
+    "p_actual": 0.463,
     "predicted": -1
    },
    {
@@ -8032,7 +8032,7 @@
     "date": "2026-03-18",
     "member": "Dave Ramsden",
     "actual": 0,
-    "p_actual": 0.173,
+    "p_actual": 0.174,
     "predicted": -1
    },
    {
@@ -8151,7 +8151,7 @@
     "date": "2026-06-17",
     "member": "Huw Pill",
     "actual": 1,
-    "p_actual": 0.638,
+    "p_actual": 0.637,
     "predicted": 1
    },
    {
