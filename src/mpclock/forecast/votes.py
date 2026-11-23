@@ -453,7 +453,8 @@ def committee_tone(ctx: Context, start: str, end: str) -> float:
 
 
 def features_for(ctx: Context, prev: Meeting, date: str, members: list[str],
-                 words_since: str | None = None, freeze_data: bool = False) -> list[dict]:
+                 words_since: str | None = None, freeze_data: bool = False,
+                 meeting_date: str | None = None) -> list[dict]:
     """Rows for each member at a meeting on `date` (a past meeting or a future one).
     words_since: read members' words from this date instead of `prev` (used to carry
     their latest words forward to a meeting after a hypothetical one); freeze_data:
@@ -462,7 +463,9 @@ def features_for(ctx: Context, prev: Meeting, date: str, members: list[str],
     surp, detail = ({}, []) if freeze_data else data_surprises(ctx, start, end)
     mk = ({k: 0.0 for k in ("brent", "gas", "energy", "fx", "fed", "ecb")} if freeze_data
           else market_changes(ctx, start, end))
-    pace = pace_features(ctx, 0, date)
+    # the pace inputs belong to the meeting itself (is it a Report meeting?), even when
+    # words and data are read only up to today
+    pace = pace_features(ctx, 0, meeting_date or date)
     mean_prev = np.mean(list(prev.votes.values()))
     # the meetings before `prev`, newest first: a member's record over several meetings,
     # not just the last vote
