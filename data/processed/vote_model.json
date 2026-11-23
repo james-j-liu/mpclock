@@ -153,6 +153,16 @@
      0.0147
     ],
     "kept": false
+   },
+   {
+    "group": "Committee-wide tone shift",
+    "log_loss": 0.6703,
+    "change": 0.0101,
+    "ci95": [
+     0.0033,
+     0.0184
+    ],
+    "kept": false
    }
   ]
  },
