@@ -85,6 +85,23 @@ DIR_INSTRUCTIONS = (
     "decisions are conditional and gradual, leans higher even if they might hold at the next "
     "meeting; a member who says policy is restrictive enough and they want to wait leans "
     "unchanged; one who says rates can come down leans lower.")
+# v3 for vote rationales only: a box is written for the meeting just decided, so its "now"
+# is that meeting, not the next one (a speech's "now" is usually the next decision)
+BOX_VERSION = 3
+BOX_NOTE = ("This is the member's published rationale for the vote they cast at the MPC meeting "
+            "whose decision was announced on the date shown; the vote is stated at the top. Words "
+            "like 'now', 'at this meeting', 'today' or 'rather than cutting/raising now' refer to "
+            "THAT vote, already cast — not to the next meeting. Use what the member says about the "
+            "conditions for a future move, and how close those conditions are, to judge their vote "
+            "at the following meeting, about six weeks later. 'I would prefer to wait and see if X "
+            "is confirmed in upcoming developments' signals a move at a coming meeting if X is "
+            "confirmed, not a hold at the next one by default.")
+
+
+def required_version(s) -> int:
+    return BOX_VERSION if s.source_type == "member_view" else VERSION
+
+
 PASSAGE_NOTE = ("These are the passages about monetary policy and the outlook for Bank Rate, taken "
                 "from a longer text and joined by '…'. ")
 _POLICY_SENT = re.compile(
@@ -134,11 +151,11 @@ def code_documents(docs, rate, max_workers: int = 8, cap: int = 90000, limit: in
     from ..judge.openrouter import excerpt
 
     codes = load_codes()
-    todo = [s for s in docs if codes.get(s.id, {}).get("v") != VERSION and (s.text or "").strip()]
+    todo = [s for s in docs if codes.get(s.id, {}).get("v") != required_version(s) and (s.text or "").strip()]
     if limit:
         todo = todo[:limit]
     if verbose:
-        print(f"guidance: {len(codes)} in cache, {len(todo)} to code at v{VERSION}")
+        print(f"guidance: {len(codes)} in cache, {len(todo)} to code (v{VERSION}; vote rationales v{BOX_VERSION})")
     if not todo:
         return codes
     client = _Client()
@@ -146,6 +163,8 @@ def code_documents(docs, rate, max_workers: int = 8, cap: int = 90000, limit: in
     def one(s):
         state = {"date": s.date, "bank_rate_percent": _rate_on(rate, s.date),
                  "document_type": s.source_type, "speaker_role": "MPC member"}
+        if s.source_type == "member_view":
+            state["note"] = BOX_NOTE
         vote_q = {"type": "choice", "instructions": INSTRUCTIONS, "criteria": CRITERIA}
         dir_q = {"type": "choice", "instructions": DIR_INSTRUCTIONS, "criteria": DIR_CRITERIA}
 
@@ -161,7 +180,7 @@ def code_documents(docs, rate, max_workers: int = 8, cap: int = 90000, limit: in
         p, ev = _choice(res, "next_vote", OPTIONS)
         d, dev = _choice(res, "direction", DIRECTION)
         f = res["answers"]["focus"].get("score")
-        rec = {"v": VERSION, "date": s.date, "speaker": s.speaker, "type": s.source_type,
+        rec = {"v": required_version(s), "date": s.date, "speaker": s.speaker, "type": s.source_type,
                "p": p, "ev": ev, "dir": d, "dir_ev": dev,
                "focus": None if f is None else round(float(f) / (len(FOCUS_LEVELS) - 1), 3)}
         pas = policy_passages(s.text) if s.source_type != "member_view" else ""
@@ -182,6 +201,9 @@ def code_documents(docs, rate, max_workers: int = 8, cap: int = 90000, limit: in
         for fu in as_completed([ex.submit(one, s) for s in todo]):
             s, rec, err = fu.result()
             if rec:
+                prev = codes.get(s.id)
+                if prev and prev.get("v") != rec["v"]:   # keep the earlier reading for comparison
+                    rec["prev"] = {k: prev.get(k) for k in ("v", "p", "ev", "dir", "dir_ev")}
                 codes[s.id] = rec
             elif verbose:
                 print(f"  [skip] {s.date} {s.speaker}: {err}")
