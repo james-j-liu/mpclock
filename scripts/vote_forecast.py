@@ -346,7 +346,7 @@ def main():
     nxt = next_meeting(corpus, last.date)
     asof = min(dt.date.today().isoformat(), nxt)
     asof_end = (dt.date.fromisoformat(asof) + dt.timedelta(days=1)).isoformat()
-    frows = V.features_for(ctx, last, asof_end, list(last.votes))
+    frows = V.features_for(ctx, last, asof_end, list(last.votes), meeting_date=nxt)
     P = model.predict(frows)
     opts = V.options_for(last)
     members = []
@@ -356,7 +356,7 @@ def main():
         members.append({"member": r["member"], "prev_vote": r["prev_vote"],
                         "probs": {str(k): round(v, 4) for k, v in vp.items()},
                         "expected_bp": round(25 * sum(k * v for k, v in vp.items()), 1),
-                        "features": {f: round(float(r[f]), 3) for g in V.FEATURE_GROUPS.values() for f in g},
+                        "features": {f.removeprefix("s:"): round(float(r[f.removeprefix("s:")]), 3) for g in V.FEATURE_GROUPS.values() for f in g},
                         "surprise_data": round(r["surprise_data"], 3), "energy": round(r["energy"], 3),
                         "contributions": contrib, "n_docs": r["n_docs"], "doc_dates": r["_doc_dates"],
                         "docs": [{k: d.get(k) for k in ("date", "type", "signal", "dir")} for d in r["_docs"]],

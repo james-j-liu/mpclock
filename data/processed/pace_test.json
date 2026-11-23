@@ -1,0 +1,71 @@
+{
+ "n": 779,
+ "current_log_loss": 0.6754,
+ "alternatives": [
+  {
+   "coding": "by direction",
+   "log_loss": 0.6789,
+   "change": 0.0035,
+   "ci95": [
+    -0.0293,
+    0.0399
+   ],
+   "better": false,
+   "coefficients": {
+    "pace_up": -0.433,
+    "pace_dn": -0.323,
+    "moved_last_up": -0.477,
+    "moved_last_dn": -1.94,
+    "mpr_x_pace_up": 0.603,
+    "mpr_x_pace_dn": 1.271
+   },
+   "by_cycle": {
+    "hiking": 0.8951,
+    "cutting": 0.704,
+    "after one move": 0.7023,
+    "established (2+ moves)": 0.8565
+   }
+  },
+  {
+   "coding": "established",
+   "log_loss": 0.6849,
+   "change": 0.0095,
+   "ci95": [
+    -0.0183,
+    0.0341
+   ],
+   "better": false,
+   "coefficients": {
+    "pace_est": 0.057,
+    "moved_last": -1.371,
+    "mpr_x_pace_est": 0.548,
+    "first_move": 0.143,
+    "first_x_mpr": 0.967
+   },
+   "by_cycle": {
+    "hiking": 0.8723,
+    "cutting": 0.7664,
+    "after one move": 0.681,
+    "established (2+ moves)": 0.8793
+   }
+  }
+ ],
+ "rows": {
+  "hiking": 314,
+  "cutting": 214,
+  "no cycle": 251,
+  "after one move": 133
+ },
+ "current_by_cycle": {
+  "hiking": 0.8797,
+  "cutting": 0.7167,
+  "no cycle": 0.3845,
+  "after one move": 0.6891,
+  "established (2+ moves)": 0.8556
+ },
+ "current_coefficients": {
+  "pace": -0.06,
+  "moved_last": -1.352,
+  "mpr_x_pace": 0.794
+ }
+}
