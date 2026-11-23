@@ -74,13 +74,28 @@
 "00995d3991143525": {
 "date": "2026-11-04",
 "dir": {
+"higher": 0.9,
+"lower": 0.0,
+"unchanged": 0.1
+},
+"dir_ev": 0.9,
+"ev": 0.39,
+"focus": 0.708,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.39,
+"hike_50": 0.0,
+"hold": 0.61
+},
+"prev": {
+"dir": {
 "higher": 0.89,
 "lower": 0.0,
 "unchanged": 0.11
 },
 "dir_ev": 0.89,
 "ev": 0.4,
-"focus": 0.802,
 "p": {
 "cut_25": 0.0,
 "cut_50": 0.0,
@@ -88,9 +103,11 @@
 "hike_50": 0.0,
 "hold": 0.6
 },
+"v": 2
+},
 "speaker": "Sarah Breeden",
 "type": "member_view",
-"v": 2
+"v": 3
 },
 "00bc5870aee822e0": {
 "date": "2019-03-07",
@@ -131,13 +148,28 @@
 "019cde3b7e9637b2": {
 "date": "2026-04-29",
 "dir": {
+"higher": 0.99,
+"lower": 0.0,
+"unchanged": 0.01
+},
+"dir_ev": 0.99,
+"ev": 0.69,
+"focus": 0.797,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.67,
+"hike_50": 0.01,
+"hold": 0.32
+},
+"prev": {
+"dir": {
 "higher": 1.0,
 "lower": 0.0,
 "unchanged": 0.0
 },
 "dir_ev": 1.0,
 "ev": 0.55,
-"focus": 0.87,
 "p": {
 "cut_25": 0.0,
 "cut_50": 0.0,
@@ -145,9 +177,11 @@
 "hike_50": 0.0,
 "hold": 0.45
 },
+"v": 2
+},
 "speaker": "Catherine Mann",
 "type": "member_view",
-"v": 2
+"v": 3
 },
 "0245b1213d0a8a17": {
 "date": "2023-11-21",
@@ -337,8 +371,23 @@
 "unchanged": 0.0
 },
 "dir_ev": -1.0,
+"ev": -1.0,
+"focus": 0.715,
+"p": {
+"cut_25": 0.96,
+"cut_50": 0.02,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 0.02
+},
+"prev": {
+"dir": {
+"higher": 0.0,
+"lower": 1.0,
+"unchanged": 0.0
+},
+"dir_ev": -1.0,
 "ev": -1.01,
-"focus": 0.76,
 "p": {
 "cut_25": 0.97,
 "cut_50": 0.02,
@@ -346,9 +395,11 @@
 "hike_50": 0.0,
 "hold": 0.01
 },
+"v": 2
+},
 "speaker": "Swati Dhingra",
 "type": "member_view",
-"v": 2
+"v": 3
 },
 "03a526762ab5806c": {
 "date": "2018-11-20",
@@ -390,12 +441,27 @@
 "date": "2026-03-18",
 "dir": {
 "higher": 0.01,
+"lower": 0.53,
+"unchanged": 0.46
+},
+"dir_ev": -0.52,
+"ev": -0.24,
+"focus": 0.738,
+"p": {
+"cut_25": 0.23,
+"cut_50": 0.01,
+"hike_25": 0.01,
+"hike_50": 0.0,
+"hold": 0.75
+},
+"prev": {
+"dir": {
+"higher": 0.01,
 "lower": 0.76,
 "unchanged": 0.23
 },
 "dir_ev": -0.75,
 "ev": -0.11,
-"focus": 0.828,
 "p": {
 "cut_25": 0.11,
 "cut_50": 0.0,
@@ -403,12 +469,30 @@
 "hike_50": 0.0,
 "hold": 0.89
 },
+"v": 2
+},
 "speaker": "Sarah Breeden",
 "type": "member_view",
-"v": 2
+"v": 3
 },
 "0459aeff44eca4ee": {
 "date": "2026-06-17",
+"dir": {
+"higher": 0.56,
+"lower": 0.0,
+"unchanged": 0.44
+},
+"dir_ev": 0.56,
+"ev": 0.2,
+"focus": 0.645,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.16,
+"hike_50": 0.02,
+"hold": 0.82
+},
+"prev": {
 "dir": {
 "higher": 0.33,
 "lower": 0.0,
@@ -416,7 +500,6 @@
 },
 "dir_ev": 0.33,
 "ev": 0.05,
-"focus": 0.745,
 "p": {
 "cut_25": 0.0,
 "cut_50": 0.0,
@@ -424,9 +507,11 @@
 "hike_50": 0.0,
 "hold": 0.95
 },
+"v": 2
+},
 "speaker": "Clare Lombardelli",
 "type": "member_view",
-"v": 2
+"v": 3
 },
 "049d081d12a753bd": {
 "date": "2014-11-25",
@@ -755,13 +840,28 @@
 "088c790263ecc80f": {
 "date": "2025-11-05",
 "dir": {
+"higher": 0.21,
+"lower": 0.01,
+"unchanged": 0.78
+},
+"dir_ev": 0.2,
+"ev": 0.04,
+"focus": 0.662,
+"p": {
+"cut_25": 0.01,
+"cut_50": 0.0,
+"hike_25": 0.05,
+"hike_50": 0.0,
+"hold": 0.94
+},
+"prev": {
+"dir": {
 "higher": 0.14,
 "lower": 0.01,
 "unchanged": 0.85
 },
 "dir_ev": 0.13,
 "ev": 0.1,
-"focus": 0.853,
 "p": {
 "cut_25": 0.0,
 "cut_50": 0.0,
@@ -769,9 +869,11 @@
 "hike_50": 0.01,
 "hold": 0.91
 },
+"v": 2
+},
 "speaker": "Catherine Mann",
 "type": "member_view",
-"v": 2
+"v": 3
 },
 "08f7ee3c469d0b96": {
 "date": "2015-05-21",
@@ -1496,13 +1598,13 @@
 "122dfc1eea44f02a": {
 "date": "2026-03-18",
 "dir": {
-"higher": 0.83,
+"higher": 0.84,
 "lower": 0.0,
-"unchanged": 0.17
+"unchanged": 0.16
 },
-"dir_ev": 0.83,
+"dir_ev": 0.84,
 "ev": 0.53,
-"focus": 0.492,
+"focus": 0.545,
 "p": {
 "cut_25": 0.0,
 "cut_50": 0.0,
@@ -1510,12 +1612,45 @@
 "hike_50": 0.01,
 "hold": 0.48
 },
+"prev": {
+"dir": {
+"higher": 0.83,
+"lower": 0.0,
+"unchanged": 0.17
+},
+"dir_ev": 0.83,
+"ev": 0.53,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.51,
+"hike_50": 0.01,
+"hold": 0.48
+},
+"v": 2
+},
 "speaker": "Clare Lombardelli",
 "type": "member_view",
-"v": 2
+"v": 3
 },
 "1304d298ef06eefd": {
 "date": "2026-09-16",
+"dir": {
+"higher": 0.85,
+"lower": 0.0,
+"unchanged": 0.15
+},
+"dir_ev": 0.85,
+"ev": 0.49,
+"focus": 0.647,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.49,
+"hike_50": 0.0,
+"hold": 0.51
+},
+"prev": {
 "dir": {
 "higher": 0.89,
 "lower": 0.0,
@@ -1523,7 +1658,6 @@
 },
 "dir_ev": 0.89,
 "ev": 0.53,
-"focus": 0.662,
 "p": {
 "cut_25": 0.0,
 "cut_50": 0.0,
@@ -1531,9 +1665,11 @@
 "hike_50": 0.0,
 "hold": 0.47
 },
+"v": 2
+},
 "speaker": "Dave Ramsden",
 "type": "member_view",
-"v": 2
+"v": 3
 },
 "13f96aac46012a1b": {
 "date": "2014-06-18",
@@ -1934,13 +2070,28 @@
 "178bb5f9714a5989": {
 "date": "2026-09-16",
 "dir": {
+"higher": 0.98,
+"lower": 0.0,
+"unchanged": 0.02
+},
+"dir_ev": 0.98,
+"ev": 0.78,
+"focus": 0.735,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.76,
+"hike_50": 0.01,
+"hold": 0.23
+},
+"prev": {
+"dir": {
 "higher": 0.99,
 "lower": 0.0,
 "unchanged": 0.01
 },
 "dir_ev": 0.99,
 "ev": 0.85,
-"focus": 0.752,
 "p": {
 "cut_25": 0.0,
 "cut_50": 0.0,
@@ -1948,9 +2099,11 @@
 "hike_50": 0.0,
 "hold": 0.15
 },
+"v": 2
+},
 "speaker": "Clare Lombardelli",
 "type": "member_view",
-"v": 2
+"v": 3
 },
 "17a8b219e589b07e": {
 "date": "2021-01-11",
@@ -2387,13 +2540,28 @@
 "1f419860377b3c42": {
 "date": "2026-03-18",
 "dir": {
+"higher": 0.76,
+"lower": 0.0,
+"unchanged": 0.24
+},
+"dir_ev": 0.76,
+"ev": 0.38,
+"focus": 0.532,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.36,
+"hike_50": 0.01,
+"hold": 0.63
+},
+"prev": {
+"dir": {
 "higher": 0.6,
 "lower": 0.0,
 "unchanged": 0.4
 },
 "dir_ev": 0.6,
 "ev": 0.21,
-"focus": 0.618,
 "p": {
 "cut_25": 0.0,
 "cut_50": 0.0,
@@ -2401,9 +2569,11 @@
 "hike_50": 0.01,
 "hold": 0.8
 },
+"v": 2
+},
 "speaker": "Andrew Bailey",
 "type": "member_view",
-"v": 2
+"v": 3
 },
 "1f4c67652c7992ee": {
 "date": "2023-05-23",
@@ -2521,8 +2691,23 @@
 "unchanged": 0.0
 },
 "dir_ev": -1.0,
+"ev": -0.97,
+"focus": 0.6,
+"p": {
+"cut_25": 0.95,
+"cut_50": 0.01,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 0.04
+},
+"prev": {
+"dir": {
+"higher": 0.0,
+"lower": 1.0,
+"unchanged": 0.0
+},
+"dir_ev": -1.0,
 "ev": -0.99,
-"focus": 0.642,
 "p": {
 "cut_25": 0.99,
 "cut_50": 0.0,
@@ -2530,9 +2715,11 @@
 "hike_50": 0.0,
 "hold": 0.01
 },
+"v": 2
+},
 "speaker": "Swati Dhingra",
 "type": "member_view",
-"v": 2
+"v": 3
 },
 "20d8deb68653a2ff": {
 "date": "2016-11-28",
@@ -2969,13 +3156,28 @@
 "2398751ee2fc7ff9": {
 "date": "2026-07-29",
 "dir": {
+"higher": 0.9,
+"lower": 0.0,
+"unchanged": 0.1
+},
+"dir_ev": 0.9,
+"ev": 0.66,
+"focus": 0.585,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.64,
+"hike_50": 0.01,
+"hold": 0.35
+},
+"prev": {
+"dir": {
 "higher": 0.99,
 "lower": 0.0,
 "unchanged": 0.01
 },
 "dir_ev": 0.99,
 "ev": 0.72,
-"focus": 0.81,
 "p": {
 "cut_25": 0.0,
 "cut_50": 0.0,
@@ -2983,9 +3185,11 @@
 "hike_50": 0.01,
 "hold": 0.29
 },
+"v": 2
+},
 "speaker": "Catherine Mann",
 "type": "member_view",
-"v": 2
+"v": 3
 },
 "23a6e8e5b58449bf": {
 "date": "2021-03-05",
@@ -3062,13 +3266,28 @@
 "2456b29387516d6e": {
 "date": "2026-06-17",
 "dir": {
+"higher": 0.01,
+"lower": 0.14,
+"unchanged": 0.85
+},
+"dir_ev": -0.13,
+"ev": -0.15,
+"focus": 0.672,
+"p": {
+"cut_25": 0.15,
+"cut_50": 0.0,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 0.85
+},
+"prev": {
+"dir": {
 "higher": 0.02,
 "lower": 0.03,
 "unchanged": 0.95
 },
 "dir_ev": -0.01,
 "ev": -0.02,
-"focus": 0.698,
 "p": {
 "cut_25": 0.03,
 "cut_50": 0.0,
@@ -3076,9 +3295,11 @@
 "hike_50": 0.0,
 "hold": 0.96
 },
+"v": 2
+},
 "speaker": "Dave Ramsden",
 "type": "member_view",
-"v": 2
+"v": 3
 },
 "24f269a0ebdf4343": {
 "date": "2016-10-05",
@@ -3120,12 +3341,27 @@
 "date": "2026-04-29",
 "dir": {
 "higher": 0.07,
+"lower": 0.61,
+"unchanged": 0.32
+},
+"dir_ev": -0.54,
+"ev": -0.17,
+"focus": 0.868,
+"p": {
+"cut_25": 0.19,
+"cut_50": 0.01,
+"hike_25": 0.04,
+"hike_50": 0.0,
+"hold": 0.76
+},
+"prev": {
+"dir": {
+"higher": 0.07,
 "lower": 0.68,
 "unchanged": 0.25
 },
 "dir_ev": -0.61,
 "ev": -0.19,
-"focus": 0.92,
 "p": {
 "cut_25": 0.22,
 "cut_50": 0.02,
@@ -3133,9 +3369,11 @@
 "hike_50": 0.0,
 "hold": 0.69
 },
+"v": 2
+},
 "speaker": "Swati Dhingra",
 "type": "member_view",
-"v": 2
+"v": 3
 },
 "25c2011c70b490c5": {
 "date": "2016-12-05",
@@ -3182,7 +3420,22 @@
 },
 "dir_ev": -1.0,
 "ev": -0.97,
-"focus": 0.787,
+"focus": 0.71,
+"p": {
+"cut_25": 0.95,
+"cut_50": 0.01,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 0.04
+},
+"prev": {
+"dir": {
+"higher": 0.0,
+"lower": 1.0,
+"unchanged": 0.0
+},
+"dir_ev": -1.0,
+"ev": -0.97,
 "p": {
 "cut_25": 0.97,
 "cut_50": 0.0,
@@ -3190,9 +3443,11 @@
 "hike_50": 0.0,
 "hold": 0.03
 },
+"v": 2
+},
 "speaker": "Swati Dhingra",
 "type": "member_view",
-"v": 2
+"v": 3
 },
 "26b6f6f7e7a51f21": {
 "date": "2025-09-03",
@@ -3269,13 +3524,28 @@
 "27546b3332970de8": {
 "date": "2026-09-16",
 "dir": {
+"higher": 0.91,
+"lower": 0.0,
+"unchanged": 0.09
+},
+"dir_ev": 0.91,
+"ev": 0.67,
+"focus": 0.535,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.57,
+"hike_50": 0.05,
+"hold": 0.38
+},
+"prev": {
+"dir": {
 "higher": 0.97,
 "lower": 0.0,
 "unchanged": 0.03
 },
 "dir_ev": 0.97,
 "ev": 0.71,
-"focus": 0.743,
 "p": {
 "cut_25": 0.0,
 "cut_50": 0.0,
@@ -3283,9 +3553,11 @@
 "hike_50": 0.03,
 "hold": 0.32
 },
+"v": 2
+},
 "speaker": "Catherine Mann",
 "type": "member_view",
-"v": 2
+"v": 3
 },
 "2789f483a217f066": {
 "date": "2023-02-10",
@@ -3743,13 +4015,28 @@
 "2c6afb1cd0bb290a": {
 "date": "2026-02-04",
 "dir": {
+"higher": 0.05,
+"lower": 0.12,
+"unchanged": 0.83
+},
+"dir_ev": -0.07,
+"ev": -0.02,
+"focus": 0.775,
+"p": {
+"cut_25": 0.03,
+"cut_50": 0.0,
+"hike_25": 0.01,
+"hike_50": 0.0,
+"hold": 0.96
+},
+"prev": {
+"dir": {
 "higher": 0.04,
 "lower": 0.02,
 "unchanged": 0.94
 },
 "dir_ev": 0.02,
 "ev": 0.03,
-"focus": 0.922,
 "p": {
 "cut_25": 0.0,
 "cut_50": 0.0,
@@ -3757,12 +4044,30 @@
 "hike_50": 0.0,
 "hold": 0.97
 },
+"v": 2
+},
 "speaker": "Megan Greene",
 "type": "member_view",
-"v": 2
+"v": 3
 },
 "2c785c41d5f56241": {
 "date": "2026-03-18",
+"dir": {
+"higher": 0.01,
+"lower": 0.89,
+"unchanged": 0.1
+},
+"dir_ev": -0.88,
+"ev": -0.43,
+"focus": 0.873,
+"p": {
+"cut_25": 0.38,
+"cut_50": 0.03,
+"hike_25": 0.01,
+"hike_50": 0.0,
+"hold": 0.58
+},
+"prev": {
 "dir": {
 "higher": 0.0,
 "lower": 0.92,
@@ -3770,7 +4075,6 @@
 },
 "dir_ev": -0.92,
 "ev": -0.3,
-"focus": 0.912,
 "p": {
 "cut_25": 0.24,
 "cut_50": 0.03,
@@ -3778,12 +4082,30 @@
 "hike_50": 0.0,
 "hold": 0.73
 },
+"v": 2
+},
 "speaker": "Swati Dhingra",
 "type": "member_view",
-"v": 2
+"v": 3
 },
 "2c7b50430387f6c8": {
 "date": "2026-04-29",
+"dir": {
+"higher": 0.0,
+"lower": 0.57,
+"unchanged": 0.43
+},
+"dir_ev": -0.57,
+"ev": -0.02,
+"focus": 0.85,
+"p": {
+"cut_25": 0.02,
+"cut_50": 0.0,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 0.98
+},
+"prev": {
 "dir": {
 "higher": 0.0,
 "lower": 0.62,
@@ -3791,7 +4113,6 @@
 },
 "dir_ev": -0.62,
 "ev": -0.01,
-"focus": 0.943,
 "p": {
 "cut_25": 0.01,
 "cut_50": 0.0,
@@ -3799,9 +4120,11 @@
 "hike_50": 0.0,
 "hold": 0.99
 },
+"v": 2
+},
 "speaker": "Alan Taylor",
 "type": "member_view",
-"v": 2
+"v": 3
 },
 "2ca6875916338478": {
 "date": "2018-08-24",
@@ -4763,13 +5086,28 @@
 "371c5f42ce34ff9d": {
 "date": "2026-11-04",
 "dir": {
+"higher": 0.47,
+"lower": 0.01,
+"unchanged": 0.52
+},
+"dir_ev": 0.46,
+"ev": 0.18,
+"focus": 0.82,
+"p": {
+"cut_25": 0.01,
+"cut_50": 0.0,
+"hike_25": 0.19,
+"hike_50": 0.0,
+"hold": 0.8
+},
+"prev": {
+"dir": {
 "higher": 0.38,
 "lower": 0.0,
 "unchanged": 0.62
 },
 "dir_ev": 0.38,
 "ev": 0.12,
-"focus": 0.935,
 "p": {
 "cut_25": 0.0,
 "cut_50": 0.0,
@@ -4777,9 +5115,11 @@
 "hike_50": 0.0,
 "hold": 0.88
 },
+"v": 2
+},
 "speaker": "Alan Taylor",
 "type": "member_view",
-"v": 2
+"v": 3
 },
 "375fb7a9f874378e": {
 "date": "2016-05-24",
@@ -5000,13 +5340,28 @@
 "3a0b80b94afb0274": {
 "date": "2026-09-16",
 "dir": {
+"higher": 0.81,
+"lower": 0.0,
+"unchanged": 0.19
+},
+"dir_ev": 0.81,
+"ev": 0.45,
+"focus": 0.735,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.43,
+"hike_50": 0.01,
+"hold": 0.56
+},
+"prev": {
+"dir": {
 "higher": 0.72,
 "lower": 0.0,
 "unchanged": 0.28
 },
 "dir_ev": 0.72,
 "ev": 0.41,
-"focus": 0.738,
 "p": {
 "cut_25": 0.0,
 "cut_50": 0.0,
@@ -5014,9 +5369,11 @@
 "hike_50": 0.0,
 "hold": 0.59
 },
+"v": 2
+},
 "speaker": "Sarah Breeden",
 "type": "member_view",
-"v": 2
+"v": 3
 },
 "3aacd092ce5e9edf": {
 "date": "2026-10-01",
@@ -5207,7 +5564,22 @@
 },
 "dir_ev": -1.0,
 "ev": -0.99,
-"focus": 0.835,
+"focus": 0.818,
+"p": {
+"cut_25": 0.97,
+"cut_50": 0.01,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 0.02
+},
+"prev": {
+"dir": {
+"higher": 0.0,
+"lower": 1.0,
+"unchanged": 0.0
+},
+"dir_ev": -1.0,
+"ev": -0.99,
 "p": {
 "cut_25": 0.99,
 "cut_50": 0.0,
@@ -5215,9 +5587,11 @@
 "hike_50": 0.0,
 "hold": 0.01
 },
+"v": 2
+},
 "speaker": "Alan Taylor",
 "type": "member_view",
-"v": 2
+"v": 3
 },
 "3c276a4318c7521c": {
 "date": "2018-10-10",
@@ -5259,12 +5633,27 @@
 "date": "2025-11-05",
 "dir": {
 "higher": 0.0,
+"lower": 0.99,
+"unchanged": 0.01
+},
+"dir_ev": -0.99,
+"ev": -0.92,
+"focus": 0.782,
+"p": {
+"cut_25": 0.92,
+"cut_50": 0.0,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 0.08
+},
+"prev": {
+"dir": {
+"higher": 0.0,
 "lower": 1.0,
 "unchanged": 0.0
 },
 "dir_ev": -1.0,
 "ev": -0.93,
-"focus": 0.802,
 "p": {
 "cut_25": 0.93,
 "cut_50": 0.0,
@@ -5272,9 +5661,11 @@
 "hike_50": 0.0,
 "hold": 0.07
 },
+"v": 2
+},
 "speaker": "Sarah Breeden",
 "type": "member_view",
-"v": 2
+"v": 3
 },
 "3ce59714e4175eff": {
 "date": "2020-05-20",
@@ -5423,13 +5814,28 @@
 "3fe5571b8ffc8396": {
 "date": "2026-09-16",
 "dir": {
+"higher": 0.07,
+"lower": 0.01,
+"unchanged": 0.92
+},
+"dir_ev": 0.06,
+"ev": 0.02,
+"focus": 0.82,
+"p": {
+"cut_25": 0.02,
+"cut_50": 0.0,
+"hike_25": 0.04,
+"hike_50": 0.0,
+"hold": 0.94
+},
+"prev": {
+"dir": {
 "higher": 0.01,
 "lower": 0.0,
 "unchanged": 0.99
 },
 "dir_ev": 0.01,
 "ev": 0.0,
-"focus": 0.89,
 "p": {
 "cut_25": 0.01,
 "cut_50": 0.0,
@@ -5437,9 +5843,11 @@
 "hike_50": 0.0,
 "hold": 0.98
 },
+"v": 2
+},
 "speaker": "Swati Dhingra",
 "type": "member_view",
-"v": 2
+"v": 3
 },
 "40153c398f25d5f2": {
 "date": "2017-11-14",
@@ -6165,12 +6573,27 @@
 "date": "2025-12-17",
 "dir": {
 "higher": 0.0,
+"lower": 0.99,
+"unchanged": 0.01
+},
+"dir_ev": -0.99,
+"ev": -0.83,
+"focus": 0.835,
+"p": {
+"cut_25": 0.83,
+"cut_50": 0.0,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 0.17
+},
+"prev": {
+"dir": {
+"higher": 0.0,
 "lower": 1.0,
 "unchanged": 0.0
 },
 "dir_ev": -1.0,
 "ev": -0.92,
-"focus": 0.812,
 "p": {
 "cut_25": 0.92,
 "cut_50": 0.0,
@@ -6178,9 +6601,11 @@
 "hike_50": 0.0,
 "hold": 0.08
 },
+"v": 2
+},
 "speaker": "Dave Ramsden",
 "type": "member_view",
-"v": 2
+"v": 3
 },
 "4b50e9d50a282069": {
 "date": "2017-08-31",
@@ -6355,8 +6780,23 @@
 "unchanged": 0.0
 },
 "dir_ev": -1.0,
+"ev": -0.99,
+"focus": 0.787,
+"p": {
+"cut_25": 0.93,
+"cut_50": 0.03,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 0.04
+},
+"prev": {
+"dir": {
+"higher": 0.0,
+"lower": 1.0,
+"unchanged": 0.0
+},
+"dir_ev": -1.0,
 "ev": -0.98,
-"focus": 0.792,
 "p": {
 "cut_25": 0.96,
 "cut_50": 0.01,
@@ -6364,9 +6804,11 @@
 "hike_50": 0.0,
 "hold": 0.03
 },
+"v": 2
+},
 "speaker": "Alan Taylor",
 "type": "member_view",
-"v": 2
+"v": 3
 },
 "4f25718c3895cd57": {
 "date": "2020-09-30",
@@ -6443,13 +6885,28 @@
 "4f5f2a2e7b20c026": {
 "date": "2026-04-29",
 "dir": {
+"higher": 0.14,
+"lower": 0.11,
+"unchanged": 0.75
+},
+"dir_ev": 0.03,
+"ev": -0.03,
+"focus": 0.765,
+"p": {
+"cut_25": 0.06,
+"cut_50": 0.0,
+"hike_25": 0.03,
+"hike_50": 0.0,
+"hold": 0.91
+},
+"prev": {
+"dir": {
 "higher": 0.12,
 "lower": 0.02,
 "unchanged": 0.86
 },
 "dir_ev": 0.1,
 "ev": 0.01,
-"focus": 0.85,
 "p": {
 "cut_25": 0.01,
 "cut_50": 0.0,
@@ -6457,12 +6914,30 @@
 "hike_50": 0.0,
 "hold": 0.97
 },
+"v": 2
+},
 "speaker": "Andrew Bailey",
 "type": "member_view",
-"v": 2
+"v": 3
 },
 "4fb4fe725a8ed165": {
 "date": "2026-07-29",
+"dir": {
+"higher": 0.07,
+"lower": 0.04,
+"unchanged": 0.89
+},
+"dir_ev": 0.03,
+"ev": -0.04,
+"focus": 0.542,
+"p": {
+"cut_25": 0.08,
+"cut_50": 0.01,
+"hike_25": 0.06,
+"hike_50": 0.0,
+"hold": 0.85
+},
+"prev": {
 "dir": {
 "higher": 0.05,
 "lower": 0.0,
@@ -6470,7 +6945,6 @@
 },
 "dir_ev": 0.05,
 "ev": 0.04,
-"focus": 0.5,
 "p": {
 "cut_25": 0.01,
 "cut_50": 0.0,
@@ -6478,9 +6952,11 @@
 "hike_50": 0.0,
 "hold": 0.94
 },
+"v": 2
+},
 "speaker": "Sarah Breeden",
 "type": "member_view",
-"v": 2
+"v": 3
 },
 "50862b7534e7716f": {
 "date": "2020-05-20",
@@ -6989,13 +7465,13 @@
 "549a434e96a9f1d6": {
 "date": "2025-11-05",
 "dir": {
-"higher": 0.07,
+"higher": 0.1,
 "lower": 0.0,
-"unchanged": 0.93
+"unchanged": 0.9
 },
-"dir_ev": 0.07,
+"dir_ev": 0.1,
 "ev": 0.01,
-"focus": 0.91,
+"focus": 0.792,
 "p": {
 "cut_25": 0.0,
 "cut_50": 0.0,
@@ -7003,9 +7479,26 @@
 "hike_50": 0.0,
 "hold": 0.99
 },
+"prev": {
+"dir": {
+"higher": 0.07,
+"lower": 0.0,
+"unchanged": 0.93
+},
+"dir_ev": 0.07,
+"ev": 0.01,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.01,
+"hike_50": 0.0,
+"hold": 0.99
+},
+"v": 2
+},
 "speaker": "Megan Greene",
 "type": "member_view",
-"v": 2
+"v": 3
 },
 "5580188273f79f72": {
 "date": "2016-01-20",
@@ -7082,13 +7575,28 @@
 "55c4b6bb410e8781": {
 "date": "2026-11-04",
 "dir": {
+"higher": 0.9,
+"lower": 0.0,
+"unchanged": 0.1
+},
+"dir_ev": 0.9,
+"ev": 0.66,
+"focus": 0.57,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.66,
+"hike_50": 0.0,
+"hold": 0.34
+},
+"prev": {
+"dir": {
 "higher": 0.92,
 "lower": 0.0,
 "unchanged": 0.08
 },
 "dir_ev": 0.92,
 "ev": 0.65,
-"focus": 0.588,
 "p": {
 "cut_25": 0.0,
 "cut_50": 0.0,
@@ -7096,9 +7604,11 @@
 "hike_50": 0.0,
 "hold": 0.35
 },
+"v": 2
+},
 "speaker": "Dave Ramsden",
 "type": "member_view",
-"v": 2
+"v": 3
 },
 "56ae9433f10bf5aa": {
 "date": "2014-06-24",
@@ -7643,13 +8153,28 @@
 "5b27463eb87d08c7": {
 "date": "2026-06-17",
 "dir": {
+"higher": 0.07,
+"lower": 0.04,
+"unchanged": 0.89
+},
+"dir_ev": 0.03,
+"ev": -0.04,
+"focus": 0.72,
+"p": {
+"cut_25": 0.05,
+"cut_50": 0.0,
+"hike_25": 0.01,
+"hike_50": 0.0,
+"hold": 0.94
+},
+"prev": {
+"dir": {
 "higher": 0.01,
 "lower": 0.01,
 "unchanged": 0.98
 },
 "dir_ev": 0.0,
 "ev": 0.0,
-"focus": 0.75,
 "p": {
 "cut_25": 0.01,
 "cut_50": 0.0,
@@ -7657,9 +8182,11 @@
 "hike_50": 0.0,
 "hold": 0.98
 },
+"v": 2
+},
 "speaker": "Sarah Breeden",
 "type": "member_view",
-"v": 2
+"v": 3
 },
 "5c5d3751d52b4efd": {
 "date": "2025-10-18",
@@ -7813,8 +8340,23 @@
 "unchanged": 0.0
 },
 "dir_ev": -1.0,
+"ev": -0.94,
+"focus": 0.655,
+"p": {
+"cut_25": 0.92,
+"cut_50": 0.01,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 0.07
+},
+"prev": {
+"dir": {
+"higher": 0.0,
+"lower": 1.0,
+"unchanged": 0.0
+},
+"dir_ev": -1.0,
 "ev": -0.96,
-"focus": 0.667,
 "p": {
 "cut_25": 0.94,
 "cut_50": 0.01,
@@ -7822,9 +8364,11 @@
 "hike_50": 0.0,
 "hold": 0.05
 },
+"v": 2
+},
 "speaker": "Dave Ramsden",
 "type": "member_view",
-"v": 2
+"v": 3
 },
 "5f1842f664d625b4": {
 "date": "2021-01-12",
@@ -7901,13 +8445,28 @@
 "5fe8235a78b99997": {
 "date": "2026-07-29",
 "dir": {
+"higher": 0.84,
+"lower": 0.0,
+"unchanged": 0.16
+},
+"dir_ev": 0.84,
+"ev": 0.51,
+"focus": 0.605,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.43,
+"hike_50": 0.04,
+"hold": 0.53
+},
+"prev": {
+"dir": {
 "higher": 0.97,
 "lower": 0.0,
 "unchanged": 0.03
 },
 "dir_ev": 0.97,
 "ev": 0.6,
-"focus": 0.662,
 "p": {
 "cut_25": 0.0,
 "cut_50": 0.0,
@@ -7915,9 +8474,11 @@
 "hike_50": 0.03,
 "hold": 0.43
 },
+"v": 2
+},
 "speaker": "Huw Pill",
 "type": "member_view",
-"v": 2
+"v": 3
 },
 "607e3118d8f33fdb": {
 "date": "2026-03-02",
@@ -7994,13 +8555,28 @@
 "62681e7627da5f23": {
 "date": "2026-07-29",
 "dir": {
+"higher": 0.02,
+"lower": 0.0,
+"unchanged": 0.98
+},
+"dir_ev": 0.02,
+"ev": 0.0,
+"focus": 0.823,
+"p": {
+"cut_25": 0.01,
+"cut_50": 0.0,
+"hike_25": 0.01,
+"hike_50": 0.0,
+"hold": 0.98
+},
+"prev": {
+"dir": {
 "higher": 0.0,
 "lower": 0.0,
 "unchanged": 1.0
 },
 "dir_ev": 0.0,
 "ev": 0.0,
-"focus": 0.938,
 "p": {
 "cut_25": 0.0,
 "cut_50": 0.0,
@@ -8008,9 +8584,11 @@
 "hike_50": 0.0,
 "hold": 1.0
 },
+"v": 2
+},
 "speaker": "Swati Dhingra",
 "type": "member_view",
-"v": 2
+"v": 3
 },
 "62ca3b8422096f93": {
 "date": "2018-05-22",
@@ -8072,13 +8650,28 @@
 "637a65f267d6f05d": {
 "date": "2026-09-16",
 "dir": {
+"higher": 0.98,
+"lower": 0.0,
+"unchanged": 0.02
+},
+"dir_ev": 0.98,
+"ev": 0.8,
+"focus": 0.72,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.78,
+"hike_50": 0.01,
+"hold": 0.21
+},
+"prev": {
+"dir": {
 "higher": 0.97,
 "lower": 0.0,
 "unchanged": 0.03
 },
 "dir_ev": 0.97,
 "ev": 0.57,
-"focus": 0.688,
 "p": {
 "cut_25": 0.0,
 "cut_50": 0.0,
@@ -8086,9 +8679,11 @@
 "hike_50": 0.0,
 "hold": 0.43
 },
+"v": 2
+},
 "speaker": "Andrew Bailey",
 "type": "member_view",
-"v": 2
+"v": 3
 },
 "63abe95396e77e9a": {
 "date": "2020-06-30",
@@ -8382,12 +8977,27 @@
 "date": "2026-07-29",
 "dir": {
 "higher": 0.0,
+"lower": 0.82,
+"unchanged": 0.18
+},
+"dir_ev": -0.82,
+"ev": -0.45,
+"focus": 0.805,
+"p": {
+"cut_25": 0.43,
+"cut_50": 0.01,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 0.56
+},
+"prev": {
+"dir": {
+"higher": 0.0,
 "lower": 0.61,
 "unchanged": 0.39
 },
 "dir_ev": -0.61,
 "ev": -0.15,
-"focus": 0.81,
 "p": {
 "cut_25": 0.15,
 "cut_50": 0.0,
@@ -8395,12 +9005,30 @@
 "hike_50": 0.0,
 "hold": 0.85
 },
+"v": 2
+},
 "speaker": "Alan Taylor",
 "type": "member_view",
-"v": 2
+"v": 3
 },
 "6671b92b086e0da4": {
 "date": "2026-07-29",
+"dir": {
+"higher": 0.9,
+"lower": 0.0,
+"unchanged": 0.1
+},
+"dir_ev": 0.9,
+"ev": 0.56,
+"focus": 0.637,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.52,
+"hike_50": 0.02,
+"hold": 0.46
+},
+"prev": {
 "dir": {
 "higher": 0.99,
 "lower": 0.0,
@@ -8408,7 +9036,6 @@
 },
 "dir_ev": 0.99,
 "ev": 0.62,
-"focus": 0.79,
 "p": {
 "cut_25": 0.0,
 "cut_50": 0.0,
@@ -8416,12 +9043,30 @@
 "hike_50": 0.02,
 "hold": 0.4
 },
+"v": 2
+},
 "speaker": "Megan Greene",
 "type": "member_view",
-"v": 2
+"v": 3
 },
 "67c4bd77b1b37a53": {
 "date": "2025-12-17",
+"dir": {
+"higher": 0.0,
+"lower": 0.99,
+"unchanged": 0.01
+},
+"dir_ev": -0.99,
+"ev": -0.85,
+"focus": 0.738,
+"p": {
+"cut_25": 0.85,
+"cut_50": 0.0,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 0.15
+},
+"prev": {
 "dir": {
 "higher": 0.0,
 "lower": 1.0,
@@ -8429,7 +9074,6 @@
 },
 "dir_ev": -1.0,
 "ev": -0.87,
-"focus": 0.72,
 "p": {
 "cut_25": 0.87,
 "cut_50": 0.0,
@@ -8437,9 +9081,11 @@
 "hike_50": 0.0,
 "hold": 0.13
 },
+"v": 2
+},
 "speaker": "Andrew Bailey",
 "type": "member_view",
-"v": 2
+"v": 3
 },
 "67e862d1b529cd18": {
 "date": "2022-04-04",
@@ -8552,13 +9198,28 @@
 "6885ea8ff18dfa26": {
 "date": "2026-06-17",
 "dir": {
+"higher": 0.27,
+"lower": 0.01,
+"unchanged": 0.72
+},
+"dir_ev": 0.26,
+"ev": 0.1,
+"focus": 0.785,
+"p": {
+"cut_25": 0.01,
+"cut_50": 0.0,
+"hike_25": 0.11,
+"hike_50": 0.0,
+"hold": 0.88
+},
+"prev": {
+"dir": {
 "higher": 0.21,
 "lower": 0.0,
 "unchanged": 0.79
 },
 "dir_ev": 0.21,
 "ev": 0.05,
-"focus": 0.887,
 "p": {
 "cut_25": 0.0,
 "cut_50": 0.0,
@@ -8566,9 +9227,11 @@
 "hike_50": 0.0,
 "hold": 0.95
 },
+"v": 2
+},
 "speaker": "Swati Dhingra",
 "type": "member_view",
-"v": 2
+"v": 3
 },
 "68f6951fd691e5b3": {
 "date": "2020-10-13",
@@ -8610,12 +9273,27 @@
 "date": "2026-02-04",
 "dir": {
 "higher": 0.0,
+"lower": 0.97,
+"unchanged": 0.03
+},
+"dir_ev": -0.97,
+"ev": -0.66,
+"focus": 0.815,
+"p": {
+"cut_25": 0.64,
+"cut_50": 0.01,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 0.35
+},
+"prev": {
+"dir": {
+"higher": 0.0,
 "lower": 0.95,
 "unchanged": 0.05
 },
 "dir_ev": -0.95,
 "ev": -0.37,
-"focus": 0.907,
 "p": {
 "cut_25": 0.35,
 "cut_50": 0.01,
@@ -8623,9 +9301,11 @@
 "hike_50": 0.0,
 "hold": 0.64
 },
+"v": 2
+},
 "speaker": "Catherine Mann",
 "type": "member_view",
-"v": 2
+"v": 3
 },
 "694121eb9a77f661": {
 "date": "2015-11-12",
@@ -8954,13 +9634,28 @@
 "6da94976f2400e44": {
 "date": "2026-04-29",
 "dir": {
+"higher": 0.07,
+"lower": 0.01,
+"unchanged": 0.92
+},
+"dir_ev": 0.06,
+"ev": 0.0,
+"focus": 0.713,
+"p": {
+"cut_25": 0.02,
+"cut_50": 0.0,
+"hike_25": 0.02,
+"hike_50": 0.0,
+"hold": 0.96
+},
+"prev": {
+"dir": {
 "higher": 0.03,
 "lower": 0.0,
 "unchanged": 0.97
 },
 "dir_ev": 0.03,
 "ev": 0.0,
-"focus": 0.818,
 "p": {
 "cut_25": 0.01,
 "cut_50": 0.0,
@@ -8968,9 +9663,11 @@
 "hike_50": 0.0,
 "hold": 0.98
 },
+"v": 2
+},
 "speaker": "Sarah Breeden",
 "type": "member_view",
-"v": 2
+"v": 3
 },
 "6e916e6b17cd0809": {
 "date": "2019-06-11",
@@ -9155,13 +9852,28 @@
 "70d3a6d926f6dff4": {
 "date": "2026-03-18",
 "dir": {
+"higher": 0.78,
+"lower": 0.0,
+"unchanged": 0.22
+},
+"dir_ev": 0.78,
+"ev": 0.12,
+"focus": 0.865,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.12,
+"hike_50": 0.0,
+"hold": 0.88
+},
+"prev": {
+"dir": {
 "higher": 0.84,
 "lower": 0.0,
 "unchanged": 0.16
 },
 "dir_ev": 0.84,
 "ev": 0.2,
-"focus": 0.92,
 "p": {
 "cut_25": 0.0,
 "cut_50": 0.0,
@@ -9169,9 +9881,11 @@
 "hike_50": 0.0,
 "hold": 0.8
 },
+"v": 2
+},
 "speaker": "Catherine Mann",
 "type": "member_view",
-"v": 2
+"v": 3
 },
 "71610ed727f0b235": {
 "date": "2020-11-23",
@@ -9505,8 +10219,23 @@
 "unchanged": 0.0
 },
 "dir_ev": 1.0,
+"ev": 0.92,
+"focus": 0.792,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.9,
+"hike_50": 0.01,
+"hold": 0.09
+},
+"prev": {
+"dir": {
+"higher": 1.0,
+"lower": 0.0,
+"unchanged": 0.0
+},
+"dir_ev": 1.0,
 "ev": 0.88,
-"focus": 0.787,
 "p": {
 "cut_25": 0.0,
 "cut_50": 0.0,
@@ -9514,12 +10243,30 @@
 "hike_50": 0.0,
 "hold": 0.12
 },
+"v": 2
+},
 "speaker": "Megan Greene",
 "type": "member_view",
-"v": 2
+"v": 3
 },
 "7973dcb417962249": {
 "date": "2025-11-05",
+"dir": {
+"higher": 0.19,
+"lower": 0.06,
+"unchanged": 0.75
+},
+"dir_ev": 0.13,
+"ev": -0.02,
+"focus": 0.728,
+"p": {
+"cut_25": 0.03,
+"cut_50": 0.0,
+"hike_25": 0.01,
+"hike_50": 0.0,
+"hold": 0.96
+},
+"prev": {
 "dir": {
 "higher": 0.1,
 "lower": 0.08,
@@ -9527,7 +10274,6 @@
 },
 "dir_ev": 0.02,
 "ev": 0.0,
-"focus": 0.845,
 "p": {
 "cut_25": 0.01,
 "cut_50": 0.0,
@@ -9535,9 +10281,11 @@
 "hike_50": 0.0,
 "hold": 0.98
 },
+"v": 2
+},
 "speaker": "Huw Pill",
 "type": "member_view",
-"v": 2
+"v": 3
 },
 "797d47890eeb204a": {
 "date": "2025-06-01",
@@ -9650,13 +10398,28 @@
 "7b380084bc0003e5": {
 "date": "2026-02-04",
 "dir": {
+"higher": 0.22,
+"lower": 0.06,
+"unchanged": 0.72
+},
+"dir_ev": 0.16,
+"ev": 0.06,
+"focus": 0.675,
+"p": {
+"cut_25": 0.03,
+"cut_50": 0.0,
+"hike_25": 0.07,
+"hike_50": 0.01,
+"hold": 0.89
+},
+"prev": {
+"dir": {
 "higher": 0.11,
 "lower": 0.07,
 "unchanged": 0.82
 },
 "dir_ev": 0.04,
 "ev": 0.05,
-"focus": 0.85,
 "p": {
 "cut_25": 0.0,
 "cut_50": 0.0,
@@ -9664,9 +10427,11 @@
 "hike_50": 0.0,
 "hold": 0.95
 },
+"v": 2
+},
 "speaker": "Huw Pill",
 "type": "member_view",
-"v": 2
+"v": 3
 },
 "7bb5b0c75c8819c2": {
 "date": "2024-02-01",
@@ -9815,13 +10580,28 @@
 "7e6dbb9681b951df": {
 "date": "2026-06-17",
 "dir": {
+"higher": 0.89,
+"lower": 0.0,
+"unchanged": 0.11
+},
+"dir_ev": 0.89,
+"ev": 0.76,
+"focus": 0.762,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.58,
+"hike_50": 0.09,
+"hold": 0.33
+},
+"prev": {
+"dir": {
 "higher": 0.9,
 "lower": 0.0,
 "unchanged": 0.1
 },
 "dir_ev": 0.9,
 "ev": 0.65,
-"focus": 0.818,
 "p": {
 "cut_25": 0.0,
 "cut_50": 0.0,
@@ -9829,9 +10609,11 @@
 "hike_50": 0.05,
 "hold": 0.4
 },
+"v": 2
+},
 "speaker": "Catherine Mann",
 "type": "member_view",
-"v": 2
+"v": 3
 },
 "7f56bc26307d0cea": {
 "date": "2026-07-02",
@@ -10880,13 +11662,28 @@
 "8aa699151e483788": {
 "date": "2026-04-29",
 "dir": {
+"higher": 0.5,
+"lower": 0.02,
+"unchanged": 0.48
+},
+"dir_ev": 0.48,
+"ev": 0.17,
+"focus": 0.745,
+"p": {
+"cut_25": 0.01,
+"cut_50": 0.0,
+"hike_25": 0.16,
+"hike_50": 0.01,
+"hold": 0.82
+},
+"prev": {
+"dir": {
 "higher": 0.4,
 "lower": 0.02,
 "unchanged": 0.58
 },
 "dir_ev": 0.38,
 "ev": 0.07,
-"focus": 0.792,
 "p": {
 "cut_25": 0.0,
 "cut_50": 0.0,
@@ -10894,9 +11691,11 @@
 "hike_50": 0.0,
 "hold": 0.93
 },
+"v": 2
+},
 "speaker": "Dave Ramsden",
 "type": "member_view",
-"v": 2
+"v": 3
 },
 "8acaa3d88174f7f5": {
 "date": "2017-11-21",
@@ -10938,12 +11737,27 @@
 "date": "2026-03-18",
 "dir": {
 "higher": 0.01,
+"lower": 0.76,
+"unchanged": 0.23
+},
+"dir_ev": -0.75,
+"ev": -0.43,
+"focus": 0.568,
+"p": {
+"cut_25": 0.43,
+"cut_50": 0.0,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 0.57
+},
+"prev": {
+"dir": {
+"higher": 0.01,
 "lower": 0.83,
 "unchanged": 0.16
 },
 "dir_ev": -0.82,
 "ev": -0.15,
-"focus": 0.718,
 "p": {
 "cut_25": 0.15,
 "cut_50": 0.0,
@@ -10951,20 +11765,22 @@
 "hike_50": 0.0,
 "hold": 0.85
 },
+"v": 2
+},
 "speaker": "Dave Ramsden",
 "type": "member_view",
-"v": 2
+"v": 3
 },
 "8b5bcc5c246c1134": {
 "date": "2025-12-17",
 "dir": {
-"higher": 0.17,
+"higher": 0.2,
 "lower": 0.01,
-"unchanged": 0.82
+"unchanged": 0.79
 },
-"dir_ev": 0.16,
+"dir_ev": 0.19,
 "ev": 0.0,
-"focus": 0.81,
+"focus": 0.78,
 "p": {
 "cut_25": 0.01,
 "cut_50": 0.0,
@@ -10972,9 +11788,26 @@
 "hike_50": 0.0,
 "hold": 0.98
 },
+"prev": {
+"dir": {
+"higher": 0.17,
+"lower": 0.01,
+"unchanged": 0.82
+},
+"dir_ev": 0.16,
+"ev": 0.0,
+"p": {
+"cut_25": 0.01,
+"cut_50": 0.0,
+"hike_25": 0.01,
+"hike_50": 0.0,
+"hold": 0.98
+},
+"v": 2
+},
 "speaker": "Clare Lombardelli",
 "type": "member_view",
-"v": 2
+"v": 3
 },
 "8bd8d18dfa6d3fba": {
 "date": "2021-07-14",
@@ -11879,13 +12712,28 @@
 "9673bf96a6ae73f1": {
 "date": "2026-06-17",
 "dir": {
+"higher": 0.44,
+"lower": 0.05,
+"unchanged": 0.51
+},
+"dir_ev": 0.39,
+"ev": 0.05,
+"focus": 0.675,
+"p": {
+"cut_25": 0.08,
+"cut_50": 0.0,
+"hike_25": 0.11,
+"hike_50": 0.01,
+"hold": 0.8
+},
+"prev": {
+"dir": {
 "higher": 0.41,
 "lower": 0.01,
 "unchanged": 0.58
 },
 "dir_ev": 0.4,
 "ev": 0.05,
-"focus": 0.818,
 "p": {
 "cut_25": 0.0,
 "cut_50": 0.0,
@@ -11893,9 +12741,11 @@
 "hike_50": 0.0,
 "hold": 0.95
 },
+"v": 2
+},
 "speaker": "Andrew Bailey",
 "type": "member_view",
-"v": 2
+"v": 3
 },
 "96a3992f1a793e0b": {
 "date": "2024-11-26",
@@ -12189,12 +13039,27 @@
 "date": "2025-11-05",
 "dir": {
 "higher": 0.0,
+"lower": 0.94,
+"unchanged": 0.06
+},
+"dir_ev": -0.94,
+"ev": -0.67,
+"focus": 0.838,
+"p": {
+"cut_25": 0.65,
+"cut_50": 0.01,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 0.34
+},
+"prev": {
+"dir": {
+"higher": 0.0,
 "lower": 0.87,
 "unchanged": 0.13
 },
 "dir_ev": -0.87,
 "ev": -0.27,
-"focus": 0.912,
 "p": {
 "cut_25": 0.27,
 "cut_50": 0.0,
@@ -12202,9 +13067,11 @@
 "hike_50": 0.0,
 "hold": 0.73
 },
+"v": 2
+},
 "speaker": "Andrew Bailey",
 "type": "member_view",
-"v": 2
+"v": 3
 },
 "9b156a8a287ae4a1": {
 "date": "2021-07-19",
@@ -12245,13 +13112,28 @@
 "9b3822801ff65ffe": {
 "date": "2026-04-29",
 "dir": {
+"higher": 0.95,
+"lower": 0.0,
+"unchanged": 0.05
+},
+"dir_ev": 0.95,
+"ev": 0.63,
+"focus": 0.477,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.53,
+"hike_50": 0.05,
+"hold": 0.42
+},
+"prev": {
+"dir": {
 "higher": 1.0,
 "lower": 0.0,
 "unchanged": 0.0
 },
 "dir_ev": 1.0,
 "ev": 0.92,
-"focus": 0.65,
 "p": {
 "cut_25": 0.0,
 "cut_50": 0.0,
@@ -12259,9 +13141,11 @@
 "hike_50": 0.06,
 "hold": 0.14
 },
+"v": 2
+},
 "speaker": "Huw Pill",
 "type": "member_view",
-"v": 2
+"v": 3
 },
 "9bdc637fcbc3eb46": {
 "date": "2025-05-09",
@@ -12302,13 +13186,28 @@
 "9c5f40ac0742e152": {
 "date": "2026-11-04",
 "dir": {
+"higher": 0.98,
+"lower": 0.0,
+"unchanged": 0.02
+},
+"dir_ev": 0.98,
+"ev": 1.13,
+"focus": 0.562,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.33,
+"hike_50": 0.4,
+"hold": 0.27
+},
+"prev": {
+"dir": {
 "higher": 1.0,
 "lower": 0.0,
 "unchanged": 0.0
 },
 "dir_ev": 1.0,
 "ev": 1.41,
-"focus": 0.845,
 "p": {
 "cut_25": 0.0,
 "cut_50": 0.0,
@@ -12316,9 +13215,11 @@
 "hike_50": 0.56,
 "hold": 0.15
 },
+"v": 2
+},
 "speaker": "Catherine Mann",
 "type": "member_view",
-"v": 2
+"v": 3
 },
 "9c917326ae98b0ac": {
 "date": "2019-02-26",
@@ -12580,8 +13481,23 @@
 "unchanged": 0.0
 },
 "dir_ev": 1.0,
+"ev": 1.01,
+"focus": 0.78,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.97,
+"hike_50": 0.02,
+"hold": 0.01
+},
+"prev": {
+"dir": {
+"higher": 1.0,
+"lower": 0.0,
+"unchanged": 0.0
+},
+"dir_ev": 1.0,
 "ev": 1.0,
-"focus": 0.843,
 "p": {
 "cut_25": 0.0,
 "cut_50": 0.0,
@@ -12589,12 +13505,30 @@
 "hike_50": 0.01,
 "hold": 0.01
 },
+"v": 2
+},
 "speaker": "Huw Pill",
 "type": "member_view",
-"v": 2
+"v": 3
 },
 "9ffb108744253e97": {
 "date": "2026-07-29",
+"dir": {
+"higher": 0.08,
+"lower": 0.05,
+"unchanged": 0.87
+},
+"dir_ev": 0.03,
+"ev": -0.02,
+"focus": 0.407,
+"p": {
+"cut_25": 0.04,
+"cut_50": 0.0,
+"hike_25": 0.02,
+"hike_50": 0.0,
+"hold": 0.94
+},
+"prev": {
 "dir": {
 "higher": 0.03,
 "lower": 0.03,
@@ -12602,7 +13536,6 @@
 },
 "dir_ev": 0.0,
 "ev": 0.0,
-"focus": 0.507,
 "p": {
 "cut_25": 0.01,
 "cut_50": 0.0,
@@ -12610,9 +13543,11 @@
 "hike_50": 0.0,
 "hold": 0.98
 },
+"v": 2
+},
 "speaker": "Andrew Bailey",
 "type": "member_view",
-"v": 2
+"v": 3
 },
 "a0000ccabd8ee3d4": {
 "date": "2014-06-18",
@@ -12725,13 +13660,28 @@
 "a169719438fcae08": {
 "date": "2025-12-17",
 "dir": {
+"higher": 0.3,
+"lower": 0.02,
+"unchanged": 0.68
+},
+"dir_ev": 0.28,
+"ev": 0.08,
+"focus": 0.705,
+"p": {
+"cut_25": 0.01,
+"cut_50": 0.0,
+"hike_25": 0.09,
+"hike_50": 0.0,
+"hold": 0.9
+},
+"prev": {
+"dir": {
 "higher": 0.39,
 "lower": 0.02,
 "unchanged": 0.59
 },
 "dir_ev": 0.37,
 "ev": 0.14,
-"focus": 0.807,
 "p": {
 "cut_25": 0.0,
 "cut_50": 0.0,
@@ -12739,9 +13689,11 @@
 "hike_50": 0.0,
 "hold": 0.86
 },
+"v": 2
+},
 "speaker": "Huw Pill",
 "type": "member_view",
-"v": 2
+"v": 3
 },
 "a24f6cd7d67b1716": {
 "date": "2018-01-17",
@@ -12855,12 +13807,27 @@
 "date": "2026-03-18",
 "dir": {
 "higher": 0.0,
+"lower": 0.89,
+"unchanged": 0.11
+},
+"dir_ev": -0.89,
+"ev": -0.58,
+"focus": 0.85,
+"p": {
+"cut_25": 0.52,
+"cut_50": 0.03,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 0.45
+},
+"prev": {
+"dir": {
+"higher": 0.0,
 "lower": 0.78,
 "unchanged": 0.22
 },
 "dir_ev": -0.78,
 "ev": -0.19,
-"focus": 0.92,
 "p": {
 "cut_25": 0.17,
 "cut_50": 0.01,
@@ -12868,9 +13835,11 @@
 "hike_50": 0.0,
 "hold": 0.82
 },
+"v": 2
+},
 "speaker": "Alan Taylor",
 "type": "member_view",
-"v": 2
+"v": 3
 },
 "a31c8ddab8dfbdaa": {
 "date": "2018-12-04",
@@ -13271,13 +14240,28 @@
 "a82af2c8772b95e9": {
 "date": "2026-06-17",
 "dir": {
+"higher": 0.72,
+"lower": 0.01,
+"unchanged": 0.27
+},
+"dir_ev": 0.71,
+"ev": 0.33,
+"focus": 0.608,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.25,
+"hike_50": 0.04,
+"hold": 0.71
+},
+"prev": {
+"dir": {
 "higher": 0.83,
 "lower": 0.0,
 "unchanged": 0.17
 },
 "dir_ev": 0.83,
 "ev": 0.35,
-"focus": 0.68,
 "p": {
 "cut_25": 0.0,
 "cut_50": 0.0,
@@ -13285,9 +14269,11 @@
 "hike_50": 0.03,
 "hold": 0.68
 },
+"v": 2
+},
 "speaker": "Huw Pill",
 "type": "member_view",
-"v": 2
+"v": 3
 },
 "a8b3bf49647f852e": {
 "date": "2026-03-26",
@@ -13617,12 +14603,27 @@
 "date": "2025-12-17",
 "dir": {
 "higher": 0.0,
+"lower": 0.95,
+"unchanged": 0.05
+},
+"dir_ev": -0.95,
+"ev": -0.68,
+"focus": 0.645,
+"p": {
+"cut_25": 0.68,
+"cut_50": 0.0,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 0.32
+},
+"prev": {
+"dir": {
+"higher": 0.0,
 "lower": 0.97,
 "unchanged": 0.03
 },
 "dir_ev": -0.97,
 "ev": -0.65,
-"focus": 0.647,
 "p": {
 "cut_25": 0.65,
 "cut_50": 0.0,
@@ -13630,9 +14631,11 @@
 "hike_50": 0.0,
 "hold": 0.35
 },
+"v": 2
+},
 "speaker": "Sarah Breeden",
 "type": "member_view",
-"v": 2
+"v": 3
 },
 "ae3e8de9c621f265": {
 "date": "2019-09-04",
@@ -14919,12 +15922,27 @@
 "date": "2025-12-17",
 "dir": {
 "higher": 0.01,
+"lower": 0.4,
+"unchanged": 0.59
+},
+"dir_ev": -0.39,
+"ev": -0.15,
+"focus": 0.74,
+"p": {
+"cut_25": 0.15,
+"cut_50": 0.0,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 0.85
+},
+"prev": {
+"dir": {
+"higher": 0.01,
 "lower": 0.29,
 "unchanged": 0.7
 },
 "dir_ev": -0.28,
 "ev": -0.05,
-"focus": 0.785,
 "p": {
 "cut_25": 0.05,
 "cut_50": 0.0,
@@ -14932,9 +15950,11 @@
 "hike_50": 0.0,
 "hold": 0.95
 },
+"v": 2
+},
 "speaker": "Megan Greene",
 "type": "member_view",
-"v": 2
+"v": 3
 },
 "bf1565e0560cf78e": {
 "date": "2023-11-01",
@@ -15227,13 +16247,28 @@
 "c1adaf05d7a7fa7f": {
 "date": "2026-07-29",
 "dir": {
+"higher": 0.24,
+"lower": 0.02,
+"unchanged": 0.74
+},
+"dir_ev": 0.22,
+"ev": 0.06,
+"focus": 0.625,
+"p": {
+"cut_25": 0.04,
+"cut_50": 0.0,
+"hike_25": 0.08,
+"hike_50": 0.01,
+"hold": 0.87
+},
+"prev": {
+"dir": {
 "higher": 0.08,
 "lower": 0.01,
 "unchanged": 0.91
 },
 "dir_ev": 0.07,
 "ev": 0.0,
-"focus": 0.647,
 "p": {
 "cut_25": 0.02,
 "cut_50": 0.0,
@@ -15241,12 +16276,30 @@
 "hike_50": 0.0,
 "hold": 0.96
 },
+"v": 2
+},
 "speaker": "Clare Lombardelli",
 "type": "member_view",
-"v": 2
+"v": 3
 },
 "c21c17857b319c5c": {
 "date": "2026-03-18",
+"dir": {
+"higher": 0.42,
+"lower": 0.0,
+"unchanged": 0.58
+},
+"dir_ev": 0.42,
+"ev": 0.31,
+"focus": 0.595,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.27,
+"hike_50": 0.02,
+"hold": 0.71
+},
+"prev": {
 "dir": {
 "higher": 0.29,
 "lower": 0.0,
@@ -15254,7 +16307,6 @@
 },
 "dir_ev": 0.29,
 "ev": 0.25,
-"focus": 0.688,
 "p": {
 "cut_25": 0.0,
 "cut_50": 0.0,
@@ -15262,9 +16314,11 @@
 "hike_50": 0.01,
 "hold": 0.76
 },
+"v": 2
+},
 "speaker": "Megan Greene",
 "type": "member_view",
-"v": 2
+"v": 3
 },
 "c25614c6b3426ea1": {
 "date": "2026-06-02",
@@ -15341,13 +16395,28 @@
 "c31f45f8595ee50c": {
 "date": "2025-12-17",
 "dir": {
+"higher": 0.12,
+"lower": 0.01,
+"unchanged": 0.87
+},
+"dir_ev": 0.11,
+"ev": 0.04,
+"focus": 0.667,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.04,
+"hike_50": 0.0,
+"hold": 0.96
+},
+"prev": {
+"dir": {
 "higher": 0.1,
 "lower": 0.01,
 "unchanged": 0.89
 },
 "dir_ev": 0.09,
 "ev": 0.02,
-"focus": 0.75,
 "p": {
 "cut_25": 0.0,
 "cut_50": 0.0,
@@ -15355,12 +16424,30 @@
 "hike_50": 0.0,
 "hold": 0.98
 },
+"v": 2
+},
 "speaker": "Catherine Mann",
 "type": "member_view",
-"v": 2
+"v": 3
 },
 "c32eaadfd121b189": {
 "date": "2026-07-29",
+"dir": {
+"higher": 0.2,
+"lower": 0.05,
+"unchanged": 0.75
+},
+"dir_ev": 0.15,
+"ev": 0.07,
+"focus": 0.82,
+"p": {
+"cut_25": 0.03,
+"cut_50": 0.0,
+"hike_25": 0.1,
+"hike_50": 0.0,
+"hold": 0.87
+},
+"prev": {
 "dir": {
 "higher": 0.18,
 "lower": 0.05,
@@ -15368,7 +16455,6 @@
 },
 "dir_ev": 0.13,
 "ev": 0.01,
-"focus": 0.802,
 "p": {
 "cut_25": 0.01,
 "cut_50": 0.0,
@@ -15376,9 +16462,11 @@
 "hike_50": 0.0,
 "hold": 0.97
 },
+"v": 2
+},
 "speaker": "Dave Ramsden",
 "type": "member_view",
-"v": 2
+"v": 3
 },
 "c37d1b25f53df96c": {
 "date": "2023-04-25",
@@ -15563,13 +16651,28 @@
 "c4e344a95d5064a0": {
 "date": "2026-06-17",
 "dir": {
+"higher": 0.81,
+"lower": 0.0,
+"unchanged": 0.19
+},
+"dir_ev": 0.81,
+"ev": 0.32,
+"focus": 0.733,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.26,
+"hike_50": 0.03,
+"hold": 0.71
+},
+"prev": {
+"dir": {
 "higher": 0.99,
 "lower": 0.0,
 "unchanged": 0.01
 },
 "dir_ev": 0.99,
 "ev": 0.34,
-"focus": 0.895,
 "p": {
 "cut_25": 0.0,
 "cut_50": 0.0,
@@ -15577,9 +16680,11 @@
 "hike_50": 0.02,
 "hold": 0.68
 },
+"v": 2
+},
 "speaker": "Megan Greene",
 "type": "member_view",
-"v": 2
+"v": 3
 },
 "c55eb6abf4b69b70": {
 "date": "2025-05-15",
@@ -15692,13 +16797,28 @@
 "c689cee49c577c7d": {
 "date": "2026-04-29",
 "dir": {
+"higher": 0.38,
+"lower": 0.0,
+"unchanged": 0.62
+},
+"dir_ev": 0.38,
+"ev": 0.29,
+"focus": 0.657,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.27,
+"hike_50": 0.01,
+"hold": 0.72
+},
+"prev": {
+"dir": {
 "higher": 0.19,
 "lower": 0.0,
 "unchanged": 0.81
 },
 "dir_ev": 0.19,
 "ev": 0.26,
-"focus": 0.71,
 "p": {
 "cut_25": 0.0,
 "cut_50": 0.0,
@@ -15706,9 +16826,11 @@
 "hike_50": 0.01,
 "hold": 0.75
 },
+"v": 2
+},
 "speaker": "Clare Lombardelli",
 "type": "member_view",
-"v": 2
+"v": 3
 },
 "c69f75999c65b700": {
 "date": "2018-07-13",
@@ -16326,12 +17448,27 @@
 "date": "2026-06-17",
 "dir": {
 "higher": 0.0,
+"lower": 0.98,
+"unchanged": 0.02
+},
+"dir_ev": -0.98,
+"ev": -0.88,
+"focus": 0.802,
+"p": {
+"cut_25": 0.84,
+"cut_50": 0.02,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 0.14
+},
+"prev": {
+"dir": {
+"higher": 0.0,
 "lower": 0.91,
 "unchanged": 0.09
 },
 "dir_ev": -0.91,
 "ev": -0.28,
-"focus": 0.897,
 "p": {
 "cut_25": 0.26,
 "cut_50": 0.01,
@@ -16339,9 +17476,11 @@
 "hike_50": 0.0,
 "hold": 0.73
 },
+"v": 2
+},
 "speaker": "Alan Taylor",
 "type": "member_view",
-"v": 2
+"v": 3
 },
 "cf2d3a659b4497d4": {
 "date": "2024-11-20",
@@ -16814,13 +17953,28 @@
 "d515dce00a8054b2": {
 "date": "2026-09-16",
 "dir": {
+"higher": 0.03,
+"lower": 0.12,
+"unchanged": 0.85
+},
+"dir_ev": -0.09,
+"ev": -0.07,
+"focus": 0.785,
+"p": {
+"cut_25": 0.08,
+"cut_50": 0.0,
+"hike_25": 0.01,
+"hike_50": 0.0,
+"hold": 0.91
+},
+"prev": {
+"dir": {
 "higher": 0.0,
 "lower": 0.08,
 "unchanged": 0.92
 },
 "dir_ev": -0.08,
 "ev": -0.03,
-"focus": 0.93,
 "p": {
 "cut_25": 0.03,
 "cut_50": 0.0,
@@ -16828,9 +17982,11 @@
 "hike_50": 0.0,
 "hold": 0.97
 },
+"v": 2
+},
 "speaker": "Alan Taylor",
 "type": "member_view",
-"v": 2
+"v": 3
 },
 "d52eace22fc0c1fc": {
 "date": "2026-02-04",
@@ -16840,8 +17996,23 @@
 "unchanged": 0.0
 },
 "dir_ev": -1.0,
+"ev": -0.97,
+"focus": 0.708,
+"p": {
+"cut_25": 0.95,
+"cut_50": 0.01,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 0.04
+},
+"prev": {
+"dir": {
+"higher": 0.0,
+"lower": 1.0,
+"unchanged": 0.0
+},
+"dir_ev": -1.0,
 "ev": -1.0,
-"focus": 0.757,
 "p": {
 "cut_25": 0.96,
 "cut_50": 0.02,
@@ -16849,9 +18020,11 @@
 "hike_50": 0.0,
 "hold": 0.02
 },
+"v": 2
+},
 "speaker": "Sarah Breeden",
 "type": "member_view",
-"v": 2
+"v": 3
 },
 "d5a196cd5475a479": {
 "date": "2025-12-09",
@@ -17108,13 +18281,28 @@
 "d8d55a5b619d87db": {
 "date": "2026-03-18",
 "dir": {
+"higher": 0.8,
+"lower": 0.0,
+"unchanged": 0.2
+},
+"dir_ev": 0.8,
+"ev": 0.39,
+"focus": 0.65,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.37,
+"hike_50": 0.01,
+"hold": 0.62
+},
+"prev": {
+"dir": {
 "higher": 0.88,
 "lower": 0.0,
 "unchanged": 0.12
 },
 "dir_ev": 0.88,
 "ev": 0.44,
-"focus": 0.69,
 "p": {
 "cut_25": 0.0,
 "cut_50": 0.0,
@@ -17122,9 +18310,11 @@
 "hike_50": 0.0,
 "hold": 0.56
 },
+"v": 2
+},
 "speaker": "Huw Pill",
 "type": "member_view",
-"v": 2
+"v": 3
 },
 "d9d432ea031339de": {
 "date": "2021-09-27",
@@ -17165,13 +18355,28 @@
 "da60969599d0a6c7": {
 "date": "2025-11-05",
 "dir": {
+"higher": 0.23,
+"lower": 0.06,
+"unchanged": 0.71
+},
+"dir_ev": 0.17,
+"ev": 0.04,
+"focus": 0.8,
+"p": {
+"cut_25": 0.01,
+"cut_50": 0.0,
+"hike_25": 0.05,
+"hike_50": 0.0,
+"hold": 0.94
+},
+"prev": {
+"dir": {
 "higher": 0.15,
 "lower": 0.02,
 "unchanged": 0.83
 },
 "dir_ev": 0.13,
 "ev": 0.05,
-"focus": 0.86,
 "p": {
 "cut_25": 0.0,
 "cut_50": 0.0,
@@ -17179,9 +18384,11 @@
 "hike_50": 0.0,
 "hold": 0.95
 },
+"v": 2
+},
 "speaker": "Clare Lombardelli",
 "type": "member_view",
-"v": 2
+"v": 3
 },
 "dac76389ea0afe9e": {
 "date": "2021-05-18",
@@ -17479,8 +18686,23 @@
 "unchanged": 0.0
 },
 "dir_ev": -1.0,
+"ev": -0.77,
+"focus": 0.765,
+"p": {
+"cut_25": 0.77,
+"cut_50": 0.0,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 0.23
+},
+"prev": {
+"dir": {
+"higher": 0.0,
+"lower": 1.0,
+"unchanged": 0.0
+},
+"dir_ev": -1.0,
 "ev": -0.63,
-"focus": 0.83,
 "p": {
 "cut_25": 0.61,
 "cut_50": 0.01,
@@ -17488,9 +18710,11 @@
 "hike_50": 0.0,
 "hold": 0.38
 },
+"v": 2
+},
 "speaker": "Andrew Bailey",
 "type": "member_view",
-"v": 2
+"v": 3
 },
 "dfc927f12217a87f": {
 "date": "2019-06-26",
@@ -17675,13 +18899,28 @@
 "e136af3fa7334220": {
 "date": "2026-02-04",
 "dir": {
+"higher": 0.1,
+"lower": 0.08,
+"unchanged": 0.82
+},
+"dir_ev": 0.02,
+"ev": -0.05,
+"focus": 0.67,
+"p": {
+"cut_25": 0.06,
+"cut_50": 0.0,
+"hike_25": 0.01,
+"hike_50": 0.0,
+"hold": 0.93
+},
+"prev": {
+"dir": {
 "higher": 0.03,
 "lower": 0.07,
 "unchanged": 0.9
 },
 "dir_ev": -0.04,
 "ev": 0.01,
-"focus": 0.863,
 "p": {
 "cut_25": 0.01,
 "cut_50": 0.0,
@@ -17689,9 +18928,11 @@
 "hike_50": 0.0,
 "hold": 0.97
 },
+"v": 2
+},
 "speaker": "Clare Lombardelli",
 "type": "member_view",
-"v": 2
+"v": 3
 },
 "e15bedc3ea031724": {
 "date": "2026-05-21",
@@ -17737,8 +18978,23 @@
 "unchanged": 0.0
 },
 "dir_ev": -1.0,
+"ev": -0.97,
+"focus": 0.738,
+"p": {
+"cut_25": 0.97,
+"cut_50": 0.0,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 0.03
+},
+"prev": {
+"dir": {
+"higher": 0.0,
+"lower": 1.0,
+"unchanged": 0.0
+},
+"dir_ev": -1.0,
 "ev": -0.96,
-"focus": 0.74,
 "p": {
 "cut_25": 0.96,
 "cut_50": 0.0,
@@ -17746,12 +19002,30 @@
 "hike_50": 0.0,
 "hold": 0.04
 },
+"v": 2
+},
 "speaker": "Dave Ramsden",
 "type": "member_view",
-"v": 2
+"v": 3
 },
 "e3f3a6ec74219aaa": {
 "date": "2026-11-04",
+"dir": {
+"higher": 0.64,
+"lower": 0.01,
+"unchanged": 0.35
+},
+"dir_ev": 0.63,
+"ev": 0.54,
+"focus": 0.743,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.54,
+"hike_50": 0.0,
+"hold": 0.46
+},
+"prev": {
 "dir": {
 "higher": 0.91,
 "lower": 0.0,
@@ -17759,7 +19033,6 @@
 },
 "dir_ev": 0.91,
 "ev": 0.4,
-"focus": 0.833,
 "p": {
 "cut_25": 0.0,
 "cut_50": 0.0,
@@ -17767,9 +19040,11 @@
 "hike_50": 0.0,
 "hold": 0.6
 },
+"v": 2
+},
 "speaker": "Swati Dhingra",
 "type": "member_view",
-"v": 2
+"v": 3
 },
 "e425d69d9617d460": {
 "date": "2025-06-03",
@@ -17954,13 +19229,28 @@
 "e518b3c3e9bc11d0": {
 "date": "2026-09-16",
 "dir": {
+"higher": 0.98,
+"lower": 0.0,
+"unchanged": 0.02
+},
+"dir_ev": 0.98,
+"ev": 0.87,
+"focus": 0.665,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.73,
+"hike_50": 0.07,
+"hold": 0.2
+},
+"prev": {
+"dir": {
 "higher": 1.0,
 "lower": 0.0,
 "unchanged": 0.0
 },
 "dir_ev": 1.0,
 "ev": 0.84,
-"focus": 0.725,
 "p": {
 "cut_25": 0.0,
 "cut_50": 0.0,
@@ -17968,9 +19258,11 @@
 "hike_50": 0.04,
 "hold": 0.2
 },
+"v": 2
+},
 "speaker": "Megan Greene",
 "type": "member_view",
-"v": 2
+"v": 3
 },
 "e523d072e2534bad": {
 "date": "2019-06-10",
@@ -18448,8 +19740,23 @@
 "unchanged": 0.0
 },
 "dir_ev": 1.0,
+"ev": 0.98,
+"focus": 0.748,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.98,
+"hike_50": 0.0,
+"hold": 0.02
+},
+"prev": {
+"dir": {
+"higher": 1.0,
+"lower": 0.0,
+"unchanged": 0.0
+},
+"dir_ev": 1.0,
 "ev": 0.99,
-"focus": 0.757,
 "p": {
 "cut_25": 0.0,
 "cut_50": 0.0,
@@ -18457,9 +19764,11 @@
 "hike_50": 0.0,
 "hold": 0.01
 },
+"v": 2
+},
 "speaker": "Clare Lombardelli",
 "type": "member_view",
-"v": 2
+"v": 3
 },
 "ecb486cf4ff4b2e7": {
 "date": "2025-09-23",
@@ -18572,13 +19881,28 @@
 "edcfc34383bee05e": {
 "date": "2026-09-16",
 "dir": {
+"higher": 0.94,
+"lower": 0.0,
+"unchanged": 0.06
+},
+"dir_ev": 0.94,
+"ev": 0.55,
+"focus": 0.537,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.53,
+"hike_50": 0.01,
+"hold": 0.46
+},
+"prev": {
+"dir": {
 "higher": 0.96,
 "lower": 0.0,
 "unchanged": 0.04
 },
 "dir_ev": 0.96,
 "ev": 0.68,
-"focus": 0.632,
 "p": {
 "cut_25": 0.0,
 "cut_50": 0.0,
@@ -18586,9 +19910,11 @@
 "hike_50": 0.01,
 "hold": 0.33
 },
+"v": 2
+},
 "speaker": "Huw Pill",
 "type": "member_view",
-"v": 2
+"v": 3
 },
 "edfcdf8e3e66a4b5": {
 "date": "2022-09-07",
@@ -19030,8 +20356,23 @@
 "unchanged": 0.0
 },
 "dir_ev": 1.0,
+"ev": 0.86,
+"focus": 0.733,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.84,
+"hike_50": 0.01,
+"hold": 0.15
+},
+"prev": {
+"dir": {
+"higher": 1.0,
+"lower": 0.0,
+"unchanged": 0.0
+},
+"dir_ev": 1.0,
 "ev": 0.95,
-"focus": 0.748,
 "p": {
 "cut_25": 0.0,
 "cut_50": 0.0,
@@ -19039,9 +20380,11 @@
 "hike_50": 0.01,
 "hold": 0.06
 },
+"v": 2
+},
 "speaker": "Megan Greene",
 "type": "member_view",
-"v": 2
+"v": 3
 },
 "f329eb444eec6504": {
 "date": "2025-07-02",
@@ -19082,13 +20425,13 @@
 "f3c15f9c64e65f3d": {
 "date": "2026-11-04",
 "dir": {
-"higher": 0.99,
+"higher": 0.95,
 "lower": 0.0,
-"unchanged": 0.01
+"unchanged": 0.05
 },
-"dir_ev": 0.99,
+"dir_ev": 0.95,
 "ev": 0.68,
-"focus": 0.845,
+"focus": 0.787,
 "p": {
 "cut_25": 0.0,
 "cut_50": 0.0,
@@ -19096,9 +20439,26 @@
 "hike_50": 0.0,
 "hold": 0.32
 },
+"prev": {
+"dir": {
+"higher": 0.99,
+"lower": 0.0,
+"unchanged": 0.01
+},
+"dir_ev": 0.99,
+"ev": 0.68,
+"p": {
+"cut_25": 0.0,
+"cut_50": 0.0,
+"hike_25": 0.68,
+"hike_50": 0.0,
+"hold": 0.32
+},
+"v": 2
+},
 "speaker": "Andrew Bailey",
 "type": "member_view",
-"v": 2
+"v": 3
 },
 "f3de6437317ac32d": {
 "date": "2026-04-13",
@@ -19288,8 +20648,23 @@
 "unchanged": 0.0
 },
 "dir_ev": -1.0,
+"ev": -1.06,
+"focus": 0.848,
+"p": {
+"cut_25": 0.9,
+"cut_50": 0.08,
+"hike_25": 0.0,
+"hike_50": 0.0,
+"hold": 0.02
+},
+"prev": {
+"dir": {
+"higher": 0.0,
+"lower": 1.0,
+"unchanged": 0.0
+},
+"dir_ev": -1.0,
 "ev": -1.07,
-"focus": 0.82,
 "p": {
 "cut_25": 0.91,
 "cut_50": 0.08,
@@ -19297,9 +20672,11 @@
 "hike_50": 0.0,
 "hold": 0.01
 },
+"v": 2
+},
 "speaker": "Alan Taylor",
 "type": "member_view",
-"v": 2
+"v": 3
 },
 "f572ea1908cc49e9": {
 "date": "2026-10-08",
