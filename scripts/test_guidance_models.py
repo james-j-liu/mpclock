@@ -2,6 +2,7 @@
 
 Arms (codes in data/processed/guidance_ab/, made by scripts/code_guidance_ab.py):
   jev113_dated     the live codes: Jev 1.13, shown the date and the member's name
+  jev113_dated_oldboxes   the same, with vote rationales as read before the 'now' note
   jev113_blind     Jev 1.13, blind: no date, names -> [OFFICIAL], years -> [YEAR]
   jev114_blind     Jev 1.14, blind
   decider12_blind  Perplexity Decider V1.2, blind
@@ -60,6 +61,10 @@ def main():
     ctx = V.build_context(corpus)
     feats = json.loads((ROOT / "data/processed/vote_model.json").read_text())["features"]
     arms = {"jev113_dated": load_codes()}
+    # the same live codes with the vote rationales as read before the 'now' note (v2)
+    arms["jev113_dated_oldboxes"] = {k: ({**v, **{f: v["prev"][f] for f in ("p", "ev", "dir", "dir_ev")}}
+                                         if v.get("type") == "member_view" and v.get("prev") else v)
+                                     for k, v in arms["jev113_dated"].items()}
     for a in ("jev113_blind", "jev114_blind", "decider12_blind"):
         f = AB / f"{a}.json"
         if f.exists():
