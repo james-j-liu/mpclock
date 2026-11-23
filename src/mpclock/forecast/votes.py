@@ -96,7 +96,11 @@ FEATURE_GROUPS = {
     "fx": ["fx"],
     "tone": ["tone"],
     "committee_tone": ["c_tone"],
+    # member-specific uncertainty: these scale the spread of the member's distribution
+    # (heteroskedastic ordered logit) rather than shift it; see OrderedLogit
+    "volatility": ["s:vol_own", "s:vol_rel"],
 }
+VOL_WINDOW = 12   # meetings of a member's record used to measure how often they change vote
 
 # --- forward guidance lexicon --------------------------------------------------
 _POLICY = re.compile(r"(?i)\b(bank rate|interest rates?|rates|policy|monetary|tighten|loosen|hike|cut)")
@@ -429,9 +433,15 @@ def features_for(ctx: Context, prev: Meeting, date: str, members: list[str],
     gw = member_window(ctx, gov, w_start, end, g_prev) if gov else None
     gov_signal = (gw["signal"] if gw and gw["signal"] is not None else g_prev)
     c_tone = committee_tone(ctx, w_start, end)
+    recent = ctx.meetings[max(0, i_prev - VOL_WINDOW):i_prev + 1]
     rows = []
     for p in members:
         pv = prev.votes.get(p, prev.decision)
+        # how often the member has changed vote (own), and changed it differently from the
+        # Committee's decision (idiosyncratic), over their last VOL_WINDOW meetings
+        pairs = [(a, b) for a, b in zip(recent, recent[1:]) if p in a.votes and p in b.votes]
+        vol_own = float(np.mean([b.votes[p] != a.votes[p] for a, b in pairs])) if pairs else 0.0
+        vol_rel = float(np.mean([(b.votes[p] - a.votes[p]) != (b.decision - a.decision) for a, b in pairs])) if pairs else 0.0
         hist = [(m.votes[p], m.decision) for m in earlier if p in m.votes]
         # persistent lean: how far the member sat from the Committee's decision over the
         # earlier meetings (excluding the last one, which prev_dev already carries),
@@ -457,6 +467,7 @@ def features_for(ctx: Context, prev: Meeting, date: str, members: list[str],
             "hist_dev": hist_dev, "trend": trend, "dissent_rate": dissents,
             "streak": float(min(streak, HISTORY)) / HISTORY * np.sign(pv - prev.decision or pv or 0),
             "prev_dev": pv - prev.decision, "pull": mean_prev - pv,
+            "vol_own": vol_own, "vol_rel": vol_rel, "n_record": float(len(pairs)),
             "tone": w["tone"], "c_tone": c_tone, "guidance": w["guidance"], "n_docs": w["n_docs"],
             # energy prices are data too: a 10% rise counts as half a standard surprise
             "surprise": float(np.clip(personal + 0.5 * np.clip(mk["energy"], -4, 4), -5, 5)),
@@ -509,42 +520,56 @@ def options_for(prev: Meeting) -> list[int]:
 
 # --- ordered logit ---------------------------------------------------------------
 class OrderedLogit:
+    """Ordered logit on Δ. Features named "s:<name>" do not shift the distribution:
+    they scale its spread, member by member (heteroskedastic ordered logit):
+    P(Δ <= k) = σ((c_k - x·b) / exp(z·g)), so a member with a more volatile record can
+    be given a wider distribution."""
     def __init__(self, feats: list[str], l2: float = 1.0):
         self.feats, self.l2 = feats, l2
+        self.loc = [f for f in feats if not f.startswith("s:")]
+        self.scale = [f[2:] for f in feats if f.startswith("s:")]
 
-    def _X(self, rows):
-        return np.array([[r[f] for f in self.feats] for r in rows], dtype=float) if self.feats else \
+    def _X(self, rows, cols=None):
+        cols = self.loc if cols is None else cols
+        return np.array([[r[f] for f in cols] for r in rows], dtype=float) if cols else \
             np.zeros((len(rows), 0))
 
     @staticmethod
-    def _probs(eta, cuts):
-        # P(y <= k) = σ(c_k - η); categories DELTAS
-        cdf = 1 / (1 + np.exp(-(cuts[None, :] - eta[:, None])))
+    def _probs(eta, cuts, sd=None):
+        # P(y <= k) = σ((c_k - η) / sd); categories DELTAS
+        sd = np.ones(len(eta)) if sd is None else sd
+        cdf = 1 / (1 + np.exp(-(cuts[None, :] - eta[:, None]) / sd[:, None]))
         cdf = np.hstack([np.zeros((len(eta), 1)), cdf, np.ones((len(eta), 1))])
         return np.clip(np.diff(cdf, axis=1), 1e-9, 1)
 
     def fit(self, rows):
-        X = self._X(rows)
+        X, Z = self._X(rows), self._X(rows, self.scale)
+        self.z_mu = Z.mean(0) if Z.shape[1] else np.zeros(0)
+        Z = Z - self.z_mu
         y = np.array([r["y"] for r in rows]) - DELTAS[0]
-        k = X.shape[1]
+        k, m = X.shape[1], Z.shape[1]
 
         def unpack(th):
             b = th[:k]
-            c0 = th[k]
-            cuts = np.cumsum(np.concatenate([[c0], np.exp(th[k + 1:])]))
-            return b, cuts
+            g = th[k:k + m]
+            cuts = np.cumsum(np.concatenate([[th[k + m]], np.exp(th[k + m + 1:])]))
+            return b, g, cuts
 
         def nll(th):
-            b, cuts = unpack(th)
-            p = self._probs(X @ b, cuts)
-            return -np.log(p[np.arange(len(y)), y]).sum() + self.l2 * (b @ b)
-        th0 = np.concatenate([np.zeros(k), [-4.0], np.log([2.0, 4.0, 2.0])])
+            b, g, cuts = unpack(th)
+            p = self._probs(X @ b, cuts, np.exp(Z @ g))
+            return -np.log(p[np.arange(len(y)), y]).sum() + self.l2 * (b @ b + g @ g)
+        th0 = np.concatenate([np.zeros(k + m), [-4.0], np.log([2.0, 4.0, 2.0])])
         res = minimize(nll, th0, method="L-BFGS-B")
-        self.b, self.cuts = unpack(res.x)
+        self.b, self.g, self.cuts = unpack(res.x)
         return self
 
+    def spread(self, rows):
+        Z = self._X(rows, self.scale)
+        return np.exp((Z - self.z_mu) @ self.g) if Z.shape[1] else np.ones(len(rows))
+
     def predict(self, rows):
-        return self._probs(self._X(rows) @ self.b, self.cuts)
+        return self._probs(self._X(rows) @ self.b, self.cuts, self.spread(rows))
 
 
 def vote_distribution(prob_delta: np.ndarray, prev_vote: int, options: list[int]) -> dict[int, float]:

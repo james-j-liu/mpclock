@@ -339,7 +339,7 @@ def main():
             print(f"    {c['bin']:9} n={c['n']:4d} predicted {c['predicted']:6.1%} actual {c['actual']:6.1%}")
 
     model = V.OrderedLogit(chosen).fit(rows)
-    coefs = dict(zip(chosen, map(float, model.b)))
+    coefs = {**dict(zip(model.loc, map(float, model.b))), **{"spread:" + f: float(g) for f, g in zip(model.scale, model.g)}}
 
     # ---- live forecast -----------------------------------------------------------
     last = ctx.meetings[-1]
