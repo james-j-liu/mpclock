@@ -1,0 +1,51 @@
+name: Guidance model comparison (re-code)
+
+# Re-codes members' documents with each candidate decision model, blind (no date, names
+# or years), for scripts/test_guidance_models.py. Commits data/processed/guidance_ab/
+# back to the branch it ran on. Runs only on claude/** branches or by hand.
+on:
+  workflow_dispatch: {}
+  push:
+    branches: ["claude/**"]
+    paths:
+      - "scripts/code_guidance_ab.py"
+      - ".github/workflows/guidance_ab.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  code:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    strategy:
+      fail-fast: false
+      max-parallel: 3
+      matrix:
+        arm: [jev113_blind, jev114_blind, decider12_blind]
+    concurrency:
+      group: guidance-ab-${{ github.ref }}-${{ matrix.arm }}
+      cancel-in-progress: false
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install -r requirements.txt
+      - name: Code documents
+        env:
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+        run: python -u scripts/code_guidance_ab.py --arm ${{ matrix.arm }}
+      - name: Commit codes
+        if: always()
+        run: |
+          git config user.name "mpclock-bot"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -f data/processed/guidance_ab/${{ matrix.arm }}.json || exit 0
+          git commit -m "guidance model comparison: ${{ matrix.arm }}" || exit 0
+          for i in 1 2 3 4 5; do
+            git pull --rebase origin "${GITHUB_REF_NAME}" && git push origin "HEAD:${GITHUB_REF_NAME}" && exit 0
+            sleep $((i * 5))
+          done
+          exit 1
