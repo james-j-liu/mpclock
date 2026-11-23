@@ -297,12 +297,18 @@ def market_changes(ctx: Context, start: str, end: str) -> dict[str, float]:
             "ecb": _mkt_change(m.get("ecb", {}), start, end, pct=False) * 4}
 
 
+_LEGACY_MPR = False   # for diagnostics only: the old Report-meeting labels
+CYCLE_GAP = True      # a gap of >400 days between moves ends a cycle
+
+
 def is_mpr_meeting(ctx: Context, date: str) -> bool:
     """A Monetary Policy Report meeting: within a week of a Report we hold, or in a Report
     month (Feb/May/Aug/Nov). The month rule covers Reports missing from the chart-data
     files (Aug 2017, May and Aug 2020) and future meetings, whose Reports are not out yet;
     Reports published in Jan/Apr/Jul/Oct are caught by the first rule."""
     d0 = dt.date.fromisoformat(date)
+    if _LEGACY_MPR:
+        return any(abs((d0 - dt.date.fromisoformat(x)).days) <= 2 for x in ctx.mpr_dates)
     if any(abs((d0 - dt.date.fromisoformat(x)).days) <= 7 for x in ctx.mpr_dates):
         return True
     return d0.month in (2, 5, 8, 11)
@@ -326,7 +332,7 @@ def pace_features(ctx: Context, i: int, date: str) -> dict[str, float]:
     n_moves = 0
     nxt = None
     for d, s in reversed(moves):
-        if s != cdir or (nxt and (dt.date.fromisoformat(nxt) - dt.date.fromisoformat(d)).days > 400):
+        if s != cdir or (CYCLE_GAP and nxt and (dt.date.fromisoformat(nxt) - dt.date.fromisoformat(d)).days > 400):
             break
         start, nxt = d, d
         n_moves += 1
