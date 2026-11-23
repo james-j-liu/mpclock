@@ -7,8 +7,6 @@
   "pace",
   "moved_last",
   "mpr_x_pace",
-  "g_rat_gap",
-  "g_rat_lvl",
   "g_pol_gap",
   "g_pol_lvl",
   "g_oth_gap",
@@ -184,9 +182,57 @@
     ],
     "kept": false
    }
-  ]
+  ],
+  "rationale_as_policy": {
+   "change_split_minus_pooled": 0.0002,
+   "ci95": [
+    -0.0062,
+    0.0069
+   ],
+   "note": "vote rationales counted as policy-focused speeches; a separate weight (learned from the boxes alone, published since Nov 2025) was not significantly better"
+  }
  },
  "meetings": 87,
  "selected": "2026-11-23",
- "method": "core structure kept as a bundle if significantly better than 'repeat your last vote'; each later add-on kept only if it significantly lowers log loss. Nested leave-one-year-out (the recency half-life chosen on training years only); meeting-level paired bootstrap, 2000 draws, 95% interval."
+ "method": "core structure kept as a bundle if significantly better than 'repeat your last vote'; each later add-on kept only if it significantly lowers log loss. Nested leave-one-year-out (the recency half-life chosen on training years only); meeting-level paired bootstrap, 2000 draws, 95% interval.",
+ "rationale_test": {
+  "split_log_loss": 0.6752,
+  "pooled_log_loss": 0.675,
+  "split_minus_pooled": 0.0002,
+  "ci95": [
+   -0.0062,
+   0.0069
+  ],
+  "split_significantly_better": false,
+  "since_boxes": {
+   "n": 72,
+   "split": 0.564,
+   "pooled": 0.5773,
+   "split_minus_pooled": -0.0133,
+   "ci95": [
+    -0.0774,
+    0.055
+   ]
+  },
+  "coefficients": {
+   "split": {
+    "g_rat_gap": 0.506,
+    "g_rat_lvl": 0.064,
+    "g_pol_gap": 1.649,
+    "g_pol_lvl": 0.886,
+    "g_oth_gap": 0.737,
+    "g_oth_lvl": 1.749
+   },
+   "pooled": {
+    "g_pol_gap": 1.637,
+    "g_pol_lvl": 0.807,
+    "g_oth_gap": 0.713,
+    "g_oth_lvl": 1.717
+   }
+  },
+  "bailey_dec_2025_p_cut": {
+   "split": 0.18,
+   "pooled": 0.295
+  }
+ }
 }

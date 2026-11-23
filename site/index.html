@@ -842,7 +842,7 @@ const esc=s=>String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"&lt;").rep
 const bpLabel=b=>{b=+b; return b===0?"No change":(b>0?"Hike ":"Cut ")+Math.abs(b)+"bp";};
 const pct=(x,d=0)=>(x==null?"—":(100*x).toFixed(d)+"%");
 const optColor=b=>{b=+b; return b>0?(b>=50?"#b8432f":"#e05d44"):(b<0?(b<=-50?"#2f5d8a":"#4477aa"):"#6e7681");};
-const FEAT_LABEL={g_rat_gap:"Own vote rationale vs last vote",g_rat_lvl:"Vote own rationale points to",g_pol_gap:"Policy speeches vs last vote",g_pol_lvl:"Vote policy speeches point to",g_oth_gap:"Other speeches vs last vote",g_oth_lvl:"Vote other speeches point to",prev_dev:"Dissent last time",hist_dev:"Voting record (6 meetings)",trend:"Changed vote last time",pull:"Pull of colleagues",tone:"Tone of own words",
+const FEAT_LABEL={g_rat_gap:"Own vote rationale vs last vote",g_rat_lvl:"Vote own rationale points to",g_pol_gap:"Vote rationale & policy speeches vs last vote",g_pol_lvl:"Vote rationale & policy speeches point to",g_oth_gap:"Other speeches vs last vote",g_oth_lvl:"Vote other speeches point to",prev_dev:"Dissent last time",hist_dev:"Voting record (6 meetings)",trend:"Changed vote last time",pull:"Pull of colleagues",tone:"Tone of own words",
   guidance:"Own words vs last vote",signal_level:"Vote own words point to",signal_hedged:"Hedged guidance",guidance_hedged:"Hedged guidance (change)",gov_pull:"Governor\'s signal (internal members)",surprise:"Data vs MPR",energy:"Energy prices",fx:"Sterling",
   fed:"Fed",ecb:"ECB",pace:"Cycle pace",moved_last:"Moved last meeting",mpr_x_pace:"MPR-meeting pace"};
 function fmtDate(d){ if(!d) return "—"; const t=new Date(d+"T00:00:00Z");
