@@ -2693,6 +2693,16 @@
        0.0087
       ],
       "kept": false
+     },
+     {
+      "group": "steady members (narrower spread)",
+      "log_loss": 0.6532,
+      "change": -0.007,
+      "ci95": [
+       -0.0157,
+       0.0024
+      ],
+      "kept": false
      }
     ]
    },

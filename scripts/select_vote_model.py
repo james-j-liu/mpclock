@@ -41,7 +41,8 @@ CORE = [("committee", G["committee"]), ("voting record", G["record"]), ("pace", 
 ADDONS = [("hedged guidance", G["hedge"]), ("votes with Governor", G["governor"]),
           ("Fed & ECB", G["global"]), ("sterling", G["fx"]), ("speech tone", G["tone"]),
           ("Committee-wide tone shift", G["committee_tone"]),
-          ("member-specific volatility (spread)", G["volatility"])]
+          ("member-specific volatility (spread)", G["volatility"]),
+          ("steady members (narrower spread)", G["steady"])]
 WORD_FEATS = set(G["words"]) | set(G["words_split"]) | set(G["hedge"]) | set(G["governor"])
 
 

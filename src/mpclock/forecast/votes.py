@@ -99,6 +99,9 @@ FEATURE_GROUPS = {
     # member-specific uncertainty: these scale the spread of the member's distribution
     # (heteroskedastic ordered logit) rather than shift it; see OrderedLogit
     "volatility": ["s:vol_own", "s:vol_rel"],
+    # the opposite case on its own: members never out of step with the Committee over
+    # at least six recorded meetings, free to get a narrower spread than everyone else
+    "steady": ["s:steady"],
 }
 VOL_WINDOW = 12   # meetings of a member's record used to measure how often they change vote
 
@@ -468,6 +471,7 @@ def features_for(ctx: Context, prev: Meeting, date: str, members: list[str],
             "streak": float(min(streak, HISTORY)) / HISTORY * np.sign(pv - prev.decision or pv or 0),
             "prev_dev": pv - prev.decision, "pull": mean_prev - pv,
             "vol_own": vol_own, "vol_rel": vol_rel, "n_record": float(len(pairs)),
+            "steady": float(len(pairs) >= 6 and vol_rel == 0.0),
             "tone": w["tone"], "c_tone": c_tone, "guidance": w["guidance"], "n_docs": w["n_docs"],
             # energy prices are data too: a 10% rise counts as half a standard surprise
             "surprise": float(np.clip(personal + 0.5 * np.clip(mk["energy"], -4, 4), -5, 5)),
