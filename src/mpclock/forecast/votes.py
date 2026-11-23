@@ -9,6 +9,9 @@ the window from the previous meeting up to the day before this one:
               pull         Committee's average vote minus own previous vote
   words       tone         own documents' hawkishness (tournament score) relative
                            to the member's own previous 12 months
+              c_tone       Committee-wide: the average score of every document in the
+                           window (members' and the Committee's own) relative to the
+                           previous 12 months
               guidance     forward-guidance phrases in own words ("further increase",
                            "case for a cut", "one-for-now" …), net tighter minus looser
   data        surprise     CPI, services CPI, private regular pay and unemployment
@@ -92,6 +95,7 @@ FEATURE_GROUPS = {
     "global": ["fed", "ecb"],
     "fx": ["fx"],
     "tone": ["tone"],
+    "committee_tone": ["c_tone"],
 }
 
 # --- forward guidance lexicon --------------------------------------------------
@@ -162,6 +166,7 @@ class Context:
     mpr_dates: list[str]
     rate: list[tuple[str, float]]
     member_alias: dict[str, str] = field(default_factory=dict)
+    all_tones: list = field(default_factory=list)   # [(date, tone)] every scored document
 
 
 def _steps(bp: float) -> int:
@@ -196,7 +201,8 @@ def build_context(corpus, macro: dict | None = None) -> Context:
     from .guidance import load_codes
     inputs["guidance"] = load_codes()
     mpr_dates = sorted(inputs.get("mpr_dates", {}).values())
-    return Context(meetings, docs, inputs, mpr_dates, rate)
+    all_tones = sorted((s.date, (s.mu - 50) / 5) for s in corpus if s.mu is not None and s.date >= "2013-01-01")
+    return Context(meetings, docs, inputs, mpr_dates, rate, all_tones=all_tones)
 
 
 def _shift(d: str, days: int) -> str:
@@ -385,6 +391,18 @@ def member_window(ctx: Context, member: str, start: str, end: str, prev_vote: in
                      for d in docs]}
 
 
+def committee_tone(ctx: Context, start: str, end: str) -> float:
+    """Committee-wide shift in hawkishness: the average tournament score of every scored
+    document (members' speeches, interviews, evidence and vote rationales, and the
+    Committee's minutes, Report and press conferences) in the window, minus the
+    average over the 12 months before it."""
+    now = [t for d, t in ctx.all_tones if start <= d < end]
+    before = [t for d, t in ctx.all_tones if _shift(start, -365) <= d < start]
+    if not now or not before:
+        return 0.0
+    return float(np.mean(now) - np.mean(before))
+
+
 def features_for(ctx: Context, prev: Meeting, date: str, members: list[str],
                  words_since: str | None = None, freeze_data: bool = False) -> list[dict]:
     """Rows for each member at a meeting on `date` (a past meeting or a future one).
@@ -410,6 +428,7 @@ def features_for(ctx: Context, prev: Meeting, date: str, members: list[str],
     w_start = words_since or start
     gw = member_window(ctx, gov, w_start, end, g_prev) if gov else None
     gov_signal = (gw["signal"] if gw and gw["signal"] is not None else g_prev)
+    c_tone = committee_tone(ctx, w_start, end)
     rows = []
     for p in members:
         pv = prev.votes.get(p, prev.decision)
@@ -438,7 +457,7 @@ def features_for(ctx: Context, prev: Meeting, date: str, members: list[str],
             "hist_dev": hist_dev, "trend": trend, "dissent_rate": dissents,
             "streak": float(min(streak, HISTORY)) / HISTORY * np.sign(pv - prev.decision or pv or 0),
             "prev_dev": pv - prev.decision, "pull": mean_prev - pv,
-            "tone": w["tone"], "guidance": w["guidance"], "n_docs": w["n_docs"],
+            "tone": w["tone"], "c_tone": c_tone, "guidance": w["guidance"], "n_docs": w["n_docs"],
             # energy prices are data too: a 10% rise counts as half a standard surprise
             "surprise": float(np.clip(personal + 0.5 * np.clip(mk["energy"], -4, 4), -5, 5)),
             "surprise_data": float(np.clip(personal, -4, 4)),
