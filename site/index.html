@@ -860,7 +860,7 @@ function renderForecast(){
   h+='<p>As of '+fmtDate(f.as_of)+'. Last decision ('+fmtDate(last.date)+'): '+esc(bpLabel(last.decision_bp))+
      ', Bank Rate '+(+last.bank_rate).toFixed(2)+'%. Options considered: '+opts.map(o=>esc(bpLabel(o))).join(" · ")+
      ' — the range voted for last time, plus one 25bp step either side.</p>';
-  h+='<div class="note">Committee decision (the median member's vote, members' votes correlated):</div><div class="decbar">';
+  h+='<div class="note">Committee decision (the median member\'s vote, members\' votes correlated):</div><div class="decbar">';
   for(const o of opts){const p=f.decision[o]||0; if(p<0.005) continue;
     h+='<div style="width:'+(100*p)+'%;background:'+optColor(o)+'" title="'+esc(bpLabel(o))+' '+pct(p,1)+'">'+(p>0.07?esc(bpLabel(o))+' '+pct(p):"")+'</div>';}
   h+='</div>';
