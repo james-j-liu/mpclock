@@ -1,9 +1,9 @@
 """Vote rationales (the individual boxes in the minutes, published since November 2025):
 their own weight, or the weight of a policy-focused speech?
 
-  split   (current) boxes have their own inputs (g_rat_gap, g_rat_lvl), whose weight is
+  split   (before) boxes have their own inputs (g_rat_gap, g_rat_lvl), whose weight is
           learned from the boxes alone: when 2026 is predicted, from the two 2025 meetings
-  pooled  boxes count as policy-focused documents, sharing the speeches' weight, learned
+  pooled  (now) boxes count as policy-focused documents, sharing the speeches' weight, learned
           from ten years of speeches
 
 Pooling removes two inputs, so it is preferred unless the split version is significantly
@@ -50,11 +50,13 @@ def run(ctx, pooled, feats):
 def main():
     warnings.filterwarnings("ignore")
     ctx = V.build_context(load_corpus(ROOT / "data/processed/corpus.jsonl"))
-    sel = json.loads((ROOT / "data/processed/vote_model.json").read_text())["features"]
-    pooled_feats = [f for f in sel if f not in ("g_rat_gap", "g_rat_lvl")]
+    pooled_feats = [f for f in json.loads((ROOT / "data/processed/vote_model.json").read_text())["features"]
+                    if f not in ("g_rat_gap", "g_rat_lvl")]
+    i = pooled_feats.index("g_pol_gap")
+    sel = pooled_feats[:i] + ["g_rat_gap", "g_rat_lvl"] + pooled_feats[i:]
     ref, ls, Ps, cs = run(ctx, False, sel)
     _, lp, Pp, cp = run(ctx, True, pooled_feats)
-    V.RATIONALE_AS_POLICY = False
+    V.RATIONALE_AS_POLICY = True
     era = np.array([r["date"] >= BOXES_FROM for r in ref])
     m, lo, hi = S.bootstrap(ref, ls, lp)                      # split minus pooled
     sub = [r for r, e in zip(ref, era) if e]

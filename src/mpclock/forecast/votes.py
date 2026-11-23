@@ -90,7 +90,7 @@ FEATURE_GROUPS = {
     "pace_by_direction": ["pace_up", "pace_dn", "moved_last_up", "moved_last_dn", "mpr_x_pace_up", "mpr_x_pace_dn"],
     "pace_established": ["pace_est", "moved_last", "mpr_x_pace_est", "first_move", "first_x_mpr"],
     "words": ["guidance", "signal_level"],
-    "words_split": ["g_rat_gap", "g_rat_lvl", "g_pol_gap", "g_pol_lvl", "g_oth_gap", "g_oth_lvl"],
+    "words_split": ["g_pol_gap", "g_pol_lvl", "g_oth_gap", "g_oth_lvl"],   # boxes count as policy-focused
     "direction": ["direction"],
     "governor": ["gov_pull"],
     "hedge": ["signal_hedged", "guidance_hedged"],
@@ -374,7 +374,10 @@ RATIONALE_WEIGHT = 2.0  # the member's own vote rationale in the minutes counts 
 HALF_LIFE = 14          # days: a document's weight halves every HALF_LIFE days before the meeting
                         # (chosen in the backtest from 7/14/30/60; None = all words count equally)
 FOCUS_SPLIT = 0.5       # documents at least this much about policy are "policy-focused"
-RATIONALE_AS_POLICY = False  # count vote rationales as policy-focused speeches (one shared weight)
+RATIONALE_AS_POLICY = True   # count vote rationales as policy-focused speeches (one shared weight):
+                             # the boxes began only in Nov 2025, too few to learn their own
+                             # weight; a separate weight was not significantly better
+                             # (scripts/test_rationale_weight.py)
 
 
 def _focus_weight(f) -> float:
