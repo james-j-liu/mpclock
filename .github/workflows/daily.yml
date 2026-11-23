@@ -58,6 +58,8 @@ jobs:
           git add data/processed/forecast_inputs.json data/processed/guidance_codes.json site/forecast.json site/press_interviews.json site/data_vs_mpr.json || true
           git commit -m "daily update $(date -u +%F)" || echo "no changes to commit"
           git push
+      - name: Check the site's scripts and data before deploying
+        run: python scripts/check_site.py
       - name: Upload site for Pages
         uses: actions/upload-pages-artifact@v3
         with:
