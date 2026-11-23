@@ -86,6 +86,9 @@ FEATURE_GROUPS = {
     "committee": ["prev_dev", "pull"],
     "record": ["hist_dev", "trend"],
     "pace": ["pace", "moved_last", "mpr_x_pace"],
+    # alternative codings of "pace", tested against it (scripts/test_pace.py)
+    "pace_by_direction": ["pace_up", "pace_dn", "moved_last_up", "moved_last_dn", "mpr_x_pace_up", "mpr_x_pace_dn"],
+    "pace_established": ["pace_est", "moved_last", "mpr_x_pace_est", "first_move", "first_x_mpr"],
     "words": ["guidance", "signal_level"],
     "words_split": ["g_rat_gap", "g_rat_lvl", "g_pol_gap", "g_pol_lvl", "g_oth_gap", "g_oth_lvl"],
     "direction": ["direction"],
@@ -294,33 +297,66 @@ def market_changes(ctx: Context, start: str, end: str) -> dict[str, float]:
             "ecb": _mkt_change(m.get("ecb", {}), start, end, pct=False) * 4}
 
 
+def is_mpr_meeting(ctx: Context, date: str) -> bool:
+    """A Monetary Policy Report meeting: within a week of a Report we hold, or in a Report
+    month (Feb/May/Aug/Nov). The month rule covers Reports missing from the chart-data
+    files (Aug 2017, May and Aug 2020) and future meetings, whose Reports are not out yet;
+    Reports published in Jan/Apr/Jul/Oct are caught by the first rule."""
+    d0 = dt.date.fromisoformat(date)
+    if any(abs((d0 - dt.date.fromisoformat(x)).days) <= 7 for x in ctx.mpr_dates):
+        return True
+    return d0.month in (2, 5, 8, 11)
+
+
 def pace_features(ctx: Context, i: int, date: str) -> dict[str, float]:
     """Revealed pace of the current cycle, from meetings before `date`."""
+    zero = {"pace": 0.0, "moved_last": 0.0, "mpr_x_pace": 0.0, "mpr": 0.0, "cycle_dir": 0, "n_moves": 0}
     past = [m for m in ctx.meetings if m.date < date]
     if not past:
-        return {"pace": 0.0, "moved_last": 0.0, "mpr_x_pace": 0.0, "mpr": 0.0, "cycle_dir": 0}
+        return _pace_variants(zero)
     moves = [(m.date, np.sign(m.decision)) for m in past if m.decision != 0]
     if not moves:
-        return {"pace": 0.0, "moved_last": 0.0, "mpr_x_pace": 0.0, "mpr": 0.0, "cycle_dir": 0}
+        return _pace_variants({**zero, "mpr": float(is_mpr_meeting(ctx, date))})
     cdir = moves[-1][1]
-    # the cycle began at the first move in this direction after the last opposite move
+    # the cycle began at the first move in this direction after the last opposite move,
+    # or after a gap of more than 400 days between moves (moves between scheduled
+    # meetings, like the March 2020 emergency cuts, are not in the meeting record, so a
+    # long pause also ends a cycle)
     start = moves[-1][0]
+    n_moves = 0
+    nxt = None
     for d, s in reversed(moves):
-        if s != cdir:
+        if s != cdir or (nxt and (dt.date.fromisoformat(nxt) - dt.date.fromisoformat(d)).days > 400):
             break
-        start = d
+        start, nxt = d, d
+        n_moves += 1
     # a cycle whose last move is over a year old is dormant
     active = (dt.date.fromisoformat(date) - dt.date.fromisoformat(moves[-1][0])).days < 400
-    is_mpr = lambda d: any(abs((dt.date.fromisoformat(d) - dt.date.fromisoformat(x)).days) <= 2
-                           for x in ctx.mpr_dates)
-    this_mpr = is_mpr(date)
-    same = [m for m in past if m.date >= start and is_mpr(m.date) == this_mpr]
+    this_mpr = is_mpr_meeting(ctx, date)
+    same = [m for m in past if m.date >= start and is_mpr_meeting(ctx, m.date) == this_mpr]
     moved = sum(1 for m in same if np.sign(m.decision) == cdir)
     pace = (moved + 0.5) / (len(same) + 1.0) if active else 0.0
     last = past[-1]
-    return {"pace": float(cdir * pace), "moved_last": float(np.sign(last.decision)),
-            "mpr_x_pace": float(cdir * pace * (1 if this_mpr else -1)) if active else 0.0,
-            "mpr": float(this_mpr), "cycle_dir": int(cdir) if active else 0}
+    return _pace_variants({"pace": float(cdir * pace), "moved_last": float(np.sign(last.decision)),
+                           "mpr_x_pace": float(cdir * pace * (1 if this_mpr else -1)) if active else 0.0,
+                           "mpr": float(this_mpr), "cycle_dir": int(cdir) if active else 0,
+                           "n_moves": n_moves if active else 0})
+
+
+def _pace_variants(f: dict) -> dict:
+    """Alternative codings of the pace inputs, for testing (see FEATURE_GROUPS):
+    split by the cycle's direction, and gated until the cycle has a revealed cadence
+    (two or more moves), with a separate input for 'one move so far'."""
+    up, dn = f["cycle_dir"] > 0, f["cycle_dir"] < 0
+    est = f["n_moves"] >= 2
+    first = float(f["cycle_dir"]) if f["n_moves"] == 1 else 0.0
+    sgn_mpr = 1.0 if f["mpr"] else -1.0
+    return {**f,
+            "pace_up": f["pace"] * up, "pace_dn": f["pace"] * dn,
+            "mpr_x_pace_up": f["mpr_x_pace"] * up, "mpr_x_pace_dn": f["mpr_x_pace"] * dn,
+            "moved_last_up": max(f["moved_last"], 0.0), "moved_last_dn": min(f["moved_last"], 0.0),
+            "pace_est": f["pace"] * est, "mpr_x_pace_est": f["mpr_x_pace"] * est,
+            "first_move": first, "first_x_mpr": first * sgn_mpr}
 
 
 # Document weights. Tested against the backtest: removing the floor so off-topic texts
@@ -478,7 +514,10 @@ def features_for(ctx: Context, prev: Meeting, date: str, members: list[str],
             "surprise_data": float(np.clip(personal, -4, 4)),
             "energy": float(np.clip(mk["energy"], -4, 4)), "fx": float(np.clip(mk["fx"], -4, 4)),
             "fed": mk["fed"], "ecb": mk["ecb"],
-            "pace": pace["pace"], "moved_last": pace["moved_last"], "mpr_x_pace": pace["mpr_x_pace"],
+            **{k: pace[k] for k in ("pace", "moved_last", "mpr_x_pace", "pace_up", "pace_dn", "mpr_x_pace_up",
+                                    "mpr_x_pace_dn", "moved_last_up", "moved_last_dn", "pace_est",
+                                    "mpr_x_pace_est", "first_move", "first_x_mpr")},
+            "cycle_dir": pace["cycle_dir"], "n_moves": pace["n_moves"],
             "has_guidance": w["has_guidance"],
             # split by kind of document: change from last vote (gap) and level, each 0 if none
             **{f"g_{k}_gap": float(0.0 if w["comp"].get(k) is None else w["comp"][k] - pv) for k in ("rat", "pol", "oth")},
