@@ -49,15 +49,15 @@ FOCUS_INSTRUCTIONS = ("How much of this text is about the outlook for UK monetar
                       "the path of Bank Rate over the coming meetings?")
 
 
-def load_codes() -> dict:
+def load_codes(path: Path | None = None) -> dict:
     try:
-        return json.loads(CODES.read_text(encoding="utf-8"))
+        return json.loads((path or CODES).read_text(encoding="utf-8"))
     except (OSError, ValueError):
         return {}
 
 
-def save_codes(codes: dict) -> None:
-    CODES.write_text(json.dumps(codes, sort_keys=True, indent=0), encoding="utf-8")
+def save_codes(codes: dict, path: Path | None = None) -> None:
+    (path or CODES).write_text(json.dumps(codes, sort_keys=True, indent=0), encoding="utf-8")
 
 
 def _rate_on(rate, d):
@@ -139,18 +139,30 @@ def _choice(res, q, options):
     return {k: round(v, 4) for k, v in p.items()}, round(sum(options[k] * v for k, v in p.items()), 4)
 
 
+_YEAR = re.compile(r"\b(19[89]\d|20[0-4]\d)\b")
+
+
+def blind_text(text: str, anonymizer) -> str:
+    """Names replaced by [OFFICIAL] (the tournament's anonymizer) and years by [YEAR], so a
+    model trained on later data cannot simply recall what the member went on to do."""
+    return _YEAR.sub("[YEAR]", anonymizer(text))
+
+
 def code_documents(docs, rate, max_workers: int = 8, cap: int = 90000, limit: int | None = None,
-                   verbose: bool = True) -> dict:
+                   verbose: bool = True, model: str | None = None, blind: bool = False,
+                   path: Path | None = None, anonymizer=None) -> dict:
     """Codes documents not yet coded at VERSION; returns the cache. Each document gets:
       p / ev            next-meeting vote, whole text
       dir / dir_ev      direction of the member's next move over the next few meetings
       p_pass / ev_pass, dir_pass / dir_ev_pass   the same on the policy passages alone
       focus             how much of the text is about the policy outlook"""
     import requests
-    from ..judge.jev import MODEL, _Client
+    from ..judge.jev import MODEL as JEV, _Client
     from ..judge.openrouter import excerpt
+    MODEL = model or JEV
+    path = path or CODES
 
-    codes = load_codes()
+    codes = load_codes(path)
     todo = [s for s in docs if codes.get(s.id, {}).get("v") != required_version(s) and (s.text or "").strip()]
     if limit:
         todo = todo[:limit]
@@ -163,13 +175,19 @@ def code_documents(docs, rate, max_workers: int = 8, cap: int = 90000, limit: in
     def one(s):
         state = {"date": s.date, "bank_rate_percent": _rate_on(rate, s.date),
                  "document_type": s.source_type, "speaker_role": "MPC member"}
+        text = s.text
+        if blind:
+            # no date, no names, no years: the model reads the text, it cannot look it up
+            state.pop("date")
+            text = blind_text(s.text, anonymizer)
         if s.source_type == "member_view":
-            state["note"] = BOX_NOTE
-        vote_q = {"type": "choice", "instructions": INSTRUCTIONS, "criteria": CRITERIA}
+            state["note"] = BOX_NOTE.replace("announced on the date shown", "being announced")
+        instr = INSTRUCTIONS.replace("given on the date shown, when", "given when") if blind else INSTRUCTIONS
+        vote_q = {"type": "choice", "instructions": instr, "criteria": CRITERIA}
         dir_q = {"type": "choice", "instructions": DIR_INSTRUCTIONS, "criteria": DIR_CRITERIA}
 
         def build(c):
-            return {"model": MODEL, "state": {**state, "text": excerpt(s.text, c, s.source_type)},
+            return {"model": MODEL, "state": {**state, "text": excerpt(text, c, s.source_type)},
                     "questions": {"next_vote": vote_q, "direction": dir_q,
                                   "focus": {"type": "score", "instructions": FOCUS_INSTRUCTIONS,
                                             "criteria": FOCUS_LEVELS}}}
@@ -180,10 +198,10 @@ def code_documents(docs, rate, max_workers: int = 8, cap: int = 90000, limit: in
         p, ev = _choice(res, "next_vote", OPTIONS)
         d, dev = _choice(res, "direction", DIRECTION)
         f = res["answers"]["focus"].get("score")
-        rec = {"v": required_version(s), "date": s.date, "speaker": s.speaker, "type": s.source_type,
+        rec = {"v": required_version(s), "model": MODEL, "blind": blind, "date": s.date, "speaker": s.speaker, "type": s.source_type,
                "p": p, "ev": ev, "dir": d, "dir_ev": dev,
                "focus": None if f is None else round(float(f) / (len(FOCUS_LEVELS) - 1), 3)}
-        pas = policy_passages(s.text) if s.source_type != "member_view" else ""
+        pas = policy_passages(text) if s.source_type != "member_view" else ""
         if pas:
             try:
                 r2 = client.post({"model": MODEL,
@@ -209,10 +227,10 @@ def code_documents(docs, rate, max_workers: int = 8, cap: int = 90000, limit: in
                 print(f"  [skip] {s.date} {s.speaker}: {err}")
             done += 1
             if done % 100 == 0:
-                save_codes(codes)
+                save_codes(codes, path)
                 if verbose:
                     print(f"  {done}/{len(todo)} coded, ${client.cost:.3f}")
-    save_codes(codes)
+    save_codes(codes, path)
     if verbose:
         print(f"guidance: coded {done}, spend ${client.cost:.4f}")
     return codes
