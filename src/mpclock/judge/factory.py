@@ -24,9 +24,18 @@ def direct_model() -> str:
     return _model("direct_model", "DIRECT_MODEL")
 
 
+# Decision models (typed choice/score answers via OpenRouter's decisions endpoint):
+# TypeSafe Jev, Nace.AI Drex, Perplexity Decider. Anything else is a chat model.
+DECISION_PREFIXES = ("typesafe/jev", "nace-ai/", "perplexity/pplx-decider")
+
+
+def is_decision_model(m: str) -> bool:
+    return m.startswith(DECISION_PREFIXES)
+
+
 def make_pairwise_judge():
     m = pairwise_model()
-    if m.startswith("typesafe/jev"):
+    if is_decision_model(m):
         from .jev import JevJudge
         return JevJudge(model=m, max_excerpt_chars=cfg()["judge"].get("jev_excerpt_chars", 56000))
     from .openrouter import Judge
@@ -35,7 +44,7 @@ def make_pairwise_judge():
 
 def make_direct_scorer():
     m = direct_model()
-    if m.startswith("typesafe/jev"):
+    if is_decision_model(m):
         from .jev import JevScorer
         return JevScorer(model=m)
     from .direct import DirectScorer
