@@ -6,6 +6,8 @@ Arms (codes in data/processed/guidance_ab/, made by scripts/code_guidance_ab.py)
   jev113_blind     Jev 1.13, blind: no date, names -> [OFFICIAL], years -> [YEAR]
   jev114_blind     Jev 1.14, blind
   decider12_blind  Perplexity Decider V1.2, blind
+  drexmax_blind    Nace.AI Drex Max, blind
+  drexmaxfin_blind Nace.AI Drex Max Finance (further trained on financial decisions), blind
   ensemble_blind   the average of Jev 1.14 and Decider V1.2 (no extra calls)
 
 Each arm's codes go through the same selected vote model (data/processed/vote_model.json),
@@ -65,7 +67,7 @@ def main():
     arms["jev113_dated_oldboxes"] = {k: ({**v, **{f: v["prev"][f] for f in ("p", "ev", "dir", "dir_ev")}}
                                          if v.get("type") == "member_view" and v.get("prev") else v)
                                      for k, v in arms["jev113_dated"].items()}
-    for a in ("jev113_blind", "jev114_blind", "decider12_blind"):
+    for a in ("jev113_blind", "jev114_blind", "decider12_blind", "drexmax_blind", "drexmaxfin_blind"):
         f = AB / f"{a}.json"
         if f.exists():
             arms[a] = load_codes(f)

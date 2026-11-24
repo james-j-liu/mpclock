@@ -198,7 +198,7 @@ def code_documents(docs, rate, max_workers: int = 8, cap: int = 90000, limit: in
         p, ev = _choice(res, "next_vote", OPTIONS)
         d, dev = _choice(res, "direction", DIRECTION)
         f = res["answers"]["focus"].get("score")
-        rec = {"v": required_version(s), "model": MODEL, "blind": blind, "date": s.date, "speaker": s.speaker, "type": s.source_type,
+        rec = {"v": required_version(s), "model": MODEL, "served_model": res.get("model"), "blind": blind, "date": s.date, "speaker": s.speaker, "type": s.source_type,
                "p": p, "ev": ev, "dir": d, "dir_ev": dev,
                "focus": None if f is None else round(float(f) / (len(FOCUS_LEVELS) - 1), 3)}
         pas = policy_passages(text) if s.source_type != "member_view" else ""

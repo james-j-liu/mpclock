@@ -3,7 +3,7 @@
 [OFFICIAL], years by [YEAR], so a model trained on later data cannot recall outcomes.
 
     python scripts/code_guidance_ab.py --arm jev113_blind
-Arms: jev113_blind, jev114_blind, decider12_blind. Needs OPENROUTER_API_KEY.
+Arms: jev113_blind, jev114_blind, decider12_blind, drexmax_blind, drexmaxfin_blind. Needs OPENROUTER_API_KEY.
 Output: data/processed/guidance_ab/<arm>.json
 """
 from __future__ import annotations
@@ -25,6 +25,8 @@ ARMS = {  # pinned versions, not "latest" aliases, so the comparison can be repr
     "jev113_blind": "typesafe/jev-1.13",
     "jev114_blind": "typesafe/jev-1.14",
     "decider12_blind": "perplexity/pplx-decider-v1.2",
+    "drexmax_blind": "nace-ai/drex-max",                  # the id OpenRouter serves (v1.1 behind it)
+    "drexmaxfin_blind": "nace-ai/drex-max-finance",
 }
 OUT = ROOT / "data/processed/guidance_ab"
 
