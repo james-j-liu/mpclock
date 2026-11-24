@@ -4,7 +4,11 @@ name: Guidance model comparison (re-code)
 # or years), for scripts/test_guidance_models.py. Commits data/processed/guidance_ab/
 # back to the branch it ran on. Runs only on claude/** branches or by hand.
 on:
-  workflow_dispatch: {}
+  workflow_dispatch:
+    inputs:
+      arms:
+        description: "JSON list of arms"
+        default: '["drexmax_blind", "drexmaxfin_blind"]'
   push:
     branches: ["claude/**"]
     paths:
@@ -22,7 +26,7 @@ jobs:
       fail-fast: false
       max-parallel: 3
       matrix:
-        arm: [jev113_blind, jev114_blind, decider12_blind]
+        arm: ${{ fromJSON(inputs.arms || '["drexmax_blind", "drexmaxfin_blind"]') }}
     concurrency:
       group: guidance-ab-${{ github.ref }}-${{ matrix.arm }}
       cancel-in-progress: false
