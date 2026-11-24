@@ -1,0 +1,94 @@
+name: Full re-score (scoring-model switch)
+
+# Re-judges the whole pool with a new scoring model (scripts/rescore_full.py): the
+# pairwise tournament into tournament_log.next.jsonl and direct scores into
+# direct.next.json, in resumable chunks committed as it goes. Nothing live changes
+# until the finalize job, which swaps the new log in (the old one kept as
+# tournament_log.prev.jsonl), writes the new ratings, and points config.yaml at the
+# new model so the daily run continues with it. Re-dispatch to resume if a run stops.
+on:
+  workflow_dispatch:
+    inputs:
+      model:
+        description: "scoring model (decision model id)"
+        default: "nace-ai/drex-max-finance"
+
+permissions:
+  contents: write
+
+jobs:
+  rescore:
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    concurrency:
+      group: rescore-${{ github.ref }}
+      cancel-in-progress: false
+    outputs:
+      done: ${{ steps.loop.outputs.done }}
+    env:
+      OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+      PAIRWISE_MODEL: ${{ inputs.model }}
+      DIRECT_MODEL: ${{ inputs.model }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install -r requirements.txt
+      - name: Re-score in chunks
+        id: loop
+        run: |
+          git config user.name "mpclock-bot"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          start=$(date +%s)
+          done=false
+          while [ $(( $(date +%s) - start )) -lt 18000 ]; do
+            out=$(python -u scripts/rescore_full.py --chunk 2000 --concurrency 16 2>&1 | grep -v "it/s\]" | tail -5)
+            echo "$out"
+            git add -f data/processed/tournament_log.next.jsonl data/processed/direct.next.json 2>/dev/null || true
+            git commit -qm "re-score with ${PAIRWISE_MODEL}: chunk" || true
+            for i in 1 2 3 4 5; do
+              git pull -q --rebase origin "${GITHUB_REF_NAME}" && git push -q origin "HEAD:${GITHUB_REF_NAME}" && break
+              sleep $((i * 5))
+            done
+            if echo "$out" | grep -q "done - run with --finalize"; then done=true; break; fi
+          done
+          echo "done=$done" >> "$GITHUB_OUTPUT"
+
+  finalize:
+    needs: rescore
+    if: needs.rescore.outputs.done == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    concurrency:
+      group: daily-update        # never alongside the daily run, which writes the same files
+      cancel-in-progress: false
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install -r requirements.txt
+      - name: Swap in the new scores and switch the daily run to the new model
+        run: |
+          python -u scripts/rescore_full.py --finalize
+          sed -i -E 's#^(  pairwise_model: ).*#\1"${{ inputs.model }}"#; s#^(  direct_model: ).*#\1"${{ inputs.model }}"#' config.yaml
+          grep -E "pairwise_model|direct_model" config.yaml
+          python scripts/check_site.py
+      - name: Commit
+        run: |
+          git config user.name "mpclock-bot"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -A config.yaml data/processed/corpus.jsonl data/processed/tournament_log.jsonl site/data.json
+          git add -f data/processed/tournament_log.prev.jsonl
+          git rm -q --cached --ignore-unmatch data/processed/tournament_log.next.jsonl data/processed/direct.next.json
+          git commit -m "Scores re-judged with ${{ inputs.model }}; daily run switched to it"
+          for i in 1 2 3 4 5; do
+            git pull --rebase origin "${GITHUB_REF_NAME}" && git push origin "HEAD:${GITHUB_REF_NAME}" && exit 0
+            sleep $((i * 5))
+          done
+          exit 1
