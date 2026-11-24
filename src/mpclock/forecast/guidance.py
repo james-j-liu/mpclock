@@ -139,6 +139,12 @@ def _choice(res, q, options):
     return {k: round(v, 4) for k, v in p.items()}, round(sum(options[k] * v for k, v in p.items()), 4)
 
 
+# Live reader, chosen by scripts/test_guidance_models.py: Drex Max Finance, blind, was the
+# only model significantly better than Jev 1.13 through the vote model (-0.019 [-0.037,
+# -0.004]). Blind = no date, names -> [OFFICIAL], years -> [YEAR].
+LIVE_MODEL = "nace-ai/drex-max-finance"
+LIVE_BLIND = True
+
 _YEAR = re.compile(r"\b(19[89]\d|20[0-4]\d)\b")
 
 
@@ -149,7 +155,7 @@ def blind_text(text: str, anonymizer) -> str:
 
 
 def code_documents(docs, rate, max_workers: int = 8, cap: int = 90000, limit: int | None = None,
-                   verbose: bool = True, model: str | None = None, blind: bool = False,
+                   verbose: bool = True, model: str | None = None, blind: bool | None = None,
                    path: Path | None = None, anonymizer=None) -> dict:
     """Codes documents not yet coded at VERSION; returns the cache. Each document gets:
       p / ev            next-meeting vote, whole text
@@ -159,11 +165,19 @@ def code_documents(docs, rate, max_workers: int = 8, cap: int = 90000, limit: in
     import requests
     from ..judge.jev import MODEL as JEV, _Client
     from ..judge.openrouter import excerpt
-    MODEL = model or JEV
+    MODEL = model or LIVE_MODEL
+    blind = LIVE_BLIND if blind is None else blind
     path = path or CODES
+    if blind and anonymizer is None:
+        from ..process.anonymize import Anonymizer
+        from ..process.roster import build_roster
+        anonymizer = Anonymizer(build_roster([s.speaker for s in docs]))
 
     codes = load_codes(path)
-    todo = [s for s in docs if codes.get(s.id, {}).get("v") != required_version(s) and (s.text or "").strip()]
+    def stale(doc, c):   # coded at an older prompt version, or by another reader / setting
+        return (c.get("v") != required_version(doc) or c.get("model", JEV) != MODEL
+                or bool(c.get("blind", False)) != bool(blind))
+    todo = [s for s in docs if (s.id not in codes or stale(s, codes[s.id])) and (s.text or "").strip()]
     if limit:
         todo = todo[:limit]
     if verbose:

@@ -50,6 +50,28 @@
    ],
    "significantly_better": false
   },
+  "drexmax_blind": {
+   "log_loss": 0.679,
+   "log_loss_since_2025": 0.8939,
+   "n_codes": 585,
+   "change_vs_reference": -0.0059,
+   "ci95": [
+    -0.0231,
+    0.0109
+   ],
+   "significantly_better": false
+  },
+  "drexmaxfin_blind": {
+   "log_loss": 0.6662,
+   "log_loss_since_2025": 0.8408,
+   "n_codes": 585,
+   "change_vs_reference": -0.0187,
+   "ci95": [
+    -0.0367,
+    -0.0035
+   ],
+   "significantly_better": true
+  },
   "ensemble_blind": {
    "log_loss": 0.6861,
    "log_loss_since_2025": 0.8969,
