@@ -12,6 +12,12 @@ on:
       model:
         description: "scoring model (decision model id)"
         default: "nace-ai/drex-max-finance"
+      chunk:
+        description: "comparisons per committed chunk"
+        default: "400"
+      concurrency:
+        description: "parallel requests"
+        default: "8"
 
 permissions:
   contents: write
@@ -44,15 +50,16 @@ jobs:
           start=$(date +%s)
           done=false
           while [ $(( $(date +%s) - start )) -lt 18000 ]; do
-            out=$(python -u scripts/rescore_full.py --chunk 2000 --concurrency 16 2>&1 | grep -v "it/s\]" | tail -5)
-            echo "$out"
+            echo "== chunk at $(date -u +%T)"
+            python -u scripts/rescore_full.py --chunk ${{ inputs.chunk }} --concurrency ${{ inputs.concurrency }} 2>&1 \
+              | tr '\r' '\n' | grep -v -E "it/s\]|s/it\]" | tee chunk.log | tail -5
             git add -f data/processed/tournament_log.next.jsonl data/processed/direct.next.json 2>/dev/null || true
             git commit -qm "re-score with ${PAIRWISE_MODEL}: chunk" || true
             for i in 1 2 3 4 5; do
               git pull -q --rebase origin "${GITHUB_REF_NAME}" && git push -q origin "HEAD:${GITHUB_REF_NAME}" && break
               sleep $((i * 5))
             done
-            if echo "$out" | grep -q "done - run with --finalize"; then done=true; break; fi
+            if grep -q "done - run with --finalize" chunk.log; then done=true; break; fi
           done
           echo "done=$done" >> "$GITHUB_OUTPUT"
 
