@@ -17,8 +17,8 @@ judge:
   # question instead of writing text, bills input only ($0.042/M, output free) and
   # shows far less slot-A bias than the chat judge. PAIRWISE_MODEL / DIRECT_MODEL
   # env vars override; a non-Jev id falls back to the chat judges below.
-  pairwise_model: "typesafe/jev-1.13"
-  direct_model: "typesafe/jev-1.13"
+  pairwise_model: "nace-ai/drex-max-finance"
+  direct_model: "nace-ai/drex-max-finance"
   # Jev's context is 32k tokens and a comparison carries two excerpts, so each is
   # capped here; longer documents are sampled 40/20/40 (opening/middle/close).
   jev_excerpt_chars: 56000
