@@ -4,7 +4,7 @@
   "scenarios": [
    {
     "december_bp": 25,
-    "p_december": 0.621,
+    "p_december": 0.6211,
     "members": {
      "Andrew Bailey": {
       "-1": 0.0038,
@@ -80,7 +80,7 @@
    },
    {
     "december_bp": 0,
-    "p_december": 0.375,
+    "p_december": 0.3749,
     "members": {
      "Andrew Bailey": {
       "-2": 0.0,
@@ -93,8 +93,8 @@
      "Sarah Breeden": {
       "-2": 0.0001,
       "-1": 0.0047,
-      "0": 0.4724,
-      "1": 0.5197,
+      "0": 0.4723,
+      "1": 0.5198,
       "2": 0.0031,
       "3": 0.0
      },
@@ -159,7 +159,7 @@
      "-50": 0.0,
      "-25": 0.0001,
      "0": 0.1338,
-     "25": 0.8571,
+     "25": 0.8572,
      "50": 0.0089,
      "75": 0.0
     }
@@ -167,7 +167,7 @@
   ],
   "note": "Conditional on each December outcome; members' latest words carried forward; no new data or market moves assumed; February is an MPR meeting."
  },
- "generated": "2026-11-24 23:29 UTC",
+ "generated": "2026-11-25 00:23 UTC",
  "last_meeting": {
   "date": "2026-11-04",
   "decision_bp": 25,
@@ -185,7 +185,7 @@
   }
  },
  "next_meeting": "2026-12-16",
- "as_of": "2026-11-24",
+ "as_of": "2026-11-25",
  "options_bp": [
   -25,
   0,
@@ -275,7 +275,7 @@
      }
     }
    ],
-   "signal": 1.2969,
+   "signal": 1.2969000000000002,
    "record": [
     {
      "date": "2026-09-16",
@@ -370,7 +370,7 @@
     "gov_pull": -0.345,
     "signal_hedged": 0.273,
     "guidance_hedged": 0.001,
-    "surprise": -0.625,
+    "surprise": -0.624,
     "fed": 0.0,
     "ecb": 0.0,
     "fx": 0.397,
@@ -571,7 +571,7 @@
      }
     }
    ],
-   "signal": 0.9423830866860646,
+   "signal": 0.9423830866860644,
    "record": [
     {
      "date": "2026-09-16",
@@ -730,7 +730,7 @@
      }
     }
    ],
-   "signal": 0.9350221459121931,
+   "signal": 0.9350221459121932,
    "record": [
     {
      "date": "2026-09-16",
@@ -962,7 +962,7 @@
     "gov_pull": 0.0,
     "signal_hedged": 0.094,
     "guidance_hedged": -0.049,
-    "surprise": -0.51,
+    "surprise": -0.509,
     "fed": 0.0,
     "ecb": 0.0,
     "fx": 0.397,
@@ -1026,7 +1026,7 @@
      }
     }
    ],
-   "signal": 0.654866005345011,
+   "signal": 0.6548660053450109,
    "record": [
     {
      "date": "2026-09-16",
@@ -1086,7 +1086,7 @@
    "member": "Sarah Breeden",
    "prev_vote": 1,
    "probs": {
-    "-1": 0.0279,
+    "-1": 0.0278,
     "0": 0.6662,
     "1": 0.3036,
     "2": 0.0023,
@@ -1121,7 +1121,7 @@
     "gov_pull": -0.345,
     "signal_hedged": 0.0,
     "guidance_hedged": -0.0,
-    "surprise": -0.519,
+    "surprise": -0.518,
     "fed": 0.0,
     "ecb": 0.0,
     "fx": 0.397,
@@ -1496,8 +1496,8 @@
  ],
  "decision": {
   "-25": 0.0014,
-  "0": 0.375,
-  "25": 0.621,
+  "0": 0.3749,
+  "25": 0.6211,
   "50": 0.0026,
   "75": 0.0
  },
@@ -1570,7 +1570,7 @@
    }
   ],
   "markets": {
-   "brent": -20.248,
+   "brent": -20.241,
    "gas": -12.102,
    "energy": -1.617,
    "fx": 0.397,
@@ -2822,7 +2822,7 @@
    }
   },
   "recent": {
-   "since": "2021-11-24",
+   "since": "2021-11-25",
    "log_loss": 0.9704,
    "brier": 0.5018,
    "vote_hit": 0.6546,
