@@ -21,6 +21,7 @@ on:
 
 permissions:
   contents: write
+  actions: write            # finalize starts the daily deploy (a push by this token would not)
 
 jobs:
   rescore:
@@ -104,7 +105,11 @@ jobs:
           git rm -q --cached --ignore-unmatch data/processed/tournament_log.next.jsonl data/processed/direct.next.json
           git commit -m "Scores re-judged with ${{ inputs.model }}; daily run switched to it"
           for i in 1 2 3 4 5; do
-            git pull --rebase origin "${GITHUB_REF_NAME}" && git push origin "HEAD:${GITHUB_REF_NAME}" && exit 0
+            git pull --rebase origin "${GITHUB_REF_NAME}" && git push origin "HEAD:${GITHUB_REF_NAME}" && break
             sleep $((i * 5))
+            [ $i = 5 ] && exit 1
           done
-          exit 1
+      - name: Deploy the site with the new scores
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run daily.yml --ref "${GITHUB_REF_NAME}"
