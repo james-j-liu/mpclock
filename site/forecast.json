@@ -80,7 +80,7 @@
    },
    {
     "december_bp": 0,
-    "p_december": 0.3749,
+    "p_december": 0.3748,
     "members": {
      "Andrew Bailey": {
       "-2": 0.0,
@@ -101,7 +101,7 @@
      "Swati Dhingra": {
       "-2": 0.0001,
       "-1": 0.0047,
-      "0": 0.4695,
+      "0": 0.4696,
       "1": 0.5225,
       "2": 0.0032,
       "3": 0.0
@@ -134,7 +134,7 @@
       "-2": 0.0,
       "-1": 0.0003,
       "0": 0.0324,
-      "1": 0.8219,
+      "1": 0.822,
       "2": 0.1449,
       "3": 0.0005
      },
@@ -149,7 +149,7 @@
      "Alan Taylor": {
       "-2": 0.0001,
       "-1": 0.0089,
-      "0": 0.616,
+      "0": 0.6161,
       "1": 0.3732,
       "2": 0.0017,
       "3": 0.0
@@ -167,7 +167,7 @@
   ],
   "note": "Conditional on each December outcome; members' latest words carried forward; no new data or market moves assumed; February is an MPR meeting."
  },
- "generated": "2026-11-25 00:23 UTC",
+ "generated": "2026-11-25 00:36 UTC",
  "last_meeting": {
   "date": "2026-11-04",
   "decision_bp": 25,
@@ -200,8 +200,8 @@
    "probs": {
     "-1": 0.0,
     "0": 0.0369,
-    "1": 0.7154,
-    "2": 0.246,
+    "1": 0.7153,
+    "2": 0.2461,
     "3": 0.0017
    },
    "expected_bp": 30.3,
@@ -233,7 +233,7 @@
     "gov_pull": 0.0,
     "signal_hedged": 0.0,
     "guidance_hedged": -0.0,
-    "surprise": -0.791,
+    "surprise": -0.79,
     "fed": 0.0,
     "ecb": 0.0,
     "fx": 0.397,
@@ -244,7 +244,7 @@
     "steady": 0.0
    },
    "surprise_data": 0.018,
-   "energy": -1.617,
+   "energy": -1.616,
    "contributions": {
     "prev_dev": 0.226,
     "pull": -1.828,
@@ -381,7 +381,7 @@
     "steady": 0.0
    },
    "surprise_data": 0.184,
-   "energy": -1.617,
+   "energy": -1.616,
    "contributions": {
     "prev_dev": 0.0,
     "pull": 0.228,
@@ -485,8 +485,8 @@
    "probs": {
     "-1": 0.0012,
     "0": 0.0887,
-    "1": 0.8605,
-    "2": 0.0493,
+    "1": 0.8606,
+    "2": 0.0494,
     "3": 0.0001
    },
    "expected_bp": 24.0,
@@ -518,7 +518,7 @@
     "gov_pull": 0.0,
     "signal_hedged": 0.471,
     "guidance_hedged": -0.029,
-    "surprise": -0.699,
+    "surprise": -0.698,
     "fed": 0.0,
     "ecb": 0.0,
     "fx": 0.397,
@@ -529,7 +529,7 @@
     "steady": 0.0
    },
    "surprise_data": 0.11,
-   "energy": -1.617,
+   "energy": -1.616,
    "contributions": {
     "prev_dev": 0.0,
     "pull": 0.228,
@@ -632,7 +632,7 @@
    "prev_vote": 1,
    "probs": {
     "-1": 0.0043,
-    "0": 0.2487,
+    "0": 0.2486,
     "1": 0.7321,
     "2": 0.0149,
     "3": 0.0
@@ -677,7 +677,7 @@
     "steady": 0.0
    },
    "surprise_data": 0.31,
-   "energy": -1.617,
+   "energy": -1.616,
    "contributions": {
     "prev_dev": 0.0,
     "pull": 0.228,
@@ -690,7 +690,7 @@
     "g_pol_lvl": 1.069,
     "g_oth_gap": 0.0,
     "g_oth_lvl": 0.0,
-    "surprise": -0.177
+    "surprise": -0.176
    },
    "n_docs": 3,
    "doc_dates": [
@@ -792,7 +792,7 @@
    "probs": {
     "-1": 0.0104,
     "0": 0.4448,
-    "1": 0.5386,
+    "1": 0.5387,
     "2": 0.0061,
     "3": 0.0
    },
@@ -825,7 +825,7 @@
     "gov_pull": -0.345,
     "signal_hedged": 0.0,
     "guidance_hedged": -0.0,
-    "surprise": -0.531,
+    "surprise": -0.53,
     "fed": 0.0,
     "ecb": 0.0,
     "fx": 0.397,
@@ -836,7 +836,7 @@
     "steady": 0.0
    },
    "surprise_data": 0.278,
-   "energy": -1.617,
+   "energy": -1.616,
    "contributions": {
     "prev_dev": 0.0,
     "pull": 0.228,
@@ -910,7 +910,7 @@
      0.594
     ],
     "1": [
-     0.389,
+     0.39,
      0.677
     ],
     "2": [
@@ -929,7 +929,7 @@
    "probs": {
     "-1": 0.0172,
     "0": 0.5642,
-    "1": 0.4148,
+    "1": 0.4149,
     "2": 0.0037,
     "3": 0.0
    },
@@ -973,7 +973,7 @@
     "steady": 1.0
    },
    "surprise_data": 0.299,
-   "energy": -1.617,
+   "energy": -1.616,
    "contributions": {
     "prev_dev": 0.0,
     "pull": 0.228,
@@ -986,7 +986,7 @@
     "g_pol_lvl": 0.725,
     "g_oth_gap": -0.604,
     "g_oth_lvl": 0.001,
-    "surprise": -0.181
+    "surprise": -0.18
    },
    "n_docs": 3,
    "doc_dates": [
@@ -1065,7 +1065,7 @@
      0.034
     ],
     "0": [
-     0.393,
+     0.392,
      0.75
     ],
     "1": [
@@ -1088,7 +1088,7 @@
    "probs": {
     "-1": 0.0278,
     "0": 0.6662,
-    "1": 0.3036,
+    "1": 0.3037,
     "2": 0.0023,
     "3": 0.0
    },
@@ -1132,7 +1132,7 @@
     "steady": 0.0
    },
    "surprise_data": 0.29,
-   "energy": -1.617,
+   "energy": -1.616,
    "contributions": {
     "prev_dev": 0.0,
     "pull": 0.228,
@@ -1258,7 +1258,7 @@
     "gov_pull": 0.0,
     "signal_hedged": 0.0,
     "guidance_hedged": -0.0,
-    "surprise": -0.781,
+    "surprise": -0.78,
     "fed": 0.0,
     "ecb": 0.0,
     "fx": 0.397,
@@ -1269,7 +1269,7 @@
     "steady": 0.0
    },
    "surprise_data": 0.028,
-   "energy": -1.617,
+   "energy": -1.616,
    "contributions": {
     "prev_dev": 0.0,
     "pull": 0.228,
@@ -1395,7 +1395,7 @@
     "gov_pull": 0.0,
     "signal_hedged": 0.0,
     "guidance_hedged": -0.0,
-    "surprise": -0.781,
+    "surprise": -0.78,
     "fed": 0.0,
     "ecb": 0.0,
     "fx": 0.397,
@@ -1406,7 +1406,7 @@
     "steady": 0.0
    },
    "surprise_data": 0.028,
-   "energy": -1.617,
+   "energy": -1.616,
    "contributions": {
     "prev_dev": 0.0,
     "pull": 0.228,
@@ -1496,7 +1496,7 @@
  ],
  "decision": {
   "-25": 0.0014,
-  "0": 0.3749,
+  "0": 0.3748,
   "25": 0.6211,
   "50": 0.0026,
   "75": 0.0
@@ -1570,9 +1570,9 @@
    }
   ],
   "markets": {
-   "brent": -20.241,
+   "brent": -20.221,
    "gas": -12.102,
-   "energy": -1.617,
+   "energy": -1.616,
    "fx": 0.397,
    "fed": 0.0,
    "ecb": 0.0
