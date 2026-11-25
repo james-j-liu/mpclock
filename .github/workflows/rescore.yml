@@ -14,10 +14,10 @@ on:
         default: "nace-ai/drex-max-finance"
       chunk:
         description: "comparisons per committed chunk"
-        default: "400"
+        default: "1000"
       concurrency:
         description: "parallel requests"
-        default: "8"
+        default: "16"
 
 permissions:
   contents: write
@@ -53,12 +53,21 @@ jobs:
             echo "== chunk at $(date -u +%T)"
             python -u scripts/rescore_full.py --chunk ${{ inputs.chunk }} --concurrency ${{ inputs.concurrency }} 2>&1 \
               | tr '\r' '\n' | grep -v -E "it/s\]|s/it\]" | tee chunk.log | tail -5
-            git add -f data/processed/tournament_log.next.jsonl data/processed/direct.next.json 2>/dev/null || true
-            git commit -qm "re-score with ${PAIRWISE_MODEL}: chunk" || true
-            for i in 1 2 3 4 5; do
-              git pull -q --rebase origin "${GITHUB_REF_NAME}" && git push -q origin "HEAD:${GITHUB_REF_NAME}" && break
-              sleep $((i * 5))
+            # stage each file that exists (one missing path makes a combined 'git add' stage nothing)
+            for f in data/processed/tournament_log.next.jsonl data/processed/direct.next.json; do
+              [ -f "$f" ] && git add -f "$f"
             done
+            if git commit -qm "re-score with ${PAIRWISE_MODEL}: chunk"; then
+              pushed=false
+              for i in 1 2 3 4 5; do
+                git pull -q --rebase origin "${GITHUB_REF_NAME}" && git push -q origin "HEAD:${GITHUB_REF_NAME}" && pushed=true && break
+                sleep $((i * 5))
+              done
+              $pushed || { echo "::error::could not push the chunk"; exit 1; }
+              echo "saved: $(wc -l < data/processed/tournament_log.next.jsonl) comparisons"
+            else
+              echo "::warning::nothing new to commit after this chunk"
+            fi
             if grep -q "done - run with --finalize" chunk.log; then done=true; break; fi
           done
           echo "done=$done" >> "$GITHUB_OUTPUT"
