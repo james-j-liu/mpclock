@@ -245,6 +245,13 @@ def session_records(sess: Session, use_cache: bool = True,
                     min_words: int = 250) -> list[Speech]:
     body = _fetch(sess.url, f"transcript_{sess.url.rstrip('/').split('/')[-2]}.html", use_cache)
     turns, members, witness_line = parse_turns(body)
+    return records_from_turns(sess, turns, members, witness_line, min_words)
+
+
+def records_from_turns(sess: Session, turns: list, members: str, witness_line: str,
+                       min_words: int = 250) -> list[Speech]:
+    """One document per MPC witness from a parsed transcript (also used for a
+    transcript supplied as a PDF: scripts/add_tsc_pdf.py)."""
     if not turns:
         return []
     mp_surnames = {_surname(n) for n in re.split(r"[;,]", members) if n.strip()}
