@@ -9095,6 +9095,45 @@
 "type": "member_view",
 "v": 3
 },
+"67dd0587a50c08fb": {
+"blind": true,
+"date": "2026-11-25",
+"dir": {
+"higher": 0.975,
+"lower": 0.0041,
+"unchanged": 0.0209
+},
+"dir_ev": 0.9709,
+"dir_ev_pass": 0.8915,
+"dir_pass": {
+"higher": 0.9028,
+"lower": 0.0112,
+"unchanged": 0.086
+},
+"ev": 1.793,
+"ev_pass": 1.5764,
+"focus": 0.807,
+"model": "nace-ai/drex-max-finance",
+"p": {
+"cut_25": 0.0082,
+"cut_50": 0.0035,
+"hike_25": 0.0722,
+"hike_50": 0.868,
+"hold": 0.0481
+},
+"p_pass": {
+"cut_25": 0.0139,
+"cut_50": 0.007,
+"hike_25": 0.1557,
+"hike_50": 0.7243,
+"hold": 0.0991
+},
+"pass_chars": 7359,
+"served_model": "nace-ai/drex-max-finance-20261110",
+"speaker": "Catherine Mann",
+"type": "testimony",
+"v": 2
+},
 "67e862d1b529cd18": {
 "blind": true,
 "date": "2022-04-04",
@@ -10509,6 +10548,45 @@
 "served_model": "nace-ai/drex-max-finance-20261110",
 "speaker": "Jonathan Haskel",
 "type": "speech",
+"v": 2
+},
+"7d1c13d6b52b7a29": {
+"blind": true,
+"date": "2026-11-25",
+"dir": {
+"higher": 0.7636,
+"lower": 0.0111,
+"unchanged": 0.2253
+},
+"dir_ev": 0.7525,
+"dir_ev_pass": 0.7713,
+"dir_pass": {
+"higher": 0.7886,
+"lower": 0.0173,
+"unchanged": 0.1941
+},
+"ev": 0.7444,
+"ev_pass": 0.7049,
+"focus": 0.725,
+"model": "nace-ai/drex-max-finance",
+"p": {
+"cut_25": 0.0209,
+"cut_50": 0.005,
+"hike_25": 0.5423,
+"hike_50": 0.1166,
+"hold": 0.3152
+},
+"p_pass": {
+"cut_25": 0.0342,
+"cut_50": 0.0054,
+"hike_25": 0.647,
+"hike_50": 0.0514,
+"hold": 0.2619
+},
+"pass_chars": 3790,
+"served_model": "nace-ai/drex-max-finance-20261110",
+"speaker": "Clare Lombardelli",
+"type": "testimony",
 "v": 2
 },
 "7e1225559d5b5ab2": {
@@ -20798,6 +20876,45 @@
 "type": "speech",
 "v": 2
 },
+"f5d18e23d6eaa543": {
+"blind": true,
+"date": "2026-11-25",
+"dir": {
+"higher": 0.6609,
+"lower": 0.0327,
+"unchanged": 0.3064
+},
+"dir_ev": 0.6282,
+"dir_ev_pass": 0.7842,
+"dir_pass": {
+"higher": 0.7943,
+"lower": 0.0101,
+"unchanged": 0.1956
+},
+"ev": 0.4148,
+"ev_pass": 0.887,
+"focus": 0.783,
+"model": "nace-ai/drex-max-finance",
+"p": {
+"cut_25": 0.0498,
+"cut_50": 0.0102,
+"hike_25": 0.3483,
+"hike_50": 0.0684,
+"hold": 0.5232
+},
+"p_pass": {
+"cut_25": 0.0178,
+"cut_50": 0.0046,
+"hike_25": 0.4124,
+"hike_50": 0.2508,
+"hold": 0.3144
+},
+"pass_chars": 7417,
+"served_model": "nace-ai/drex-max-finance-20261110",
+"speaker": "Andrew Bailey",
+"type": "testimony",
+"v": 2
+},
 "f5d49f4f719b8c27": {
 "blind": true,
 "date": "2024-02-21",
@@ -21537,6 +21654,45 @@
 "served_model": "nace-ai/drex-max-finance-20261110",
 "speaker": "Andrew Bailey",
 "type": "speech",
+"v": 2
+},
+"fff80a22c66c538e": {
+"blind": true,
+"date": "2026-11-25",
+"dir": {
+"higher": 0.1994,
+"lower": 0.2615,
+"unchanged": 0.5391
+},
+"dir_ev": -0.0621,
+"dir_ev_pass": -0.2698,
+"dir_pass": {
+"higher": 0.1205,
+"lower": 0.3903,
+"unchanged": 0.4893
+},
+"ev": 0.0541,
+"ev_pass": -0.1955,
+"focus": 0.791,
+"model": "nace-ai/drex-max-finance",
+"p": {
+"cut_25": 0.1908,
+"cut_50": 0.0162,
+"hike_25": 0.2287,
+"hike_50": 0.0244,
+"hold": 0.5399
+},
+"p_pass": {
+"cut_25": 0.2558,
+"cut_50": 0.0401,
+"hike_25": 0.1134,
+"hike_50": 0.0135,
+"hold": 0.5772
+},
+"pass_chars": 3301,
+"served_model": "nace-ai/drex-max-finance-20261110",
+"speaker": "Swati Dhingra",
+"type": "testimony",
 "v": 2
 }
 }
